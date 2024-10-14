@@ -39,6 +39,7 @@ print(text)
 
 ### 1. **Defining Variables**
 ```python
+# use `pip install jinja2` to install the jinja 
 name = "Shiv"
 place = "Chennai"
 profession = "Data Analyst"
@@ -47,7 +48,7 @@ profession = "Data Analyst"
   - `name` with the value `"Shiv"`
   - `place` with the value `"Chennai"`
   - `profession` with the value `"Data Analyst"`
-These will be used to fill in placeholders in the template.
+  These will be used to fill in placeholders in the template.
 
 ### 2. **Step 1: Create Template Text with Placeholders**
 ```python
@@ -106,7 +107,7 @@ place = "Delhi"
 - Two variables are created:
   - `name` with the value `"Divya"`
   - `place` with the value `"Delhi"`
-These variables will be used to fill in the placeholders inside the HTML template.
+  These variables will be used to fill in the placeholders inside the HTML template.
 
 ---
 
@@ -198,6 +199,7 @@ temp = "My data is: {%for i in Data %} {{i}} {% endfor %}"
   - `{{i}}`: This prints the current value of `i` (each item from the `Data` list).
   - `{% endfor %}`: This ends the for loop.
   
+
 When rendered, this loop will iterate over the list `Data` and insert each value into the final output.
 
 ---
@@ -218,6 +220,7 @@ out = made_temp.render(Data=data)
 - **`.render()`**: This method is used to pass data into the template. In this case:
   - `Data=data`: The list `data` (which contains `["Programmer", "Analyst", "Scientist"]`) is passed to the template as `Data`.
   
+
 The for loop inside the template will iterate over this list and print each value.
 
 When rendered, the result will be:
@@ -276,6 +279,7 @@ temp = """
   - `{% endif %}`: Closes the if statement.
   - `{% endfor %}`: Closes the for loop.
   
+
 If no string in the list contains the letter `"z"`, the template will not print any of the list items. After the loop, the string `"No data found"` will always be printed.
 
 ---
@@ -295,6 +299,7 @@ out = made_temp.render(data=data)
 - **`.render(data=data)`**: The `.render()` method is used to pass the list `data` into the template under the name `data`. This allows the for loop to iterate over the list.
   - Since none of the strings `"Programmer"`, `"Analyst"`, or `"Scientist"` contain the letter `"z"`, the if condition `if "z" in i` will never be true.
   
+
 Therefore, no strings from the list will be printed.
 
 ---
