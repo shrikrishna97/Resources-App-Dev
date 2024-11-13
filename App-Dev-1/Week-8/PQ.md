@@ -22,29 +22,29 @@ To find the maximum number of requests per second the server can handle, we need
 2. **Method 1: Direct Conversion to MBps**:
    
    - **Network Bandwidth**:
-    \[ 
+     ```math
      1 \text{ Gbps} = \frac{1 \times 10^9 \text{ bits per second}}{8 \text{ bits per byte}} = 125 \text{ MBps}
-    \]
+     ```
      
    - **Network Requirement per Request**:
-    \[ 
+    ```math
      \frac{125 \text{ MBps}}{1 \text{ MB/request}} = 125 \text{ requests per second}
-     \]
+    ```
      
      
    
 3. **Method 2: Using Mbps and Mb**:
    
    - **Network Bandwidth**:
-    \[ 
+    ```math 
      1 \text{ Gbps} = 1000 \text{ Mbps}
-    \]
+    ```
      
    - **Network Requirement per Request**:
      - Each request includes a 1 MB image, which is equal to **8 Mb** (megabits).
-      \[   
+    ```math
        \frac{1000 \text{ Mbps}}{8 \text{ Mb/request}} = 125 \text{ requests per second}
-     \]
+     ```
        
 
 ###### Conclusion:
