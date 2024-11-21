@@ -261,7 +261,8 @@
 ### **Day 7: Finalizing, Testing, and Deployment**
 **Theory (10 AM - 12:30 PM)**  
 - **Testing and Debugging**: Best practices for debugging Flask apps.
-- **Deployment**: Deploying your Flask app to platforms like Heroku.
+- **Problem Statement Discussion**: Have a discussion over problem statement.
+- **Deployment**: Deploying your Flask app.[Not Core]
 
 **Lunch Break (12:30 PM - 2:00 PM)**
 
