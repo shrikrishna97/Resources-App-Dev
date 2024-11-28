@@ -59,3 +59,4 @@
 1. **DOM concepts and manipulations.**
 2. **Client-side operations and computation.**
 3. **[Basic JavaScript knowledge.](https://youtu.be/htkkiSdPS_4)**
+4. **Differnce between frontend and backend validation**
