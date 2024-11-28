@@ -44,8 +44,9 @@
 
 **Things to Know:**
 1. [**Algorithmic complexities.**](https://youtu.be/YrC5Zx0Z9cA?t=3075)
-2. **Double data rate (DDR).**
+2. **Double data rate (DDR) , DRAM, Clock speed, minimum encoding**
 3. [**Examples and problems on algorithmic complexities.**](https://youtu.be/N3peJd8WSOY?list=PLZ2ps__7DhBZk4anG3HsvA20Q9x3P7rWb&t=1066)
+4. **Redundancy and Replication**
 
 ### Week 8: Application Frontend
 **Content:**
