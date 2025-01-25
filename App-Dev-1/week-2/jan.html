@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<!-- Defines the document type and sets the language to English -->
+<head>
+    <meta charset="UTF-8">
+    <!-- Specifies the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the page responsive to different screen sizes -->
+    <title>Login Page</title>
+    <!-- Sets the title of the document, shown in the browser tab -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Links to an external CSS file for styling -->
+    <style>
+        /* Example of internal CSS for basic page styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main wrapper for the form to center content -->
+        <div class="login-box">
+            <h2>Login</h2>
+            <!-- A heading tag, indicating the purpose of the page -->
+            <form>
+                <!-- Form element to group related inputs -->
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <!-- Label tag associates text with the input field -->
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <!-- Input for username. Placeholder shows a hint inside the input. -->
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <!-- Input for password. Type="password" hides the entered text. -->
+                </div>
+                <div class="actions">
+                    <button type="submit">Login</button>
+                    <!-- Button for form submission -->
+                </div>
+                <p class="signup-link">
+                    <!-- Paragraph tag for additional information -->
+                    Don't have an account? <a href="#">Sign Up</a>
+                    <!-- Anchor tag for navigation. It links to another page -->
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
