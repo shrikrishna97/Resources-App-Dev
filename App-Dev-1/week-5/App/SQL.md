@@ -1,0 +1,602 @@
+# Flask and SQLAlchemy Guide
+
+### Pre-requisite:  Download VS Code, python, pip.
+
+[App Github link](https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-1/week-5/App)
+
+**NOTE: This document might get updated multiple times till last session.**
+
+## **Session 1: Introduction to Flask and Jinja Templates**
+
+### **1. Introduction to Flask**
+- Flask is a lightweight Python web framework for building web applications.
+- It follows the WSGI (Web Server Gateway Interface) standard.
+- Provides flexibility and simplicity with minimal setup.
+
+### **2. Setting Up a Flask Application**
+#### **Installation**
+```sh
+pip install flask
+```
+
+#### **Basic Flask Application**
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+- Run `python app.py` and visit `http://127.0.0.1:5000/`.
+
+### **3. Jinja Templates**
+- Jinja2 is a templating engine used in Flask for rendering dynamic HTML.
+- Supports variables, loops, and conditionals.
+
+#### **Example Template (templates/index.html)**
+```html
+<!DOCTYPE html>
+<html>
+<head><title>Flask App</title></head>
+<body>
+    <h1>Welcome, {{ name }}</h1>
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No items found.</p>
+    {% endif %}
+</body>
+</html>
+```
+
+#### **Flask Route to Render Template**
+```python
+from flask import render_template
+
+@app.route('/items')
+def items():
+    return render_template('index.html', name="User", items=["Apple", "Banana", "Cherry"])
+```
+
+### **4. Why SQLAlchemy Over SQLite?**
+- SQLite is good for small applications but lacks scalability and advanced querying.
+- SQLAlchemy provides an ORM (Object-Relational Mapping) for better maintainability and flexibility.
+- SQLAlchemy has easier(english) queries than SQLite(SQL).
+
+---
+
+## **Session 2: Database Models and CRUD Operations**
+
+### **1. Recap of Flask & Jinja**
+- A quick recap of Flask routing, templates, and rendering data dynamically.
+
+### **2. Setting Up SQLAlchemy**
+#### **Installation**
+```sh
+pip install flask-sqlalchemy
+```
+
+#### **Configuring the Database**
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
+```
+
+### **3. Creating a Model (User Table)**
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+
+with app.app_context():
+    db.create_all()
+```
+
+### **4. Adding Data to the Database**
+```python
+with app.app_context():
+    user = User(username="JohnDoe")
+    db.session.add(user)
+    db.session.commit()
+```
+
+### **5. Fetching and Displaying Data**
+#### **Flask Route**
+```python
+@app.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
+```
+
+#### **Jinja Template (templates/users.html)**
+```html
+<ul>
+    {% for user in users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+</ul>
+```
+
+---
+
+## **Session 3: Relationships and Advanced SQLAlchemy**
+
+### **1. Recap of Models and CRUD Operations**
+- Brief discussion on database setup, creating models, and performing CRUD operations.
+
+### **2. One-to-Many Relationship (User and Quiz)**
+#### **Creating Models with Relationships**
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quizzes = db.relationship('Quiz', backref='creator', lazy=True)
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+```
+
+### **3. Querying Related Data**
+```python
+user = User.query.get(1)
+for quiz in user.quizzes:
+    print(quiz.title)
+```
+
+### **4. Many-to-Many Relationship (User and Quiz Participants)**
+#### **Creating an Association Table**
+```python
+quiz_participants = db.Table('quiz_participants',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
+)
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    participants = db.relationship('User', secondary=quiz_participants, backref='participated_quizzes')
+```
+
+### **5. Final Recap and Q&A**
+- Best practices with SQLAlchemy.
+- How to integrate authentication and role-based access.
+- Discuss future enhancements like migrations and API integrations.
+
+
+
+Here are all the common SQLAlchemy queries categorized by CRUD (Create, Read, Update, Delete) operations.  
+
+---
+
+### **1. Setting Up SQLAlchemy**
+```python
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+
+with app.app_context():
+    db.create_all()
+```
+
+---
+
+## **CRUD Operations in SQLAlchemy**
+
+### **2. Create (Insert) Data**
+```python
+# Adding a single user
+new_user = User(username="JohnDoe", email="john@example.com")
+db.session.add(new_user)
+db.session.commit()
+
+# Adding multiple users
+users = [
+    User(username="Alice", email="alice@example.com"),
+    User(username="Bob", email="bob@example.com")
+]
+db.session.add_all(users)
+db.session.commit()
+```
+
+---
+
+### **3. Read (Select) Data**
+#### **3.1 Get all users**
+```python
+users = User.query.all()  
+for user in users:
+    print(user.username, user.email)
+```
+
+#### **3.2 Get a single user by ID**
+```python
+user = User.query.get(1)  # Fetches the user with id = 1
+print(user.username, user.email)
+```
+
+#### **3.3 Filter users by condition**
+```python
+user = User.query.filter_by(username="Alice").first()  # Fetch first user with username Alice
+print(user.id, user.email)
+
+users = User.query.filter(User.email.like('%@example.com')).all()  # Fetch all users with email ending in @example.com
+```
+
+#### **3.4 Query using multiple filters**
+```python
+users = User.query.filter(User.username == "Alice", User.email.like("%@example.com")).all()
+```
+
+#### **3.5 Order and Limit Query Results**
+```python
+users = User.query.order_by(User.username.desc()).limit(5).all()  # Get the latest 5 users
+```
+
+#### **3.6 Count number of users**
+```python
+user_count = User.query.count()
+print(user_count)
+```
+
+---
+
+### **4. Update Data**
+#### **4.1 Update a single record**
+```python
+user = User.query.get(1)
+user.username = "JohnUpdated"
+db.session.commit()
+```
+
+#### **4.2 Update multiple records**
+```python
+User.query.filter(User.email.like('%@example.com')).update({"email": "newemail@example.com"})
+db.session.commit()
+```
+
+---
+
+### **5. Delete Data**
+#### **5.1 Delete a single user**
+```python
+user = User.query.get(1)
+db.session.delete(user)
+db.session.commit()
+```
+
+#### **5.2 Delete multiple users**
+```python
+User.query.filter(User.username == "Alice").delete()
+db.session.commit()
+```
+
+---
+
+## **Advanced Queries**
+
+### **6. Aggregate Functions**
+```python
+from sqlalchemy import func
+
+# Get the number of users
+user_count = db.session.query(func.count(User.id)).scalar()
+
+# Get the maximum user ID
+max_id = db.session.query(func.max(User.id)).scalar()
+```
+
+### **7. Many-to-Many Relationship Query**
+```python
+# Example Many-to-Many association
+user = User.query.get(1)
+print(user.participated_quizzes)  # Prints all quizzes the user participated in
+```
+
+---
+
+## **8. Many-to-Many Relationship Query Using `append()`**
+When dealing with a **many-to-many** relationship, we use `append()` to associate objects instead of `db.session.add()`.  
+
+### **Example: User & Quiz Many-to-Many Relationship**
+```python
+# Association table
+quiz_participants = db.Table('quiz_participants',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'))
+)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quizzes = db.relationship('Quiz', secondary=quiz_participants, back_populates="participants")
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    participants = db.relationship('User', secondary=quiz_participants, back_populates="quizzes")
+
+with app.app_context():
+    db.create_all()
+```
+
+### **Adding a User to a Quiz**
+```python
+# Fetch existing user and quiz
+user = User.query.get(1)
+quiz = Quiz.query.get(1)
+
+# Use append() to associate the user with the quiz
+quiz.participants.append(user)
+
+# Commit changes
+db.session.commit()
+```
+
+### **Fetching All Quizzes a User Participated In**
+```python
+user = User.query.get(1)
+for quiz in user.quizzes:
+    print(quiz.title)
+```
+
+---
+
+### **🔹 Key Difference Between `append()` and `db.session.add()`**
+- `db.session.add()` is used to **add new objects** to the database.
+- `append()` is used to **add relationships** between existing objects in a **many-to-many** or **one-to-many** relationship.
+
+---
+
+`and_` in SQLAlchemy is used for combining multiple conditions in a query using **logical AND**. It comes from `sqlalchemy import and_` and is especially useful when filtering with multiple conditions.
+
+---
+
+## **9. Using `and_` for Multiple Filters**
+`and_` allows you to apply multiple filter conditions in queries.
+
+### **Example: Using `and_` to Filter Queries**
+```python
+from sqlalchemy import and_
+
+# Fetch users with username "Alice" AND email ending with "@example.com"
+users = User.query.filter(and_(User.username == "Alice", User.email.like("%@example.com"))).all()
+
+for user in users:
+    print(user.username, user.email)
+```
+
+### **🔹 Alternative Without `and_`**
+You can also write the same query like this:
+```python
+users = User.query.filter(User.username == "Alice", User.email.like("%@example.com")).all()
+```
+SQLAlchemy automatically treats multiple arguments in `.filter()` as an AND condition.
+
+---
+
+### **10. Using `or_` for OR Conditions**
+For OR conditions, use `or_` instead of `and_`:
+```python
+from sqlalchemy import or_
+
+# Fetch users who have username "Alice" OR email ending with "@example.com"
+users = User.query.filter(or_(User.username == "Alice", User.email.like("%@example.com"))).all()
+```
+
+---
+
+### **11. Combining `and_` and `or_`**
+For complex queries, you can combine `and_` and `or_`:
+```python
+users = User.query.filter(and_(User.username != "Bob", or_(User.email.like("%@gmail.com"), User.email.like("%@yahoo.com")))).all()
+```
+This query:
+- Excludes users with username `"Bob"`
+- Includes users with emails ending in `"@gmail.com"` or `"@yahoo.com"`
+
+---
+
+### **Summary**
+| Function | Usage |
+|----------|-------|
+| `and_(cond1, cond2)` | Returns records that satisfy **both conditions**. |
+| `or_(cond1, cond2)` | Returns records that satisfy **at least one condition**. |
+
+### **Difference Between `backref` and `back_populates` in SQLAlchemy**
+
+Both `backref` and `back_populates` are used to define **bidirectional relationships** in SQLAlchemy, but they work in slightly different ways.
+
+------
+
+## **1️⃣ `backref` (Automatic Back Population)**
+
+- **Single-sided declaration** (only in one model).
+- **SQLAlchemy automatically creates** the reverse relationship.
+- Less explicit, but more concise.
+
+### **Example Using `backref`**
+
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quizzes = db.relationship('Quiz', backref='creator')  # Creates 'creator' in Quiz
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+```
+
+### **How It Works?**
+
+- In `User`, we define `quizzes = db.relationship('Quiz', backref='creator')`
+- SQLAlchemy **automatically creates** `creator` in `Quiz`, so we can do:
+
+```python
+user = User.query.get(1)
+print(user.quizzes)  # List of quizzes created by the user
+
+quiz = Quiz.query.get(1)
+print(quiz.creator)  # User who created the quiz (automatically available)
+```
+
+------
+
+## **2️⃣ `back_populates` (Explicit Two-Sided Definition)**
+
+- **Manually defined on both models.**
+- Used when more control is needed.
+
+### **Example Using `back_populates`**
+
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quizzes = db.relationship('Quiz', back_populates='creator')  # Explicit
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    creator = db.relationship('User', back_populates='quizzes')  # Explicit
+```
+
+### **How It Works?**
+
+- We explicitly define the relationship **on both sides** using `back_populates`.
+- This means:
+
+```python
+user = User.query.get(1)
+print(user.quizzes)  # Works as expected
+
+quiz = Quiz.query.get(1)
+print(quiz.creator)  # Also works because of explicit back_populates
+```
+
+------
+
+## **Key Differences:**
+
+| Feature         | `backref`                                                    | `back_populates`                                             |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Definition**  | Defined on **one model only**                                | Defined on **both models**                                   |
+| **Automatic?**  | Yes, SQLAlchemy **automatically** creates the reverse relationship | No, you must **explicitly define** both sides                |
+| **Use Case**    | When you want a **quick** bidirectional relationship         | When you need **more control** over the relationship         |
+| **Flexibility** | Less flexible                                                | More flexible (e.g., setting additional relationship parameters) |
+
+------
+
+## **When to Use What?**
+
+- ✅ **Use `backref`** when you want **quick bidirectional access** without writing redundant code.
+- ✅ **Use `back_populates`** when you need **more control** (e.g., when adding additional parameters like lazy loading or cascade behavior).
+
+### **Can We Use `backref` in a Many-to-Many Relationship?**
+
+Yes, we can use `backref` in a **many-to-many relationship**, but there are some nuances.
+
+In **many-to-many relationships**, we usually define an **association table** (without an explicit model) using `db.Table`, and `backref` works in this case.
+
+------
+
+## **✅ Example: Many-to-Many with `backref`**
+
+```python
+quiz_participants = db.Table('quiz_participants',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
+)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quizzes = db.relationship('Quiz', secondary=quiz_participants, backref='participants')
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+```
+
+### **How `backref` Works Here**
+
+- **In `User`**: We define `quizzes = db.relationship('Quiz', secondary=quiz_participants, backref='participants')`
+- **In `Quiz`**: SQLAlchemy **automatically creates** `participants`, allowing us to access users from the `Quiz` model.
+
+### **Querying the Data**
+
+```python
+user = User.query.get(1)
+print(user.quizzes)  # List of quizzes the user participated in
+
+quiz = Quiz.query.get(1)
+print(quiz.participants)  # List of users who participated in this quiz
+```
+
+------
+
+## **❌ What If We Use an Association Model?**
+
+If we use an **explicit association model** (instead of `db.Table`), `backref` **cannot be used directly**. Instead, we must use **`back_populates`**.
+
+### **Example: Many-to-Many Using an Explicit Model**
+
+```python
+class QuizParticipant(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # Extra column makes it an association model
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), nullable=False)
+
+    user = db.relationship('User', back_populates='quiz_associations')
+    quiz = db.relationship('Quiz', back_populates='quiz_associations')
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    quiz_associations = db.relationship('QuizParticipant', back_populates='user')  # Use back_populates
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    quiz_associations = db.relationship('QuizParticipant', back_populates='quiz')  # Use back_populates
+```
+
+### **Key Differences**
+
+| Scenario                                        | Can We Use `backref`?       | Alternative                  |
+| ----------------------------------------------- | --------------------------- | ---------------------------- |
+| **Using `db.Table` for Many-to-Many**           | ✅ Yes, with `secondary=...` | Works perfectly              |
+| **Using an Association Model (Explicit Table)** | ❌ No                        | Use `back_populates` instead |
+
+------
+
+## ** Conclusion**
+
+- ✅ **Yes, `backref` can be used** in a **many-to-many relationship** **if** using `db.Table` for the association.
+- ❌ If you have an **explicit association model**, use **`back_populates`** instead of `backref`.
+
