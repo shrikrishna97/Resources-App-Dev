@@ -9,17 +9,21 @@
 ## **Session 1: Introduction to Flask and Jinja Templates**
 
 ### **1. Introduction to Flask**
-- Flask is a lightweight Python web framework for building web applications.
+
+- Flask is a lightweight Python web micro framework for building web applications.
 - It follows the WSGI (Web Server Gateway Interface) standard.
 - Provides flexibility and simplicity with minimal setup.
 
 ### **2. Setting Up a Flask Application**
+
 #### **Installation**
+
 ```sh
 pip install flask
 ```
 
 #### **Basic Flask Application**
+
 ```python
 from flask import Flask
 
@@ -32,13 +36,16 @@ def home():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
+
 - Run `python app.py` and visit `http://127.0.0.1:5000/`.
 
 ### **3. Jinja Templates**
+
 - Jinja2 is a templating engine used in Flask for rendering dynamic HTML.
 - Supports variables, loops, and conditionals.
 
 #### **Example Template (templates/index.html)**
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -59,6 +66,7 @@ if __name__ == '__main__':
 ```
 
 #### **Flask Route to Render Template**
+
 ```python
 from flask import render_template
 
@@ -68,6 +76,7 @@ def items():
 ```
 
 ### **4. Why SQLAlchemy Over SQLite?**
+
 - SQLite is good for small applications but lacks scalability and advanced querying.
 - SQLAlchemy provides an ORM (Object-Relational Mapping) for better maintainability and flexibility.
 - SQLAlchemy has easier(english) queries than SQLite(SQL).
@@ -77,23 +86,28 @@ def items():
 ## **Session 2: Database Models and CRUD Operations**
 
 ### **1. Recap of Flask & Jinja**
+
 - A quick recap of Flask routing, templates, and rendering data dynamically.
 
 ### **2. Setting Up SQLAlchemy**
+
 #### **Installation**
+
 ```sh
 pip install flask-sqlalchemy
 ```
 
 #### **Configuring the Database**
+
 ```python
 from flask_sqlalchemy import SQLAlchemy
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.sqlite3'
 db = SQLAlchemy(app)
 ```
 
 ### **3. Creating a Model (User Table)**
+
 ```python
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -104,6 +118,7 @@ with app.app_context():
 ```
 
 ### **4. Adding Data to the Database**
+
 ```python
 with app.app_context():
     user = User(username="JohnDoe")
@@ -112,7 +127,9 @@ with app.app_context():
 ```
 
 ### **5. Fetching and Displaying Data**
+
 #### **Flask Route**
+
 ```python
 @app.route('/users')
 def users():
@@ -121,6 +138,7 @@ def users():
 ```
 
 #### **Jinja Template (templates/users.html)**
+
 ```html
 <ul>
     {% for user in users %}
@@ -134,10 +152,13 @@ def users():
 ## **Session 3: Relationships and Advanced SQLAlchemy**
 
 ### **1. Recap of Models and CRUD Operations**
+
 - Brief discussion on database setup, creating models, and performing CRUD operations.
 
 ### **2. One-to-Many Relationship (User and Quiz)**
+
 #### **Creating Models with Relationships**
+
 ```python
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -151,6 +172,7 @@ class Quiz(db.Model):
 ```
 
 ### **3. Querying Related Data**
+
 ```python
 user = User.query.get(1)
 for quiz in user.quizzes:
@@ -158,7 +180,9 @@ for quiz in user.quizzes:
 ```
 
 ### **4. Many-to-Many Relationship (User and Quiz Participants)**
+
 #### **Creating an Association Table**
+
 ```python
 quiz_participants = db.Table('quiz_participants',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -173,6 +197,7 @@ class Quiz(db.Model):
 ```
 
 ### **5. Final Recap and Q&A**
+
 - Best practices with SQLAlchemy.
 - How to integrate authentication and role-based access.
 - Discuss future enhancements like migrations and API integrations.
@@ -184,6 +209,7 @@ Here are all the common SQLAlchemy queries categorized by CRUD (Create, Read, Up
 ---
 
 ### **1. Setting Up SQLAlchemy**
+
 ```python
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -206,6 +232,7 @@ with app.app_context():
 ## **CRUD Operations in SQLAlchemy**
 
 ### **2. Create (Insert) Data**
+
 ```python
 # Adding a single user
 new_user = User(username="JohnDoe", email="john@example.com")
@@ -224,7 +251,9 @@ db.session.commit()
 ---
 
 ### **3. Read (Select) Data**
+
 #### **3.1 Get all users**
+
 ```python
 users = User.query.all()  
 for user in users:
@@ -232,12 +261,14 @@ for user in users:
 ```
 
 #### **3.2 Get a single user by ID**
+
 ```python
 user = User.query.get(1)  # Fetches the user with id = 1
 print(user.username, user.email)
 ```
 
 #### **3.3 Filter users by condition**
+
 ```python
 user = User.query.filter_by(username="Alice").first()  # Fetch first user with username Alice
 print(user.id, user.email)
@@ -246,16 +277,19 @@ users = User.query.filter(User.email.like('%@example.com')).all()  # Fetch all u
 ```
 
 #### **3.4 Query using multiple filters**
+
 ```python
 users = User.query.filter(User.username == "Alice", User.email.like("%@example.com")).all()
 ```
 
 #### **3.5 Order and Limit Query Results**
+
 ```python
 users = User.query.order_by(User.username.desc()).limit(5).all()  # Get the latest 5 users
 ```
 
 #### **3.6 Count number of users**
+
 ```python
 user_count = User.query.count()
 print(user_count)
@@ -264,7 +298,9 @@ print(user_count)
 ---
 
 ### **4. Update Data**
+
 #### **4.1 Update a single record**
+
 ```python
 user = User.query.get(1)
 user.username = "JohnUpdated"
@@ -272,6 +308,7 @@ db.session.commit()
 ```
 
 #### **4.2 Update multiple records**
+
 ```python
 User.query.filter(User.email.like('%@example.com')).update({"email": "newemail@example.com"})
 db.session.commit()
@@ -280,7 +317,9 @@ db.session.commit()
 ---
 
 ### **5. Delete Data**
+
 #### **5.1 Delete a single user**
+
 ```python
 user = User.query.get(1)
 db.session.delete(user)
@@ -288,6 +327,7 @@ db.session.commit()
 ```
 
 #### **5.2 Delete multiple users**
+
 ```python
 User.query.filter(User.username == "Alice").delete()
 db.session.commit()
@@ -298,6 +338,7 @@ db.session.commit()
 ## **Advanced Queries**
 
 ### **6. Aggregate Functions**
+
 ```python
 from sqlalchemy import func
 
@@ -309,6 +350,7 @@ max_id = db.session.query(func.max(User.id)).scalar()
 ```
 
 ### **7. Many-to-Many Relationship Query**
+
 ```python
 # Example Many-to-Many association
 user = User.query.get(1)
@@ -318,9 +360,11 @@ print(user.participated_quizzes)  # Prints all quizzes the user participated in
 ---
 
 ## **8. Many-to-Many Relationship Query Using `append()`**
+
 When dealing with a **many-to-many** relationship, we use `append()` to associate objects instead of `db.session.add()`.  
 
 ### **Example: User & Quiz Many-to-Many Relationship**
+
 ```python
 # Association table
 quiz_participants = db.Table('quiz_participants',
@@ -343,6 +387,7 @@ with app.app_context():
 ```
 
 ### **Adding a User to a Quiz**
+
 ```python
 # Fetch existing user and quiz
 user = User.query.get(1)
@@ -356,6 +401,7 @@ db.session.commit()
 ```
 
 ### **Fetching All Quizzes a User Participated In**
+
 ```python
 user = User.query.get(1)
 for quiz in user.quizzes:
@@ -365,6 +411,7 @@ for quiz in user.quizzes:
 ---
 
 ### **🔹 Key Difference Between `append()` and `db.session.add()`**
+
 - `db.session.add()` is used to **add new objects** to the database.
 - `append()` is used to **add relationships** between existing objects in a **many-to-many** or **one-to-many** relationship.
 
@@ -375,9 +422,11 @@ for quiz in user.quizzes:
 ---
 
 ## **9. Using `and_` for Multiple Filters**
+
 `and_` allows you to apply multiple filter conditions in queries.
 
 ### **Example: Using `and_` to Filter Queries**
+
 ```python
 from sqlalchemy import and_
 
@@ -389,16 +438,21 @@ for user in users:
 ```
 
 ### **🔹 Alternative Without `and_`**
+
 You can also write the same query like this:
+
 ```python
 users = User.query.filter(User.username == "Alice", User.email.like("%@example.com")).all()
 ```
+
 SQLAlchemy automatically treats multiple arguments in `.filter()` as an AND condition.
 
 ---
 
 ### **10. Using `or_` for OR Conditions**
+
 For OR conditions, use `or_` instead of `and_`:
+
 ```python
 from sqlalchemy import or_
 
@@ -409,21 +463,26 @@ users = User.query.filter(or_(User.username == "Alice", User.email.like("%@examp
 ---
 
 ### **11. Combining `and_` and `or_`**
+
 For complex queries, you can combine `and_` and `or_`:
+
 ```python
 users = User.query.filter(and_(User.username != "Bob", or_(User.email.like("%@gmail.com"), User.email.like("%@yahoo.com")))).all()
 ```
+
 This query:
+
 - Excludes users with username `"Bob"`
 - Includes users with emails ending in `"@gmail.com"` or `"@yahoo.com"`
 
 ---
 
 ### **Summary**
-| Function | Usage |
-|----------|-------|
-| `and_(cond1, cond2)` | Returns records that satisfy **both conditions**. |
-| `or_(cond1, cond2)` | Returns records that satisfy **at least one condition**. |
+
+| Function             | Usage                                                    |
+| -------------------- | -------------------------------------------------------- |
+| `and_(cond1, cond2)` | Returns records that satisfy **both conditions**.        |
+| `or_(cond1, cond2)`  | Returns records that satisfy **at least one condition**. |
 
 ### **Difference Between `backref` and `back_populates` in SQLAlchemy**
 
