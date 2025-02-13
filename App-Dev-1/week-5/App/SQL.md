@@ -204,6 +204,226 @@ class Quiz(db.Model):
 
 
 
+------
+
+### **Understanding `__name__` in Flask**
+
+When creating a **Flask application**, we usually initialize it like this:
+
+```python
+from flask import Flask
+
+app = Flask(__name__)  # Here __name__ is passed
+```
+
+#### **Why Do We Pass `__name__`?**
+
+- `__name__` represents the **module name** of the script that is being executed.
+- If the script is run **directly**, `__name__` is set to `"__main__"`.
+- If the script is **imported** into another module, `__name__` is set to the **module's name**.
+- **Flask uses this to locate resources** like templates and static files.
+
+------
+
+### **Counter-Example: Without Using `__name__`**
+
+You **can** create a Flask app without passing `__name__`, but you have to manually specify configurations.
+
+#### **Example:**
+
+```python
+from flask import Flask
+
+app = Flask("custom_app")  # Instead of __name__, using a custom string
+
+# Manually set the template folder
+app.template_folder = "my_templates"
+
+@app.route('/')
+def home():
+    return "Hello, Flask without __name__!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+#### **How is this different?**
+
+1. Flask won't automatically detect templates and static files
+   - You must **manually specify** `app.template_folder = "my_templates"` and `app.static_folder = "my_static"`.
+2. If the script is imported, Flask might not behave correctly
+   - Some features like relative imports may break.
+
+------
+
+### **When NOT to Use `__name__`**
+
+- If you have a **custom module structure** and don't rely on Flask's default behavior.
+- If you're manually configuring everything (templates, static files, etc.).
+- If you're **embedding Flask into a larger system** where module resolution is handled differently.
+
+------
+
+### **Best Practice?**
+
+Using `Flask(__name__)` is still **recommended** unless you have a **strong reason to override it**. It ensures Flask correctly locates templates, static files, and configurations automatically.
+
+### **Why Do We Use `if __name__ == "__main__":` in Flask?**
+
+In **Python**, the special variable `__name__` helps determine **how a script is being run**:
+
+- If the script is **run directly**, `__name__` is set to `"__main__"`.
+- If the script is **imported into another module**, `__name__` is set to the **module name** instead.
+
+### **How It Works in Flask**
+
+When writing a Flask app, we typically include:
+
+```python
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+This ensures that the Flask server **only starts when the script is run directly**.
+
+------
+
+### **What Happens If We Don't Use It?**
+
+#### **Example Without `if __name__ == "__main__":`**
+
+```python
+#filename: my_flask_app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Flask!"
+
+app.run(debug=True)  # This runs even when the module is imported!
+```
+
+**Problem:**
+ If another script **imports this file**, Flask will **automatically start the server**, even if you don't want it to.
+
+------
+
+### **When Importing This Module**
+
+Consider another file importing this script:
+
+```python
+import my_flask_app  # my_flask_app.py contains Flask code
+```
+
+- If **`if __name__ == "__main__":` is missing**, the Flask app will **start running automatically**.
+- With `if __name__ == "__main__":`, the server **only starts when explicitly executed**, not when imported.
+
+------
+
+### **When Can We Skip It?**
+
+If you’re using a **Flask app factory pattern**, you often don’t need `if __name__ == "__main__":`.
+
+#### **Example: Using `flask run` Instead**
+
+Instead of:
+
+```sh
+python my_flask_app.py
+```
+
+You can use:
+
+```sh
+flask run
+```
+
+In this case, Flask automatically finds the app, and `if __name__ == "__main__":` is not needed.
+
+------
+
+### **Conclusion**
+
+-   **Prevents unintended execution when importing the module**
+-   **Ensures the Flask app runs only when executed as a script**
+-   **Good practice for maintainability and modularity**
+
+### **Is `"__main__"` Important, or Can We Write Something Else?**
+
+Yes, `__main__` is **important** because it's a special Python identifier. You **cannot** replace it with something else.
+
+------
+
+### **Why Is `__main__` Special?**
+
+When Python executes a script, it sets the special variable `__name__` based on how the script is being run:
+
+- If the script is **executed directly**, Python sets `__name__ = "__main__"`.
+- If the script is **imported as a module**, `__name__` is set to the script's filename (without `.py`).
+
+#### **Example**
+
+```python
+# my_script.py
+print(f"__name__ is: {__name__}")
+
+if __name__ == "__main__":
+    print("Running directly")
+```
+
+**Running directly:**
+
+```sh
+python my_script.py
+```
+
+**Output:**
+
+```
+__name__ is: __main__
+Running directly
+```
+
+**Importing into another script:**
+
+```python
+import my_script
+```
+
+**Output:**
+
+```
+__name__ is: my_script
+```
+
+*(Notice `"Running directly"` does **not** appear.)*
+
+------
+
+### **What If We Change `"__main__"`?**
+
+You **cannot** replace `"__main__"` with a different string. If you do this:
+
+```python
+if __name__ == "custom_name":
+    print("This will never run")
+```
+
+It **will never execute**, because Python will never set `__name__` to `"custom_name"`.
+
+------
+
+### **Conclusion**
+
+-  **You MUST use `"__main__"` because it's predefined by Python.**
+-   **It ensures the script runs only when executed directly, not when imported.**
+-  **If you replace `"__main__"` with something else, the condition will never be `True`!**
+
+------
+
 Here are all the common SQLAlchemy queries categorized by CRUD (Create, Read, Update, Delete) operations.  
 
 ---
