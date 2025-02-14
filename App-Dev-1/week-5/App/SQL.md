@@ -419,7 +419,7 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 ### **Conclusion**
 
 -  **You MUST use `"__main__"` because it's predefined by Python.**
--   **It ensures the script runs only when executed directly, not when imported.**
+-  **It ensures the script runs only when executed directly, not when imported.**
 -  **If you replace `"__main__"` with something else, the condition will never be `True`!**
 
 ------
@@ -436,7 +436,7 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 
 ------
 
-## **🔹 Detailed Explanation of Each**
+## **Detailed Explanation of Each**
 
 ### **1. RDBMS (SQL)**
 
@@ -538,7 +538,7 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 
 ------
 
-## **🔹 Summary**
+## **Summary**
 
 | **Concept**                 | **Key Role**                        | **Raw SQL Required?** | **Use Case**                                     |
 | --------------------------- | ----------------------------------- | --------------------- | ------------------------------------------------ |
@@ -550,7 +550,7 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 
 
 
-### **🚀 Which One Should You Use?**
+### **Which One Should You Use?**
 
 - **For small projects** → SQLite (`sqlite3` if using raw SQL, `SQLAlchemy` for ORM).
 - **For Flask apps** → `Flask-SQLAlchemy` (simplifies database management in web applications).
@@ -558,11 +558,11 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 
 ------
 
-### **🔹 Final Thoughts**
+### **Final Thoughts**
 
-✅ **Use `sqlite3` if you only need raw SQL queries in Python.**
- ✅ **Use `SQLAlchemy` if you want an ORM to manage database operations with Python objects.**
- ✅ **Use `Flask-SQLAlchemy` if you're building a Flask app and need an easy way to integrate SQLAlchemy.**
+-   **Use `sqlite3` if you only need raw SQL queries in Python.**
+-   **Use `SQLAlchemy` if you want an ORM to manage database operations with Python objects.**
+-   **Use `Flask-SQLAlchemy` if you're building a Flask app and need an easy way to integrate SQLAlchemy.**
 
 ### **Practical Example: Transitioning from `sqlite3` to `Flask-SQLAlchemy`**
 
@@ -669,7 +669,7 @@ with app.app_context():
 
 ------
 
-## **🎯 Key Differences & Benefits of Flask-SQLAlchemy**
+## **Key Differences & Benefits of Flask-SQLAlchemy**
 
 | Feature         | `sqlite3` (Raw SQL)                                          | `Flask-SQLAlchemy` (ORM)                     |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
@@ -680,7 +680,7 @@ with app.app_context():
 
 ------
 
-## **🎯 When to Use Each?**
+## **When to Use Each?**
 
 | **Use Case**                | **sqlite3** | **Flask-SQLAlchemy** |
 | --------------------------- | ----------- | -------------------- |
@@ -691,7 +691,7 @@ with app.app_context():
 
 ------
 
-### **🚀 Final Takeaway**
+### **Final Takeaway**
 
 If you're just running a quick script, **sqlite3** works fine. But for **Flask applications, Flask-SQLAlchemy is the way to go** because it offers cleaner, more maintainable, and scalable database handling.
 
@@ -903,7 +903,7 @@ for quiz in user.quizzes:
 
 ---
 
-### **🔹 Key Difference Between `append()` and `db.session.add()`**
+### **Key Difference Between `append()` and `db.session.add()`**
 
 - `db.session.add()` is used to **add new objects** to the database.
 - `append()` is used to **add relationships** between existing objects in a **many-to-many** or **one-to-many** relationship.
@@ -930,7 +930,7 @@ for user in users:
     print(user.username, user.email)
 ```
 
-### **🔹 Alternative Without `and_`**
+### ** Alternative Without `and_`**
 
 You can also write the same query like this:
 
@@ -1066,8 +1066,8 @@ print(quiz.creator)  # Also works because of explicit back_populates
 
 ## **When to Use What?**
 
-- ✅ **Use `backref`** when you want **quick bidirectional access** without writing redundant code.
-- ✅ **Use `back_populates`** when you need **more control** (e.g., when adding additional parameters like lazy loading or cascade behavior).
+- **Use `backref`** when you want **quick bidirectional access** without writing redundant code.
+- **Use `back_populates`** when you need **more control** (e.g., when adding additional parameters like lazy loading or cascade behavior).
 
 ### **Can We Use `backref` in a Many-to-Many Relationship?**
 
@@ -1077,7 +1077,7 @@ In **many-to-many relationships**, we usually define an **association table** (w
 
 ------
 
-## **✅ Example: Many-to-Many with `backref`**
+## **Example: Many-to-Many with `backref`**
 
 ```python
 quiz_participants = db.Table('quiz_participants',
@@ -1112,7 +1112,7 @@ print(quiz.participants)  # List of users who participated in this quiz
 
 ------
 
-## **❌ What If We Use an Association Model?**
+## **What If We Use an Association Model?**
 
 If we use an **explicit association model** (instead of `db.Table`), `backref` **cannot be used directly**. Instead, we must use **`back_populates`**.
 
