@@ -421,6 +421,149 @@ It **will never execute**, because Python will never set `__name__` to `"custom_
 -  **If you replace `"__main__"` with something else, the condition will never be `True`!**
 
 ------
+### **Understanding the Difference: Script vs. Module vs. Python File vs. Flask App**  
+
+To fully understand `__name__ == "__main__"`, let's break it down into four key concepts:  
+
+| Term | Definition | Example |
+|------|------------|---------|
+| **Python File** | A `.py` file that contains Python code. It can be a script, a module, or a Flask app. | `my_script.py`, `my_module.py` |
+| **Script** | A Python file that is meant to be executed directly (not imported). | `python my_script.py` |
+| **Module** | A Python file that is designed to be **imported** into another script. | `import my_module` |
+| **Flask App** | A Python file that runs a Flask application, typically with `__name__ == "__main__"` to ensure correct execution. | `app.py` (Flask entry point) |
+
+---
+
+## **1️⃣ `__name__` in Scripts (`__name__ == "__main__"`)**
+A **script** is a Python file intended to be run directly. If we print `__name__` inside a script:
+
+```python
+# my_script.py
+print(f"Script executed, __name__ = {__name__}")
+```
+
+### **Running the Script Directly**
+```sh
+python my_script.py
+```
+ **Output:**
+```
+Script executed, __name__ = __main__
+```
+✅ Since it was run directly, Python sets `__name__ = "__main__"`.
+
+---
+
+## **2️⃣ `__name__` in Modules (`__name__ == "module_name"`)**
+A **module** is a Python file meant to be imported into another script.
+
+```python
+# my_module.py
+print(f"Module loaded, __name__ = {__name__}")
+```
+
+### **Importing the Module**
+```python
+# another_script.py
+import my_module
+```
+
+ **Output:**
+```
+Module loaded, __name__ = my_module
+```
+✅ Since `my_module.py` was **imported**, `__name__` is set to `"my_module"` instead of `"__main__"`.
+
+---
+
+## **3️⃣ Python File That Can Be Both a Script and a Module**
+If you want a file to be **both runnable and importable**, use:
+```python
+if __name__ == "__main__":
+    print("Running as a script")
+else:
+    print("Imported as a module")
+```
+
+### **Running Directly**
+```sh
+python my_file.py
+```
+ **Output:**
+```
+Running as a script
+```
+
+### **Importing in Another File**
+```python
+import my_file
+```
+ **Output:**
+```
+Imported as a module
+```
+
+✅ This is useful when you want a Python file to behave **differently** based on how it's executed.
+
+---
+
+## **4️⃣ `__name__` in Flask Apps**
+Flask uses `__name__` to locate resources (templates, static files) and correctly configure the app.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)  # Uses module name
+
+@app.route("/")
+def home():
+    return "Hello, Flask!"
+
+if __name__ == "__main__":  
+    app.run(debug=True)  # Runs only when script is executed directly
+```
+
+### **Why use `__name__`?**
+1. ✅ If **run directly** (`python app.py`), `__name__ == "__main__"` → Flask starts normally.  
+2. ✅ If **imported** (`from app import app`), `__name__ == "app"` → It won’t start automatically.  
+
+This prevents unnecessary execution when the app is imported elsewhere (e.g., for testing or deployment).
+
+---
+
+## **Key Differences Summarized**
+| Type | Purpose | `__name__` Value |
+|------|---------|-----------------|
+| **Script** | A file meant to be executed directly | `"__main__"` |
+| **Module** | A file meant to be imported | `"module_name"` |
+| **Python File** | General Python code (can be script or module) | Depends on how it's used |
+| **Flask App** | Web application that runs with Flask | `"__main__"` when executed, `"app"` when imported |
+
+---
+
+### ** Can I Use Something Other Than `"__main__"`?**
+No, `__main__` is a **special keyword** defined by Python.  
+However, you can create your own main function and call it inside `if __name__ == "__main__"`:
+
+```python
+def main():
+    print("Hello from main function!")
+
+if __name__ == "__main__":
+    main()
+```
+This keeps the code **clean** while still ensuring proper execution.
+
+---
+
+## **Final Takeaways**
+✔ **Use `__name__ == "__main__"` to prevent unintended execution when importing a script.**  
+✔ **Flask uses `__name__` to correctly load templates and static files.**  
+✔ **Scripts run with `"__main__"`, modules run with their filename.**  
+✔ **For Flask, always use `if __name__ == "__main__": app.run(debug=True)` to control execution.**
+ 
+
+------
 
 ### **Differences Between RDBMS (SQL) → SQLite → SQLite3 → SQLAlchemy → Flask-SQLAlchemy**
 
