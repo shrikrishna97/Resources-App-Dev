@@ -388,13 +388,11 @@ Running directly
 ```
 
 **Importing into another script:**
-
 ```python
 import my_script
 ```
 
 **Output:**
-
 ```
 __name__ is: my_script
 ```
