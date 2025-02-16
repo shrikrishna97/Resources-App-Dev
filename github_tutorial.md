@@ -127,9 +127,10 @@ This guide will help you:
 1️⃣ Open your repository on **GitHub**  
 2️⃣ **Go to Settings → Manage Access**  
 3️⃣ Click on **Invite Collaborators**  
-4️⃣ **Add users:**  
-   - **MAD-1**
-   - **MAD-2**  
+4️⃣ **Add users: Type in the official username of App Dev**
+   - For MAD I, type **MADI-cs2003**
+   - For MAD II, type **MADII-cs2006**
+      
 5️⃣ Send **collaboration invites** and wait for them to accept.  
 
 ---
