@@ -1071,7 +1071,7 @@ for user in users:
     print(user.username, user.email)
 ```
 
-### ** Alternative Without `and_`**
+### **Alternative Without `and_`**
 
 You can also write the same query like this:
 
@@ -1288,7 +1288,7 @@ class Quiz(db.Model):
 
 ------
 
-## ** Conclusion**
+## **Conclusion**
 
 - ✅ **Yes, `backref` can be used** in a **many-to-many relationship** **if** using `db.Table` for the association.
 - ❌ If you have an **explicit association model**, use **`back_populates`** instead of `backref`.
