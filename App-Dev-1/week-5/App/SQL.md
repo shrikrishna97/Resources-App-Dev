@@ -155,7 +155,7 @@ def users():
 
 - Brief discussion on database setup, creating models, and performing CRUD operations.
 
-### **2. One-to-Many Relationship (User and Quiz)**
+### **2. One-to-Many Relationship (User and Class)**
 
 #### **Creating Models with Relationships**
 
@@ -163,9 +163,9 @@ def users():
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quizzes = db.relationship('Quiz', backref='creator', lazy=True)
+    classes = db.relationship('Class', backref='creator', lazy=True)
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -175,25 +175,25 @@ class Quiz(db.Model):
 
 ```python
 user = User.query.get(1)
-for quiz in user.quizzes:
-    print(quiz.title)
+for class in user.classes:
+    print(class.title)
 ```
 
-### **4. Many-to-Many Relationship (User and Quiz Participants)**
+### **4. Many-to-Many Relationship (User and Class Participants)**
 
 #### **Creating an Association Table**
 
 ```python
-quiz_participants = db.Table('quiz_participants',
+class_participants = db.Table('class_participants',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
+    db.Column('class_id', db.Integer, db.ForeignKey('class.id'), primary_key=True)
 )
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    participants = db.relationship('User', secondary=quiz_participants, backref='participated_quizzes')
+    participants = db.relationship('User', secondary=class_participants, backref='participated_classes')
 ```
 
 ### **5. Final Recap and Q&A**
@@ -968,6 +968,99 @@ db.session.commit()
 ```
 
 ---
+## Flask-SQLAlchemy Relationships: One-to-One, One-to-Many, and Many-to-Many
+
+## 1. One-to-One Relationship
+A **one-to-one** relationship ensures that each record in one table is linked to exactly one record in another table. This can be useful when storing additional details about a user, like a profile.
+
+### Example:
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    profile = db.relationship('Profile', backref='user', uselist=False, cascade="all, delete-orphan")
+
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    bio = db.Column(db.String(200))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True)
+```
+- Each **User** has only one **Profile**.
+- `uselist=False` ensures that a single object is returned instead of a list.
+
+---
+## 2. One-to-Many Relationship
+A **one-to-many** relationship is where a record in one table can be associated with multiple records in another table. For example, a **user can create multiple classes**.
+
+### Example:
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    classes = db.relationship('Class', backref='creator', lazy=True)
+
+class Class(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+```
+- A **User** can create multiple **Class** entries.
+- The `backref='creator'` makes it easy to access the user who created the class.
+
+---
+## 3. Many-to-Many Relationship
+A **many-to-many** relationship occurs when multiple records in one table are related to multiple records in another table. This is useful when **students enroll in multiple classes**.
+
+### Example:
+```python
+class_participants = db.Table('class_participants',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('class_id', db.Integer, db.ForeignKey('class.id'), primary_key=True)
+)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    classes = db.relationship('Class', secondary=class_participants, backref='participants')
+
+class Class(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+```
+- A **User** can enroll in multiple **Class** instances, and a **Class** can have multiple **Users**.
+- The `secondary=class_participants` defines the join table for this relationship.
+
+---
+## Example Usage in Flask Routes
+Adding users and enrolling them in classes:
+```python
+@appp.route('/enroll_user/<int:user_id>/<int:class_id>')
+def enroll_user(user_id, class_id):
+    user = User.query.get(user_id)
+    class_instance = Class.query.get(class_id)
+    
+    if user and class_instance:
+        class_instance.participants.append(user)
+        db.session.commit()
+        return f"User {user.username} enrolled in {class_instance.title}"
+    return "User or Class not found"
+```
+- This route allows users to enroll in a class.
+
+---
+## Summary
+| Relationship | Example Use Case | Implementation |
+|-------------|----------------|----------------|
+| **One-to-One** | User & Profile | `db.relationship(..., uselist=False)` |
+| **One-to-Many** | User & Created Classes | `db.relationship(..., backref='creator')` |
+| **Many-to-Many** | Students & Classes | `db.relationship(..., secondary=table_name, backref='participants')` |
+
+This guide provides a structured approach to handling relationships in Flask-SQLAlchemy.
+
+
+
+---
 
 ## **Advanced Queries**
 
@@ -988,7 +1081,7 @@ max_id = db.session.query(func.max(User.id)).scalar()
 ```python
 # Example Many-to-Many association
 user = User.query.get(1)
-print(user.participated_quizzes)  # Prints all quizzes the user participated in
+print(user.participated_classes)  # Prints all classes the user participated in
 ```
 
 ---
@@ -997,49 +1090,49 @@ print(user.participated_quizzes)  # Prints all quizzes the user participated in
 
 When dealing with a **many-to-many** relationship, we use `append()` to associate objects instead of `db.session.add()`.  
 
-### **Example: User & Quiz Many-to-Many Relationship**
+### **Example: User & Class Many-to-Many Relationship**
 
 ```python
 # Association table
-quiz_participants = db.Table('quiz_participants',
+class_participants = db.Table('class_participants',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'))
+    db.Column('class_id', db.Integer, db.ForeignKey('class.id'))
 )
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quizzes = db.relationship('Quiz', secondary=quiz_participants, back_populates="participants")
+    classes = db.relationship('Class', secondary=class_participants, back_populates="participants")
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    participants = db.relationship('User', secondary=quiz_participants, back_populates="quizzes")
+    participants = db.relationship('User', secondary=class_participants, back_populates="classes")
 
 with app.app_context():
     db.create_all()
 ```
 
-### **Adding a User to a Quiz**
+### **Adding a User to a Class**
 
 ```python
-# Fetch existing user and quiz
+# Fetch existing user and class
 user = User.query.get(1)
-quiz = Quiz.query.get(1)
+class = Class.query.get(1)
 
-# Use append() to associate the user with the quiz
-quiz.participants.append(user)
+# Use append() to associate the user with the class
+class.participants.append(user)
 
 # Commit changes
 db.session.commit()
 ```
 
-### **Fetching All Quizzes a User Participated In**
+### **Fetching All Classes a User Participated In**
 
 ```python
 user = User.query.get(1)
-for quiz in user.quizzes:
-    print(quiz.title)
+for class in user.classes:
+    print(class.title)
 ```
 
 ---
@@ -1136,9 +1229,9 @@ Both `backref` and `back_populates` are used to define **bidirectional relations
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quizzes = db.relationship('Quiz', backref='creator')  # Creates 'creator' in Quiz
+    classes = db.relationship('Class', backref='creator')  # Creates 'creator' in Class
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -1146,15 +1239,15 @@ class Quiz(db.Model):
 
 ### **How It Works?**
 
-- In `User`, we define `quizzes = db.relationship('Quiz', backref='creator')`
-- SQLAlchemy **automatically creates** `creator` in `Quiz`, so we can do:
+- In `User`, we define `classes = db.relationship('Class', backref='creator')`
+- SQLAlchemy **automatically creates** `creator` in `Class`, so we can do:
 
 ```python
 user = User.query.get(1)
-print(user.quizzes)  # List of quizzes created by the user
+print(user.classes)  # List of classes created by the user
 
-quiz = Quiz.query.get(1)
-print(quiz.creator)  # User who created the quiz (automatically available)
+classs = Class.query.get(1)
+print(classs.creator)  # User who created the class (automatically available)
 ```
 
 ------
@@ -1170,13 +1263,13 @@ print(quiz.creator)  # User who created the quiz (automatically available)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quizzes = db.relationship('Quiz', back_populates='creator')  # Explicit
+    classes = db.relationship('Class', back_populates='creator')  # Explicit
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    creator = db.relationship('User', back_populates='quizzes')  # Explicit
+    creator = db.relationship('User', back_populates='classes')  # Explicit
 ```
 
 ### **How It Works?**
@@ -1186,10 +1279,10 @@ class Quiz(db.Model):
 
 ```python
 user = User.query.get(1)
-print(user.quizzes)  # Works as expected
+print(user.classes)  # Works as expected
 
-quiz = Quiz.query.get(1)
-print(quiz.creator)  # Also works because of explicit back_populates
+classs = Class.query.get(1)
+print(classs.creator)  # Also works because of explicit back_populates
 ```
 
 ------
@@ -1221,34 +1314,34 @@ In **many-to-many relationships**, we usually define an **association table** (w
 ## **Example: Many-to-Many with `backref`**
 
 ```python
-quiz_participants = db.Table('quiz_participants',
+class_participants = db.Table('class_participants',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('quiz_id', db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
+    db.Column('class_id', db.Integer, db.ForeignKey('class.id'), primary_key=True)
 )
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quizzes = db.relationship('Quiz', secondary=quiz_participants, backref='participants')
+    classes = db.relationship('Class', secondary=class_participants, backref='participants')
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
 ```
 
 ### **How `backref` Works Here**
 
-- **In `User`**: We define `quizzes = db.relationship('Quiz', secondary=quiz_participants, backref='participants')`
-- **In `Quiz`**: SQLAlchemy **automatically creates** `participants`, allowing us to access users from the `Quiz` model.
+- **In `User`**: We define `classes = db.relationship('Class', secondary=class_participants, backref='participants')`
+- **In `Class`**: SQLAlchemy **automatically creates** `participants`, allowing us to access users from the `Class` model.
 
 ### **Querying the Data**
 
 ```python
 user = User.query.get(1)
-print(user.quizzes)  # List of quizzes the user participated in
+print(user.classes)  # List of classes the user participated in
 
-quiz = Quiz.query.get(1)
-print(quiz.participants)  # List of users who participated in this quiz
+classs = Class.query.get(1)
+print(classs.participants)  # List of users who participated in this class
 ```
 
 ------
@@ -1260,23 +1353,23 @@ If we use an **explicit association model** (instead of `db.Table`), `backref` *
 ### **Example: Many-to-Many Using an Explicit Model**
 
 ```python
-class QuizParticipant(db.Model):
+class ClassParticipant(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # Extra column makes it an association model
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), nullable=False)
+    class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
 
-    user = db.relationship('User', back_populates='quiz_associations')
-    quiz = db.relationship('Quiz', back_populates='quiz_associations')
+    user = db.relationship('User', back_populates='class_associations')
+    classs = db.relationship('Class', back_populates='class_associations')
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    quiz_associations = db.relationship('QuizParticipant', back_populates='user')  # Use back_populates
+    class_associations = db.relationship('ClassParticipant', back_populates='user')  # Use back_populates
 
-class Quiz(db.Model):
+class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    quiz_associations = db.relationship('QuizParticipant', back_populates='quiz')  # Use back_populates
+    class_associations = db.relationship('ClassParticipant', back_populates='class')  # Use back_populates
 ```
 
 ### **Key Differences**
