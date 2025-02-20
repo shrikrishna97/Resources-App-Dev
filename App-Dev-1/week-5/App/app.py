@@ -7,6 +7,10 @@ appp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///first.sqlite3'
 
 db = SQLAlchemy(appp)
 
+# from model import User, Profile, db
+
+# db.init_app(appp)
+
 # class User(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     username = db.Column(db.String(80), unique=True, nullable=False)

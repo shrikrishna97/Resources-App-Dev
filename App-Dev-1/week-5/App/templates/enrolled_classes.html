@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Enrolled Classes</title>
+  </head>
+  <body>
+    <h1>Classes Enrolled by {{ user.username }}</h1>
+    <ul>
+      {% for class in user.participated_classes %}
+      <li>{{ class.title }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
