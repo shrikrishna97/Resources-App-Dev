@@ -317,11 +317,16 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 api = Api(app)
+
+with app.app_context():
+    db.create_all()
+
 ```
 - Creates a Flask app instance.
 - Configures the app to use an SQLite database (`users.db`).
 - Initializes SQLAlchemy (`db`) for ORM functionality.
 - Initializes Flask-RESTful API (`api`).
+- Creates a context with the app for database operations. and creates the database tables.
 
 ---
 
@@ -422,10 +427,9 @@ api.add_resource(User, '/user/<int:user_id>')
 ### **9. Running the Application**
 ```python
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True)
 ```
-- `db.create_all()`: Creates the database tables before running the app.
+
 - `app.run(debug=True)`: Starts the Flask server in debug mode.
 
 ---
