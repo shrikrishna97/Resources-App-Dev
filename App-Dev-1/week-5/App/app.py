@@ -66,15 +66,15 @@ with appp.app_context():
 
 
 
-@appp.route('/create_profile/<int:user_id>/<bio>')
-def create_profile(user_id, bio):
-    user = User.query.get(user_id)
-    if user:
-        profile = Profile(bio=bio, user_id=user_id)
-        db.session.add(profile)
-        db.session.commit()
-        return "Profile Created"
-    return "User Not Found"
+# @appp.route('/create_profile/<int:user_id>/<bio>')
+# def create_profile(user_id, bio):
+#     user = User.query.get(user_id)
+#     if user:
+#         profile = Profile(bio=bio, user_id=user_id)
+#         db.session.add(profile)
+#         db.session.commit()
+#         return "Profile Created"
+#     return "User Not Found"
 
 @appp.route('/profile/<int:user_id>')
 def get_profile(user_id):
