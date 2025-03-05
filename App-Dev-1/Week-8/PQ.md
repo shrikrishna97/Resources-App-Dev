@@ -79,7 +79,7 @@ The other options are unrelated:
 
 Here's a simple example of how asynchronous updates can be implemented using **AJAX** in a web application to load data in the background without reloading the entire page:
 
-**HTML and JavaScript code**:
+**HTML, JavaScript and XML code**:
 ```html
 <!DOCTYPE html>
 <html lang="en">
