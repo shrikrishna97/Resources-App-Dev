@@ -823,3 +823,84 @@ console.log(jsonString);  // Output: {"name":"Alice","age":30}
 | `JSON.stringify()` | JavaScript | Converts JavaScript object to JSON string |
 
 ---
+
+Sure! In **Flask-RESTful**, `marshal` and `marshal_with` are used for **formatting** API responses according to a specified structure. They help in ensuring that API responses follow a consistent format.
+
+---
+
+## **`marshal` and `marshal_with` in Flask-RESTful**
+
+##  `marshal`
+- This is a **function** that manually formats data according to a given structure.
+- You must **call it explicitly** before returning a response.
+
+**Example:**
+```python
+from flask_restful import marshal, fields
+
+# Define response structure
+resource_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'age': fields.Integer
+}
+
+# Sample data
+data = {'id': 1, 'name': 'John', 'age': 30, 'extra_field': 'Not needed'}
+
+# Use marshal to format data
+formatted_data = marshal(data, resource_fields)
+
+print(formatted_data)  # Output: {'id': 1, 'name': 'John', 'age': 30}
+```
+**Extra fields** (`extra_field`) not mentioned in `resource_fields` are **ignored**.
+
+---
+
+## 🔹 `marshal_with`
+- This is a **decorator** used inside resource methods like `get()`, `post()`, etc.
+- It **automatically applies formatting** to the return value of the function.
+
+**Example:**
+```python
+from flask import Flask
+from flask_restful import Api, Resource, fields, marshal_with
+
+app = Flask(__name__)
+api = Api(app)
+
+# Define response structure
+resource_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'age': fields.Integer
+}
+
+class User(Resource):
+    @marshal_with(resource_fields)  # Apply formatting automatically
+    def get(self):
+        user_data = {'id': 1, 'name': 'John', 'age': 30, 'extra_field': 'Ignored'}
+        return user_data  # No need to call marshal manually
+
+api.add_resource(User, '/user')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+The response will automatically be:
+```json
+{
+    "id": 1,
+    "name": "John",
+    "age": 30
+}
+```
+
+---
+
+## Difference Between `marshal` and `marshal_with`
+| Feature           | `marshal` | `marshal_with` |
+|------------------|------------|---------------|
+| Type            | Function | Decorator |
+| Usage          | Called manually | Used above a method |
+| When to Use | If you need to format multiple responses | If formatting is always required for a function's return value |
