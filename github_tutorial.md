@@ -35,6 +35,7 @@ This guide will help you:
    sudo apt update && sudo apt install gh -y
    ```
 
+(Note: gh command will also work in powershell, if you are struggling with wsl you can use powershell)
 ### **For Mac & Linux Users** (Skip WSL)
 - **Git & VS Code** are pre-installed in most Linux/macOS systems.
 - Install **GitHub CLI (`gh`)** using:
