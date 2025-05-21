@@ -182,7 +182,7 @@ Iterates over the enumerable property keys of an object, including inherited pro
 
 **Syntax:**
 
-```
+```javascript
 for (let key in object) {
   // code block to be executed
 }
@@ -191,7 +191,7 @@ for (let key in object) {
 
 **Example:**
 
-```
+```javascript
 const person = { name: "Alice", age: 30 };
 
 for (let key in person) {
@@ -217,7 +217,7 @@ Iterates over the values of iterable objects like arrays, strings, maps, sets, e
 
 **Syntax:**
 
-```
+```javascript
 for (let value of iterable) {
   // code block to be executed
 }
@@ -226,7 +226,7 @@ for (let value of iterable) {
 
 **Example:**
 
-```
+```javascript
 const fruits = ["apple", "banana", "cherry"];
 
 for (let fruit of fruits) {
@@ -246,7 +246,7 @@ Ideal for iterating over arrays, strings, maps, sets, and other iterable collect
 
 ### 12.3 Comparison Table
 
-| Feature `for...in` `for...of` |                                      |                                          |
+|           Feature             |             `for...in`               |                `for...of`                |
 | ----------------------------- | ------------------------------------ | ---------------------------------------- |
 | Iterates Over                 | Enumerable property keys             | Iterable values                          |
 | Return Value                  | Strings (keys)                       | Actual values                            |
@@ -282,8 +282,6 @@ console.log(car);
 
 ---
 
----
-
 ## 6. Execution Environments
 
 JavaScript operates in various environments, primarily the browser and Node.js. Each environment provides a global object that serves as the top-level context for code execution.
@@ -294,7 +292,7 @@ JavaScript operates in various environments, primarily the browser and Node.js. 
   In browsers, the global object is `window`. It represents the browser window and provides methods and properties for interacting with the browser.
 * **Node.js Environment:**
   In Node.js, the global object is `global`. It provides access to global variables and functions specific to the Node.js environment.
-* **Universal Access with ******************************************************************************************************************************\`\`******************************************************************************************************************************:**
+* **Universal Access with:**
   To write environment-agnostic code, JavaScript introduces `globalThis` as a standardized way to access the global object across different environments.
 
 ### 6.2 Use Cases and Examples
@@ -305,7 +303,7 @@ The `window` object allows interaction with the browser window and its component
 
 **Example: Accessing Global Variables and Functions**
 
-```
+```javascript
 // Declaring a global variable
 var siteName = "ExampleSite";
 
@@ -324,7 +322,7 @@ window.greetUser(); // Displays alert: "Welcome to ExampleSite"
 
 **Example: Using Browser-Specific Methods**
 
-```
+```javascript
 // Displaying an alert dialog
 window.alert("This is an alert box!");
 
@@ -339,7 +337,7 @@ In Node.js, the `global` object provides access to globally available variables 
 
 **Example: Defining and Accessing Global Variables**
 
-```
+```javascript
 // Defining a global variable
 global.appVersion = "1.0.0";
 
@@ -350,7 +348,7 @@ console.log(global.appVersion); // Output: "1.0.0"
 
 **Example: Using Global Functions**
 
-```
+```javascript
 // Using setTimeout, a global function in Node.js
 setTimeout(() => {
   console.log("Executed after 2 seconds");
@@ -364,7 +362,7 @@ The `globalThis` object provides a standard way to access the global object, reg
 
 **Example: Defining a Global Variable**
 
-```
+```javascript
 // Defining a global variable using globalThis
 globalThis.config = {
   appName: "UniversalApp",
