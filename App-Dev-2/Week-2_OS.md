@@ -660,5 +660,3 @@ Practice Recommendations:
 * Use browser dev tools and Node.js to debug and test code.
 
 * Practice hoisting and scope scenarios.
-
-* Practice from this website [Roadmap-javascript](https://roadmap.sh/javascript)
