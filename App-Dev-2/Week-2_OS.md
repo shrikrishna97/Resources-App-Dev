@@ -464,14 +464,16 @@ The browser console helps test and debug code.
 
 ### 8.1 Function Declaration
 
-```javascript
+```js
 function greet() {
   console.log("Hello");
 }
-greet();
 ```
 
-Hoisted and available before declaration.
+* Classic function syntax.
+* Hoisted (can be called before it is defined).
+* Has its own this context.
+* Hoisted and available before declaration.
 
 ### 8.2 Function Expression
 
@@ -493,39 +495,67 @@ const greet = () => {
 greet();
 ```
 
-Arrow functions use lexical `this` and are often more concise.
+* Arrow functions use lexical `this` and are often more concise.
+* More concise.
+* Not hoisted (must be declared before use).
+* Does NOT have its own this.
 
 ---
 
 ## 9. The `this` Keyword
 
-### 9.1 Regular Function
+###  Regular Function:
 
-```javascript
+```js
 const user = {
   name: "Alice",
   greet: function() {
     console.log("Hi " + this.name);
   }
 };
-user.greet();
+user.greet(); // Output: Hi Alice
 ```
 
-Here `this` refers to the `user` object.
+* Here, this refers to the object user because it's called as user.greet().
+* Regular functions dynamically bind this depending on how they're called.
 
-### 9.2 Arrow Function
+###  Arrow Function:
 
-```javascript
+```js
 const user = {
   name: "Alice",
   greet: () => {
-    console.log("Hi " + this.name); // `this` does not refer to user
+    console.log("Hi " + this.name);
   }
 };
-user.greet();
+user.greet(); // Output: Hi undefined (in browsers, likely "Hi " or "Hi undefined")
 ```
 
-Arrow functions inherit `this` from the surrounding context.
+* Arrow functions do not have their own this.
+* They inherit this from the surrounding lexical scope (e.g., the window/global object if declared at the top level).
+* So this.name is undefined.
+
+✅ Use arrow functions when:
+
+* You want to preserve the outer this (e.g., in callbacks).
+* You don’t need your own this, arguments, or super.
+
+❌ Avoid arrow functions when:
+
+* You need to access object-specific this (e.g., methods on objects or classes).
+
+---
+
+## Summary Table
+
+| Feature                    | Regular Function    | Arrow Function               |
+| -------------------------- | ------------------- | ---------------------------- |
+| Syntax                     | function greet() {} | const greet = () => {}       |
+| Hoisting                   | ✅ Yes               | ❌ No                         |
+| Own this                   | ✅ Yes               | ❌ No (lexical this)          |
+| Use as constructor         | ✅ Yes               | ❌ No                         |
+| Suitable for object method | ✅ Yes               | ❌ No (usually not preferred) |
+| Suitable for callbacks     | ✅ Sometimes         | ✅ Often preferred            |
 
 ---
 
