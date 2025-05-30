@@ -96,7 +96,7 @@ These are the few command to install   `choco` and then `gh`, then follow the st
 
 ## **🔗 Step 3: Open VS Code & Clone Your Repo**
 1️⃣ Open **VS Code**  
-2️⃣ Open **WSL Terminal** (Windows) OR **Terminal** (Mac/Linux)  
+2️⃣ Open **WSL Terminal** (Windows) OR **Powershell** (Windows) OR **Terminal** (Mac/Linux)  
    - Shortcut: **Ctrl + `** (tilde key)  
    - OR go to **View → Terminal**  
 
