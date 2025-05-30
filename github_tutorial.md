@@ -35,7 +35,45 @@ This guide will help you:
    sudo apt update && sudo apt install gh -y
    ```
 
-(Note: gh command will also work in powershell, if you are struggling with wsl you can use powershell)
+(Note: gh command will also work in powershell, if you are struggling with wsl you can use powershell, you need to install `choco` and `gh` separately)
+### **For Windows Powershell Users**
+These are the few command to install   `choco` and then `gh`, then follow the step 2:
+---
+
+#### Step-by-Step: Force Install Chocolatey
+
+1. **Open PowerShell as Administrator**
+
+   * Search “PowerShell” in Start → Right-click → “Run as Administrator”
+
+2. **Run this command (force install Chocolatey):**
+
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force; `
+   [System.Net.ServicePointManager]::SecurityProtocol = `
+   [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+   iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+   ```
+
+---
+
+#### Step-by-Step: Install GitHub CLI (`gh`) via choco
+
+1. **Install `gh` using Chocolatey:**
+
+   ```powershell
+   choco install gh -y
+   ```
+
+2. **Verify installation:**
+
+   ```powershell
+   gh --version
+   ```
+
+---
+
+
 ### **For Mac & Linux Users** (Skip WSL)
 - **Git & VS Code** are pre-installed in most Linux/macOS systems.
 - Install **GitHub CLI (`gh`)** using:
