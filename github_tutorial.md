@@ -143,6 +143,13 @@ These are the few command to install   `choco` and then `gh`, then follow the st
    ```sh
    git commit -m "Added example.txt"
    ```
+**NOTE: if you get error that says "who are you ?" you have to add your name and email locally as well, the command for that is**:
+
+`git config user.name "Your Name"`
+
+`git config user.email "your.email@example.com"`
+
+
 
 4️⃣ **Check status**
    ```sh
