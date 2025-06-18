@@ -1,7 +1,3 @@
-# App-Dev-2/Week-3_OS.md
-I’ll include clear explanations, example code, and use cases to help you understand each concept thoroughly. I’ll let you know once it’s ready for review.
-
-
 # JavaScript Callback Functions and Timers
 
 **Callback functions** are fundamental in JavaScript. A *callback* is simply a function passed as an argument into another function, so that it can be “called back” (invoked) later. In other words, the receiving function can execute the callback at the appropriate time to complete some task. Callbacks can run **synchronously** (immediately) or **asynchronously** (later, after some operation completes). For example, many array methods like `forEach` and `map` accept callbacks, and asynchronous APIs like `setTimeout()` or `fetch().then()` use callbacks when operations finish.
