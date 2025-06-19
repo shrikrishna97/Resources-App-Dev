@@ -119,7 +119,10 @@ The `setInterval()` function repeatedly runs a callback at fixed time intervals.
 The `clearTimeout()` function stops a timeout scheduled by `setTimeout()`. You pass it the timer ID that `setTimeout` returned. If that timeout hasn’t fired yet, it gets cancelled and will never execute its callback. If you pass an invalid or already-cleared ID, `clearTimeout` does nothing.
 
 * **Syntax:** `clearTimeout(timeoutId);`
-* **Use case:** Cancel a pending delayed action. For example, if a user takes an action that makes the delayed callback irrelevant, you can call `clearTimeout` to prevent it from running.
+* **Use case:** Cancel a pending delayed action. 
+
+For example, if a user takes an action that makes the delayed callback irrelevant, you can call `clearTimeout` to prevent it from running.
+
 * **Example:**
 
   ```js
