@@ -1,6 +1,8 @@
 # JavaScript Callback Functions and Timers
 
-**Callback functions** are fundamental in JavaScript. A *callback* is simply a function passed as an argument into another function, so that it can be “called back” (invoked) later. In other words, the receiving function can execute the callback at the appropriate time to complete some task. Callbacks can run **synchronously** (immediately) or **asynchronously** (later, after some operation completes). For example, many array methods like `forEach` and `map` accept callbacks, and asynchronous APIs like `setTimeout()` or `fetch().then()` use callbacks when operations finish.
+**Callback functions** are fundamental in JavaScript. A *callback* is simply a function passed as an argument into another function, so that it can be “called back” (invoked) later. In other words, the receiving function can execute the callback at the appropriate time to complete some task. Callbacks can run **synchronously** (immediately) or **asynchronously** (later, after some operation completes). 
+
+For example, many array methods like `forEach` and `map` accept callbacks, and asynchronous APIs like `setTimeout()` or `fetch().then()` use callbacks when operations finish.
 
 * **Use cases:** You use callbacks whenever one function needs to execute another after finishing work. For instance, passing a function to handle a server response, to run code after a click event, or to process each element in an array.
 * **Example (plain JS):**
@@ -27,7 +29,9 @@
 
 ## `setTimeout`
 
-The `setTimeout()` function schedules a one-time callback after a specified delay (in milliseconds). Its basic behavior is: *“set a timer, and when it expires, run the given function”*. For example, `setTimeout(fn, 1000)` will call `fn` after \~1000ms. Because it’s asynchronous, code after `setTimeout` continues running immediately – it does **not** pause the script. The function returns a timer ID (a number) which can be used to cancel the timeout before it fires.
+The `setTimeout()` function schedules a one-time callback after a specified delay (in milliseconds). Its basic behavior is: *“set a timer, and when it expires, run the given function”*. 
+
+For example, `setTimeout(fn, 1000)` will call `fn` after \~1000ms. Because it’s asynchronous, code after `setTimeout` continues running immediately – it does **not** pause the script. The function returns a timer ID (a number) which can be used to cancel the timeout before it fires.
 
 * **Syntax:** `let timeoutId = setTimeout(callback, delay, [arg1, arg2, ...]);`
 * **Key points:**
