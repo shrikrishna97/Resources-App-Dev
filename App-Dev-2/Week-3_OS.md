@@ -271,3 +271,110 @@ Because of these async features, code can be **non-sequential**. You might see t
 **In summary:** Synchronous JavaScript does things in order, blocking each step (like a single queue). Asynchronous JavaScript starts tasks that run in the background and continues with other work, which keeps apps responsive. Timers (`setTimeout`, `setInterval`) and callbacks are core to this – they let you schedule code to run later without freezing the current flow.
 
 **Sources:** Authoritative JavaScript docs and tutorials.
+
+
+
+# Vue.js Examples and Setup
+
+Below is an HTML example for **Vue 2** and **Vue 3** that implements the given component (showing “Waiting…” and then “Hello from Vue!” after 2 seconds).  The examples use a CDN script so you can simply open the HTML file in a browser to run it.  We then discuss the differences between Vue 2 vs Vue 3 (including renamed lifecycle hooks and API changes) and the various ways to run Vue (CDN, CLI, or Vite).
+
+## Vue 2 Example (with CDN)
+
+In Vue 2, you include the Vue 2.x script via a `<script>` tag, and then create a Vue instance with `new Vue(...)`.  For example:
+
+```html
+<!-- index.html for Vue 2 -->
+<div id="app">
+  <!-- Only show the message when visible is true -->
+  <p v-if="visible">{{ message }}</p>
+</div>
+
+<!-- Include Vue 2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+<script>
+// Create a new Vue 2 instance
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Waiting...',
+    visible: false,
+    timeoutId: null
+  },
+  mounted() {
+    // After 2 seconds, show the message
+    this.timeoutId = setTimeout(() => {
+      this.visible = true;
+      this.message = 'Hello from Vue!';
+    }, 2000);
+  },
+  beforeDestroy() {
+    // Clear timer when component is destroyed
+    clearTimeout(this.timeoutId);
+  }
+});
+</script>
+```
+
+* We use `<script src="...vue@2.7.16/dist/vue.js"></script>` to load Vue 2 (latest 2.x) from a CDN.
+* The `new Vue({ el: '#app', data: {...}, mounted(), beforeDestroy() })` creates the Vue 2 instance (using the *Options API*). Note the lifecycle hook is called `beforeDestroy` in Vue 2.
+* Simply open this HTML file in a browser. No build step is needed when using a CDN script.
+
+## Vue 3 Example (with CDN)
+
+In Vue 3, the API has changed: you use `Vue.createApp()` instead of `new Vue`, and the destroy hooks were renamed.  Here is the equivalent example in Vue 3:
+
+```html
+<!-- index.html for Vue 3 -->
+<div id="app">
+  <p v-if="visible">{{ message }}</p>
+</div>
+
+<!-- Include Vue 3 from CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+// Use the global Vue object to create the app
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      message: 'Waiting...',
+      visible: false,
+      timeoutId: null
+    };
+  },
+  mounted() {
+    // After 2 seconds, show the message
+    this.timeoutId = setTimeout(() => {
+      this.visible = true;
+      this.message = 'Hello from Vue!';
+    }, 2000);
+  },
+  beforeUnmount() {
+    // Clear timer when component is unmounted
+    clearTimeout(this.timeoutId);
+  }
+}).mount('#app');
+</script>
+```
+
+* The `<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>` loads Vue 3’s global build from a CDN.
+* We call `const { createApp } = Vue; createApp({...}).mount('#app')` (Vue 3’s new app-mount API).  The `beforeUnmount` hook replaces `beforeDestroy` in Vue 3.
+* As with Vue 2, this HTML can be opened directly in a browser with no build step.  (Note: using `vue.global.js` exposes Vue on the global `Vue` object.)
+
+## Key Differences (Vue 2 vs Vue 3)
+
+* **Lifecycle Hooks Renamed:** In Vue 3 the destroy hooks were renamed – `beforeDestroy` → `beforeUnmount`, `destroyed` → `unmounted`. In our example we use `beforeUnmount` for Vue 3 and `beforeDestroy` for Vue 2.
+* **App Creation:** Vue 2 uses `new Vue({ ... })` (or `new Vue().$mount('#app')`), whereas Vue 3 uses `createApp({...}).mount('#app')`.  The migration guide notes that the global API now uses an application instance in Vue 3.
+* **Mount Behavior:** In Vue 2, mounting replaces the target element. In Vue 3, the app’s DOM is appended inside the mount element (Vue 3 wraps the content but does not remove the element).
+* **Composition API:** Vue 3 introduced the **Composition API** (using `setup()` and `ref()` etc.) alongside the Options API.  This offers more flexible code organization and better TypeScript support. (Our example still uses the Options API for simplicity.)
+* **Performance & Size:** Vue 3 has a rewritten reactivity system and supports better tree-shaking, resulting in faster rendering and smaller bundles.  Many sources note Vue 3 is generally faster and has new features (Teleport, Suspense, multiple root elements) not in Vue 2.
+* **Tooling:** The official docs now recommend using **Vite** (via `npm create vue@latest`) for new projects, since Vue CLI is in maintenance mode. Vue 2 projects commonly used Vue CLI (Webpack-based) or simple CDN inclusion.
+
+## Running Vue: CDN vs CLI vs Vite
+
+* **CDN (script tag):**  Simply include Vue via `<script>` as above.  This is the easiest way to try Vue or add it to an existing site without a build process. There’s no compilation step – your code runs directly in the browser. However, you cannot use `.vue` single-file components or advanced features that require a build. (You also load the entire Vue library at runtime.)
+* **Vue CLI (Legacy Tool):**  The official Vue CLI (webpack-based) scaffolds full projects with hot-reload and bundling. In a Vue CLI project, you typically run `npm run serve` (or `yarn serve`) to start a dev server. Vue CLI handles compiling `.vue` files, modern JS, CSS preprocessors, etc., and outputs optimized builds. Note that as of Vue 3, the Vue team recommends using Vite instead of Vue CLI for new projects.
+* **Vite (Recommended):**  Vite is a modern build tool that provides an extremely fast dev server and HMR for Vue projects.  To start a new Vue 3 app with Vite, you can run `npm create vue@latest` and follow prompts. Then install and run `npm run dev` in the project folder. Vite will bundle your Vue files and assets, but unlike CDN mode, it allows using single-file components, modern syntax, and build optimizations (tree-shaking, minification, etc.). The Vue docs note that for new projects, Vite (via `create-vue`) is the best choice.
+* **Summary:**  Using a CDN is great for simple demos or adding Vue to a server-rendered page. For larger or production apps, you’d use a build setup: Vue CLI or Vite. Build tools automatically bundle and optimize your code (compiling `.vue` components, handling dependencies, etc.). The end result is still HTML/JS/CSS, but build tools improve developer experience and performance. In short: CDN = quick prototyping (no build); CLI/Vite = full app development with tooling.
+
+
