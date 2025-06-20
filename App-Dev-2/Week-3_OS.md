@@ -1,3 +1,11 @@
+Prepared Based on: MAD 2 JavaScript week-3 Open Session
+
+Target Audience: Beginners with Python background and Javascript basic understanding 
+
+Prepared by: Shri Krishna 
+
+Last term live session for reference: [Mad-2 week-3 open session](https://www.youtube.com/live/QYQWZhItGjQ?feature=shared)
+
 # JavaScript Callback Functions and Timers
 
 **Callback functions** are fundamental in JavaScript. A *callback* is simply a function passed as an argument into another function, so that it can be “called back” (invoked) later. In other words, the receiving function can execute the callback at the appropriate time to complete some task. Callbacks can run **synchronously** (immediately) or **asynchronously** (later, after some operation completes). 
