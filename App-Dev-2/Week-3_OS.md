@@ -176,11 +176,6 @@ The `clearInterval()` function stops a repeating action created by `setInterval(
 
 Each of these functions is part of standard Web APIs and works in browsers (and Node.js provides similar global functions). They are essential for controlling timing and flow in JavaScript, especially when working with asynchronous operations.
 
-Great! I’ll add a beginner-friendly explanation of the difference between synchronous and asynchronous programming, including simple real-life analogies (like cooking or waiting in line) and JavaScript code examples to demonstrate the concept.
-
-I’ll let you know once it's added to the notes.
-
-
 # Synchronous vs Asynchronous Programming in JavaScript
 
 **Synchronous** code runs one step at a time, in order. Each operation must finish before the next one starts. In other words, the program “steps through” each line sequentially, waiting on each to complete.  For example:
