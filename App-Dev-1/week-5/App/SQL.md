@@ -6,7 +6,7 @@
 
 **NOTE: This document might get updated multiple times till last session.**
 
-## **Session 1: Introduction to Flask and Jinja Templates**
+## **[Session 1: Introduction to Flask and Jinja Templates](https://www.youtube.com/live/wBI5SZjaAD8?feature=shared)**
 
 ### **1. Introduction to Flask**
 
@@ -83,7 +83,7 @@ def items():
 
 ---
 
-## **Session 2: Database Models and CRUD Operations**
+## **[Session 2: Database Models and CRUD Operations](https://www.youtube.com/live/e1F621aPDKw?feature=shared)**
 
 ### **1. Recap of Flask & Jinja**
 
@@ -106,7 +106,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.sqlite3'
 db = SQLAlchemy(app)
 ```
 
-### **3. Creating a Model (User Table)**
+### **[3. Creating a Model (User Table)](https://www.youtube.com/live/IZf7aW8S-zM?feature=shared)**
 
 ```python
 class User(db.Model):
