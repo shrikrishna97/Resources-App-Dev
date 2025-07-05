@@ -16,20 +16,22 @@
              {{ i.email }} </p>
         {% endfor %}
         <div class="row">
+            <p> {{ user.username }} , 
+             {{ user.email }} </p>
             
-        {% if users_details %}
-            {% for user in users_details %}
+        <!-- {% if user_details %}
+            {% for u in user %}
             <div class="col-sm">
-                <p> {{ user.username }} </p>
+                <p> {{ u.username }} </p>
             </div>
             <div class="col-sm">
-                <p> {{ user.password }} </p>
+                <p> {{ u.password }} </p>
             </div>
             <div class="col-sm">
-                <p> {{ user.email }} </p>
+                <p> {{ u.email }} </p>
             </div>
             {% endfor %}
-        {% endif %}
+        {% endif %} -->
     </div>
     </div>
 </body>

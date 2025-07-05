@@ -14,13 +14,23 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    classes = db.relationship('Class', backref='creator', lazy=True)
 
+class Class(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def home():
-    db.create_all()  # Create the database tables
+    # db.create_all()  # Create the database tables
     
     db.session.add(User(username='testtuser', email='VetHwA@example.com'))
     db.session.commit()  # Commit the changes
@@ -29,9 +39,15 @@ def home():
 @app.route('/users')
 def list_users():
     users = User.query.all()
+    # user = User.query.get(1)
+    user = User.query.filter_by(username='testtuser').first()
+    user.id = 3
+    # db.session.delete(user)
+    db.session.commit()
+    # print(user)
     # print(users[0].username, users[0].email)
     # print("hi")
-    return render_template('happy.html', users=users)
+    return render_template('happy.html', users=users, user=user)
     
 if __name__ == '__main__':
     app.run(debug=True)

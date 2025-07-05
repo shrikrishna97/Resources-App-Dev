@@ -25,15 +25,15 @@ db = SQLAlchemy(appp)
 # class User(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     username = db.Column(db.String(80), unique=True, nullable=False)
-#     # classes = db.relationship('Class', backref='creator', lazy=True)
-#     classes = db.relationship('Class', back_populates='student')
+#     classes = db.relationship('Class', backref='creator', lazy=True)
+#     # classes = db.relationship('Class', back_populates='student')
     
 
 # class Class(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     title = db.Column(db.String(100), nullable=False)
 #     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-#     student = db.relationship('User', back_populates='classes')
+#     # student = db.relationship('User', back_populates='classes')
 
 class_participants = db.Table('class_participants',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -45,8 +45,8 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     # classes = db.relationship('Class', backref='student', lazy=True)
     # classes = db.relationship('Class', back_populates='student')
-    classes = db.relationship('Class', secondary=class_participants, back_populates='participants')
-    # classes = db.relationship('Class', secondary=class_participants, backref='participants')
+    # classes = db.relationship('Class', secondary=class_participants, back_populates='participants')
+    classes = db.relationship('Class', secondary=class_participants, backref='participants')
 
 class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -76,6 +76,14 @@ with appp.app_context():
 #         return "Profile Created"
 #     return "User Not Found"
 
+@appp.route('/')
+def home():
+    # db.create_all()  # Create the database tables
+    
+    db.session.add(User(username='testtuser'))
+    db.session.commit()  # Commit the changes
+    return 'Welcome to the Flask App!'
+
 @appp.route('/profile/<int:user_id>')
 def get_profile(user_id):
     user = User.query.get(user_id)
@@ -98,7 +106,8 @@ def create_class(user_id, title):
 @appp.route('/classes/<int:user_id>')
 def get_classes(user_id):
     user = User.query.get(user_id)
-    return render_template('classes.html', user=user)
+    classes = Class.query.all()
+    return render_template('classes.html', user=user,classes = classes)
 
 # Fetch Many-to-Many Relationship
 @appp.route('/enrolled_classes/<int:user_id>')
@@ -109,7 +118,7 @@ def get_enrolled_classes(user_id):
 @appp.route('/enroll_user/<int:user_id>/<int:class_id>')
 def enroll_user(user_id, class_id):
     user = User.query.get(user_id)
-    class_instance = Class.query.get(class_id)
+    class_instance = Class.query.session.get(class_id)
 
     if user and class_instance:
         class_instance.participants.append(user)  # Add user to class participants
