@@ -29,11 +29,12 @@ def setup_db():
 
 
     
-    result = db.session.query.max(PlayerStats.runs)
-    result = db.session.query(func.max(PlayerStats.runs)).scalar()
-    result = db.session.query(func.max(PlayerStats.runs))
-    result = db.session.query.max(PlayerStats.runs).scalar()
+    # result = db.session.query.max(PlayerStats.runs)
+    result = db.session.query(func.min(PlayerStats.runs)).scalar()
+    # result = db.session.query(func.max(PlayerStats.runs)).first()
+    # result = db.session.query.max(PlayerStats.runs).scalar()
     print(f"Maximum Runs: {result}")
+    return f"Database setup complete. Maximum Runs: {result}"
 
 if __name__ == '__main__':
     app.run(debug=True)
