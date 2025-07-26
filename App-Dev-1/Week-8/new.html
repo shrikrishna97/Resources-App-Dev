@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+
+    <button id="myButton" onclick="">Click Me!</button>
+
+        <script>
+        // function button() {
+        //     alert('Button clicked!');
+        // }
+        var fragment = document.createDocumentFragment();
+        var div = document.createElement('div');
+        div.textContent = 'This is a new div element!';
+        fragment.appendChild(div);
+        document.body.appendChild(fragment);  // Adds the div to the body
+    // document.getElementById('myButton').addEventListener('click', function() {
+    //     alert('Button clicked!');
+    // });
+    </script>
+    <script src="any.js"></script>
+</body>
+
+</html>
+

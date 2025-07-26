@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inline JavaScript Output</title>
+  <style>
+    button { display: block; margin: 8px 0; padding: 8px; }
+    #output { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>Inline JavaScript Output</h2>
+
+  <button onclick="alert('This is week-8')">alert()</button>
+  <button onclick="console.log('Console log message')">console.log()</button>
+  <button onclick="console.error('Error week-8 message')">console.error()</button>
+  <button onclick="console.warn('Warning message')">console.warn()</button>
+  <button onclick="document.write('This replaces the page')">document.write()</button>
+  <button onclick="
+    let name = prompt('Enter name');
+    if (name) document.getElementById('output').innerHTML = 'Name: ' + name;
+  ">prompt()</button>
+  <button onclick="
+    let res = confirm('Are you sure?');
+    document.getElementById('output').innerHTML = 'Confirmed: ' + res;
+  ">confirm()</button>
+  <button onclick="document.getElementById('output').innerHTML = 'Updated via innerHTML'">innerHTML</button>
+  <button onclick="
+    let data = [{ id: 1, name: 'A' }, { id: 2, name: 'B' }];
+    console.table(data);
+    document.getElementById('output').innerHTML = 'Check console for table';
+  ">console.table()</button>
+
+  <div id="output"></div>
+</body>
+</html>
