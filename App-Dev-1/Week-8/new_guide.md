@@ -316,5 +316,82 @@ This version adds event listeners from JavaScript code, keeping HTML cleaner. It
 | `addEventListener` | Clean separation, reusable functions | Slightly longer code                    | For real apps or modular projects |
 
 
+---
+
+
+## Topic: Responsibilities of Browser vs Flask Server
+
+---
+
+## Section 1: What the **Browser** Does (Not Flask)
+
+| Task                        | Handled By | Description                                                                |
+| --------------------------- | ---------- | -------------------------------------------------------------------------- |
+| **A. Parsing HTML**         | Browser    | The browser reads HTML and builds a DOM (Document Object Model).           |
+| **B. Auto-fill Form Data**  | Browser    | Browser remembers previous inputs and fills forms for convenience.         |
+| **D. JavaScript Execution** | Browser    | The browser has a built-in JS engine to run any script in `<script>` tags. |
+
+These are all client-side tasks done **after** the server has responded.
+
+---
+
+## Section 2: What the **Flask Server** Does
+
+| Task                | Handled By | Description                                                      |
+| ------------------- | ---------- | ---------------------------------------------------------------- |
+| **C. URL Routing**  | Flask      | Flask defines what function runs when a specific URL is visited. |
+| Serving HTML/CSS/JS | Flask      | It sends static or dynamic files to the client.                  |
+| Backend Logic       | Flask      | Handles database queries, user authentication, APIs, etc.        |
+
+---
+
+## Section 3: What is HTML Parsing?
+
+**Parsing HTML** is the process where the **browser reads and interprets HTML code** and converts it into a **structured visual layout** using the DOM (Document Object Model).
+
+### Step-by-Step Breakdown:
+
+1. Browser receives raw HTML from server (e.g., Flask).
+2. It **parses the HTML**: reads tags like `<div>`, `<h1>`, `<p>`.
+3. Builds a **DOM tree** – a structure of elements in memory.
+4. Renders the final visual page from this DOM.
+5. Applies CSS and executes JavaScript as needed.
+
+---
+
+### Example:
+
+```html
+<html>
+  <body>
+    <h1>Hello, User!</h1>
+    <p>This is a paragraph.</p>
+  </body>
+</html>
+```
+
+**Parsed DOM Tree (Simplified)**:
+
+```
+html
+ └── body
+      ├── h1 ("Hello, User!")
+      └── p ("This is a paragraph.")
+```
+
+**Rendered Output**:
+
+> Hello, User!
+> This is a paragraph.
+
+---
+
+## Final Summary
+
+* The **browser** handles things like parsing HTML, running JavaScript, and remembering user form inputs.
+* The **Flask server** is responsible for backend logic, URL routing, and sending the HTML.
+* Parsing HTML is a key browser-side process that turns static code into a rendered page.
+
+
 
 
