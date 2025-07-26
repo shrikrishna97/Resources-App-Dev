@@ -327,9 +327,9 @@ This version adds event listeners from JavaScript code, keeping HTML cleaner. It
 
 | Task                        | Handled By | Description                                                                |
 | --------------------------- | ---------- | -------------------------------------------------------------------------- |
-| **A. Parsing HTML**         | Browser    | The browser reads HTML and builds a DOM (Document Object Model).           |
-| **B. Auto-fill Form Data**  | Browser    | Browser remembers previous inputs and fills forms for convenience.         |
-| **D. JavaScript Execution** | Browser    | The browser has a built-in JS engine to run any script in `<script>` tags. |
+| **Parsing HTML**         | Browser    | The browser reads HTML and builds a DOM (Document Object Model).           |
+| **Auto-fill Form Data**  | Browser    | Browser remembers previous inputs and fills forms for convenience.         |
+| **JavaScript Execution** | Browser    | The browser has a built-in JS engine to run any script in `<script>` tags. |
 
 These are all client-side tasks done **after** the server has responded.
 
@@ -339,9 +339,9 @@ These are all client-side tasks done **after** the server has responded.
 
 | Task                | Handled By | Description                                                      |
 | ------------------- | ---------- | ---------------------------------------------------------------- |
-| **C. URL Routing**  | Flask      | Flask defines what function runs when a specific URL is visited. |
-| Serving HTML/CSS/JS | Flask      | It sends static or dynamic files to the client.                  |
-| Backend Logic       | Flask      | Handles database queries, user authentication, APIs, etc.        |
+| **URL Routing**  | Flask      | Flask defines what function runs when a specific URL is visited. |
+| **Serving HTML/CSS/JS** | Flask      | It sends static or dynamic files to the client.                  |
+| **Backend Logic**       | Flask      | Handles database queries, user authentication, APIs, etc.        |
 
 ---
 
