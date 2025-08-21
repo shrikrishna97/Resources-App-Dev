@@ -162,6 +162,7 @@ pip install flask flask-cors
 ```python
 from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
+from datatime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -192,6 +193,13 @@ def get_cookie():
         return jsonify({"message": "Cookie retrieved!", "token": token})
     return jsonify({"message": "No cookie found!"}), 404
 
+@app.route("/delete-cookie")
+def delete_cookie():
+    resp = make_response({"msg": "Cookie deleted"})
+    resp.delete_cookie("auth_token")
+    return resp
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 ```
@@ -213,7 +221,7 @@ if __name__ == "__main__":
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
     <title>CORS + Cookies Demo</title>
   </head>
@@ -222,19 +230,22 @@ if __name__ == "__main__":
       <h1>CORS + Cookies Demo</h1>
       <button @click="setCookie">Set Cookie</button>
       <button @click="getCookie">Get Cookie</button>
+      Create a delete button ( task )
       <p>{{ message }}</p>
     </div>
 
     <script>
       new Vue({
         el: "#app",
-        data: { message: "hi" },
+        data: {
+          message: "hi",
+        },
         methods: {
           async setCookie() {
             try {
               const res = await fetch("http://127.0.0.1:5000/set-cookie", {
                 method: "GET",
-                credentials: "include" // important for cookies in fetch
+                credentials: "include", // include cookies
               });
               const data = await res.json();
               this.message = data.message;
@@ -245,15 +256,27 @@ if __name__ == "__main__":
           async getCookie() {
             try {
               const res = await fetch("http://127.0.0.1:5000/get-cookie", {
-                credentials: "include"
+                credentials: "include",
               });
               const data = await res.json();
               this.message = data.message + " (Token: " + data.token + ")";
             } catch {
               this.message = "Error retrieving cookie!";
             }
-          }
-        }
+          },
+          async deleteCookie() {
+            try {
+              const res = await fetch("http://127.0.0.1:5000/delete-cookie", {
+                method: "GET",
+                credentials: "include",
+              });
+              const data = await res.json();
+              this.message = data.msg;
+            } catch {
+              this.message = "Error deleting cookie!";
+            }
+          },
+        },
       });
     </script>
   </body>
