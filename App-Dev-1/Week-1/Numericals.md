@@ -112,7 +112,7 @@ If this change of medium causes an **additional delay of 75 ms at the server**, 
   6000 × 1000 / 3 × 10^8 = 0.02 s = 20 ms  
 
 - **Server delay:**  
-  75 ms = 0.075 s  
+  75 ms = 0.075 s  ( you can choose either second or milisecond , but we will prefer `ms` in this course)
 
 - **Total client wait (latency):**  
   0.03 + 0.02 + 0.075 = 0.125 s = 125 ms  
