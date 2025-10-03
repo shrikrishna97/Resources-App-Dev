@@ -4,7 +4,8 @@ Target Audience: Beginners with Python background and Javascript basic understan
 
 Prepared by: Shri Krishna 
 
-Last term live session for reference: [Mad-2 week-3 open session](https://www.youtube.com/live/QYQWZhItGjQ?feature=shared)
+Last term live session for reference: [Mad-2 week-3 open session](https://www.youtube.com/live/QYQWZhItGjQ)
+May term live session taken based on this doc: [Mad-2 week-3 open session](https://www.youtube.com/live/5B1ri5JOii4)
 
 # JavaScript Callback Functions and Timers
 
@@ -175,11 +176,6 @@ The `clearInterval()` function stops a repeating action created by `setInterval(
   * **clearTimeout/clearInterval:** Often used for “cancel” buttons, cleanup on navigation away, or stopping animations after a certain time.
 
 Each of these functions is part of standard Web APIs and works in browsers (and Node.js provides similar global functions). They are essential for controlling timing and flow in JavaScript, especially when working with asynchronous operations.
-
-Great! I’ll add a beginner-friendly explanation of the difference between synchronous and asynchronous programming, including simple real-life analogies (like cooking or waiting in line) and JavaScript code examples to demonstrate the concept.
-
-I’ll let you know once it's added to the notes.
-
 
 # Synchronous vs Asynchronous Programming in JavaScript
 
