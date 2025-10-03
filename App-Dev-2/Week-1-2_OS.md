@@ -5,6 +5,7 @@ Target Audience: Beginners with Python background
 Prepared by: Shri Krishna 
 
 Last term live session for reference: [Mad-2 week-2 open session](https://www.youtube.com/live/dNGVCIAB0rU)
+Last term live session based on this doc: [Mad-2 week-2 open session](https://www.youtube.com/live/zSrdnSn5Uds)
 
 ---
 
