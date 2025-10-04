@@ -1,0 +1,34 @@
+<!-- index.html for Vue 3 -->
+<div id="app">
+  <p v-if="visible">{{ message }}</p>
+</div>
+
+<!-- Include Vue 3 from CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+// Use the global Vue object to create the app
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      message: 'Waiting...',
+      visible: false,
+      timeoutId: null
+    };
+  },
+  methods() {
+
+  },
+  mounted() {
+    // After 2 seconds, show the message
+    this.timeoutId = setTimeout(() => {
+      this.visible = true;
+      this.message = 'Hello from Vue!';
+    }, 2000);
+  },
+  beforeUnmount() {
+    // Clear timer when component is unmounted
+    clearTimeout(this.timeoutId);
+  }
+}).mount('#app');
+</script>
