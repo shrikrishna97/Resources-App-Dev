@@ -446,7 +446,9 @@ Open your browser console and observe the messages printed in order.
    vm.$children[0].$destroy();
    ```
 
+   In vue 3 , the `destroyed` hook is renamed to `unmounted`, but in Vue 2 it remains `destroyed`.
 ---
+
 
 ## 3. Moving Component Logic to a Separate JS File
 
