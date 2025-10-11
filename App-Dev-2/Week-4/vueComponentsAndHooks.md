@@ -362,6 +362,11 @@ Vue provides **lifecycle hooks**, which are special functions that run automatic
 
 ---
 
+<img width="700" height="1400" alt="image" src="https://github.com/user-attachments/assets/dfda4523-5a43-4b39-838b-c85ef682a4a1" />
+
+
+---
+
 ### Real-Life Analogy
 
 A Vue component’s lifecycle is similar to a plant’s life:
