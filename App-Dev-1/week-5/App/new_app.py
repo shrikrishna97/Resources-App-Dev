@@ -27,6 +27,12 @@ class Class(db.Model):
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 with app.app_context():
     db.create_all()
+    
+# OR    
+# You push and pop the app context manually
+# app.app_context().push() to create the context
+# app.app_context().pop() to remove the context
+# but this is not recommended way use "with" statement instead that automatically pushes and pops the context
 
 @app.route('/')
 def home():

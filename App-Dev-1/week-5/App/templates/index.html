@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Flask App</title></head>
+<body>
+    <h1>Welcome, {{ name }}</h1>
+    {% if items %}
+        <ol>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No items found.</p>
+    {% endif %}
+</body>
+</html>

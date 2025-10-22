@@ -4,7 +4,7 @@ from sqlalchemy import func  #new line added here
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///players.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
@@ -25,7 +25,7 @@ def setup_db():
         PlayerStats(id=2, runs=123),
         PlayerStats(id=3, runs=87),
     ])
-    db.session.commit()
+    # db.session.commit()
 
 
     
