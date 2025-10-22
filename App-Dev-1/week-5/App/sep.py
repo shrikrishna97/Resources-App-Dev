@@ -24,9 +24,13 @@ with app.app_context():
 
 @app.route('/names')
 def home():
+    
     db.session.add(User(id=3, username="testuser"))
     db.session.add(User(username="seconduser"))
+    
     db.session.commit()
+    
+    
     return 'Welcome to the Flask App!'      
 
 from flask import render_template
