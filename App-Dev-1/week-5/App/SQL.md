@@ -969,6 +969,8 @@ db.session.commit()
 
 ---
 ## Flask-SQLAlchemy Relationships: One-to-One, One-to-Many, and Many-to-Many
+<img width="443" height="229" alt="image" src="https://github.com/user-attachments/assets/26310e26-867f-4073-844a-12947a0db9b7" />
+
 
 ## 1. One-to-One Relationship
 A **one-to-one** relationship ensures that each record in one table is linked to exactly one record in another table. This can be useful when storing additional details about a user, like a profile.
@@ -1385,4 +1387,5 @@ class Class(db.Model):
 
 - ✅ **Yes, `backref` can be used** in a **many-to-many relationship** **if** using `db.Table` for the association.
 - ❌ If you have an **explicit association model**, use **`back_populates`** instead of `backref`.
+
 
