@@ -1,0 +1,53 @@
+<!-- index.html -->
+<div id="app">
+  <lifecycle-demo></lifecycle-demo>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  Vue.component('lifecycle-demo', {
+    template: `
+      <div>
+        <h3>Lifecycle Hook Demo</h3>
+        <p>Count: {{ count }}</p>
+        <button @click="increaseCount">Increase</button>
+      </div>
+    `,
+    data() {
+      return { count: 0 }
+    },
+    methods: {
+      increaseCount() {
+        this.count++;
+      }
+    },
+    beforeCreate() {
+      console.log("beforeCreate: Data not yet available");
+    },
+    created() {
+      console.log("created: Data and methods ready");
+    },
+    beforeMount() {
+      console.log("beforeMount: Template not yet in DOM");
+    },
+    mounted() {
+      console.log("mounted: Template added to DOM");
+    },
+    beforeUpdate() {
+      console.log("beforeUpdate: DOM about to update");
+    },
+    updated() {
+      console.log("updated: DOM updated");
+    },
+    beforeDestroy() {
+      console.log("beforeDestroy: Component will be destroyed");
+    },
+    destroyed() {
+      console.log("destroyed: Component destroyed");
+    }
+  });
+
+  vm = new Vue({
+    el: '#app'
+  });
+</script>
