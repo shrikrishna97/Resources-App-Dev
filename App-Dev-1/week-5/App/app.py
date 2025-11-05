@@ -45,16 +45,16 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     # classes = db.relationship('Class', backref='student', lazy=True)
     # classes = db.relationship('Class', back_populates='student')
-    # classes = db.relationship('Class', secondary=class_participants, back_populates='participants')
-    classes = db.relationship('Class', secondary=class_participants, backref='participants')
+    classes = db.relationship('Class', secondary=class_participants, back_populates='participants')
+    # classes = db.relationship('Class', secondary=class_participants, backref='participants')
 
 class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     # student = db.relationship('User', back_populates='classes')
     # participants = db.relationship('User', backref='classes')
-    # participants = db.relationship('User', secondary=class_participants, back_populates='classes')
+    participants = db.relationship('User', secondary=class_participants, back_populates='classes')
     # participants = db.relationship('User', secondary=class_participants, backref='classes')
     
     
