@@ -49,6 +49,7 @@ class LoginAPI(Resource):
             return {"status": "error", "message": "Invalid username or password"}, 401
 
         session["user"] = username
+        print(session["user"])
         if password == "1234":
             # Need CAPTCHA
             a, b = random.randint(1, 9), random.randint(1, 9)
@@ -92,6 +93,8 @@ def dashboard():
 
 @app.route("/logout")
 def logout():
+    print(session["user"])
+    print(session)
     session.pop("user", None)
     return redirect("/")
 
