@@ -21,7 +21,7 @@ Captcha/
 
 ### **Step 1: User Opens App**
 
-```
+```python
 Browser → http://localhost:5000/
          ↓
 Flask (app.py Line 84)
@@ -38,7 +38,7 @@ Shows: index.html (Login + Signup forms)
 
 ### **Step 2A: User Signs Up (New User)**
 
-```
+```js
 User fills signup form → Clicks "Sign Up"
          ↓
 JavaScript (script.js Line 2-14)
@@ -68,7 +68,7 @@ Response to Browser: {"status": "success", "message": "User registered successfu
 
 ### **Step 2B: User Logs In**
 
-```
+```js
 User fills login form → Clicks "Login"
          ↓
 JavaScript (script.js Line 17-37)
@@ -103,7 +103,7 @@ class LoginAPI(Resource):
 
 #### **Path A: Normal Login (password ≠ "1234")**
 
-```
+```js
 Flask returns: {"status": "success"}
          ↓
 JavaScript (script.js Line 31-32)
@@ -129,7 +129,7 @@ Shows: dashboard.html with "Welcome, [username]!"
 
 #### **Path B: Special Login (password = "1234") → CAPTCHA Required**
 
-```
+```js
 Flask returns: {"status": "captcha_required", "question": "5 + 3"}
          ↓
 JavaScript (script.js Line 28-30)
@@ -153,7 +153,7 @@ document.getElementById('captcha-question').innerText = question;  // Show it
 
 ### **Step 3: User Solves CAPTCHA**
 
-```
+```js
 User enters answer (e.g., "8") → Clicks "Verify"
          ↓
 JavaScript (captcha.html Line 27-46)
@@ -193,7 +193,7 @@ Shows: Dashboard with "Welcome, [username]!"
 
 ### **Step 4: User Logs Out**
 
-```
+```js
 User clicks "Logout" button
          ↓
 Browser → http://localhost:5000/logout
@@ -278,17 +278,16 @@ def dashboard():
 
 ## Data Flow Diagram
 
-```
+```python
 ┌─────────────┐
 │   Browser   │
 └──────┬──────┘
        │
        │ 1. Visit /
        ↓
-┌─────────────────────┐
-│  index.html         │  (Login/Signup forms)
-│  + script.js        │
-└──────┬──────────────┘
+┌─────────────────────────┐
+│  index.html + script.js │  (Login/Signup forms)
+└──────┬──────────────────┘
        │
        │ 2. Submit login (password = "1234")
        ↓
