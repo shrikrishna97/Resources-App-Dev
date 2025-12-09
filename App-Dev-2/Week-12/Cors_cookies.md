@@ -344,7 +344,7 @@ The frontend (Vue) does **not manually send the cookie** — the **browser handl
 
 1. **Session Cookies (Default)**
 
-   * If you don’t set `expires` or `max_age`, the cookie will **auto-delete when the browser/tab closes**.
+   * If you don’t set `expires` or `max_age`, the cookie will **auto-delete when the browser is fully closed**.
 
    ```python
    resp.set_cookie("auth_token", "abc123")
