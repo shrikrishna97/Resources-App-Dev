@@ -265,9 +265,10 @@ For API testing (curl / Thunder Client / Postman), use the testing section in **
 
 1. Run both servers together
 2. Test all endpoints
-3. Read **BACKEND_SETUP.md** for detailed backend code explanation
-4. Read **FRONTEND_SETUP.md** for detailed frontend code explanation
-5. Read **SECURITY_GUIDE.md** to understand JWT & RBAC
+3. Quick pre-read: **SECURITY_GUIDE.md** (JWT + RBAC basics only)
+4. Read **BACKEND_SETUP.md** for detailed backend code explanation
+5. Read **FRONTEND_SETUP.md** for detailed frontend code explanation
+6. Revisit **SECURITY_GUIDE.md** for full security flow and debugging
 
 ---
 
@@ -297,8 +298,8 @@ For API testing (curl / Thunder Client / Postman), use the testing section in **
 
 **Ready? Start with these files in order:**
 1. This file (Prerequisites & Setup) ← You are here
-2. BACKEND_SETUP.md (Backend implementation)
-3. FRONTEND_SETUP.md (Frontend implementation)
-4. SECURITY_GUIDE.md (Security concepts)
+2. SECURITY_GUIDE.md (Quick skim: JWT + RBAC basics)
+3. BACKEND_SETUP.md (Backend implementation)
+4. FRONTEND_SETUP.md (Frontend implementation)
 
 Let's build the Vehicle Parking Application!
