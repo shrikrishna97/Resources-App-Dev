@@ -7,7 +7,7 @@ Welcome to Day 1 Session Setup! This file guides you to the right documentation 
 ## Quick Navigation
 
 ### I Want to Get Started Immediately
-**Read:** [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) (20-30 min)
+**Read:** [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) (20-30 min)
 - Prerequisites checking
 - Why we use each technology
 - Step-by-step backend setup
@@ -23,7 +23,7 @@ Welcome to Day 1 Session Setup! This file guides you to the right documentation 
 ## Complete Documentation (Read in This Order)
 
 ### 1. **START: Prerequisites & Setup** 
-📄 [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) (20-30 min read)
+📄 [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) (20-30 min read)
 
 **What's covered:**
 - Do you have Python 3.8+ and Node.js 16+ installed?
@@ -117,27 +117,27 @@ Welcome to Day 1 Session Setup! This file guides you to the right documentation 
 ## Reading Paths by Role
 
 ### I'm Not Sure Where to Start
-1. [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) ← **Start here**
+1. [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) ← **Start here**
 2. [SECURITY_GUIDE.md](SECURITY_GUIDE.md) (optional, read if interested in auth)
 
 ### I'm Building the Backend
-1. [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) (setup)
+1. [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) (setup)
 2. [BACKEND_SETUP.md](BACKEND_SETUP.md) ← **Focus here**
 3. [SECURITY_GUIDE.md](SECURITY_GUIDE.md) (understand JWT/RBAC)
 
 ### I'm Building the Frontend
-1. [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) (setup)
+1. [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) (setup)
 2. [FRONTEND_SETUP.md](FRONTEND_SETUP.md) ← **Focus here**
 3. [SECURITY_GUIDE.md](SECURITY_GUIDE.md) (understand token management)
 
 ### I'm Building Both (Full Stack)
-1. [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) (setup)
+1. [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) (setup)
 2. [BACKEND_SETUP.md](BACKEND_SETUP.md) (backend code)
 3. [FRONTEND_SETUP.md](FRONTEND_SETUP.md) (frontend code)
 4. [SECURITY_GUIDE.md](SECURITY_GUIDE.md) (how they communicate securely)
 
 ### I Just Need Quick Troubleshooting
-- [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) → Go to "Troubleshooting" section
+- [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) → Go to "Troubleshooting" section
 - [BACKEND_SETUP.md](BACKEND_SETUP.md) → Use "Troubleshooting" + API testing sections
 - [FRONTEND_SETUP.md](FRONTEND_SETUP.md) → Use "Troubleshooting" section
 - [SECURITY_GUIDE.md](SECURITY_GUIDE.md) → Read "Debugging Authentication" section
@@ -148,7 +148,7 @@ Welcome to Day 1 Session Setup! This file guides you to the right documentation 
 
 | File | Purpose | Duration | When to Read |
 |------|---------|----------|--------------|
-| 00_PREREQUISITES_AND_SETUP.md | Entry point with full setup | 20-30 min | First thing |
+| PREREQUISITES_AND_SETUP.md | Entry point with full setup | 20-30 min | First thing |
 | BACKEND_SETUP.md | Flask implementation | 45-60 min | Building backend |
 | FRONTEND_SETUP.md | Vue 3 implementation | 45-60 min | Building frontend |
 | SECURITY_GUIDE.md | Auth concepts reference | 30-45 min | Understanding JWT/RBAC |
@@ -157,7 +157,7 @@ Welcome to Day 1 Session Setup! This file guides you to the right documentation 
 
 ## How Do I Know When I'm Ready?
 
-After reading [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md), you should be able to:
+After reading [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md), you should be able to:
 
 - [ ] Run `python --version` and `node --version` successfully
 - [ ] Start the backend server with `python app.py` (runs on 5000)
@@ -184,7 +184,7 @@ If all checkboxes are done, you're ready to build!
 
 ## Need Help?
 
-1. **Setup failing?** → Check [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md) "Troubleshooting"
+1. **Setup failing?** → Check [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md) "Troubleshooting"
 2. **API returning errors?** → Check [BACKEND_SETUP.md](BACKEND_SETUP.md) error handling and curl examples
 3. **Frontend not working?** → Check [FRONTEND_SETUP.md](FRONTEND_SETUP.md) component explanations
 4. **Authentication issues?** → Check [SECURITY_GUIDE.md](SECURITY_GUIDE.md) debugging section
@@ -200,7 +200,11 @@ If all checkboxes are done, you're ready to build!
 - **Full stack**: 2-3 hours
 - **Reference lookup**: 5-15 minutes
 
-**Don't read everything at once** - Start with [00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md), get it running, then read the deep dives as needed.
+**Don't read everything at once** - Start with [PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md), get it running, then read the deep dives as needed.
+
+---
+
+<img width="1302" height="1502" alt="image" src="https://github.com/user-attachments/assets/e5ab75cb-ec8d-4342-a12e-c937d671d579" />
 
 ---
 
@@ -217,4 +221,4 @@ After completing this Day 1 setup, you'll understand:
 
 ---
 
-**Ready to start?** → [Go to 00_PREREQUISITES_AND_SETUP.md](00_PREREQUISITES_AND_SETUP.md)
+**Ready to start?** → [Go to 00_PREREQUISITES_AND_SETUP.md](PREREQUISITES_AND_SETUP.md)
