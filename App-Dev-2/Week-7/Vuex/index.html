@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vuex CDN Example</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>Count: {{ count }}</h2>
+  <h3>Double: {{ doubleCount }}</h3>
+
+  <button @click="increment">Increment</button>
+  <button @click="decrement">Decrement</button>
+  <button @click="incrementAsync">Increment Async</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex@3"></script>
+
+<script src="store.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
