@@ -6,7 +6,7 @@ Simple frontend setup using Vue 3, Vite, and Bootstrap 5 (no custom CSS complexi
 
 ## Prerequisites
 
-Complete `00_PREREQUISITES_AND_SETUP.md` first.
+Complete `PREREQUISITES_AND_SETUP.md` first.
 
 ---
 
