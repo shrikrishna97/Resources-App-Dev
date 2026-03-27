@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Report</title>
+</head>
+<body>
+    Hello Admin,
+    Here is the report of all the reservations for this month:
+    {% for reservation in reservations %}
+        <p>User: {{ reservation.username }}</p>
+        <p>Parking Lot: {{ reservation.parking_lot }}</p>
+        <p>Vehicle Number: {{ reservation.vehicle_number }}</p>
+        <p>Status: {{ reservation.status }}</p>
+        <p>Cost: {{ reservation.cost }}</p>
+        <hr>
+    {% endfor %}
+
+</body>
+</html>
