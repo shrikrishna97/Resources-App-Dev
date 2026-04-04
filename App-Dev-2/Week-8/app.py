@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "your-secret-key"  # Change this in production!
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
-from flask_security import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin
+# from flask_security import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
@@ -16,14 +16,14 @@ class User(db.Model):
     password = db.Column(db.String(120), nullable=False)
     role = db.Column(db.String(20), nullable=False, default="user")
 
-# @jwt.user_identity_loader
-# def load(user):
-#     return user.username
+@jwt.user_identity_loader
+def load(user):
+    return user.username
 
-# @jwt.user_lookup_loader
-# def user_lookup(jwt_header, jwt_data):
-#     identity = jwt_data["sub"]
-#     return User.query.filter_by(username=identity).one_or_none()
+@jwt.user_lookup_loader
+def user_lookup(jwt_header, jwt_data):
+    identity = jwt_data["sub"]
+    return User.query.filter_by(username=identity).one_or_none()
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -45,8 +45,8 @@ def login():
     if not user:
         return jsonify({"msg": "Invalid credentials"}), 401
 
-    access_token = create_access_token(identity=user.username , additional_claims={"role": user.role})
-    # access_token = create_access_token(identity=user)
+    # access_token = create_access_token(identity=user.username , additional_claims={"role": user.role}) # this is for using get_jwt_identity() to get username and get_jwt() to get role
+    access_token = create_access_token(identity=user) # if we want to use current_user then we have to give object to the identity
     return jsonify(access_token=access_token), 200
 
 @app.route("/dashboard", methods=["GET"])
@@ -57,9 +57,15 @@ def dashboard():
     role = claims.get("role", "user")
     
     roles = get_jwt().get("role")
-    # current_user = current_user.id
+    current_user = current_user.id
     
     return jsonify(logged_in_as=current_user, role=role, roles = roles), 200
+@app.route("/check_user", methods=["GET"]) # this will work for current_user
+@jwt_required()
+def check_current_user():
+    user = current_user.username # we have give any other variable name other than current_user to use it
+    return jsonify(logged_in_as=user), 200
+    
 
 @app.route("/admin", methods=["GET"])
 @jwt_required()
