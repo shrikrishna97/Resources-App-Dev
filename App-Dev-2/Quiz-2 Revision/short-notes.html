@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAD-2 Short Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; background: #f9f9f9; color: #222; }
+    h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+    h2 { color: #1a73e8; margin-top: 40px; border-left: 4px solid #1a73e8; padding-left: 10px; }
+    h3 { color: #c0392b; margin-bottom: 4px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 14px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+    code { background: #eef; padding: 1px 5px; border-radius: 3px; font-size: 0.92em; color: #c0392b; }
+    .note { background: #fff8e1; border-left: 4px solid #f9a825; padding: 8px 12px; margin: 10px 0; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+    th { background: #1a73e8; color: white; padding: 8px; }
+    td { border: 1px solid #ccc; padding: 8px; }
+    tr:nth-child(even) { background: #f0f0f0; }
+    section { background: white; padding: 20px 24px; margin: 20px 0; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+<h1>MAD-2 Recap Quiz-2</h1>
+
+<!-- ============================================================ -->
+<section>
+  <h2>1. Reading Data from DOM</h2>
+
+  <h3>You might know what is getAttribute? but do you know what is dataset?</h3>
+  <p><code>dataset</code> is a built-in DOM property that gives you access to all <code>data-*</code> attributes on an element as a key-value object.</p>
+
+  <pre>
+&lt;button id="btn" data-id="x" data-action="y"&gt;Delete&lt;/button&gt;
+
+&lt;script&gt;
+  const btn = document.getElementById('btn');
+
+  // Using dataset (modern way)
+  console.log(btn.dataset.id);       // "x"
+  console.log(btn.dataset.action);   // "y"
+
+  // Using getAttribute (older, explicit way)
+  console.log(btn.getAttribute('data-id'));      // "x"
+  console.log(btn.getAttribute('data-action'));  // "y"
+&lt;/script&gt;</pre>
+
+  <div class="note"><strong>Note:</strong> <code>dataset</code> values are always strings. Convert with <code>Number(btn.dataset.id)</code> if you need a number.</div>
+
+  <h3>Common Ways to Get Data from DOM</h3>
+  <table>
+    <tr><th>Method</th><th>What it does</th></tr>
+    <tr><td><code>getElementById('id')</code></td><td>Select by id</td></tr>
+    <tr><td><code>querySelector('.class')</code></td><td>Select first match (CSS selector)</td></tr>
+    <tr><td><code>querySelectorAll('li')</code></td><td>Select all matches (returns NodeList)</td></tr>
+    <tr><td><code>element.value</code></td><td>Get value of input/select</td></tr>
+    <tr><td><code>element.innerText</code></td><td>Get visible text content</td></tr>
+    <tr><td><code>element.dataset.key</code></td><td>Get data-* attribute</td></tr>
+  </table>
+
+  <pre>
+// Read input value
+const name = document.querySelector('#username').value;
+
+// Read text
+const msg = document.querySelector('#msg').innerText;
+
+// Loop through list items
+document.querySelectorAll('li').forEach(item =&gt; {
+  console.log(item.innerText);
+});</pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>2. Reference vs Shallow Copy vs Deep Copy</h2>
+
+  <p>In JavaScript, objects are stored by <strong>reference</strong>. Assigning an object to a new variable does NOT create a new object - both variables point to the same place in memory.</p>
+
+  <h3>Three Ways to "Copy" an Object</h3>
+  <table>
+    <tr><th>Method</th><th>Type</th><th>Nested objects?</th></tr>
+    <tr><td><code>b = a</code></td><td>Reference</td><td>Fully shared - same object</td></tr>
+    <tr><td><code>{ ...a }</code> or <code>Object.assign({}, a)</code></td><td>Shallow Copy</td><td>Top level copied, nested still shared</td></tr>
+    <tr><td>Spread each level manually</td><td>Deep Copy</td><td>Fully independent</td></tr>
+  </table>
+
+  <pre>
+const original = { title: "Alice", address: { city: "Delhi" } };
+
+const ref     = original;                                            // REFERENCE
+const shallow = { ...original };                                     // SHALLOW COPY
+const deep    = { title: original.title, address: { ...original.address } }; // DEEP COPY
+
+ref.title = "Bob";           // original.title is now "Bob"   (same object!)
+shallow.address.city = "Mumbai"; // original.address.city changes too! (nested shared)
+deep.address.city = "Pune";  // original is NOT affected       (own copy of address)
+
+console.log(original.title);        // "Bob"     changed via ref
+console.log(original.address.city); // "Mumbai"  changed via shallow (trap!)
+console.log(deep.address.city);     // "Pune"    independent</pre>
+
+  <h3>The Shallow Copy Trap</h3>
+  <p><code>{ ...original }</code> looks like a full copy but nested objects are still shared references:</p>
+  <pre>
+original --> { title: "Alice",  address: --> { city: "Delhi" } }
+                                   ^
+shallow  --> { title: "Alice",  address: --+  points to the SAME address object!
+
+// So changing shallow.address.city also changes original.address.city</pre>
+
+  <p>Fix: spread the nested object too:</p>
+  <pre>
+const deep = { ...original, address: { ...original.address } };
+// Now deep.address is a brand new object - changes won't affect original</pre>
+
+  <div class="note">
+    <strong>Quick rule:</strong> <code>{ ...obj }</code> only copies the top level. Nested objects are still shared links. Spread every level for a true independent copy - or use <code>JSON.parse(JSON.stringify(obj))</code> for a quick deep clone of plain data.
+  </div>
+
+  <pre>
+// Quick deep clone (works for plain data - no functions, no Date objects)
+const deepClone = JSON.parse(JSON.stringify(original));</pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>3. Normal Function vs Arrow Function (Strict Mode)</h2>
+
+  <p>In strict mode, <code>this</code> depends on <strong>how</strong> the function is called. Arrow functions do not create their own <code>this</code>; they capture it from outer scope.</p>
+
+  <table>
+    <tr><th>Type</th><th><code>this</code> behavior</th><th>Good for</th></tr>
+    <tr><td>Normal function</td><td>Set at call time</td><td>Methods that need dynamic <code>this</code></td></tr>
+    <tr><td>Arrow function</td><td>Lexical (from parent scope)</td><td>Callbacks, preserving outer <code>this</code></td></tr>
+  </table>
+
+  <h3>One Example with <code>fn()()</code></h3>
+  <pre>
+'use strict';
+
+const accountBox = {
+  owner: 'Riya',
+
+  buildNormal: function () {
+    console.log('outer normal this.owner =', this ? this.owner : undefined);
+
+    return function () {
+      console.log('inner normal this =', this); // strict mode: undefined in plain call
+    };
+  },
+
+  buildArrow: function () {
+    console.log('outer normal this.owner =', this ? this.owner : undefined);
+
+    return () =&gt; {
+      console.log('inner arrow this.owner =', this ? this.owner : undefined);
+    };
+  }
+};
+
+// Direct method call, then returned function call
+accountBox.buildNormal()();
+accountBox.buildArrow()();
+
+// Detach method into variable, then call fn()()
+const detachedNormal = accountBox.buildNormal;
+const detachedArrow = accountBox.buildArrow;
+
+detachedNormal()();
+detachedArrow()();</pre>
+
+  <h3>What Happens</h3>
+  <pre>
+1) accountBox.buildNormal()()
+   - First call: method call, so outer this = accountBox
+   - Returned inner normal is called as plain function, so this = undefined (strict mode)
+
+2) accountBox.buildArrow()()
+   - First call: outer this = accountBox
+   - Returned arrow keeps outer this, so it still sees accountBox
+
+3) detachedNormal()() and detachedArrow()()
+   - Method is detached from object
+   - First call is plain function, so outer this = undefined (strict mode)
+   - Arrow also captures that undefined outer this
+</pre>
+
+  <div class="note">
+    <strong>Quick rule:</strong> In strict mode, extracting a method into a variable usually loses object binding. If object context is required, use <code>bind</code> (for example: <code>const safeFn = obj.method.bind(obj)</code>).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>4. Promise Behaviour</h2>
+
+  <p>A <strong>Promise</strong> represents a value that will be available in the future (async result). It has 3 states:</p>
+  <table>
+    <tr><th>State</th><th>Meaning</th></tr>
+    <tr><td>Pending</td><td>Still waiting (e.g. API call in progress)</td></tr>
+    <tr><td>Fulfilled</td><td>Success — <code>.then()</code> runs</td></tr>
+    <tr><td>Rejected</td><td>Error — <code>.catch()</code> runs</td></tr>
+  </table>
+
+  <pre>
+// Basic Promise
+const p = new Promise((resolve, reject) =&gt; {
+  const ok = true;
+  if (ok) resolve("Data ready");
+  else reject("Something failed");
+});
+
+p.then(data =&gt; console.log(data))   // "Data ready"
+ .catch(err =&gt; console.error(err))
+ .finally(() =&gt; console.log("Done")); // runs always</pre>
+
+  <pre>
+// async / await (cleaner syntax for the same thing)
+async function loadUser() {
+  try {
+    const res = await fetch('/api/user/1');
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}</pre>
+
+  <div class="note"><strong>Remember:</strong> <code>await</code> only works inside an <code>async</code> function. It pauses that function until the promise settles.</div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>5. Async and Await</h2>
+
+  <p><code>async</code> and <code>await</code> are a cleaner way to work with Promises. They do not replace Promises; they are just easier syntax for reading async code.</p>
+
+  <table>
+    <tr><th>Keyword</th><th>Meaning</th></tr>
+    <tr><td><code>async</code></td><td>Makes a function return a Promise automatically</td></tr>
+    <tr><td><code>await</code></td><td>Pauses that async function until the Promise settles</td></tr>
+  </table>
+
+  <h3>How Promise Resolve / Reject Works</h3>
+  <pre>
+const task = new Promise((resolve, reject) =&gt; {
+  const finished = true;
+
+  if (finished) {
+    resolve('Work completed');
+  } else {
+    reject('Work failed');
+  }
+});
+
+task
+  .then(result =&gt; console.log(result))   // runs if resolved
+  .catch(error =&gt; console.log(error));   // runs if rejected</pre>
+
+  <p>A Promise has 3 states:</p>
+  <pre>
+pending   = still waiting
+resolved  = success, value goes to .then()
+rejected  = error, value goes to .catch()</pre>
+
+  <h3>Same Idea with async / await</h3>
+  <pre>
+function fetchReport(statusOk) {
+  return new Promise((resolve, reject) =&gt; {
+    if (statusOk) {
+      resolve('Report loaded');
+    } else {
+      reject('Server error');
+    }
+  });
+}
+
+async function loadReport() {
+  try {
+    const message = await fetchReport(true);
+    console.log(message); // 'Report loaded'
+  } catch (error) {
+    console.log(error);   // runs if Promise is rejected
+  }
+}</pre>
+
+  <h3>How It Works Step by Step</h3>
+  <pre>
+1) async function starts
+2) await sees a Promise
+3) JavaScript pauses only that function, not the whole program
+4) If Promise resolves, await gives back the resolved value
+5) If Promise rejects, control jumps to catch block</pre>
+
+  <h3>Which Console Log Prints First? (then/catch vs await)</h3>
+  <p>In both styles, handlers run in the <strong>microtask queue</strong>. If both Promises are already settled, the callback that is queued first runs first.</p>
+
+  <pre>
+function compareOrder(thenState, awaitState) {
+  const pThen  = thenState  === 'resolve' ? Promise.resolve('THEN OK')  : Promise.reject('THEN ERR');
+  const pAwait = awaitState === 'resolve' ? Promise.resolve('AWAIT OK') : Promise.reject('AWAIT ERR');
+
+  // 1) Queue then/catch handler first
+  pThen
+    .then(v =&gt; console.log('then:', v))
+    .catch(e =&gt; console.log('catch:', e));
+
+  // 2) Then call async function (await continuation is queued after this starts)
+  (async function () {
+    try {
+      const c = await pAwait;
+      console.log('await:', c);
+    } catch (e) {
+      console.log('await catch:', e);
+    }
+  })();
+}
+
+// Case A: then resolve, await resolve
+compareOrder('resolve', 'resolve');
+// Output order:
+// then: THEN OK
+// await: AWAIT OK
+
+// Case B: then reject, await resolve
+compareOrder('reject', 'resolve');
+// Output order:
+// catch: THEN ERR
+// await: AWAIT OK
+
+// Case C: then resolve, await reject
+compareOrder('resolve', 'reject');
+// Output order:
+// then: THEN OK
+// await catch: AWAIT ERR
+
+// Case D: then reject, await reject
+compareOrder('reject', 'reject');
+// Output order:
+// catch: THEN ERR
+// await catch: AWAIT ERR</pre>
+
+  <div class="note">
+    <strong>Important:</strong> In this example, <code>then/catch</code> is attached first, so its log prints first. If you reverse the code order, <code>await</code> can print first.
+  </div>
+
+  <div class="note">
+    <strong>Quick rule:</strong> Use <code>try...catch</code> with <code>await</code>. A resolved Promise gives a value; a rejected Promise throws an error.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>6. Vue Directives: v-if and v-show</h2>
+
+  <p>Vue directives are special attributes that start with <code>v-</code>. They tell Vue to do something in the template.</p>
+
+  <table>
+    <tr><th>Directive</th><th>What it does</th><th>Main difference</th></tr>
+    <tr><td><code>v-if</code></td><td>Adds or removes element from DOM</td><td>Element may not exist at all</td></tr>
+    <tr><td><code>v-show</code></td><td>Shows or hides with CSS</td><td>Element stays in DOM</td></tr>
+  </table>
+
+  <h3>One Toggle Example</h3>
+  <pre>
+&lt;div id="app"&gt;
+  &lt;button @click="togglePanel"&gt;Toggle&lt;/button&gt;
+
+  &lt;p v-if="isVisible"&gt;This text uses v-if&lt;/p&gt;
+  &lt;p v-show="isVisible"&gt;This text uses v-show&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue({
+  el: '#app',
+  data: {
+    isVisible: true
+  },
+  methods: {
+    togglePanel() {
+      this.isVisible = !this.isVisible;
+    }
+  }
+});
+&lt;/script&gt;</pre>
+
+  <h3>What Happens on Toggle</h3>
+  <pre>
+If isVisible = true:
+  - v-if element is created and shown
+  - v-show element is shown
+
+If isVisible = false:
+  - v-if element is removed from DOM
+  - v-show element stays in DOM but becomes hidden (display: none)</pre>
+
+  <div class="note">
+    <strong>Quick rule:</strong> Use <code>v-if</code> when the condition changes less often. Use <code>v-show</code> when you need to show/hide frequently, because it only changes CSS.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>7. Vue: data vs computed vs watch</h2>
+
+  <p>Use this simple rule:</p>
+  <table>
+    <tr><th>Option</th><th>Use it for</th><th>Should have side effects?</th></tr>
+    <tr><td><code>data</code></td><td>Raw state you store and change</td><td>No (just values)</td></tr>
+    <tr><td><code>computed</code></td><td>Derived value from existing state</td><td>No (must return a value)</td></tr>
+    <tr><td><code>watch</code></td><td>Run logic when a value changes</td><td>Yes (API calls, timers, localStorage, etc.)</td></tr>
+  </table>
+
+  <h3>One Example (Search Box)</h3>
+  <pre>
+new Vue({
+  el: '#app',
+  data: {
+    keyword: '',           // data: actual user input
+    products: ['Apple', 'Banana', 'Mango', 'Grapes'],
+    typingMessage: ''
+  },
+
+  computed: {
+    filteredProducts() {
+      // computed: value derived from data
+      const k = this.keyword.toLowerCase();
+      return this.products.filter(p =&gt; p.toLowerCase().includes(k));
+    }
+  },
+
+  watch: {
+    keyword(newValue, oldValue) {
+      // watch: reacts to change and performs side effect
+      if (newValue !== oldValue) {
+        this.typingMessage = 'Searching for: ' + newValue;
+        // Example side effect: could call API here
+        // fetch('/api/search?q=' + encodeURIComponent(newValue))
+      }
+    }
+  }
+});</pre>
+
+  <h3>How to Think About It</h3>
+  <pre>
+data     = source (input values, arrays, flags)
+computed = formula/result (auto recalculates, cached)
+watch    = reaction ("when this changes, do something")</pre>
+
+  <div class="note">
+    <strong>Exam tip:</strong> If you need a value for template display, prefer <code>computed</code>. If you need to trigger an action because a value changed, use <code>watch</code>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>8. Vue Lifecycle Hooks</h2>
+
+  <p>Lifecycle hooks are special methods Vue calls at different stages of a component's life.</p>
+
+  <table>
+    <tr><th>Hook</th><th>When it runs</th><th>Common Use</th></tr>
+    <tr><td><code>beforeCreate</code></td><td>Before data &amp; events are set up</td><td>Rarely used</td></tr>
+    <tr><td><code>created</code></td><td>After data is ready, before DOM</td><td>API calls, set initial data</td></tr>
+    <tr><td><code>beforeMount</code></td><td>Before HTML is inserted</td><td>Rarely used</td></tr>
+    <tr><td><code>mounted</code></td><td>After HTML is in the page</td><td>DOM manipulation, third-party libs</td></tr>
+    <tr><td><code>beforeUpdate</code></td><td>Before re-render on data change</td><td>Capture old DOM state</td></tr>
+    <tr><td><code>updated</code></td><td>After re-render</td><td>React to DOM changes</td></tr>
+    <tr><td><code>beforeDestroy</code></td><td>Before component is removed</td><td>Clean up timers, listeners</td></tr>
+    <tr><td><code>destroyed</code></td><td>After component is removed</td><td>Final cleanup</td></tr>
+  </table>
+
+  <pre>
+new Vue({
+  data: { message: '' },
+
+  created() {
+    // Good place for API calls — data is ready
+    fetch('/api/hello')
+      .then(r =&gt; r.json())
+      .then(d =&gt; { this.message = d.text; });
+  },
+
+  mounted() {
+    // DOM is available here
+    console.log(this.$el); // the root element
+  },
+
+  beforeDestroy() {
+    // Clean up (e.g. clear setInterval)
+    clearInterval(this.timer);
+  }
+});</pre>
+
+  <div class="note"><strong>Most used:</strong> <code>created</code> (fetch data) and <code>mounted</code> (touch the DOM).</div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>9. Vuex Store</h2>
+
+  <p>Vuex is a <strong>central state management</strong> library for Vue 2. Think of it as a shared data container all components can read from and write to.</p>
+
+  <h3>4 Core Concepts</h3>
+  <table>
+    <tr><th>Concept</th><th>Role</th><th>Rule</th></tr>
+    <tr><td><code>state</code></td><td>Holds the data</td><td>Read-only directly</td></tr>
+    <tr><td><code>getters</code></td><td>Computed values from state</td><td>Like computed properties</td></tr>
+    <tr><td><code>mutations</code></td><td>Change the state</td><td>Must be synchronous</td></tr>
+    <tr><td><code>actions</code></td><td>Call mutations, can be async</td><td>Use for API calls</td></tr>
+  </table>
+
+  <pre>
+const store = new Vuex.Store({
+  state: {
+    count: 0,
+    users: []
+  },
+  getters: {
+    doubleCount: state =&gt; state.count * 2
+  },
+  mutations: {
+    INCREMENT(state) { state.count++; },
+    SET_USERS(state, users) { state.users = users; }
+  },
+  actions: {
+    fetchUsers({ commit }) {
+      fetch('/api/users')
+        .then(res =&gt; res.json())
+        .then(data =&gt; commit('SET_USERS', data));
+    }
+  }
+});
+
+// Inside a Vue component:
+this.$store.state.count          // read state
+this.$store.getters.doubleCount  // read getter
+this.$store.commit('INCREMENT')  // call mutation
+this.$store.dispatch('fetchUsers') // call action</pre>
+
+  <div class="note"><strong>Rule of thumb:</strong> Never mutate state directly. Always go through mutations (or actions -> mutations).</div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>10. Props, Emit, RouterLink, RouterView</h2>
+
+  <p>These four concepts are often used together in Vue apps:</p>
+  <table>
+    <tr><th>Concept</th><th>Direction</th><th>Use</th></tr>
+    <tr><td><code>props</code></td><td>Parent -&gt; Child</td><td>Pass data down</td></tr>
+    <tr><td><code>emit</code></td><td>Child -&gt; Parent</td><td>Send event up</td></tr>
+    <tr><td><code>&lt;router-link&gt;</code></td><td>Navigation</td><td>Move between routes without page reload</td></tr>
+    <tr><td><code>&lt;router-view&gt;</code></td><td>Rendering area</td><td>Shows the component matched by current route</td></tr>
+  </table>
+
+  <h3>One Connected Example</h3>
+  <pre>
+&lt;div id="app"&gt;
+  &lt;!-- router-link creates SPA navigation links --&gt;
+  &lt;router-link to="/home"&gt;Home&lt;/router-link&gt;
+  &lt;router-link to="/profile"&gt;Profile&lt;/router-link&gt;
+
+  &lt;!-- router-view is where current route component appears --&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Child component
+const UserCard = {
+  props: ['displayName'], // receive data from parent
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;User: {{ displayName }}&lt;/p&gt;
+      &lt;button @click="$emit('rename', 'Updated Name')"&gt;Rename&lt;/button&gt;
+    &lt;/div&gt;
+  `
+};
+
+// Route component (acts as parent for UserCard)
+const ProfilePage = {
+  components: { UserCard },
+  data() {
+    return {
+      currentName: 'First Name'
+    };
+  },
+  methods: {
+    onRename(newName) {
+      this.currentName = newName;
+    }
+  },
+  template: `
+    &lt;div&gt;
+      &lt;h3&gt;Profile Page&lt;/h3&gt;
+      &lt;user-card
+        :display-name="currentName"
+        @rename="onRename"
+      &gt;&lt;/user-card&gt;
+    &lt;/div&gt;
+  `
+};
+
+const HomePage = { template: '&lt;h3&gt;Home Page&lt;/h3&gt;' };
+
+const router = new VueRouter({
+  routes: [
+    { path: '/home', component: HomePage },
+    { path: '/profile', component: ProfilePage },
+    { path: '*', redirect: '/home' }
+  ]
+});
+
+new Vue({
+  el: '#app',
+  router
+});
+&lt;/script&gt;</pre>
+
+  <h3>Flow in Simple Words</h3>
+  <pre>
+1) Click Profile router-link -> route changes to /profile
+2) router-view renders ProfilePage
+3) ProfilePage passes currentName to UserCard via prop (displayName)
+4) Child button triggers $emit('rename', 'Updated Name')
+5) Parent catches @rename and runs onRename(newName)
+6) Parent state updates, UI re-renders with new name</pre>
+
+  <div class="note">
+    <strong>Quick rule:</strong> Data goes down with props, events go up with emit. <code>router-link</code> changes route; <code>router-view</code> displays the matched component.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>11. Security with JWT</h2>
+
+  <p>JWT (JSON Web Token) is used for <strong>stateless authentication</strong>. The server issues a token; the client sends it back with every request to prove identity.</p>
+
+  <h3>JWT Structure</h3>
+  <p>A JWT looks like: <code>xxxxx.yyyyy.zzzzz</code> - three Base64-encoded parts joined by dots.</p>
+  <table>
+    <tr><th>Part</th><th>Contains</th></tr>
+    <tr><td>Header</td><td>Algorithm type (e.g. HS256)</td></tr>
+    <tr><td>Payload</td><td>User data (id, role, expiry) - <em>not secret!</em></td></tr>
+    <tr><td>Signature</td><td>Hash of header+payload using a secret key - <em>tamper-proof</em></td></tr>
+  </table>
+
+  <h3>Typical Flow</h3>
+  <pre>
+// 1. User logs in -> server returns a JWT
+POST /api/login  ->  { token: "eyJ..." }
+
+// 2. Client stores the token
+localStorage.setItem('token', data.token);
+
+// 3. Client sends token with every protected request
+fetch('/api/profile', {
+  headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('token')
+  }
+});
+
+// 4. Server verifies the token - if valid, returns data
+//    If expired or tampered -> 401 Unauthorized</pre>
+
+  <h3>Key Security Rules</h3>
+  <table>
+    <tr><th>Rule</th><th>Why</th></tr>
+    <tr><td>Always use HTTPS</td><td>Prevent token interception</td></tr>
+    <tr><td>Set short expiry (<code>exp</code>)</td><td>Limit damage if token is stolen</td></tr>
+    <tr><td>Never put passwords in payload</td><td>Payload is Base64 - readable by anyone</td></tr>
+    <tr><td>Use <code>httpOnly</code> cookie over localStorage (when possible)</td><td>Protects against XSS attacks</td></tr>
+    <tr><td>Validate token on every request (server-side)</td><td>Ensures token is genuine</td></tr>
+  </table>
+
+  <div class="note"><strong>Remember:</strong> JWT proves <em>who</em> the user is, but the payload is not encrypted - do not store sensitive data in it.</div>
+</section>
+
+</body>
+</html>
