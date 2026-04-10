@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo 07 - data computed watch</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; }
+    input { padding: 8px; width: 100%; max-width: 300px; }
+    li { margin: 4px 0; }
+    .msg { margin: 10px 0; color: #1a73e8; }
+  </style>
+</head>
+<body>
+  <h2>Section 7 Demo: data vs computed vs watch</h2>
+  <div id="app">
+    <label>Search keyword:</label><br />
+    <input v-model="keyword" placeholder="Type product name" />
+
+    <p class="msg">{{ typingMessage }}</p>
+
+    <h4>Computed filteredProducts:</h4>
+    <ul>
+      <li v-for="item in filteredProducts" :key="item">{{ item }}</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        keyword: '',
+        products: ['Apple', 'Banana', 'Mango', 'Grapes', 'Orange'],
+        typingMessage: 'Start typing...'
+      },
+      computed: {
+        filteredProducts: function () {
+          var k = this.keyword.toLowerCase();
+          return this.products.filter(function (p) {
+            return p.toLowerCase().includes(k);
+          });
+        }
+      },
+      watch: {
+        keyword: function (newValue, oldValue) {
+          if (newValue !== oldValue) {
+            this.typingMessage = 'Searching for: ' + newValue;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

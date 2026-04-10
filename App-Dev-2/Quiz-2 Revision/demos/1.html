@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM Read Methods Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 16px;
+      background: #f7f9fc;
+      color: #1f2937;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    h1 { margin-top: 0; }
+    button {
+      margin: 6px 6px 6px 0;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+    }
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 8px;
+      min-height: 120px;
+      overflow: auto;
+    }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Check DOM Reading Methods</h1>
+
+  <div class="card">
+    <h2>Elements to Read</h2>
+
+    <label for="username">Username:</label>
+    <input id="username" type="text" value="Shruti" />
+
+    <p id="msg">Welcome to DOM practice.</p>
+
+    <button id="btnData" data-id="101" data-action="delete">Button with data attributes</button>
+
+    <ul id="items">
+      <li data-index="1">Apple</li>
+      <li data-index="2">Banana</li>
+      <li data-index="3">Mango</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Run Checks</h2>
+    <button onclick="readById()">getElementById</button>
+    <button onclick="readByQuerySelector()">querySelector</button>
+    <button onclick="readByQuerySelectorAll()">querySelectorAll</button>
+    <button onclick="readDatasetAndAttribute()">dataset and getAttribute</button>
+    <button onclick="clearOutput()">Clear</button>
+  </div>
+
+  <div class="card">
+    <h2>Output</h2>
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    function log(line) {
+      const out = document.getElementById("output");
+      out.textContent += line + "\n";
+    }
+
+    function readById() {
+      const nameValue = document.getElementById("username").value;
+      const msgText = document.getElementById("msg").innerText;
+      log("getElementById value: " + nameValue);
+      log("getElementById innerText: " + msgText);
+      log("--------------------------------");
+    }
+
+    function readByQuerySelector() {
+      const nameValue = document.querySelector("#username").value;
+      const msgText = document.querySelector("#msg").innerText;
+      log("querySelector value: " + nameValue);
+      log("querySelector innerText: " + msgText);
+      log("--------------------------------");
+    }
+
+    function readByQuerySelectorAll() {
+      const allItems = document.querySelectorAll("#items li");
+      log("querySelectorAll list items:");
+      allItems.forEach(function (item) {
+        log(" - " + item.innerText + " (data-index: " + item.dataset.index + ")");
+      });
+      log("--------------------------------");
+    }
+
+    function readDatasetAndAttribute() {
+      const btn = document.getElementById("btnData");
+      log("dataset.id: " + btn.dataset.id);
+      log("dataset.action: " + btn.dataset.action);
+      log("getAttribute data-id: " + btn.getAttribute("data-id"));
+      log("getAttribute data-action: " + btn.getAttribute("data-action"));
+      log("--------------------------------");
+    }
+
+    function clearOutput() {
+      document.getElementById("output").textContent = "";
+    }
+  </script>
+</body>
+</html>

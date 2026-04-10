@@ -476,6 +476,17 @@ watch    = reaction ("when this changes, do something")</pre>
     <tr><td><code>destroyed</code></td><td>After component is removed</td><td>Final cleanup</td></tr>
   </table>
 
+  <div class="note">
+    <strong>Analogy (easy memory trick):</strong> Think of child component like a student entering and leaving a classroom.
+    <br />
+    <code>beforeCreate</code>/<code>created</code> = student is being registered,
+    <code>beforeMount</code>/<code>mounted</code> = student enters and sits in class,
+    <code>beforeUpdate</code>/<code>updated</code> = student is already in class and changes notebook/work,
+    <code>beforeDestroy</code>/<code>destroyed</code> = student leaves class.
+    <br />
+    If student is outside (component removed with <code>v-if="false"</code>), no update can happen. That is why <code>updated</code> does not run when child is not visible via <code>v-if</code>.
+  </div>
+
   <pre>
 new Vue({
   data: { message: '' },
@@ -543,6 +554,10 @@ this.$store.state.count          // read state
 this.$store.getters.doubleCount  // read getter
 this.$store.commit('INCREMENT')  // call mutation
 this.$store.dispatch('fetchUsers') // call action</pre>
+
+  <p><strong>Where to use commit and dispatch:</strong> Use <code>this.$store.commit(...)</code> inside component methods/watch/hooks when you want to change state using a mutation. Use <code>this.$store.dispatch(...)</code> inside component methods/watch/hooks when you want to run an action (usually async), which then commits a mutation.</p>
+
+  <p><strong>Template usage tip:</strong> You can read Vuex state directly in template using <code>{{ $store.state.count }}</code> and getters using <code>{{ $store.getters.doubleCount }}</code>. For bigger components, many teams prefer mapping state/getters into computed properties for cleaner templates.</p>
 
   <div class="note"><strong>Rule of thumb:</strong> Never mutate state directly. Always go through mutations (or actions -> mutations).</div>
 </section>
@@ -670,7 +685,7 @@ fetch('/api/profile', {
 // 4. Server verifies the token - if valid, returns data
 //    If expired or tampered -> 401 Unauthorized</pre>
 
-  <h3>Key Security Rules</h3>
+  <h3>Key Security Rules Overall Based on Token/Session</h3>
   <table>
     <tr><th>Rule</th><th>Why</th></tr>
     <tr><td>Always use HTTPS</td><td>Prevent token interception</td></tr>
@@ -681,6 +696,23 @@ fetch('/api/profile', {
   </table>
 
   <div class="note"><strong>Remember:</strong> JWT proves <em>who</em> the user is, but the payload is not encrypted - do not store sensitive data in it.</div>
+
+  <h3>(Simple Analogy)</h3>
+  <div class="note">
+    <strong>JWT is like a signed ID card.</strong><br />
+    Anyone can read what is written on it (payload is Base64, not encrypted).<br />
+    But only the server (the issuer) can verify if the signature is genuine.<br />
+    If someone tampers with the card, the signature will not match and the server will reject it.
+  </div>
+
+  <p><strong>Key points in plain words:</strong></p>
+  <ol>
+    <li>JWT is not bad — it is safe for identity, just not for secrets</li>
+    <li>Payload is readable by anyone (just Base64-decode it) — never put passwords or sensitive data there</li>
+    <li>Security comes from the server <strong>verifying the signature</strong>, not from hiding the payload</li>
+    <li>If you must store a token on the client, prefer an <code>httpOnly</code> cookie over <code>localStorage</code> — <code>httpOnly</code> cookies cannot be read by JavaScript, which protects against XSS attacks</li>
+    <li>Always set a short expiry (<code>exp</code>) — if a token is stolen, it becomes useless quickly</li>
+  </ol>
 </section>
 
 </body>

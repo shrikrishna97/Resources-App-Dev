@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo 08 - Lifecycle Hooks</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; }
+    button { padding: 8px 12px; margin-right: 8px; }
+    pre { background: #f2f4f7; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Section 8 Demo: Lifecycle Hooks</h2>
+  <p>Open console to see full hook logs.</p>
+
+  <div id="root">
+    <button @click="show = !show">Toggle Component</button>
+    <button @click="count++">Update Data</button>
+    <p>Parent count: {{ count }}</p>
+    <child-box v-if="show" :count="count"></child-box>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    Vue.component('child-box', {
+      props: ['count'],
+      template: '<pre>Child count prop: {{ count }}</pre>',
+      beforeCreate: function () { console.log('child beforeCreate'); },
+      created: function () { console.log('child created'); },
+      beforeMount: function () { console.log('child beforeMount'); },
+      mounted: function () { console.log('child mounted'); },
+      beforeUpdate: function () { console.log('child beforeUpdate'); },
+      updated: function () { console.log('child updated'); },
+      beforeDestroy: function () { console.log('child beforeDestroy'); },
+      destroyed: function () { console.log('child destroyed'); }
+    });
+
+    new Vue({
+      el: '#root',
+      data: { show: true, count: 0 }
+    });
+  </script>
+</body>
+</html>

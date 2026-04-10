@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 10 - Props Emit Router</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 860px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      a {
+        margin-right: 12px;
+      }
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Section 10 Demo: Props, Emit, RouterLink, RouterView</h2>
+    <div id="app">
+      <router-link to="/home">Home</router-link>
+      <router-link to="/profile">Profile</router-link>
+      <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3/dist/vue-router.js"></script>
+    <script>
+      var UserCard = {
+        props: ["displayName"],
+        template: `
+          <div class="card">
+            <p>User: {{ displayName }}</p>
+            <button @click="$emit('rename', 'Updated Name')">Rename</button>
+          </div>
+        `,
+      };
+
+      var ProfilePage = {
+        components: { UserCard: UserCard },
+        data: function () {
+          return { currentName: "First Name" };
+        },
+        methods: {
+          onRename: function (newName) {
+            this.currentName = newName;
+          },
+        },
+        template: `
+          <div>
+            <h3>Profile Page</h3>
+            <user-card :display-name="currentName" @rename="onRename"></user-card>
+          </div>
+        `,
+      };
+
+      var HomePage = { template: "<h3>Home Page</h3>" };
+
+      var router = new VueRouter({
+        routes: [
+          { path: "/home", component: HomePage },
+          { path: "/profile", component: ProfilePage },
+          { path: "*", redirect: "/home" },
+        ],
+      });
+
+      new Vue({
+        el: "#app",
+        router: router,
+      });
+    </script>
+  </body>
+</html>
