@@ -258,6 +258,8 @@ task
   .then(result =&gt; console.log(result))   // runs if resolved
   .catch(error =&gt; console.log(error));   // runs if rejected</pre>
 
+  <p><strong>One-line rule:</strong> In <code>new Promise((resolve, reject) =&gt; { ... })</code>, the first parameter is resolve and the second is reject; whichever one is called first settles the Promise.</p>
+
   <p>A Promise has 3 states:</p>
   <pre>
 pending   = still waiting
@@ -326,8 +328,9 @@ compareOrder('resolve', 'resolve');
 // Case B: then reject, await resolve
 compareOrder('reject', 'resolve');
 // Output order:
-// catch: THEN ERR
 // await: AWAIT OK
+// catch: THEN ERR
+
 
 // Case C: then resolve, await reject
 compareOrder('resolve', 'reject');
@@ -338,12 +341,14 @@ compareOrder('resolve', 'reject');
 // Case D: then reject, await reject
 compareOrder('reject', 'reject');
 // Output order:
-// catch: THEN ERR
-// await catch: AWAIT ERR</pre>
+// await catch: AWAIT ERR
+// catch: THEN ERR</pre>
 
   <div class="note">
-    <strong>Important:</strong> In this example, <code>then/catch</code> is attached first, so its log prints first. If you reverse the code order, <code>await</code> can print first.
+    <strong>Important:</strong> In this example, output order depends on microtask scheduling, so <code>then(...).catch(...)</code> may log before or after <code>await</code> depending on how handlers are queued.
   </div>
+
+  <p><strong>One-line tip:</strong> <code>then(success, error)</code> attaches the reject handler directly to the same Promise, while <code>then(...).catch(...)</code> handles rejection on the next chained Promise.</p>
 
   <div class="note">
     <strong>Quick rule:</strong> Use <code>try...catch</code> with <code>await</code>. A resolved Promise gives a value; a rejected Promise throws an error.
