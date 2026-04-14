@@ -19,7 +19,7 @@ But some tasks need to run **automatically on a schedule**:
 ### **Analogy**
 
 - **Celery Worker** = The cook in the kitchen who makes the food.
-- **Celery Beat** = The manager who says "make lunch at 12 PM every day."
+- **Celery Beat** = The manager who says "make lunch at 12 PM" every day.
 
 Beat does **NOT** execute tasks. It only tells the worker **when** to execute them.
 
