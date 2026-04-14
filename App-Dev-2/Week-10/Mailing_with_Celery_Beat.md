@@ -1,8 +1,8 @@
----
 
+---
 # **Mailing with Python — How to Send E-mails with Celery Beat**
 
-> **Prerequisite:** Make sure you have read the first session — **Introduction to Asynchronous Tasks with Celery** — where we covered Celery Worker, Redis, `.delay()`, and the basic project setup.
+> **Prerequisite:** Make sure you have read/watched the first session — **Introduction to Asynchronous Tasks with Celery** — where we covered Celery Worker, Redis, `.delay()`, and the basic project setup.
 
 ---
 
