@@ -581,30 +581,64 @@ celery_app.conf.beat_schedule = {
 
 ### **10.2 Add Test Data**
 
-Before testing, register some users and create book requests:
+Before testing, register some users and create book requests using **Thunder Client** (VS Code extension).
 
-```bash
-# Register an admin
-curl -X POST http://localhost:5000/register \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "email": "admin@example.com", "password": "pass", "role": "admin"}'
+**Step 1 — Register an admin**
 
-# Register a user
-curl -X POST http://localhost:5000/register \
-  -H "Content-Type: application/json" \
-  -d '{"username": "alice", "email": "alice@example.com", "password": "pass"}'
+- Method: `POST`
+- URL: `http://localhost:5000/register`
+- Body → JSON:
+```json
+{
+  "username": "admin",
+  "email": "admin@example.com",
+  "password": "pass",
+  "role": "admin"
+}
+```
 
-# Login as alice
-curl -X POST http://localhost:5000/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "alice", "password": "pass"}'
-# Copy the access_token from response
+---
 
-# Request a book (replace TOKEN with actual token)
-curl -X POST http://localhost:5000/request-book \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer TOKEN" \
-  -d '{"book_name": "Flask Mastery"}'
+**Step 2 — Register a regular user**
+
+- Method: `POST`
+- URL: `http://localhost:5000/register`
+- Body → JSON:
+```json
+{
+  "username": "alice",
+  "email": "alice@example.com",
+  "password": "pass"
+}
+```
+
+---
+
+**Step 3 — Login as alice (get the token)**
+
+- Method: `POST`
+- URL: `http://localhost:5000/login`
+- Body → JSON:
+```json
+{
+  "username": "alice",
+  "password": "pass"
+}
+```
+- Copy the `access_token` from the response.
+
+---
+
+**Step 4 — Request a book**
+
+- Method: `POST`
+- URL: `http://localhost:5000/request-book`
+- Headers → Add: `Authorization` : `Bearer <paste_token_here>`
+- Body → JSON:
+```json
+{
+  "book_name": "Flask Mastery"
+}
 ```
 
 ### **10.3 Check MailHog**
