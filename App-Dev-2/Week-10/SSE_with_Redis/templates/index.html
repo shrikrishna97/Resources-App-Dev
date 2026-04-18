@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE with Redis</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+        <label for="message">Message:</label>
+        <input type="text" id="message" v-model="message"/>
+        </div>
+        <div>
+        <button @click="textToBackend">Send Message</button>
+        </div>
+        <div>
+            <h2>Notifications  </h2>
+            <div id="notification"></div>
+        </div>
+    </div>
+</body>
+<script src="../static/script.js"></script>
+</html>
