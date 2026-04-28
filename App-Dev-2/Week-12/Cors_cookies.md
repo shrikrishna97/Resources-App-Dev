@@ -120,16 +120,34 @@ It is not about encryption, compression, or authentication — those are handled
 
 # Example (Recommended for Auth Cookies)
 
+**For cross-origin requests (different frontend & backend domains):**
 ```python
 resp.set_cookie(
     "auth_token",
     "abc123",
-    httponly=True,   # Protect from XSS
-    secure=True,     # Only send over HTTPS
-    samesite="None" or "Lax, # Allow cross-origin requests (needed for CORS)
-    path="/",       # Available across site
+    max_age=3600,           # Expires in 1 hour (simpler than datetime)
+    httponly=True,          # Protect from XSS
+    secure=True,            # Only send over HTTPS (production)
+    samesite="None",        # Required for cross-origin cookies
+    path="/",
 )
 ```
+
+**For same-site requests (localhost dev, frontend & backend on same origin):**
+```python
+from datetime import datetime, timedelta
+resp.set_cookie(
+    "auth_token",
+    "abc123",
+    expires=datetime.utcnow() + timedelta(minutes=1),  # Explicit expiry date
+    httponly=True,          # Protect from XSS
+    secure=False,           # OK for local HTTP dev
+    samesite="Lax",         # Safe for same-site requests
+    path="/",
+)
+```
+
+**Note:** Both `max_age` (relative seconds) and `expires` (absolute datetime) achieve cookie expiry. Pick whichever reads clearer to you.
 
 ---
 
@@ -177,7 +195,7 @@ def set_cookie():
         "user_token",
         "abc123",
         # max_age=10 # seconds
-        expires=datetime.utcnow() + timedelta(minutes=1) # deletes in 1 minute
+        expires=datetime.utcnow() + timedelta(minutes=1), # deletes in 1 minute
         httponly=True,    # JS cannot read this cookie
         # secure=False,     # True in production with HTTPS
         secure=True,
@@ -196,7 +214,7 @@ def get_cookie():
 @app.route("/delete-cookie")
 def delete_cookie():
     resp = make_response({"msg": "Cookie deleted"})
-    resp.delete_cookie("auth_token")
+    resp.delete_cookie("user_token")
     return resp
 
 
@@ -230,7 +248,7 @@ if __name__ == "__main__":
       <h1>CORS + Cookies Demo</h1>
       <button @click="setCookie">Set Cookie</button>
       <button @click="getCookie">Get Cookie</button>
-      Create a delete button ( task )
+      <!-- Create a delete button ( task ) -->
       <p>{{ message }}</p>
     </div>
 
@@ -287,7 +305,15 @@ if __name__ == "__main__":
 
 * `credentials: "include"` → ensures cookies are included in cross-origin requests.
 * `fetch(...).json()` → parses the JSON response from Flask.
-* Buttons call `setCookie` and `getCookie` methods → triggers the API calls.
+* Buttons call `setCookie`, `getCookie`, and `deleteCookie` methods → triggers the API calls.
+
+**Server vs File (Critical for development):**
+* **Wrong:** Double-click `app.html` or drag it into browser → opens as `file://` URL.
+  - Cookies **will NOT work** (browser blocks them on file origin).
+* **Correct:** Use **Live Server** extension (right-click → "Open with Live Server") → opens as `http://localhost:5500`.
+  - Cookies **will work** (trusted HTTP origin).
+
+This is the most common reason cookies fail in local dev. The code is correct; the origin was wrong.
 
 ---
 ## **5. Where Cookies Are Stored**
@@ -334,9 +360,25 @@ The frontend (Vue) does **not manually send the cookie** — the **browser handl
 
 ## **8. Key Notes**
 
-* **Development:** use `samesite="Lax"` and `secure=False`.
-* **Production:** use `samesite="None"`, `secure=True` (HTTPS required).
-* CORS must **explicitly allow your frontend’s origin** (not `*`) when using cookies.
+* **CORS + Credentials Rule:** When using `supports_credentials=True`, you **must** specify explicit origin(s) in CORS (e.g., `origins=["http://127.0.0.1:5500"]`). Wildcard origin (`*`) is **rejected by browsers** for credentialed requests.
+* **Development (same-site local setup):** use `samesite="Lax"` and `secure=False` (HTTP is fine).
+* **Development (cross-origin or testing):** use `samesite="None"`, `secure=False` locally only.
+* **Production:** use `samesite="None"`, `secure=True` (HTTPS required for SameSite=None).
+
+---
+
+### **What Counts as a Different Origin?**
+Browsers consider these **different origins** (cookies won't send between them without CORS + SameSite=None):
+
+| Frontend | Backend | Same Origin? | Why? |
+|----------|---------|--------------|------|
+| `http://localhost:5500` | `http://localhost:5000` | ❌ No | Different port |
+| `http://127.0.0.1:5500` | `http://127.0.0.1:5000` | ❌ No | Different port |
+| `http://localhost:5500` | `http://127.0.0.1:5500` | ❌ No | Different domain (localhost ≠ 127.0.0.1) |
+| `http://localhost:5500` | `https://localhost:5500` | ❌ No | Different protocol (HTTP ≠ HTTPS) |
+| `http://localhost:5500/app` | `http://localhost:5500/api` | ✅ Yes | Same protocol, domain, port (path doesn't matter) |
+
+**✅ How to fix host mismatch:** Use the same domain everywhere. Pick either `localhost` or `127.0.0.1` for both frontend and backend, then CORS + cookies will work.
 
 ---
 
