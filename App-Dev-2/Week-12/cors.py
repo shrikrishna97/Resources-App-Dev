@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 # Enable CORS with credentials support
 # CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5500", "http://localhost:5500"])
-# CORS(app, supports_credentials=True, origins="*")
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins="*")
+# CORS(app, supports_credentials=True)
 
 
 @app.route("/set-cookie")
@@ -19,7 +19,6 @@ def set_cookie():
         # expires=datetime.utcnow() + timedelta(minutes=1) # deletes in 1 minute
         # httponly=True,    # JS cannot read this cookie
         # secure=True,     # True in production with HTTPS
-        # secure=True,
         # samesite=None,
         samesite="Strict"    # Works locally for cross-site cookies
     )
@@ -28,6 +27,7 @@ def set_cookie():
 @app.route("/get-cookie")
 def get_cookie():
     token = request.cookies.get("user_token")
+    print(token)
     if token:
         return jsonify({"message": "Cookie retrieved!", "token": token})
     return jsonify({"message": "No cookie found!"}), 404
