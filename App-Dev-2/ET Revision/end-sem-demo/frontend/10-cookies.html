@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>10 – Cookies Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<!--
+  Requires backend/10-cookies.py running on http://127.0.0.1:5000
+  Serve from http://localhost:5173 so credentials (cookies) work cross-origin.
+  Watch: DevTools > Application > Cookies > http://127.0.0.1:5000
+-->
+<div id="app">
+  <h2>Cookies Demo</h2>
+
+  <h3>Server-side (HttpOnly — JS cannot read these)</h3>
+  <button @click="setCookie">Set cookie (server)</button>
+  <button @click="readCookie">Read cookie (server)</button>
+  <button @click="deleteCookie">Delete cookie (server)</button>
+
+  <hr>
+
+  <h3>JS-writable cookie (not HttpOnly)</h3>
+  <button @click="setTheme('dark')">Set theme=dark (JS)</button>
+  <button @click="setTheme('light')">Set theme=light (JS)</button>
+  <button @click="readTheme">Read theme (JS)</button>
+
+  <pre>{{ out }}</pre>
+</div>
+
+<script>
+const BASE = 'http://127.0.0.1:5000';
+const api = axios.create({ baseURL: BASE, withCredentials: true });
+
+new Vue({
+  el: '#app',
+  data: { out: 'Click a button...' },
+  methods: {
+    async setCookie() {
+      const res = await api.get('/cookie/set');
+      this.out = JSON.stringify(res.data, null, 2)
+        + '\n\n(Check DevTools > Application > Cookies — user_pref=dark_mode, HttpOnly ✓)';
+    },
+    async readCookie() {
+      const res = await api.get('/cookie/read');
+      this.out = JSON.stringify(res.data, null, 2)
+        + '\n\n(Server reads Cookie header from request automatically)';
+    },
+    async deleteCookie() {
+      const res = await api.get('/cookie/delete');
+      this.out = JSON.stringify(res.data, null, 2)
+        + '\n\n(Server sets max_age=0 to expire the cookie immediately)';
+    },
+
+    // JS-writable cookie (document.cookie — only works if NOT HttpOnly)
+    setTheme(value) {
+      document.cookie = `theme=${value}; max-age=${60 * 60 * 24 * 365}; path=/`;
+      this.out = `JS set: theme=${value}  →  document.cookie = "${document.cookie}"`;
+    },
+    readTheme() {
+      const match = document.cookie.match(/(^| )theme=([^;]+)/);
+      this.out = 'theme = ' + (match ? match[2] : '(not set — use Set theme button first)');
+    },
+  },
+});
+</script>
+</body>
+</html>
