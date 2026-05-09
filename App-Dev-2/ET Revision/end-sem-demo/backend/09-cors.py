@@ -35,14 +35,6 @@ def api_manual():
 def api_hello():
     return jsonify(msg="Hello from /api/hello"), 200, {'Access-Control-Allow-Origin': 'http://localhost:5173'}
 
-# ── Preflight OPTIONS handler (for PUT/DELETE/custom headers) ──
-@app.route('/api/manual', methods=['OPTIONS'])
-def preflight():
-    resp = make_response('', 204)
-    resp.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
-    resp.headers['Access-Control-Allow-Methods'] = 'GET, POST'
-    resp.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-    return resp
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
