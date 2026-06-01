@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Flask-JWT-Extended Complete Guide
 
 ## What is JWT?

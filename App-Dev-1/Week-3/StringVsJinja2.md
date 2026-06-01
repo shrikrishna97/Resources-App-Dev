@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 The main difference between `string.Template` from Python's `string` module and `jinja2.Template` from the Jinja2 templating engine lies in their syntax and features.
 
 ### Step 1: Creating the Template

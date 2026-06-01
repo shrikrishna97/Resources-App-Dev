@@ -3,22 +3,24 @@ layout: default
 title: MAD-1 Project
 ---
 
-[← Back to Home](./) | [← Back to MAD-1](mad1)
+<div class="nav-breadcrumb">
+<a href="./">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
+</div>
 
-# 🎓 MAD-1 Project Resources
+# MAD-1 Project Resources
 
 Step-by-step guides and plans to help you build your MAD-1 project.
 
 ---
 
-## 📺 YouTube Resources
+## YouTube Resources
 
 - [MAD-1 YouTube Channel](https://www.youtube.com/@madi6496) — Project walkthroughs & tips
 - [MAD-1 Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) — Open session recordings
 
 ---
 
-## 📋 Project Plans
+## Project Plans
 
 | Resource | Description |
 |----------|-------------|
@@ -28,25 +30,25 @@ Step-by-step guides and plans to help you build your MAD-1 project.
 
 ---
 
-## 📅 Day-wise Implementation
+## Day-wise Implementation
 
 ### Day 1
 
-| 📄 Guide | Description |
-|----------|-------------|
+| Guide | Description |
+|-------|-------------|
 | [Day 1 - Part 1](App-Dev-1-Project/Day1-1st.md) | Initial setup & structure |
 | [Day 1 - Part 2](App-Dev-1-Project/Day1-2nd.md) | Continuing implementation |
 
 ### Day 2
 
-| 📄 Guide | Description |
-|----------|-------------|
+| Guide | Description |
+|-------|-------------|
 | [Day 2 - Part 1](App-Dev-1-Project/Day2-1st.md) | Building features |
 | [Day 2 - Part 2](App-Dev-1-Project/Day2-2nd.md) | Completing features |
 
 ---
 
-## 💡 Tips
+## Tips
 
 - Start with the 7-day plan to understand the overall structure
 - Follow the day-wise guides sequentially for best results
@@ -54,4 +56,6 @@ Step-by-step guides and plans to help you build your MAD-1 project.
 
 ---
 
-[← Back to Home](./) | [← Back to MAD-1](mad1)
+<div class="nav-breadcrumb">
+<a href="./">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
+</div>

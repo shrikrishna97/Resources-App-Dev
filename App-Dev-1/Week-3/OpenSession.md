@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Open Session Week 3
 
 ## f-strings and Comments

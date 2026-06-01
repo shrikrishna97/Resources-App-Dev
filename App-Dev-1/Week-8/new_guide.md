@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Understanding Scale Up vs Scale Out
 
 *Choosing the Right Strategy for System Growth*

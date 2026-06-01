@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Revision Week 1 - 4
 
 ---

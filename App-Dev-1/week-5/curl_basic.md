@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 When getting started with `curl`, there are a few basic and commonly used commands that can be quite helpful. These commands will cover a wide range of common use cases, from simple GET requests to more complex interactions with APIs:
 
 ### 1. **Basic GET Request**

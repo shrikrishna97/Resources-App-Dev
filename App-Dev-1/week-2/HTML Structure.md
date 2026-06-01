@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### **HTML Structure:**
 
 HTML is the backbone of any web page. It defines the structure and content of the page. Here's an expanded explanation of the tags used in the login page:

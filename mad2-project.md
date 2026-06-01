@@ -3,22 +3,24 @@ layout: default
 title: MAD-2 Project
 ---
 
-[← Back to Home](./) | [← Back to MAD-2](mad2)
+<div class="nav-breadcrumb">
+<a href="./">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
+</div>
 
-# 🎓 MAD-2 Project Resources
+# MAD-2 Project Resources
 
 Complete guides to build your MAD-2 full-stack project with Flask backend and Vue.js frontend.
 
 ---
 
-## 📺 YouTube Resources
+## YouTube Resources
 
 - [MAD-2 YouTube Channel](https://www.youtube.com/@mad2768) — Project walkthroughs & tips
 - [MAD-2 Project Session Playlist](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) — Complete project session recordings (synced with docs below)
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 | Resource | Description |
 |----------|-------------|
@@ -28,7 +30,7 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
-## 🛠 Setup Guides
+## Setup Guides
 
 | Resource | Description |
 |----------|-------------|
@@ -38,17 +40,17 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
-## 📅 Day-wise Implementation
+## Day-wise Implementation
 
-| Day | Guide | 📺 Video |
-|-----|-------|----------|
-| Day 0 | [Planning & Architecture](App-Dev-2-Project/Jan-26/Day0.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
-| Day 5 | [WSL Setup Guide](App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
-| Final | [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+| Day | Guide | Video |
+|-----|-------|-------|
+| Day 0 | [Planning & Architecture](App-Dev-2-Project/Jan-26/Day0.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+| Day 5 | [WSL Setup Guide](App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+| Final | [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
 
 ---
 
-## 💡 Tips
+## Tips
 
 - Start with the **Project Index** for a complete overview
 - Set up your backend first, then frontend
@@ -57,4 +59,6 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
-[← Back to Home](./) | [← Back to MAD-2](mad2)
+<div class="nav-breadcrumb">
+<a href="./">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
+</div>

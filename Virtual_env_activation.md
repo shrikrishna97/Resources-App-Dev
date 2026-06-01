@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Here’s an guide that includes instructions for installing the `venv` module and creating virtual environments on Mac, Linux, and Windows:
 
 ### Prerequisites:

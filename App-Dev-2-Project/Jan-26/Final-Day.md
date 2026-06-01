@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Day-0
 <img width="427" height="202" alt="image" src="https://github.com/user-attachments/assets/5669a21a-a3cf-46e7-81a4-539e02ea944e" />
 

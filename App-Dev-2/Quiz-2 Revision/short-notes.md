@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # MAD-2 Recap Quiz-2
 
 ---

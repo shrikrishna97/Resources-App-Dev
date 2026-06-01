@@ -6,7 +6,21 @@ url: "https://shrikrishna97.github.io"
 
 markdown: GFM
 
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
 exclude:
   - .hintrc
   - LICENSE
   - "python installation setup guide.pdf"
+  - README.md

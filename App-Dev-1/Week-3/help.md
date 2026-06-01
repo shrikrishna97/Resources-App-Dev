@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 1. **What is `sys` and how to import it in Python?**
 2. **How to handle files in Python?**

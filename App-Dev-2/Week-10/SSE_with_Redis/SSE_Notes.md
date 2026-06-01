@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Server-Sent Events (SSE) — Complete Notes
 
 ---

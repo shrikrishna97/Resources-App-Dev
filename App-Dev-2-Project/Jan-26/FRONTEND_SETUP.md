@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Frontend Setup Guide - Vue 3 with Vite + Bootstrap
 
 Simple frontend setup using Vue 3, Vite, and Bootstrap 5 (no custom CSS complexity).

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### **Day 1: Introduction to Flask, Jinja2, HTML/CSS, and Setup**
 
 **Theory (10 AM - 12:30 PM)**

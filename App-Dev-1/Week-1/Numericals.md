@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 ### Q1
 Suppose a client machine **A** is communicating with a data center **B** located 8000 km away from **A**.  

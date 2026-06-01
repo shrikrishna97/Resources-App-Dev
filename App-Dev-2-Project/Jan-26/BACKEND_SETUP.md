@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Backend Setup Guide - Flask + SQLAlchemy + JWT + RBAC
 
 Complete backend implementation for the Vehicle Parking Application. This guide includes full code, explanations, and testing procedures.

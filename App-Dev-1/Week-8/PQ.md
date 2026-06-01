@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ##### Q1. A server has a 16-core CPU, 64 GB RAM and 1 Gbps network connection. It can run a Python Flask application that can generate 500 HTML pages per second. Each page also has a 1 MB image that needs to be downloaded by the client. What will be the maximum number of requests per second that the server can handle?
 
 ---

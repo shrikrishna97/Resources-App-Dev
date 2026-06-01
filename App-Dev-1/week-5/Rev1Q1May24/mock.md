@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### 1. **Question 4 (Encoding Calculation)**
 **Question:**
 Let \( L = \{'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', '0', '1', ' '\} \) be a complete character set. If a document that uses fixed encoding for all characters is created using the character set \( L \) and has a disk size of 2 Kilobytes, the number of characters in the document would be_______. [Take 1 Byte = 8 bits, 1 KB = 1000 Bytes, 1 MB = 1000 Kilobytes and so on.]

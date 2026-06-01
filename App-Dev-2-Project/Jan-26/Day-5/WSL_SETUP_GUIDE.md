@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # WSL Setup Commands
 
 This document gives a general set of commands to install and run Redis, Celery, and MailHog in WSL for a Flask app.
