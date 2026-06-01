@@ -18,11 +18,12 @@ Jinja is a templating engine for Python, used primarily in web development to cr
 In Jinja, **filters** are used to transform data in templates. You can pass data through filters using the pipe `|` operator. They are similar to functions in that they take an input, modify it, and return an output.
 
 - **`list | length`**: This filter in Jinja is equivalent to Python's `len()` function and returns the length of the list.
-  ```jinja
+
 {% raw %}
+```jinja
   {{ my_list | length }}  # Outputs 4 if my_list is [1, 2, 3, 4]
+```
 {% endraw %}
-  ```
 
 ### 3. **Functions or Methods**
 - **Functions**: In both Jinja and Python, a function is a block of code designed to perform a particular task. You can define your own functions in Python or use built-in functions.
@@ -37,6 +38,7 @@ The `groupby` filter in Jinja allows you to group a list of dictionaries by a co
 Example:
 
 Assume you have a list of dictionaries representing movies, each having a `producer` key:
+{% raw %}
 ```jinja
 {% set movies = [
     {"title": "Movie A", "producer": "Producer 1"},
@@ -45,10 +47,11 @@ Assume you have a list of dictionaries representing movies, each having a `produ
     {"title": "Movie D", "producer": "Producer 2"}
 ] %}
 ```
+{% endraw %}
 
 You can group the list by `producer` using `groupby`:
-```jinja
 {% raw %}
+```jinja
 {% for producer, group in movies | groupby("producer") %}
   <h2>{{ producer }}</h2>
   <ul>
@@ -57,8 +60,8 @@ You can group the list by `producer` using `groupby`:
     {% endfor %}
   </ul>
 {% endfor %}
-{% endraw %}
 ```
+{% endraw %}
 
 Output:
 ```
