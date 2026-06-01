@@ -21,10 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Prerequisites: Enable GitHub Pages in repo Settings → Pages → Source: "GitHub Actions"
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
