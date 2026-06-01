@@ -16,7 +16,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 ## YouTube Resources
 
 - [MAD-1 YouTube Channel](https://www.youtube.com/@madi6496) — All MAD-1 video lectures
-- [MAD-1 Open Session Playlist (Sep 2024–2025)](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) — Open session recordings synced with notes below
+- [App dev Resources](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) 
 
 ---
 
