@@ -24,7 +24,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Open Session Notes](App-Dev-2/Week-1/Week-1-2_OS.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Open Session Notes](App-Dev-2/Week-1/Week-1-2_OS.md) | [▶️ Week 1 Open Session - Intro to JS](https://www.youtube.com/watch?v=qIgTiWMaTNs) |
 
 ---
 
@@ -32,7 +32,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Open Session Notes](App-Dev-2/Week-2/Week-2-3_OS.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Open Session Notes](App-Dev-2/Week-2/Week-2-3_OS.md) | [▶️ Week 2 Open Session](https://www.youtube.com/watch?v=PiQU5g1r_zI) |
 
 ---
 
@@ -40,7 +40,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Vue Lifecycle Hooks](App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Vue Lifecycle Hooks](App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.md) | [▶️ Week 4 Open Session](https://www.youtube.com/watch?v=mUHUXciF7_A) |
 | [Vue Components & Hooks](App-Dev-2/Week-4/vueComponentsAndHooks.md) | |
 
 ---
@@ -49,7 +49,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Promises in JavaScript](App-Dev-2/Promise.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Promises in JavaScript](App-Dev-2/Promise.md) | [▶️ Week 6 AQ/PQ and Open Session](https://www.youtube.com/watch?v=J7USjC6Bab4) |
 
 ---
 
@@ -57,7 +57,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Vue CLI & SFC Guide](App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Vue CLI & SFC Guide](App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.md) | [▶️ Week 7 Open Session](https://www.youtube.com/watch?v=uKmlkT9zySI) |
 | [Vuex State Management](App-Dev-2/Week-7/Vuex/Vuex.md) | |
 
 ---
@@ -66,7 +66,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Flask JWT Extended Notes](App-Dev-2/Week-8/Flask_JWT_Extended_Notes.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Flask JWT Extended Notes](App-Dev-2/Week-8/Flask_JWT_Extended_Notes.md) | [▶️ Week 8 Open Session](https://www.youtube.com/watch?v=UF-vjyMMCWM) |
 
 ---
 
@@ -74,7 +74,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Async Tasks with Celery](App-Dev-2/Week-9/Async_Tasks_with_Celery.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Async Tasks with Celery](App-Dev-2/Week-9/Async_Tasks_with_Celery.md) | [▶️ Week 9 AQ/PQ Session](https://www.youtube.com/watch?v=rKw6RQeFQzE) |
 
 ---
 
@@ -82,7 +82,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Introduction to Celery](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Introduction_to_Celery.md) | [▶️ MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Introduction to Celery](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Introduction_to_Celery.md) | [▶️ Week 10 Open Session](https://www.youtube.com/watch?v=QBZSVfSaEpo) |
 | [Mailing with Celery Beat](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.md) | |
 | [SSE with Redis](App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.md) | |
 
