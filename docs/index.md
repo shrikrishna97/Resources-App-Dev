@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: Resources App Dev
 ---
 
 # App Development Resources
