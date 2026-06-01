@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Prepared Based on: MAD 2 JavaScript week-3 Open Session
 
 Target Audience: Beginners with Python background and Javascript basic understanding 

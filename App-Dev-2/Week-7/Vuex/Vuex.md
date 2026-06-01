@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Vuex Store with Vue 2 - CDN
 
 * Introduction to Vuex

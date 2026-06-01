@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # MAD-2 Recap End-Sem ( Week 7-12)
 
 ---

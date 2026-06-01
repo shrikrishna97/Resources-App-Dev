@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### Week 5: Business Logic Layer - Controllers
 **Content:**
 - MVC design pattern and separation of concerns.

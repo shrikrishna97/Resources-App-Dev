@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Complete Captcha App Explanation
 
 ## Folder Structure

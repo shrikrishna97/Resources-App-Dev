@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Security Guide - JWT & RBAC
 
 This guide explains Role-Based Access Control (RBAC) and JWT (JSON Web Tokens) - two key security concepts used in the Vehicle Parking application.

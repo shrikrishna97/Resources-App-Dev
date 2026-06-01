@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Flask and SQLAlchemy Guide
 
 ### Pre-requisite:  Download VS Code, python, pip.

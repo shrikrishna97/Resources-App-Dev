@@ -1,4 +1,8 @@
 ---
+layout: default
+---
+
+---
 
 # **CORS and Cookies with Vue.js and Flask**
 

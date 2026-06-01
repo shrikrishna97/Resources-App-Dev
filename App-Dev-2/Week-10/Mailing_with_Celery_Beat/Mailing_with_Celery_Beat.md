@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 ---
 # **Mailing with Python — How to Send E-mails with Celery Beat**

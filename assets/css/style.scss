@@ -1,0 +1,251 @@
+---
+---
+
+@import "jekyll-theme-cayman";
+
+/* ===== Educational Site — Clean & Professional ===== */
+
+:root {
+  --primary: #2c5282;
+  --primary-light: #ebf4ff;
+  --secondary: #276749;
+  --accent: #744210;
+  --text: #2d3748;
+  --text-light: #4a5568;
+  --border: #e2e8f0;
+  --bg-subtle: #f7fafc;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Page header — softer gradient */
+.page-header {
+  background-image: linear-gradient(135deg, #2c5282, #2b6cb0);
+  padding: 2rem 1rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+}
+
+.page-header h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Main content typography */
+.main-content {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 900px;
+}
+
+.main-content h1 {
+  color: var(--primary);
+  font-size: 1.85rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.main-content h2 {
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-content h3 {
+  color: var(--text);
+  font-size: 1.15rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Links */
+.main-content a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.main-content a:hover {
+  border-bottom-color: var(--primary);
+}
+
+/* Tables — clean academic look */
+.main-content table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.main-content table th {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: none;
+}
+
+.main-content table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.main-content table tr:nth-child(even) td {
+  background: var(--bg-subtle);
+}
+
+.main-content table tr:hover td {
+  background: var(--primary-light);
+}
+
+/* Course cards */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.course-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+}
+
+.course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.course-card h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+.course-card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.course-card .btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.course-card .btn:hover {
+  opacity: 0.9;
+  border-bottom: none;
+}
+
+.btn-mad1 { background: var(--primary); }
+.btn-mad2 { background: var(--secondary); }
+.btn-project1 { background: #6b46c1; }
+.btn-project2 { background: #c05621; }
+
+/* Navigation breadcrumb */
+.nav-breadcrumb {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--bg-subtle);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.nav-breadcrumb a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-breadcrumb span {
+  color: var(--text-light);
+}
+
+/* Blockquotes — tips */
+.main-content blockquote {
+  border-left: 4px solid var(--primary);
+  background: var(--primary-light);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+  color: var(--text);
+}
+
+/* Horizontal rules */
+.main-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* Lists */
+.main-content ul, .main-content ol {
+  padding-left: 1.5rem;
+}
+
+.main-content li {
+  margin-bottom: 0.4rem;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.site-footer a {
+  color: var(--primary);
+}
+
+/* Code blocks in content pages */
+.main-content pre {
+  background: #1a202c;
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.main-content code {
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content table {
+    font-size: 0.85rem;
+  }
+
+  .main-content table th,
+  .main-content table td {
+    padding: 0.5rem 0.6rem;
+  }
+}

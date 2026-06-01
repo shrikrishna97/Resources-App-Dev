@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 To use Matplotlib with Python Flask to create a histogram, follow the steps below. This guide assumes you have a basic understanding of Flask and that `matplotlib` is installed. If it's not, you can install it with:
 
 ```bash

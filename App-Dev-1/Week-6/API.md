@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Understanding RESTful APIs with Flask-RESTful
 
 RESTful APIs are essential for modern web development, allowing seamless communication between a client and a server. In Flask, we can create RESTful APIs efficiently using the `Flask-RESTful` extension.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Revision Notes Quiz-1
 
 #### 1. **Size = characters × bits required to store each character**

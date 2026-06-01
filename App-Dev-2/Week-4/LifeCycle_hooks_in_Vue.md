@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### **Vue.js Lifecycle Hooks - Complete Explanation** 🚀  
 
 In Vue.js, lifecycle hooks are special methods that let you **execute code at different stages** of a Vue instance’s life. Here’s an overview of all major lifecycle hooks:  

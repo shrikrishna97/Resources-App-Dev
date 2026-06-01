@@ -1,4 +1,8 @@
 ---
+layout: default
+---
+
+---
 
 # **Introduction to Asynchronous Tasks with Celery**
 

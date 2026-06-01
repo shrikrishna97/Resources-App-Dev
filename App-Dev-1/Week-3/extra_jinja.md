@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Jinja is a templating engine for Python, used primarily in web development to create dynamic HTML pages, though it can also be used for other templating needs. It allows you to use expressions, variables, and control structures in templates, which are rendered with data provided by Python code.
 
 ### 1. **Lists and Python Functions**

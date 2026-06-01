@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # **Understanding Vue.js Components and Lifecycle Hooks (Vue 2)**
 
 ## 1. What is a Vue Component?
