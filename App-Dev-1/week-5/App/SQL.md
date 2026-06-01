@@ -51,6 +51,7 @@ if __name__ == '__main__':
 #### **Example Template (templates/index.html)**
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html>
 <head><title>Flask App</title></head>
@@ -67,6 +68,7 @@ if __name__ == '__main__':
     {% endif %}
 </body>
 </html>
+{% endraw %}
 ```
 
 #### **Flask Route to Render Template**
@@ -144,11 +146,13 @@ def users():
 #### **Jinja Template (templates/users.html)**
 
 ```html
+{% raw %}
 <ul>
     {% for user in users %}
         <li>{{ user.username }}</li>
     {% endfor %}
 </ul>
+{% endraw %}
 ```
 
 ---

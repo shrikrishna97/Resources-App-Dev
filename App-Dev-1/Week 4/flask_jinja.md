@@ -67,8 +67,10 @@ def user(name):
 - **Route Function**: The `user` function renders `hello.html` and passes the `name` variable to it.
 - **Template (`hello.html`)**:
   ```html
+{% raw %}
   <h1>Hello, {{ name }}!</h1>
   <p>Change the name in the <em>browser address bar</em> and reload the page.</p>
+{% endraw %}
   ```
 
 #### Linking Static Files
@@ -77,7 +79,9 @@ To use assets like CSS in your templates, Flask provides the `url_for` function:
 
 **Example**:
 ```html
+{% raw %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endraw %}
 ```
 
 - The `url_for()` function ensures that Flask correctly links to the `main.css` file located in the `static/css/` folder.
@@ -99,8 +103,10 @@ def president(ord):
 - **Passing Variables**: Here, `pres=pres_dict`, `ord=ord`, and `the_title=pres_dict['President']` are passed to `president.html`.
 - **Using Variables in the Template**:
   ```html
+{% raw %}
   <h1>{{ pres['President'] }}</h1>
   <title>{{ the_title }}</title>
+{% endraw %}
   ```
 
 This example demonstrates how `pres` is used in the template as a shorthand for `pres_dict`, making the template code more concise.
@@ -116,7 +122,7 @@ This example demonstrates how `pres` is used in the template as a shorthand for 
 ### Summary
 
 - **Folder Structure**: The project must include `static/` for assets and `templates/` for HTML files.
-- **Jinja Templates**: Use `{{ }}` for variables and `{% %}` for control structures (like loops or conditions).
+- **Jinja Templates**: Use {% raw %}`{{ }}`{% endraw %} for variables and {% raw %}`{% %}`{% endraw %} for control structures (like loops or conditions).
 - **`render_template`**: Renders templates and passes variables, making it possible to create dynamic and reusable HTML.
 - **Static File Management**: Use `url_for('static', filename='...')` for linking CSS, JavaScript, or image files.
 

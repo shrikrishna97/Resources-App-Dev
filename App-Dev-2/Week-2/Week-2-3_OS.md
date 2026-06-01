@@ -286,6 +286,7 @@ Below is an HTML example for **Vue 2** and **Vue 3** that implements the given c
 In Vue 2, you include the Vue 2.x script via a `<script>` tag, and then create a Vue instance with `new Vue(...)`.  For example:
 
 ```html
+{% raw %}
 <!-- index.html for Vue 2 -->
 <div id="app">
   <!-- Only show the message when visible is true -->
@@ -316,6 +317,7 @@ new Vue({
   }
 });
 </script>
+{% endraw %}
 ```
 
 * We use `<script src="...vue@2.7.16/dist/vue.js"></script>` to load Vue 2 (latest 2.x) from a CDN.
@@ -327,6 +329,7 @@ new Vue({
 In Vue 3, the API has changed: you use `Vue.createApp()` instead of `new Vue`, and the destroy hooks were renamed.  Here is the equivalent example in Vue 3:
 
 ```html
+{% raw %}
 <!-- index.html for Vue 3 -->
 <div id="app">
   <p v-if="visible">{{ message }}</p>
@@ -358,6 +361,7 @@ createApp({
   }
 }).mount('#app');
 </script>
+{% endraw %}
 ```
 
 * The `<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>` loads Vue 3’s global build from a CDN.

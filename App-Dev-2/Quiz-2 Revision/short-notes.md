@@ -544,7 +544,7 @@ this.$store.dispatch('fetchUsers') // call action
 
 **Where to use commit and dispatch:** Use `this.$store.commit(...)` inside component methods/watch/hooks when you want to change state using a mutation. Use `this.$store.dispatch(...)` inside component methods/watch/hooks when you want to run an action (usually async), which then commits a mutation.
 
-**Template usage tip:** You can read Vuex state directly in template using `{{ $store.state.count }}` and getters using `{{ $store.getters.doubleCount }}`. For bigger components, many teams prefer mapping state/getters into computed properties for cleaner templates.
+**Template usage tip:** You can read Vuex state directly in template using {% raw %}`{{ $store.state.count }}`{% endraw %} and getters using {% raw %}`{{ $store.getters.doubleCount }}`{% endraw %}. For bigger components, many teams prefer mapping state/getters into computed properties for cleaner templates.
 
 > **Rule of thumb:** Never mutate state directly. Always go through mutations (or actions -> mutations).
 
@@ -564,6 +564,7 @@ These four concepts are often used together in Vue apps:
 ### One Connected Example
 
 ```html
+{% raw %}
 <div id="app">
   <!-- router-link creates SPA navigation links -->
   <router-link to="/home">Home</router-link>
@@ -624,6 +625,7 @@ new Vue({
   router
 });
 </script>
+{% endraw %}
 ```
 
 ### Flow in Simple Words

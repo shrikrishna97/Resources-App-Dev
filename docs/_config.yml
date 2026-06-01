@@ -18,26 +18,6 @@ defaults:
       path: ""
     values:
       layout: "default"
-  - scope:
-      path: "App-Dev-1"
-    values:
-      render_with_liquid: false
-      layout: "default"
-  - scope:
-      path: "App-Dev-1-Project"
-    values:
-      render_with_liquid: false
-      layout: "default"
-  - scope:
-      path: "App-Dev-2"
-    values:
-      render_with_liquid: false
-      layout: "default"
-  - scope:
-      path: "App-Dev-2-Project"
-    values:
-      render_with_liquid: false
-      layout: "default"
 
 exclude:
   - .hintrc

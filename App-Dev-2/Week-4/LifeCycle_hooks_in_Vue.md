@@ -145,6 +145,7 @@ destroyed() {
 
 ## **📌 Full Example**
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,6 +203,7 @@ destroyed() {
 
 </body>
 </html>
+{% endraw %}
 ```
 
 ---
@@ -291,6 +293,7 @@ Imagine you’re building an **e-commerce product page**. You need to:
 Here’s how we apply lifecycle hooks:
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -366,6 +369,7 @@ new Vue({
 
 </body>
 </html>
+{% endraw %}
 ```
 
 ---
@@ -496,6 +500,7 @@ Let’s build a **Vue Todo App** that:
 
 ### **Code:**
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -575,6 +580,7 @@ new Vue({
 
 </body>
 </html>
+{% endraw %}
 ```
 
 ---
@@ -604,6 +610,7 @@ Sure! A **Student Planner App** is a **useful** alternative to a **Todo App**. I
 
 ## **📌 Code:**
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -697,6 +704,7 @@ new Vue({
 
 </body>
 </html>
+{% endraw %}
 ```
 
 ---

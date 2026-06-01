@@ -399,6 +399,7 @@ def generate_user_report(user_id):
 This is a Jinja2 template used by `render_template()` inside tasks. It generates a nice HTML email.
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -428,6 +429,7 @@ This is a Jinja2 template used by `render_template()` inside tasks. It generates
     </table>
 </body>
 </html>
+{% endraw %}
 ```
 
 > **Why HTML?** Plain text emails look boring. With HTML you can add tables, colors, and formatting — which is expected in a professional report email.

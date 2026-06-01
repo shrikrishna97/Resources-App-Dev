@@ -44,6 +44,7 @@ layout: default
 - **Create a Simple HTML Template** in `templates/index.html`:
 
   ```html
+{% raw %}
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -58,10 +59,11 @@ layout: default
       </div>
   </body>
   </html>
+{% endraw %}
   ```
 
   **Explanation of `index.html`**:
-  - **`{{ title }}`** and **`{{ username }}`** are Jinja2 placeholders. Flask replaces them with the values passed from `app.py`.
+  - **{% raw %}`{{ title }}`{% endraw %}** and **{% raw %}`{{ username }}`{% endraw %}** are Jinja2 placeholders. Flask replaces them with the values passed from `app.py`.
   - This template is stored in the `templates/` directory and rendered when the `home()` function in `app.py` is called.
 
 Here's why we used Bootstrap over traditional CSS and information on how to get and use CDN links:
@@ -107,7 +109,7 @@ Jinja2 has several advantages over other template engines:
 1. **Import Jinja2**: Import the `render_template` function from the `flask` module.
 2. **Render Templates**: Call `render_template()` to load and render templates.
 3. **Pass Data**: Pass data to the template using keyword arguments.
-4. **Template Variables**: Jinja2 allows you to use variables in your templates. You can access the data passed from `app.py` using the `{{ }}` syntax.
+4. **Template Variables**: Jinja2 allows you to use variables in your templates. You can access the data passed from `app.py` using the {% raw %}`{{ }}`{% endraw %} syntax.
 
 
 

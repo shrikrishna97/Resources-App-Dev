@@ -541,6 +541,7 @@ const routes = [
 Every `.vue` file has three optional sections:
 
 ```vue
+{% raw %}
 <template>
   <!-- Required: HTML template -->
   <div class="my-component">
@@ -592,6 +593,7 @@ h1 {
   color: #42b983;
 }
 </style>
+{% endraw %}
 ```
 
 ### Important Rules
@@ -796,6 +798,7 @@ npm run dev
 ### Step 2: Replace `src/App.vue`
 
 ```vue
+{% raw %}
 <template>
   <div id="app">
     <h1>Book Library</h1>
@@ -899,6 +902,7 @@ export default {
   }
 }
 </script>
+{% endraw %}
 ```
 
 **Code Explanation:**
@@ -918,6 +922,7 @@ export default {
 **Create `src/components/BookCard.vue`:**
 
 ```vue
+{% raw %}
 <template>
   <div style="border: 1px solid #ccc; padding: 15px; margin: 10px 0;">
     <!-- Book Title -->
@@ -961,6 +966,7 @@ export default {
   emits: ['toggle-read', 'delete']
 }
 </script>
+{% endraw %}
 ```
 
 **Code Explanation:**

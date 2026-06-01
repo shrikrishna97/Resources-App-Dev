@@ -47,6 +47,7 @@ Repeated markup and duplicated logic. Small changes require updates in many plac
 We can define a reusable `user-card` component and use it multiple times.
 
 ```html
+{% raw %}
 <!-- index.html -->
 <div id="app">
   <user-card name="John" age="25"></user-card>
@@ -72,10 +73,11 @@ We can define a reusable `user-card` component and use it multiple times.
     el: '#app'
   });
 </script>
+{% endraw %}
 ```
 
 **Note:**
-`{{ name }}` is Vue’s syntax (this is Vue interpolation) for showing data dynamically — it displays the value of `name` inside the HTML.
+{% raw %}`{{ name }}`{% endraw %} is Vue’s syntax (this is Vue interpolation) for showing data dynamically — it displays the value of `name` inside the HTML.
 
 ---
 
@@ -125,12 +127,14 @@ new Vue({
 * For **components**, `data` **must** be a function that returns an object. This ensures **each instance** of the component gets its own independent copy of the state.
 
 ```js
+{% raw %}
 Vue.component('counter', {
   data: function () {
     return { count: 0 };
   },
   template: '<button @click="count++">Count: {{ count }}</button>'
 });
+{% endraw %}
 ```
 
 If `data` were a shared object for components, multiple instances would share the same state, which causes bugs. By using a function, each component instance receives its own returned object.
@@ -147,10 +151,12 @@ If `data` were a shared object for components, multiple instances would share th
 **Child component (declares props):**
 
 ```js
+{% raw %}
 Vue.component('child-comp', {
   props: ['message'],
   template: '<p>Child says: {{ message }}</p>'
 });
+{% endraw %}
 ```
 
 **Parent (passes props):**
@@ -188,6 +194,7 @@ Instead, it uses **custom events** to “emit” messages upward.
 **Example:**
 
 ```html
+{% raw %}
 <div id="app">
   <parent-comp></parent-comp>
 </div>
@@ -228,6 +235,7 @@ Instead, it uses **custom events** to “emit” messages upward.
 
   new Vue({ el: '#app' });
 </script>
+{% endraw %}
 ```
 
 **Explanation:**
@@ -386,6 +394,7 @@ A Vue component’s lifecycle is similar to a plant’s life:
 ### Lifecycle Example in One File
 
 ```html
+{% raw %}
 <!-- index.html -->
 <div id="app">
   <lifecycle-demo></lifecycle-demo>
@@ -439,6 +448,7 @@ A Vue component’s lifecycle is similar to a plant’s life:
     el: '#app'
   });
 </script>
+{% endraw %}
 ```
 
 Open your browser console and observe the messages printed in order.
@@ -469,6 +479,7 @@ Let’s move our lifecycle component to a new JavaScript file.
 ### Step 1 — Create `lifecycleDemo.js`
 
 ```js
+{% raw %}
 // lifecycleDemo.js
 export const lifecycleDemo = {
   template: `
@@ -511,6 +522,7 @@ export const lifecycleDemo = {
     console.log("destroyed (external): Component destroyed");
   }
 };
+{% endraw %}
 ```
 
 ---
@@ -549,7 +561,7 @@ export const lifecycleDemo = {
 | ---------------------------------- | ------------------------------------------------------------------------- |
 | **Component**                      | A reusable Vue instance that manages one part of the UI                   |
 | **Props**                          | Allow parent-to-child data sharing (one-way data flow) ;Children can send messages to parents by emitting events; props should not be mutated by children.                                       |
-| **Interpolation (`{{ }}`)**        | Displays dynamic data inside templates                                    |
+| **Interpolation ({% raw %}`{{ }}`{% endraw %})**        | Displays dynamic data inside templates                                    |
 | **Lifecycle Hooks**                | Functions that run automatically during creation, update, and destruction |
 | **Modularization (export/import)** | Keeps code organized and reusable across files                            |
 | **data**                           |  In the root Vue instance `data` can be an object; in component definitions `data` must be a function returning an object so each instance has independent state.                           |

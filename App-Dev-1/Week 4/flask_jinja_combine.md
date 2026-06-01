@@ -107,14 +107,18 @@ def user(name):
 ```
 - **Template (`index.html`)**:
   ```html
+{% raw %}
   <h1>Hello, {{ name }}!</h1>
   <p>Change the name in the <em>browser address bar</em> and reload the page.</p>
+{% endraw %}
   ```
 
 #### Linking Static Files
 To use assets like CSS in your templates, Flask provides the `url_for` function:
 ```html
+{% raw %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endraw %}
 ```
 
 #### Passing Variables to Templates
@@ -151,7 +155,7 @@ app.run(debug=True)
   - **POST**: Sends data to the server, often used for submitting forms.
 - **Templates**:
   - Templates like `home.html` and `course.html` are used to render dynamic content using Jinja.
-  - `render_template()` allows data (e.g., `form_data`) to be passed to HTML templates, where it can be displayed using `{{ jinja }}`.
+  - `render_template()` allows data (e.g., `form_data`) to be passed to HTML templates, where it can be displayed using {% raw %}`{{ jinja }}`{% endraw %}.
 
 - **The `__name__` Variable**:
   - In Python, `__name__` is a special built-in variable that represents the name of the current module.

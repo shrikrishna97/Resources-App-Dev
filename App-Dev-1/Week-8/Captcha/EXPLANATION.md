@@ -283,6 +283,7 @@ def dashboard():
 ## Data Flow Diagram
 
 ```python
+{% raw %}
 ┌─────────────┐
 │   Browser   │
 └──────┬──────┘
@@ -321,6 +322,7 @@ def dashboard():
 ┌─────────────────────┐
 │  dashboard.html     │  Welcome, {{ user }}!
 └─────────────────────┘
+{% endraw %}
 ```
 
 ---
@@ -344,14 +346,16 @@ def dashboard():
 
 **What happens:**
 1. Flask reads the HTML file
-2. Processes Jinja2 syntax `{{ user }}`, `{% if %}`, etc.
+2. Processes Jinja2 syntax {% raw %}`{{ user }}`{% endraw %}, {% raw %}`{% if %}`{% endraw %}, etc.
 3. Injects Python variables
 4. Sends final HTML to browser
 
 **Example:**
 ```html
+{% raw %}
 <!-- dashboard.html -->
 <h1>Welcome, {{ user }}!</h1>  <!-- Flask replaces {{ user }} with actual username -->
+{% endraw %}
 ```
 
 ---

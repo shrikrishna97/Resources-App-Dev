@@ -70,6 +70,7 @@ This code sets up a Flask app with a route at `/` that can handle `GET` and `POS
 In the `templates` folder, create an `index.html` file:
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +91,7 @@ In the `templates` folder, create an `index.html` file:
     {% endif %}
 </body>
 </html>
+{% endraw %}
 ```
 
 This HTML form allows users to input a comma-separated list of numbers and submit it to generate the histogram.

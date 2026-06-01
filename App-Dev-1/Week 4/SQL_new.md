@@ -80,7 +80,9 @@ layout: default
    - **Templates**: Allow dynamic HTML generation using Jinja2.
      - Example:
        ```html
+{% raw %}
        <h1>Hello, {{ name }}!</h1>
+{% endraw %}
        ```
        This dynamically displays a name passed from the Flask view.
 
