@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # MAD-2 Recap End-Sem ( Week 7-12)
 
 ---
@@ -16,6 +20,7 @@ Vuex is a **central state management** library for Vue 2. Instead of passing dat
 | `actions` | Async logic → commits mutations | Use for API calls |
 
 ```html
+{% raw %}
 <div id="app">
   <p>Count: {{ $store.state.count }}</p>
   <p>Double: {{ $store.getters.doubleCount }}</p>
@@ -70,6 +75,7 @@ new Vue({
   store
 });
 </script>
+{% endraw %}
 ```
 
 ### Data Flow in Vuex

@@ -1,4 +1,8 @@
 ---
+layout: default
+---
+
+---
 
 # **CORS and Cookies with Vue.js and Flask**
 
@@ -236,6 +240,7 @@ if __name__ == "__main__":
 ### **Vue Component (`app.html`)**
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -299,6 +304,7 @@ if __name__ == "__main__":
     </script>
   </body>
 </html>
+{% endraw %}
 ```
 
 ### Why this code?

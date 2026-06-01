@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 In JavaScript, **Promises** are used to handle asynchronous operations, allowing you to work with values that might not yet be available, but will be resolved in the future. A promise can be in one of three states:
 
 - **Pending**: The initial state; the promise is neither resolved nor rejected.

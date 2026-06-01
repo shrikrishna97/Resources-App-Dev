@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Frontend Setup Guide - Vue 3 with Vite + Bootstrap
 
 Simple frontend setup using Vue 3, Vite, and Bootstrap 5 (no custom CSS complexity).
@@ -272,6 +276,7 @@ export default {
 ### components/AdminLogin.vue
 
 ```vue
+{% raw %}
 <template>
   <div class="d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
     <div class="card shadow" style="max-width: 400px; width: 100%;">
@@ -332,11 +337,13 @@ export default {
   }
 }
 </script>
+{% endraw %}
 ```
 
 ### components/UserLogin.vue
 
 ```vue
+{% raw %}
 <template>
   <div class="d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #42b983 0%, #359268 100%);">
     <div class="card shadow" style="max-width: 400px; width: 100%;">
@@ -401,11 +408,13 @@ export default {
   }
 }
 </script>
+{% endraw %}
 ```
 
 ### components/UserRegister.vue
 
 ```vue
+{% raw %}
 <template>
   <div class="d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #42b983 0%, #359268 100%);">
     <div class="card shadow" style="max-width: 400px; width: 100%;">
@@ -469,6 +478,7 @@ export default {
   }
 }
 </script>
+{% endraw %}
 ```
 
 ---

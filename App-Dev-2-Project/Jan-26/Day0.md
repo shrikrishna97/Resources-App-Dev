@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 # Day 0: MAD2 – Project Creation
 

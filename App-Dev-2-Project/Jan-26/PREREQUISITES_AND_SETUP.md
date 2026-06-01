@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Prerequisites & Setup Guide - Vehicle Parking Application
 
 Welcome! This guide gets you from zero to running. It covers prerequisites, technology stack, setup, and testing.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 ---
 
@@ -72,10 +76,11 @@ app.run(debug=True)
   - **POST**: Sends data to the server, often used for submitting forms.
 - **Templates**:
   - Templates like `home.html` and `course.html` are used to render dynamic content using Jinja.
-  - `render_template()` allows data (e.g., `form_data`) to be passed to HTML templates, where it can be displayed using `{{ jinja }}`.
+  - `render_template()` allows data (e.g., `form_data`) to be passed to HTML templates, where it can be displayed using {% raw %}`{{ jinja }}`{% endraw %}.
 
 ### Example of a Jinja Template (`course.html`)
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,6 +91,7 @@ app.run(debug=True)
     <h1>Your selected course: {{ jinja }}</h1>
 </body>
 </html>
+{% endraw %}
 ```
 - This template would display a message like "Your selected course: Data Science" based on the form input passed from the `/my_app` route.
 

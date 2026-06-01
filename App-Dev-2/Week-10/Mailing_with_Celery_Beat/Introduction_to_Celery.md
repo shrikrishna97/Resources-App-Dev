@@ -1,4 +1,8 @@
 ---
+layout: default
+---
+
+---
 
 # **Introduction to Asynchronous Tasks with Celery**
 
@@ -539,6 +543,7 @@ send_monthly_report.apply_async(countdown=60)  # run after 60 seconds
 ### **5.5 `templates/monthly_report.html` — Email Template**
 
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -568,6 +573,7 @@ send_monthly_report.apply_async(countdown=60)  # run after 60 seconds
     </table>
 </body>
 </html>
+{% endraw %}
 ```
 
 ---

@@ -1,4 +1,8 @@
 ---
+layout: default
+---
+
+---
 
 # **Complete Beginner’s Guide: Flask-Caching with Redis**
 

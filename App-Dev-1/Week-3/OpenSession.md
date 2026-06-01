@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Open Session Week 3
 
 ## f-strings and Comments
@@ -52,12 +56,14 @@ profession = "Data Analyst"
 
 ### 2. **Step 1: Create Template Text with Placeholders**
 ```python
+{% raw %}
 temp = "My name is {{name}}, I live in {{place}} and I am a {{profession}}"
+{% endraw %}
 ```
-- A **template string** is defined here. The double curly braces `{{ }}` are placeholders that will later be filled with the values of the corresponding variables.
-  - `{{name}}` will be replaced with the value of the variable `name`.
-  - `{{place}}` will be replaced with the value of `place`.
-  - `{{profession}}` will be replaced with the value of `profession`.
+- A **template string** is defined here. The double curly braces {% raw %}`{{ }}`{% endraw %} are placeholders that will later be filled with the values of the corresponding variables.
+  - {% raw %}`{{name}}`{% endraw %} will be replaced with the value of the variable `name`.
+  - {% raw %}`{{place}}`{% endraw %} will be replaced with the value of `place`.
+  - {% raw %}`{{profession}}`{% endraw %} will be replaced with the value of `profession`.
 
 This step essentially creates the structure of the output you want.
 
@@ -72,9 +78,9 @@ made_temp = Template(temp)
 output = made_temp.render(name=name, place=place, profession=profession)
 ```
 - **Rendering**: The `.render()` method takes the template and substitutes the placeholders with the actual values.
-  - `name=name`: This passes the value of the `name` variable into the template's `{{name}}` placeholder.
-  - `place=place`: This passes the value of `place` to `{{place}}`.
-  - `profession=profession`: This passes the value of `profession` to `{{profession}}`.
+  - `name=name`: This passes the value of the `name` variable into the template's {% raw %}`{{name}}`{% endraw %} placeholder.
+  - `place=place`: This passes the value of `place` to {% raw %}`{{place}}`{% endraw %}.
+  - `profession=profession`: This passes the value of `profession` to {% raw %}`{{profession}}`{% endraw %}.
   
 - The **left-hand side** (`name`, `place`, `profession`) refers to the placeholders in the template, while the **right-hand side** refers to the actual data being passed.
 
@@ -90,7 +96,7 @@ print(output)
 - Finally, the `output` (which is the rendered string with the variable values inserted) is printed.
 
 ### Summary:
-- A template with placeholders (`{{name}}`, `{{place}}`, and `{{profession}}`) is defined.
+- A template with placeholders ({% raw %}`{{name}}`{% endraw %}, {% raw %}`{{place}}`{% endraw %}, and {% raw %}`{{profession}}`{% endraw %}) is defined.
 - The **Jinja2 `Template`** object is created from the string.
 - The `.render()` method is used to pass the actual data (`name`, `place`, `profession`) to the template.
 - The resulting string, with the placeholders replaced by their values, is printed out.
@@ -113,6 +119,7 @@ place = "Delhi"
 
 ### 2. **Step 1: Creating the HTML Template with Placeholders**
 ```python
+{% raw %}
 temp = """
         <!DOCTYPE html>
         <html lang="en">
@@ -124,10 +131,11 @@ temp = """
         </body>
         </html>
 """
+{% endraw %}
 ```
-- **HTML Template**: This is a simple HTML document stored as a string, and it includes two placeholders inside curly braces (`{{ }}`):
-  - `{{name}}`: This placeholder will later be filled with the value of the `name` variable.
-  - `{{place}}`: This placeholder will be filled with the value of the `place` variable.
+- **HTML Template**: This is a simple HTML document stored as a string, and it includes two placeholders inside curly braces ({% raw %}`{{ }}`{% endraw %}):
+  - {% raw %}`{{name}}`{% endraw %}: This placeholder will later be filled with the value of the `name` variable.
+  - {% raw %}`{{place}}`{% endraw %}: This placeholder will be filled with the value of the `place` variable.
 
 This template forms a structure of a basic HTML page, with two headings displaying a person's name and place of residence.
 
@@ -147,8 +155,8 @@ made_temp = Template(temp)
 out = made_temp.render(name=name, place=place)
 ```
 - **Rendering the template**: The `.render()` method is used to pass data into the template, filling the placeholders with the corresponding values.
-  - `name=name`: This replaces `{{name}}` in the template with the value `"Divya"`.
-  - `place=place`: This replaces `{{place}}` in the template with the value `"Delhi"`.
+  - `name=name`: This replaces {% raw %}`{{name}}`{% endraw %} in the template with the value `"Divya"`.
+  - `place=place`: This replaces {% raw %}`{{place}}`{% endraw %} in the template with the value `"Delhi"`.
 
 The final rendered HTML string will look like this:
 ```html
@@ -174,7 +182,7 @@ print(out)
 ### Summary:
 1. **Template Creation**: You define a template (in this case, an HTML structure) with placeholders for the variables.
 2. **Converting to a Template**: The template string is converted into a Jinja2 `Template` object.
-3. **Rendering**: The `.render()` method substitutes the placeholders (`{{name}}`, `{{place}}`) with the actual data values (`"Divya"` and `"Delhi"`).
+3. **Rendering**: The `.render()` method substitutes the placeholders ({% raw %}`{{name}}`{% endraw %}, {% raw %}`{{place}}`{% endraw %}) with the actual data values (`"Divya"` and `"Delhi"`).
 4. **Output**: The final HTML with the substituted values is printed out.
 
 This technique is useful when you want to dynamically generate HTML or text-based content using data provided at runtime.
@@ -191,13 +199,15 @@ data = ["Programmer", "Analyst", "Scientist"]
 
 ### 2. **Step 1: Creating the Template with a For Loop**
 ```python
+{% raw %}
 temp = "My data is: {%for i in Data %} {{i}} {% endfor %}"
+{% endraw %}
 ```
 - This is a Jinja2 template string with a **for loop** that iterates over the variable `Data` (which will be passed during rendering).
 - The Jinja2 syntax:
-  - `{%for i in Data %}`: This starts a loop that goes through each element of `Data`. The variable `i` represents each item during the iteration.
-  - `{{i}}`: This prints the current value of `i` (each item from the `Data` list).
-  - `{% endfor %}`: This ends the for loop.
+  - {% raw %}`{%for i in Data %}`{% endraw %}: This starts a loop that goes through each element of `Data`. The variable `i` represents each item during the iteration.
+  - {% raw %}`{{i}}`{% endraw %}: This prints the current value of `i` (each item from the `Data` list).
+  - {% raw %}`{% endfor %}`{% endraw %}: This ends the for loop.
   
 
 When rendered, this loop will iterate over the list `Data` and insert each value into the final output.
@@ -263,6 +273,7 @@ data = ["Programmer", "Analyst", "Scientist"]
 
 ### 2. **Creating the Template**
 ```python
+{% raw %}
 temp = """
       {% for i in data %}
          {% if "z" in i %}
@@ -272,12 +283,13 @@ temp = """
       {% endfor %}
       No data found   
       """
+{% endraw %}
 ```
 - This is the **Jinja2 template** that you are going to render. It contains:
-  - `{% for i in data %}`: A **for loop** that iterates over the list `data`.
-  - `{% if "z" in i %}`: Inside the loop, an **if statement** checks if the letter `"z"` exists in the current string (`i`). If `"z"` is found, it will print that string using `{{i}}`.
-  - `{% endif %}`: Closes the if statement.
-  - `{% endfor %}`: Closes the for loop.
+  - {% raw %}`{% for i in data %}`{% endraw %}: A **for loop** that iterates over the list `data`.
+  - {% raw %}`{% if "z" in i %}`{% endraw %}: Inside the loop, an **if statement** checks if the letter `"z"` exists in the current string (`i`). If `"z"` is found, it will print that string using {% raw %}`{{i}}`{% endraw %}.
+  - {% raw %}`{% endif %}`{% endraw %}: Closes the if statement.
+  - {% raw %}`{% endfor %}`{% endraw %}: Closes the for loop.
   
 
 If no string in the list contains the letter `"z"`, the template will not print any of the list items. After the loop, the string `"No data found"` will always be printed.
@@ -333,6 +345,7 @@ subject = "MAD 1"
 
 ### 2. **Creating the Template**
 ```python
+{% raw %}
 temp = """
       {% if "2" in sub %}
         {{sub}}
@@ -340,13 +353,14 @@ temp = """
       Required subject not found
       {% endif %}
 """
+{% endraw %}
 ```
 - This is a **Jinja2 template** string that contains a conditional statement:
-  - `{% if "2" in sub %}`: This checks if the character `"2"` is present in the variable `sub` (which will later be assigned the value of `subject`).
-  - `{{sub}}`: If `"2"` is found in `sub`, this line will print the value of `sub` (which is `"MAD 1"`).
-  - `{% else %}`: If `"2"` is not found, the code inside this block will execute.
+  - {% raw %}`{% if "2" in sub %}`{% endraw %}: This checks if the character `"2"` is present in the variable `sub` (which will later be assigned the value of `subject`).
+  - {% raw %}`{{sub}}`{% endraw %}: If `"2"` is found in `sub`, this line will print the value of `sub` (which is `"MAD 1"`).
+  - {% raw %}`{% else %}`{% endraw %}: If `"2"` is not found, the code inside this block will execute.
   - `Required subject not found`: This string will be printed if `"2"` is not present in `sub`.
-  - `{% endif %}`: This ends the if-else block.
+  - {% raw %}`{% endif %}`{% endraw %}: This ends the if-else block.
 
 ---
 

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Documentation Index - Vehicle Parking Application
 
 Welcome to Day 1 Session Setup! This file guides you to the right documentation for your needs.

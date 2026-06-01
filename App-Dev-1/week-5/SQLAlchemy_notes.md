@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 When working with **Flask-SQLAlchemy** in a Flask web application, it's crucial to understand how to perform queries and handle errors that may arise during database interactions. Here is a detailed set of notes on **Flask-SQLAlchemy** queries and how to implement **error handling** effectively:
 
 ---

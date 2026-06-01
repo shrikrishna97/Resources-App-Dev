@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### **Day 1: Introduction to Flask, Jinja2, HTML/CSS, and Setup**
 
 **Theory (10 AM - 12:30 PM)**
@@ -50,6 +54,7 @@ if __name__ == '__main__':
 
 **Template Code (`templates/index.html`)**:
 ```html
+{% raw %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,8 +65,9 @@ if __name__ == '__main__':
     <h1>Welcome, {{ username }}!</h1>
 </body>
 </html>
+{% endraw %}
 ```
-In this example, `{{ title }}` and `{{ username }}` are placeholders that Flask can replace with actual data passed from `app.py`.
+In this example, {% raw %}`{{ title }}`{% endraw %} and {% raw %}`{{ username }}`{% endraw %} are placeholders that Flask can replace with actual data passed from `app.py`.
 
 #### **HTML & CSS Basics with Bootstrap**  
 Understanding HTML and CSS is key to building the front end of your Flask app. Additionally, using Bootstrap, a popular CSS framework, can help create responsive and visually appealing designs with minimal effort.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 The main difference between `string.Template` from Python's `string` module and `jinja2.Template` from the Jinja2 templating engine lies in their syntax and features.
 
 ### Step 1: Creating the Template
@@ -12,11 +16,13 @@ temp = Template("Today is $today and tomorrow is $tomorrow.")
   
 #### `jinja2.Template`:
 ```python
+{% raw %}
 from jinja2 import Template
 
 temp = Template("Today is {{today}} and tomorrow is {{tomorrow}}.")
+{% endraw %}
 ```
-- **Syntax**: In Jinja2, placeholders are denoted by double curly braces (`{{}}`), surrounding the variable name (e.g., `{{today}}`, `{{tomorrow}}`).
+- **Syntax**: In Jinja2, placeholders are denoted by double curly braces ({% raw %}`{{}}`{% endraw %}), surrounding the variable name (e.g., {% raw %}`{{today}}`{% endraw %}, {% raw %}`{{tomorrow}}`{% endraw %}).
 
 ### Step 2: Rendering the Template
 
@@ -46,7 +52,7 @@ print(out)
 ### Summary of Differences:
 1. **Syntax**:
    - `string.Template`: `$variable`
-   - `jinja2.Template`: `{{variable}}`
+   - `jinja2.Template`: {% raw %}`{{variable}}`{% endraw %}
 
 2. **Rendering**:
    - `string.Template`: Uses `substitute()` or `safe_substitute()`.

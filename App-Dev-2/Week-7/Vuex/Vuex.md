@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Vuex Store with Vue 2 - CDN
 
 * Introduction to Vuex
@@ -449,6 +453,7 @@ Rule:
 ## 8. HTML File (index.html)
 
 ```
+{% raw %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -473,6 +478,7 @@ Rule:
 
 </body>
 </html>
+{% endraw %}
 ```
 
 --- 
@@ -592,6 +598,7 @@ const store = new Vuex.Store({
 ### app.js
 
 ```
+{% raw %}
 Vue.component('counter-a', {
   template: `
     <div>
@@ -644,6 +651,7 @@ new Vue({
   el: '#app',
   store
 })
+{% endraw %}
 ```
 
 ### What you should observe

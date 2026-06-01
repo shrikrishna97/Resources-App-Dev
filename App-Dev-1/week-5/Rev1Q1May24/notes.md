@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Revision Notes Quiz-1
 
 #### 1. **Size = characters × bits required to store each character**
@@ -83,9 +87,11 @@
 
 #### 13. **Jinja (Template Rendering):**
    ```python
+{% raw %}
    from jinja2 import Template
    template = Template('Hello {{ name }}!')
    print(template.render(name='Ravi'))  # Output: Hello Ravi!
+{% endraw %}
    ```
 
 #### 14. **Display:**
@@ -118,8 +124,10 @@
 
    - **View** (Renders data to the user):
    ```html
+{% raw %}
    <p>User Name: {{ user.name }}</p>
    <p>User Age: {{ user.age }}</p>
+{% endraw %}
    ```
 
    - **Controller** (Handles logic and interacts with the model):

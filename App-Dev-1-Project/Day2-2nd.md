@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 ---
 
@@ -222,6 +226,7 @@ Refer to the previous sections for **CRUD operations** on users, which include c
 Add the following to your templates to show flash messages:
 
 ```html
+{% raw %}
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <ul class="flashes">
@@ -231,6 +236,7 @@ Add the following to your templates to show flash messages:
         </ul>
     {% endif %}
 {% endwith %}
+{% endraw %}
 ```
 
 ---

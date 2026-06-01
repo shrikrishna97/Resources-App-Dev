@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 Jinja is a templating engine for Python, used primarily in web development to create dynamic HTML pages, though it can also be used for other templating needs. It allows you to use expressions, variables, and control structures in templates, which are rendered with data provided by Python code.
 
 ### 1. **Lists and Python Functions**
@@ -15,7 +19,9 @@ In Jinja, **filters** are used to transform data in templates. You can pass data
 
 - **`list | length`**: This filter in Jinja is equivalent to Python's `len()` function and returns the length of the list.
   ```jinja
+{% raw %}
   {{ my_list | length }}  # Outputs 4 if my_list is [1, 2, 3, 4]
+{% endraw %}
   ```
 
 ### 3. **Functions or Methods**
@@ -42,6 +48,7 @@ Assume you have a list of dictionaries representing movies, each having a `produ
 
 You can group the list by `producer` using `groupby`:
 ```jinja
+{% raw %}
 {% for producer, group in movies | groupby("producer") %}
   <h2>{{ producer }}</h2>
   <ul>
@@ -50,6 +57,7 @@ You can group the list by `producer` using `groupby`:
     {% endfor %}
   </ul>
 {% endfor %}
+{% endraw %}
 ```
 
 Output:
