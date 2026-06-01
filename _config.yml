@@ -1,0 +1,12 @@
+title: "App Development Resources"
+description: "A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)"
+theme: jekyll-theme-cayman
+baseurl: "/Resources-App-Dev"
+url: "https://shrikrishna97.github.io"
+
+markdown: GFM
+
+exclude:
+  - .hintrc
+  - LICENSE
+  - "python installation setup guide.pdf"
