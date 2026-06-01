@@ -5,84 +5,59 @@ title: Home
 
 # 📚 App Development Resources
 
-Welcome! This website contains resources, notes, and guides for **App Development 1 (MAD-1)** and **App Development 2 (MAD-2)** courses.
+Welcome! Select your course below to access notes, guides, and video lectures.
 
 ---
 
-## 🛠 Setup Guides
+## 🛠 Common Resources (For All Students)
+
+These resources are useful regardless of which course you are taking:
 
 - [GitHub Tutorial](github_tutorial.md) — Setting up VS Code, Git, WSL & GitHub
 - [Virtual Environment Activation](Virtual_env_activation.md) — Creating and activating Python virtual environments
-- [Python Installation Setup Guide](python%20installation%20setup%20guide.pdf) *(PDF)*
+- [Python Installation Setup Guide](python%20installation%20setup%20guide.pdf) *(PDF - download to click links)*
 
 ---
 
-## 📘 App Development 1 (MAD-1)
+## 🎯 Select Your Course
 
-### Weekly Resources
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-| Week | Topics |
-|------|--------|
-| [Week 1](App-Dev-1/Week-1/Numericals.md) | Networking Numericals (Latency, Bandwidth) |
-| [Week 2](App-Dev-1/week-2/Readme.md) | HTML Structure & Basics |
-| [Week 3](App-Dev-1/Week-3/readme.md) | Jinja2 Templates & Open Session |
-| [Week 4](App-Dev-1/Week%204/readme.md) | Flask, SQL & Jinja |
-| [Week 5](App-Dev-1/week-5/readme.md) | SQLAlchemy, cURL & Reviews |
-| [Week 6](App-Dev-1/Week-6/API.md) | APIs |
-| [Week 8](App-Dev-1/Week-8/readme.md) | Practice Questions & Captcha |
-| [Week 10](App-Dev-1/Week-10/Py_testing.md) | Python Testing |
+<div style="border: 2px solid #1e6bb8; border-radius: 10px; padding: 1.5rem; text-align: center;">
+<h3>📘 MAD-1</h3>
+<p>App Development 1 — Flask, Jinja2, SQL, APIs & more</p>
+<a href="mad1" style="display: inline-block; padding: 0.5rem 1.5rem; background: #1e6bb8; color: white; border-radius: 5px; text-decoration: none;">Open MAD-1 →</a>
+</div>
 
-### Reviews
+<div style="border: 2px solid #2ea44f; border-radius: 10px; padding: 1.5rem; text-align: center;">
+<h3>📗 MAD-2</h3>
+<p>App Development 2 — Vue.js, Celery, Redis, JWT & more</p>
+<a href="mad2" style="display: inline-block; padding: 0.5rem 1.5rem; background: #2ea44f; color: white; border-radius: 5px; text-decoration: none;">Open MAD-2 →</a>
+</div>
 
-- [Review Weeks 1–4](App-Dev-1/week-5/review1-4.md)
-- [Review Weeks 5–8](App-Dev-1/review5-8.md)
+<div style="border: 2px solid #9b59b6; border-radius: 10px; padding: 1.5rem; text-align: center;">
+<h3>🎓 MAD-1 Project</h3>
+<p>Project guides, day-wise plans & implementation help</p>
+<a href="mad1-project" style="display: inline-block; padding: 0.5rem 1.5rem; background: #9b59b6; color: white; border-radius: 5px; text-decoration: none;">Open MAD-1 Project →</a>
+</div>
 
-### 🎓 MAD-1 Project
+<div style="border: 2px solid #e67e22; border-radius: 10px; padding: 1.5rem; text-align: center;">
+<h3>🎓 MAD-2 Project</h3>
+<p>Full-stack project setup — Backend, Frontend & Deployment</p>
+<a href="mad2-project" style="display: inline-block; padding: 0.5rem 1.5rem; background: #e67e22; color: white; border-radius: 5px; text-decoration: none;">Open MAD-2 Project →</a>
+</div>
 
-- [Project Plan (7 Days)](App-Dev-1-Project/7_day_plan_for%20project.md)
-- [Day 1 - Part 1](App-Dev-1-Project/Day1-1st.md)
-- [Day 1 - Part 2](App-Dev-1-Project/Day1-2nd.md)
-- [Day 2 - Part 1](App-Dev-1-Project/Day2-1st.md)
-- [Day 2 - Part 2](App-Dev-1-Project/Day2-2nd.md)
+</div>
 
 ---
 
-## 📗 App Development 2 (MAD-2)
+## 📺 YouTube Channels & Playlists
 
-### Weekly Resources
-
-| Week | Topics |
-|------|--------|
-| [Week 1](App-Dev-2/Week-1/Week-1-2_OS.md) | Open Session Notes |
-| [Week 2](App-Dev-2/Week-2/Week-2-3_OS.md) | Open Session Notes |
-| [Week 4](App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.md) | Vue Lifecycle Hooks & Components |
-| [Week 7](App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.md) | Vue CLI & Single File Components |
-| [Week 8](App-Dev-2/Week-8/Flask_JWT_Extended_Notes.md) | Flask JWT Extended |
-| [Week 9](App-Dev-2/Week-9/Async_Tasks_with_Celery.md) | Async Tasks with Celery |
-| [Week 10](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Introduction_to_Celery.md) | Celery Beat & Mailing |
-| [Week 11](App-Dev-2/Week-11/FlaskCaching_with_Redis.md) | Flask Caching with Redis |
-| [Week 12](App-Dev-2/Week-12/Cors_cookies.md) | CORS & Cookies |
-
-### Additional Resources
-
-- [Promises in JavaScript](App-Dev-2/Promise.md)
-- [SSE with Redis Notes](App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.md)
-- [Vuex State Management](App-Dev-2/Week-7/Vuex/Vuex.md)
-
-### Revision
-
-- [Quiz-2 Short Notes](App-Dev-2/Quiz-2%20Revision/short-notes.md)
-- [End Semester Notes](App-Dev-2/ET%20Revision/end-sem-notes.md)
-
-### 🎓 MAD-2 Project
-
-- [Project Index](App-Dev-2-Project/Jan-26/INDEX.md)
-- [Prerequisites & Setup](App-Dev-2-Project/Jan-26/PREREQUISITES_AND_SETUP.md)
-- [Backend Setup](App-Dev-2-Project/Jan-26/BACKEND_SETUP.md)
-- [Frontend Setup](App-Dev-2-Project/Jan-26/FRONTEND_SETUP.md)
-- [Security Guide](App-Dev-2-Project/Jan-26/SECURITY_GUIDE.md)
-- [Day 0 - Planning](App-Dev-2-Project/Jan-26/Day0.md)
-- [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md)
+| Course | Channel / Playlist |
+|--------|-------------------|
+| MAD-1 | [📺 MAD-1 YouTube Channel](https://www.youtube.com/@madi6496) |
+| MAD-1 | [📺 MAD-1 Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
+| MAD-2 | [📺 MAD-2 YouTube Channel](https://www.youtube.com/@mad2768) |
 
 ---
 
