@@ -13,9 +13,9 @@ Welcome! Select your course below to access notes, guides, and video lectures.
 
 These resources are useful regardless of which course you are taking:
 
-- [GitHub Tutorial](github_tutorial.md) — Setting up VS Code, Git, WSL & GitHub
-- [Virtual Environment Activation](Virtual_env_activation.md) — Creating and activating Python virtual environments
-- [Python Installation Setup Guide](python%20installation%20setup%20guide.pdf) *(PDF - download to click links)*
+- [GitHub Tutorial](docs/github_tutorial.md) — Setting up VS Code, Git, WSL & GitHub
+- [Virtual Environment Activation](docs/Virtual_env_activation.md) — Creating and activating Python virtual environments
+- [Python Installation Setup Guide](docs/python%20installation%20setup%20guide.pdf) *(PDF - download to click links)*
 
 ---
 
@@ -26,25 +26,25 @@ These resources are useful regardless of which course you are taking:
 <div class="course-card">
 <h3>MAD-1</h3>
 <p>App Development 1 — Flask, Jinja2, SQL, APIs & more</p>
-<a href="mad1" class="btn btn-mad1">Open MAD-1 →</a>
+<a href="docs/mad1" class="btn btn-mad1">Open MAD-1 →</a>
 </div>
 
 <div class="course-card">
 <h3>MAD-2</h3>
 <p>App Development 2 — Vue.js, Celery, Redis, JWT & more</p>
-<a href="mad2" class="btn btn-mad2">Open MAD-2 →</a>
+<a href="docs/mad2" class="btn btn-mad2">Open MAD-2 →</a>
 </div>
 
 <div class="course-card">
 <h3>MAD-1 Project</h3>
 <p>Project guides, day-wise plans & implementation help</p>
-<a href="mad1-project" class="btn btn-project1">Open MAD-1 Project →</a>
+<a href="docs/mad1-project" class="btn btn-project1">Open MAD-1 Project →</a>
 </div>
 
 <div class="course-card">
 <h3>MAD-2 Project</h3>
 <p>Full-stack project setup — Backend, Frontend & Deployment</p>
-<a href="mad2-project" class="btn btn-project2">Open MAD-2 Project →</a>
+<a href="docs/mad2-project" class="btn btn-project2">Open MAD-2 Project →</a>
 </div>
 
 </div>
