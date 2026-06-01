@@ -14,6 +14,7 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 ## 📺 YouTube Resources
 
 - [MAD-2 YouTube Channel](https://www.youtube.com/@mad2768) — Project walkthroughs & tips
+- [MAD-2 Project Session Playlist](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) — Complete project session recordings (synced with docs below)
 
 ---
 
@@ -39,11 +40,11 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ## 📅 Day-wise Implementation
 
-| Day | Guide | Description |
-|-----|-------|-------------|
-| Day 0 | [Planning & Architecture](App-Dev-2-Project/Jan-26/Day0.md) | Project planning & design |
-| Day 5 | [WSL Setup Guide](App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md) | Setting up WSL for development |
-| Final | [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md) | Finishing touches & submission |
+| Day | Guide | 📺 Video |
+|-----|-------|----------|
+| Day 0 | [Planning & Architecture](App-Dev-2-Project/Jan-26/Day0.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+| Day 5 | [WSL Setup Guide](App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+| Final | [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md) | [▶️ Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
 
 ---
 

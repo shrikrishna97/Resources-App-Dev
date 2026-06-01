@@ -14,7 +14,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 ## 📺 YouTube Resources
 
 - [MAD-1 YouTube Channel](https://www.youtube.com/@madi6496) — All MAD-1 video lectures
-- [MAD-1 Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) — Open session recordings
+- [MAD-1 Open Session Playlist (Sep 2024–2025)](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) — Open session recordings synced with notes below
 
 ---
 
@@ -24,7 +24,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Numericals (Latency, Bandwidth, RTT)](App-Dev-1/Week-1/Numericals.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [Numericals (Latency, Bandwidth, RTT)](App-Dev-1/Week-1/Numericals.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 
 ---
 
@@ -32,7 +32,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [HTML Structure & Basics](App-Dev-1/week-2/Readme.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [HTML Structure & Basics](App-Dev-1/week-2/Readme.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | [HTML Structure Guide](App-Dev-1/week-2/HTML%20Structure.md) | |
 
 ---
@@ -53,7 +53,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Week 4 Overview](App-Dev-1/Week%204/readme.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [Week 4 Overview](App-Dev-1/Week%204/readme.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | [Flask Basics](App-Dev-1/Week%204/flask.md) | |
 | [Flask Part 2](App-Dev-1/Week%204/flask2.md) | |
 | [Flask + Jinja](App-Dev-1/Week%204/flask_jinja.md) | |
@@ -67,7 +67,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Week 5 Overview](App-Dev-1/week-5/readme.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [Week 5 Overview](App-Dev-1/week-5/readme.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | [SQLAlchemy Notes](App-Dev-1/week-5/SQLAlchemy_notes.md) | |
 | [cURL Basics](App-Dev-1/week-5/curl_basic.md) | |
 | [Review Weeks 1–4](App-Dev-1/week-5/review1-4.md) | |
@@ -78,7 +78,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [API Notes](App-Dev-1/Week-6/API.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [API Notes](App-Dev-1/Week-6/API.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 
 ---
 
@@ -86,7 +86,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Week 8 Overview](App-Dev-1/Week-8/readme.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [Week 8 Overview](App-Dev-1/Week-8/readme.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | [Practice Questions](App-Dev-1/Week-8/PQ.md) | |
 | [New Guide](App-Dev-1/Week-8/new_guide.md) | |
 | [Captcha Explanation](App-Dev-1/Week-8/Captcha/EXPLANATION.md) | |
@@ -97,7 +97,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | 📄 Notes | 📺 Video |
 |----------|----------|
-| [Python Testing](App-Dev-1/Week-10/Py_testing.md) | [▶️ MAD-1 Channel](https://www.youtube.com/@madi6496) |
+| [Python Testing](App-Dev-1/Week-10/Py_testing.md) | [▶️ Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 
 ---
 
@@ -116,7 +116,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 | Resource | Link |
 |----------|------|
 | 📺 MAD-1 Channel | [youtube.com/@madi6496](https://www.youtube.com/@madi6496) |
-| 📺 Open Sessions | [Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
+| 📺 Open Sessions (Sep 2024–2025) | [Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | 🎓 MAD-1 Project | [Go to Project Page →](mad1-project) |
 
 ---

@@ -56,8 +56,10 @@ These resources are useful regardless of which course you are taking:
 | Course | Channel / Playlist |
 |--------|-------------------|
 | MAD-1 | [📺 MAD-1 YouTube Channel](https://www.youtube.com/@madi6496) |
-| MAD-1 | [📺 MAD-1 Open Session Playlist](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
+| MAD-1 | [📺 MAD-1 Open Session Playlist (Sep 2024–2025)](https://www.youtube.com/playlist?list=PL3o3mRooP_7pbVDSZRhyPr8B3r6WUQieP) |
 | MAD-2 | [📺 MAD-2 YouTube Channel](https://www.youtube.com/@mad2768) |
+| MAD-2 | [📺 MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| MAD-2 Project | [📺 MAD-2 Project Session Playlist](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
 
 ---
 
