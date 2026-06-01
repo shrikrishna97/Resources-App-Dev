@@ -22,5 +22,4 @@ defaults:
 exclude:
   - .hintrc
   - LICENSE
-  - "python installation setup guide.pdf"
   - README.md
