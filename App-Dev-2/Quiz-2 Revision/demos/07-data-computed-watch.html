@@ -42,7 +42,8 @@
           });
         }
       },
-      watch: {
+      watch: { 
+        // oldValue = ""
         keyword: function (newValue, oldValue) {
           if (newValue !== oldValue) {
             this.typingMessage = 'Searching for: ' + newValue;
