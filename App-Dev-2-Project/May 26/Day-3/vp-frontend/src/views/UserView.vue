@@ -2,8 +2,8 @@
   <div>
     User
     <div v-if="!isloggedIn">
-      <div v-if="!isRegistered"><UserLogin @login-success="handleLoginSuccess" @registration-success="isRegistered = true"/></div>
-      <div v-else><UserRegister @registration-success="handleRegistration"  /></div>
+      <div v-if="!isRegistered"><UserLogin @loggedIn-success="handleLoginSuccess" @register-success="isRegistered = true"/></div>
+      <div v-else><UserRegister @registration-success="handleRegistration" @login-success="isRegistered = false" /></div>
     </div>
     <div v-else>
       <UserDash />
@@ -35,7 +35,7 @@ export default {
     },
     handleRegistration() {
       this.isRegistered = false
-      // this.isloggedIn = true
+      this.isloggedIn = false
       console.log(this.isRegistered)
       alert('Registration successful! You can now log in.')
     },

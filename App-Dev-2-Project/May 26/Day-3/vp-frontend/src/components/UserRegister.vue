@@ -16,6 +16,9 @@
       <button type="submit">Register</button>
     </form>
 
+    <a href="#" @click="$emit('login-success')">Switch to Login</a>
+
+
   </div>
 
 </template>
@@ -25,7 +28,7 @@ import axios from "axios";
 
 export default {
   name: "UserRegister",
-  emit: ['registration-success'],
+  emits: ['registration-success', 'login-success'],
   data() {
     return {
       form: {
