@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Notes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>Notes</h2>
+
+      <input v-model="newNote" placeholder="Enter note" />
+
+      <button @click="addNote">Add</button>
+
+      <p v-show="notes.length===0">No Notes Available</p>
+
+      <ul>
+        <li v-for="(note,index) in notes" :key="index">
+          {{note}}
+
+          <button @click="remove(index)">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            newNote: "",
+            notes: ["Learn JS", "Learn Vue"],
+          };
+        },
+
+        methods: {
+          addNote() {
+            if (this.newNote.trim()) {
+              this.notes.push(this.newNote);
+
+              this.newNote = "";
+            }
+          },
+
+          remove(index) {
+            this.notes.splice(index, 1);
+          },
+        },
+
+        mounted() {
+          console.log("Application Mounted");
+        },
+      });
+
+    </script>
+  </body>
+</html>

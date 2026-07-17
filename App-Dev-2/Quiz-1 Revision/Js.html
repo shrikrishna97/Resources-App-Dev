@@ -1,0 +1,52 @@
+<html>
+  <head><meta charset="utf-8"></head>
+
+  <body>
+    <input id="search" placeholder="Minimum Marks" />
+    <button id="show">Show Students</button>
+
+    <ul id="students"></ul>
+
+    <script>
+      const students = [
+        { name: "Alice", marks: 80 },
+        { name: "Bob", marks: 55 },
+        { name: "Charlie", marks: 92 },
+        { name: "David", marks: 45 },
+      ];
+
+      function render(data) {
+        const ul = document.getElementById("students");
+        ul.innerHTML = "";
+
+        data
+          .sort((a, b) => b.marks - a.marks)
+          .forEach((student) => {
+            ul.innerHTML += `<li>${student.name} - ${student.marks}</li>`;
+          });
+      }
+
+      document.getElementById("show").addEventListener("click", () => {
+        let value = Number(document.getElementById("search").value);
+
+        let filtered = students.filter((s) => s.marks >= value);
+
+        console.log(typeof value);
+
+        setTimeout(() => {
+          render(filtered);
+        }, 500);
+      });
+
+      function done() {
+        console.log("Finished rendering");
+      }
+
+      function execute(callback) {
+        callback();
+      }
+
+      execute(done);
+    </script>
+  </body>
+</html>
