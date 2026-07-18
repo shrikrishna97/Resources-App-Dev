@@ -19,7 +19,7 @@
 
       <ul>
         <li v-for="(note,index) in notes" :key="index">
-          {{note}}
+          {{index + 1}} : {{note}}
 
           <button @click="remove(index)">Delete</button>
         </li>
@@ -53,6 +53,18 @@
         mounted() {
           console.log("Application Mounted");
         },
+        created() {
+          console.log("Application Created");
+        },
+        updated() {
+          console.log("Application Updated");
+        },
+        beforeDestroy() {
+          console.log("Application Before Destroy");
+        },
+        destroyed() {
+          console.log("Application Destroyed");
+        }
       });
 
     </script>
