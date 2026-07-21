@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ message }}</p>
+      <router-link to="/home"><button>Home</button></router-link>
+
+      <router-link to="/about"><button>About</button></button></router-link>
+
+      <!-- <router-link to="/contact">Contact</router-link> -->
+
+      <!-- <router-view></router-view> -->
+      <router-view/>
+    </div>
+    <script type="module" src="./script1.js"></script>
+
+    <script>
+    //   const Home = {
+    //     template: `
+    //     <div>
+    //         <h2>Home Page</h2>
+    //     </div>
+    // `,
+    //   };
+    //   const About = {
+    //     template: `
+    //     <div>
+    //         <h2>About Page</h2>
+
+    //     </div>
+    // `,
+    //   };
+    //   const routes = [
+    //     { path: "/home", component: Home },
+    //     { path: "/about", component: About },
+    //   ];
+    //   const router = new VueRouter({
+    //     // routes: routes,
+    //     // mode: "history",
+    //     routes,
+    //   });
+
+    //   const app = new Vue({
+    //     el: "#app",
+    //     data: {
+    //       message: "Hello World",
+    //     },
+    //     components: {
+    //       Home,
+    //       About,
+    //     },
+    //     router,
+    //     // mounted() {
+    //     // //   this.$router.push("/home");
+    //     // //   this.$router.go(1);
+    //     // }
+    //   });
+     </script>
+  </body>
+</html>
