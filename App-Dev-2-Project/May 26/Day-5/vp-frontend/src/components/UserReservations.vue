@@ -55,26 +55,26 @@ export default {
       // console.log(res.data)
       this.lot_details = res.data
     },
-  },
-  createReservation() {
-    console.log(this.form)
+    async createReservation() {
+      console.log(this.form)
 
-    const formData = {
-      parking_lot_id: this.form.selected_lotId,
-      vehicle_number: this.form.vehicle_number,
-      start_time: this.form.start_time,
-      end_time: this.form.end_time,
-    }
-    const token = localStorage.getItem('token')
-    console.log(token)
-    const res = axios.post('http://127.0.0.1:5000/api/user_reservations', formData, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    console.log(res.data)
-    this.form.parking_lot_id = ''
-    this.form.vehicle_number = ''
-    this.form.start_time = ''
-    this.form.end_time = ''
+      const formData = {
+        parking_lot_id: this.form.selected_lotId,
+        vehicle_number: this.form.vehicle_number,
+        start_time: this.form.start_time,
+        end_time: this.form.end_time,
+      }
+      const token = localStorage.getItem('token')
+      console.log(token)
+      const res = await axios.post('http://127.0.0.1:5000/api/user_reservations', formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log(res.data)
+      this.form.parking_lot_id = ''
+      this.form.vehicle_number = ''
+      this.form.start_time = ''
+      this.form.end_time = ''
+    },
   },
   mounted() {
     this.fetchLotDetails()
