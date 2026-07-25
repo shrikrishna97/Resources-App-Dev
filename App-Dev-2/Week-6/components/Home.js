@@ -1,5 +1,5 @@
 const Home = {
-    template: `
+  template: `
     <div>
         <h3>Home Component - User Registration Form</h3>
         <form @submit.prevent="submitForm">
@@ -19,36 +19,43 @@ const Home = {
         </form>
     </div>
     `,
-    data() {
-        return {
-            form: { name: '', password: '' },
-            errors: { name: '', password: '' }
-        }
+  data() {
+    return {
+      form: { name: "", password: "" },
+      errors: { name: "", password: "" },
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        this.form.name &&
+        this.form.password &&
+        !this.errors.name &&
+        !this.errors.password
+      );
     },
-    computed: {
-        isFormValid() {
-            return this.form.name && this.form.password && 
-                   !this.errors.name && !this.errors.password
-        }
+  },
+  methods: {
+    validateName() {
+      this.errors.name = this.form.name.length < 3 ? "Min 3 chars" : "";
     },
-    methods: {
-        validateName() {
-            this.errors.name = this.form.name.length < 3 ? 'Min 3 chars' : ''
-        },
-        validatePassword() {
-            this.errors.password = this.form.password.length < 6 ? 'Min 6 chars' : ''
-        },
-        submitForm() {
-            this.validateName()
-            this.validatePassword()
-            if (this.isFormValid) {
-                // Send name & password to About page via route params
-                this.$router.push(`/about/${this.form.password}/${this.form.name}`)
-                this.form.name = ''
-                this.form.password = ''
-            }
-        }
-    }
-}
+    validatePassword() {
+      this.errors.password = this.form.password.length < 6 ? "Min 6 chars" : "";
+    },
+    submitForm() {
+      this.validateName();
+      this.validatePassword();
+      console.log(this.$route.params); // { id: '123' }
+      console.log(this.$route.query); // { q: 'vue' }
+      console.log(this.$route.path); // '/user/123'
+      if (this.isFormValid) {
+        // Send name & password to About page via route params
+        this.$router.push(`/about/${this.form.password}/${this.form.name}`);
+        this.form.name = "";
+        this.form.password = "";
+      }
+    },
+  },
+};
 
-export default Home
+export default Home;

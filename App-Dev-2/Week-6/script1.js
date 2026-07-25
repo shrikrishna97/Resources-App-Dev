@@ -14,12 +14,12 @@ const routes = [
     ]
     
   },
-  {path: "*", redirect: "/" },
+  {path: "*", redirect: "/home" },
   // { path: "/about/:username", component: AboutUser },
 ];
 const router = new VueRouter({
   // routes: routes,
-  // mode: "history",
+  mode: "history",
   routes,
 });
 
