@@ -9,7 +9,7 @@
     <p>Total Spent: {{ summary.total_spent }}</p>
     <div v-if="summary.lot_names">
       <h3>Lot-wise Reservations</h3>
-      <Bar :chart-data="countChartData" :options="{ responsive: true }" />
+      <Bar :data="countChartData" :options="{ responsive: true }" />
     </div>
   </div>
 </template>
