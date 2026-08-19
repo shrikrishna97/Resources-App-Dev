@@ -144,14 +144,19 @@
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
-  color: white;
+  color: white !important;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
   transition: opacity 0.2s;
+  border-bottom: none;
 }
 
-.course-card .btn:hover {
+.course-card .btn:hover,
+.course-card .btn:visited,
+.course-card .btn:active,
+.course-card .btn:focus {
+  color: white !important;
   opacity: 0.9;
   border-bottom: none;
 }
