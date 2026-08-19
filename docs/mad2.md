@@ -120,9 +120,9 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Resource | Description |
 |----------|-------------|
-| [Quiz-1 Revision Notes (JS & Vue)](../App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.md) | Quick revision for Quiz 1 |
-| [Quiz-2 Short Notes](../App-Dev-2/Quiz-2%20Revision/short-notes.md) | Quick revision for Quiz 2 |
-| [End Semester Notes](../App-Dev-2/ET%20Revision/end-sem-notes.md) | Complete end-term revision |
+| [Quiz-1 Revision Notes (JS & Vue)](../App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.html) | Quick revision for Quiz 1 |
+| [Quiz-2 Short Notes](../App-Dev-2/Quiz-2%20Revision/short-notes.html) | Quick revision for Quiz 2 |
+| [End Semester Notes](../App-Dev-2/ET%20Revision/end-sem-notes.html) | Complete end-term revision |
 | [Extra Resource MAD2](../App-Dev-2/Extra%20Resource%20MAD2.pdf) | Additional resources *(PDF)* |
 | [Installation Guide MAD2](../App-Dev-2/Installation_MAD2.pdf) | Setup instructions *(PDF)* |
 
