@@ -153,11 +153,15 @@
 }
 
 .course-card .btn:hover,
-.course-card .btn:visited,
-.course-card .btn:active,
-.course-card .btn:focus {
+.course-card .btn:active {
   color: white !important;
   opacity: 0.9;
+  border-bottom: none;
+}
+
+.course-card .btn:visited,
+.course-card .btn:focus {
+  color: white !important;
   border-bottom: none;
 }
 
