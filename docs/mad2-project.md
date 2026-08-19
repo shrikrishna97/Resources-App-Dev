@@ -124,32 +124,4 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <a href="../">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
 </div>
 
-<script>
-(function() {
-  function initTabs() {
-    var tabs = document.querySelectorAll('.term-tab');
-    var contents = document.querySelectorAll('.term-content');
-    if (tabs.length === 0) return;
-    
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        tabs.forEach(function(t) { t.classList.remove('active'); });
-        contents.forEach(function(c) { c.classList.remove('active'); });
-        
-        tab.classList.add('active');
-        var termId = tab.getAttribute('data-term');
-        var content = document.getElementById('term-' + termId);
-        if (content) {
-          content.classList.add('active');
-        }
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTabs);
-  } else {
-    initTabs();
-  }
-})();
-</script>
+<script src="{{ '/assets/js/tabs.js' | relative_url }}"></script>
