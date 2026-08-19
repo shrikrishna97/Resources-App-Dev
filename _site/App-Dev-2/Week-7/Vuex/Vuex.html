@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-7/Vuex/Vuex.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-7/Vuex/Vuex.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-7/Vuex/Vuex.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="vuex-store-with-vue-2---cdn">Vuex Store with Vue 2 - CDN</h1>
+
+<ul>
+  <li>Introduction to Vuex</li>
+  <li>Core concepts: State, Getters, Mutations, Actions</li>
+  <li>CDN setup with Vue 2</li>
+  <li>Basic working example using HTML + JS</li>
+</ul>
+
+<hr />
+
+<h2 id="1-what-is-vuex">1. What is Vuex?</h2>
+
+<p>Vuex is a state management library for Vue.js applications. It helps manage shared data (state) across multiple components in a predictable way.</p>
+
+<h3 id="why-vuex">Why Vuex?</h3>
+
+<h4 id="without-vuex-using-props-and-emit">Without Vuex (Using Props and Emit)</h4>
+
+<p>In Vue 2, components communicate using:</p>
+
+<ul>
+  <li><strong>Props</strong> (Parent → Child)</li>
+  <li><strong>Emit</strong> (Child → Parent)</li>
+</ul>
+
+<p>Example:</p>
+
+<p>Parent:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;child-component :count="count" @increment="count++"&gt;&lt;/child-component&gt;
+</code></pre></div></div>
+
+<p>Child:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>props: ['count'],
+methods: {
+  updateCount() {
+    this.$emit('increment')
+  }
+}
+</code></pre></div></div>
+
+<p>Problem:</p>
+
+<ul>
+  <li>Works fine for small apps</li>
+  <li>But in large apps, data has to pass through multiple components</li>
+</ul>
+
+<p>Example issue (Props Drilling):
+HomePage → ProductList → ProductCard → AddToCartButton (e-commerce cart example)</p>
+
+<p>Even if only AddToCartButton needs data, all intermediate components must pass it.</p>
+
+<p>This makes:</p>
+
+<ul>
+  <li>Code harder to manage</li>
+  <li>Debugging difficult</li>
+  <li>Components tightly coupled</li>
+</ul>
+
+<hr />
+
+<h4 id="with-vuex">With Vuex</h4>
+
+<p>Instead of passing data manually:</p>
+
+<ul>
+  <li>All components access a <strong>central store</strong></li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.$store.state.count
+this.$store.commit('increment')
+</code></pre></div></div>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>No need for deep props passing</li>
+  <li>Any component can access shared state directly</li>
+  <li>Clear and predictable data flow</li>
+  <li>Easier to debug and scale</li>
+</ul>
+
+<hr />
+
+<h4 id="key-idea-why-this-matters">Key Idea (Why this matters)</h4>
+
+<p>Let us understand with a clear situation.</p>
+
+<p>Scenario:</p>
+
+<ul>
+  <li>You have components: HomePage → ProductList → ProductCard → AddToCartButton</li>
+  <li>Only <strong>AddToCartButton</strong> needs the cart count and should update it</li>
+</ul>
+
+<p>Without Vuex (using props &amp; emit):</p>
+
+<p>Step 1: HomePage passes data to ProductList</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;product-list :cartCount="cartCount" @add="cartCount++"&gt;&lt;/product-list&gt;
+</code></pre></div></div>
+
+<p>Step 2: ProductList must pass it again (even if it does not use it)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;product-card :cartCount="cartCount" @add="$emit('add')"&gt;&lt;/product-card&gt;
+</code></pre></div></div>
+
+<p>Step 3: ProductCard must pass it again</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;add-to-cart-button :cartCount="cartCount" @add="$emit('add')"&gt;&lt;/add-to-cart-button&gt;
+</code></pre></div></div>
+
+<p>Step 4: AddToCartButton finally uses it</p>
+
+<p>Problem here:</p>
+
+<ul>
+  <li>Parent and Child are <strong>just forwarding data</strong></li>
+  <li>They are not using it</li>
+  <li>Code becomes messy and repetitive</li>
+  <li>Hard to track where changes are happening</li>
+</ul>
+
+<p>This is called <strong>props drilling</strong></p>
+
+<hr />
+
+<p>With Vuex:</p>
+
+<p>Any component can directly access and update state:</p>
+
+<p>AddToCartButton:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.$store.state.count
+this.$store.commit('increment')
+</code></pre></div></div>
+
+<p>No need for:</p>
+
+<ul>
+  <li>Passing props through multiple levels</li>
+  <li>Emitting events through multiple layers</li>
+</ul>
+
+<hr />
+
+<p>Final Understanding:</p>
+
+<p>Props/Emit:</p>
+
+<ul>
+  <li>Best for <strong>direct parent-child communication</strong></li>
+</ul>
+
+<p>Vuex:</p>
+
+<ul>
+  <li>
+    <p>Best when:</p>
+
+    <ul>
+      <li>Many components need same data</li>
+      <li>Components are deeply nested</li>
+      <li>State needs to be shared globally</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This is why Vuex is introduced in larger applications.</p>
+
+<hr />
+
+<h2 id="2-core-concepts-of-vuex">2. Core Concepts of Vuex</h2>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/">https://v3.vuex.vuejs.org/</a>)</p>
+
+<h3 id="21-state">2.1 State</h3>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/guide/state.html">https://v3.vuex.vuejs.org/guide/state.html</a>)</p>
+
+<ul>
+  <li>The single source of truth</li>
+  <li>Stores application data</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>state: {
+  count: 0
+}
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="22-getters">2.2 Getters</h3>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/guide/getters.html">https://v3.vuex.vuejs.org/guide/getters.html</a>)</p>
+
+<ul>
+  <li>Used to compute derived state</li>
+  <li>Similar to computed properties</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getters: {
+  doubleCount: (state) =&gt; state.count * 2
+}
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="23-mutations">2.3 Mutations</h3>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/guide/mutations.html">https://v3.vuex.vuejs.org/guide/mutations.html</a>)</p>
+
+<ul>
+  <li>Only way to change state</li>
+  <li>Must be synchronous</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mutations: {
+  increment(state) {
+    state.count++
+  }
+}
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="24-actions">2.4 Actions</h3>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/guide/actions.html">https://v3.vuex.vuejs.org/guide/actions.html</a>)</p>
+
+<ul>
+  <li>Used for async operations</li>
+  <li>Commit mutations</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>actions: {
+  incrementAsync({ commit }) {
+    setTimeout(() =&gt; {
+      commit('increment')
+    }, 1000)
+  }
+}
+</code></pre></div></div>
+
+<h3 id="25-what-is-context-in-actions">2.5 What is <code class="language-plaintext highlighter-rouge">context</code> in Actions?</h3>
+
+<p>(References: <a href="https://v3.vuex.vuejs.org/guide/actions.html">https://v3.vuex.vuejs.org/guide/actions.html</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment</a>)</p>
+
+<p>In Vuex, every action receives a first argument called <strong>context</strong>.</p>
+
+<p>This <code class="language-plaintext highlighter-rouge">context</code> object is provided by Vuex and contains useful store methods/properties like:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">commit</code></li>
+  <li><code class="language-plaintext highlighter-rouge">dispatch</code></li>
+  <li><code class="language-plaintext highlighter-rouge">state</code></li>
+  <li><code class="language-plaintext highlighter-rouge">getters</code></li>
+</ul>
+
+<p>So when we write:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>incrementAsync({ commit }) {
+  setTimeout(() =&gt; {
+    commit('increment')
+  }, 1000)
+}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">{ commit }</code> is JavaScript <strong>object destructuring</strong>.
+It means: take only the <code class="language-plaintext highlighter-rouge">commit</code> property from the full <code class="language-plaintext highlighter-rouge">context</code> object.</p>
+
+<p>Equivalent long form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>incrementAsync(context) {
+  setTimeout(() =&gt; {
+    context.commit('increment')
+  }, 1000)
+}
+</code></pre></div></div>
+
+<p>Both are correct. The destructuring form is shorter and commonly used.</p>
+
+<hr />
+
+<h2 id="3-vuex-flow">3. Vuex Flow</h2>
+
+<p>(Reference: <a href="https://v3.vuex.vuejs.org/guide/actions.html#dispatching-actions">https://v3.vuex.vuejs.org/guide/actions.html#dispatching-actions</a>)</p>
+
+<p>Component -&gt; Dispatch Action -&gt; Commit Mutation -&gt; Update State -&gt; UI updates</p>
+
+<hr />
+
+<h2 id="4-using-vuex-with-cdn-vue-2">4. Using Vuex with CDN (Vue 2)</h2>
+
+<h3 id="41-include-cdn-links-in-html">4.1 Include CDN Links in HTML</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://cdn.jsdelivr.net/npm/vue@2"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vuex@3"&gt;&lt;/script&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-project-structure">5. Project Structure</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html
+app.js
+store.js
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-creating-the-store-storejs">6. Creating the Store (store.js)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+
+  getters: {
+    doubleCount(state) {
+      return state.count * 2
+    }
+  },
+
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+    decrement(state) {
+      state.count--
+    }
+  },
+
+  actions: {
+    incrementAsync({ commit }) {
+      setTimeout(() =&gt; {
+        commit('increment')
+      }, 1000)
+    }
+  }
+})
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-using-store-in-vue-instance-appjs">7. Using Store in Vue Instance (app.js)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>new Vue({
+  el: '#app',
+  store,
+
+  // data is still used, but only for local component state
+  data() {
+    return {
+      message: 'Local UI state'
+    }
+  },
+
+  computed: {
+    // shared/global state comes from Vuex
+    count() {
+      return this.$store.state.count
+    },
+    doubleCount() {
+      return this.$store.getters.doubleCount
+    }
+  },
+
+  methods: {
+    increment() {
+      this.$store.commit('increment')
+    },
+    decrement() {
+      this.$store.commit('decrement')
+    },
+    incrementAsync() {
+      this.$store.dispatch('incrementAsync')
+    }
+  }
+})
+</code></pre></div></div>
+
+<h3 id="important-understanding">Important Understanding</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">data()</code> is used for <strong>local state</strong> (only needed inside this component)</li>
+  <li>Vuex <code class="language-plaintext highlighter-rouge">state</code> is used for <strong>shared/global state</strong> (used across multiple components)</li>
+</ul>
+
+<p>Example:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">message</code> → only this component needs it → use <code class="language-plaintext highlighter-rouge">data()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">count</code> (cart count) → many components need it → use Vuex</li>
+</ul>
+
+<p>Why not use only data?</p>
+
+<ul>
+  <li>If you keep <code class="language-plaintext highlighter-rouge">count</code> in <code class="language-plaintext highlighter-rouge">data()</code>, other components cannot access it easily</li>
+  <li>You will again need props and emit (problem we discussed earlier)</li>
+</ul>
+
+<p>So rule of thumb:</p>
+
+<ul>
+  <li>Local UI state → <code class="language-plaintext highlighter-rouge">data()</code></li>
+  <li>Shared application state → Vuex store</li>
+</ul>
+
+<hr />
+
+<h3 id="computed-vs-data">Computed vs Data</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">data()</code> → local state</li>
+  <li><code class="language-plaintext highlighter-rouge">computed</code> → reactive access to Vuex state</li>
+</ul>
+
+<p>Wrong:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data() {
+  return { count: this.$store.state.count }
+}
+</code></pre></div></div>
+
+<p>(Not reactive)</p>
+
+<p>Correct:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computed: {
+  count() { return this.$store.state.count }
+}
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="commit-vs-dispatch">Commit vs Dispatch</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">commit</code> → mutation (sync)</li>
+  <li><code class="language-plaintext highlighter-rouge">dispatch</code> → action (async → commit)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.$store.commit('increment')
+this.$store.dispatch('incrementAsync')
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="do-we-need-computed">Do we need computed?</h3>
+
+<ul>
+  <li>Not mandatory, but recommended</li>
+  <li>Without it: not clean and less reactive in templates</li>
+</ul>
+
+<p>Rule:</p>
+
+<ul>
+  <li>Read → computed</li>
+  <li>Update → commit / dispatch</li>
+</ul>
+
+<hr />
+
+<h2 id="8-html-file-indexhtml">8. HTML File (index.html)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Vuex CDN Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="app"&gt;
+  &lt;h2&gt;Count: {{ count }}&lt;/h2&gt;
+  &lt;h3&gt;Double: {{ doubleCount }}&lt;/h3&gt;
+
+  &lt;button @click="increment"&gt;Increment&lt;/button&gt;
+  &lt;button @click="decrement"&gt;Decrement&lt;/button&gt;
+  &lt;button @click="incrementAsync"&gt;Increment Async&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/vue@2"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vuex@3"&gt;&lt;/script&gt;
+
+&lt;script src="store.js"&gt;&lt;/script&gt;
+&lt;script src="app.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-practice-task-for-students">9. Practice Task for Students</h2>
+
+<ol>
+  <li>Add a reset mutation</li>
+  <li>Create a getter for triple count</li>
+  <li>Add a button to reset count</li>
+</ol>
+
+<hr />
+
+<h2 id="10-key-points-to-emphasize">10. Key Points to Emphasize</h2>
+
+<ul>
+  <li>Never modify state directly</li>
+  <li>Always use mutations</li>
+  <li>Actions are for async tasks</li>
+  <li>Vuex helps in large-scale apps</li>
+</ul>
+
+<hr />
+
+<h2 id="11-what-not-to-do-common-mistakes">11. What NOT to Do (Common Mistakes)</h2>
+
+<ol>
+  <li>Directly modifying state</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.$store.state.count++
+</code></pre></div></div>
+
+<p>Wrong because it breaks Vuex flow</p>
+
+<ol>
+  <li>Using data() for shared state</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data() {
+  return { count: 0 }
+}
+</code></pre></div></div>
+
+<p>Leads back to props/emit problem</p>
+
+<ol>
+  <li>Using commit for async logic</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setTimeout(() =&gt; {
+  this.$store.commit('increment')
+}, 1000)
+</code></pre></div></div>
+
+<p>Async logic should go inside actions</p>
+
+<ol>
+  <li>Skipping computed for UI</li>
+</ol>
+
+<ul>
+  <li>Makes code messy</li>
+  <li>Reduces clarity and reusability</li>
+</ul>
+
+<p>Keep it simple:</p>
+
+<ul>
+  <li>Read → computed</li>
+  <li>Update → commit / dispatch</li>
+</ul>
+
+<hr />
+
+<h2 id="12-summary">12. Summary</h2>
+
+<p>Vuex provides a centralized store for managing application state. It ensures predictable state changes using mutations and supports async logic using actions. It is especially useful when multiple components need access to shared data.</p>
+
+<hr />
+
+<h2 id="13-example-multiple-components-using-the-same-store-use-this-for-practice">13. Example: Multiple Components Using the Same Store (Use this for practice)</h2>
+
+<p>This example shows how two components read and update the same Vuex state.
+When one component updates <code class="language-plaintext highlighter-rouge">count</code>, the other component also updates automatically.</p>
+
+<h3 id="indexhtml">index.html</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div id="app"&gt;
+  &lt;counter-a&gt;&lt;/counter-a&gt;
+  &lt;counter-b&gt;&lt;/counter-b&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+
+<h3 id="storejs">store.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+
+  getters: {
+    doubleCount(state) {
+      return state.count * 2
+    }
+  },
+
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+    decrement(state) {
+      state.count--
+    }
+  },
+
+  actions: {
+    incrementAsync({ commit }) {
+      setTimeout(() =&gt; {
+        commit('increment')
+      }, 1000)
+    }
+  }
+})
+</code></pre></div></div>
+
+<h3 id="appjs">app.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Vue.component('counter-a', {
+  template: `
+    &lt;div&gt;
+      &lt;h3&gt;Component A&lt;/h3&gt;
+      &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+      &lt;button @click="inc"&gt;+1 from A&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  computed: {
+    count() {
+      return this.$store.state.count
+    }
+  },
+  methods: {
+    inc() {
+      this.$store.commit('increment')
+    }
+  }
+})
+
+Vue.component('counter-b', {
+  template: `
+    &lt;div&gt;
+      &lt;h3&gt;Component B&lt;/h3&gt;
+      &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+      &lt;p&gt;Double: {{ doubleCount }}&lt;/p&gt;
+      &lt;button @click="dec"&gt;-1 from B&lt;/button&gt;
+      &lt;button @click="incAsync"&gt;+1 Async from B&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  computed: {
+    count() {
+      return this.$store.state.count
+    },
+    doubleCount() {
+      return this.$store.getters.doubleCount
+    }
+  },
+  methods: {
+    dec() {
+      this.$store.commit('decrement')
+    },
+    incAsync() {
+      this.$store.dispatch('incrementAsync')
+    }
+  }
+})
+
+new Vue({
+  el: '#app',
+  store
+})
+
+</code></pre></div></div>
+
+<h3 id="what-you-should-observe">What you should observe</h3>
+
+<ul>
+  <li>Click in Component A, Component B updates.</li>
+  <li>Click in Component B, Component A updates.</li>
+  <li>Both are connected to the same shared Vuex state.</li>
+</ul>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

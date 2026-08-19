@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/github_tutorial.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/github_tutorial.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/github_tutorial.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Github Adding Collaborator Video: <a href="https://youtu.be/fUY1MtqCoRU">Adding Github Collaborator using VSCode and WSL</a></p>
+
+<p>Here’s a <strong>step-by-step guide</strong> to set up <strong>VS Code, Git, WSL, and GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>)</strong> and push your first commit to GitHub.</p>
+
+<hr />
+
+<h1 id="-step-by-step-guide-setting-up-github-in-vs-code-wsllinuxmac">🚀 <strong>Step-by-Step Guide: Setting Up GitHub in VS Code (WSL/Linux/Mac)</strong></h1>
+<p>This guide will help you:
+✅ Install <strong>VS Code, Git, WSL (for Windows), and GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>)</strong><br />
+✅ <strong>Create a GitHub account &amp; private repository</strong><br />
+✅ <strong>Authenticate GitHub in VS Code</strong><br />
+✅ <strong>Clone, commit, and push your files to GitHub</strong><br />
+✅ <strong>Add collaborators (MAD-1, MAD-2)</strong></p>
+
+<hr />
+
+<h2 id="-step-1-install-required-software"><strong>🛠 Step 1: Install Required Software</strong></h2>
+<h3 id="for-windows-users"><strong>For Windows Users</strong></h3>
+<p>1️⃣ <strong>Install VS Code:</strong><br />
+   👉 <a href="https://code.visualstudio.com/download">Download &amp; Install VS Code</a></p>
+
+<p>2️⃣ <strong>Install Git:</strong><br />
+   👉 <a href="https://git-scm.com/downloads">Download &amp; Install Git</a></p>
+
+<p>3️⃣ <strong>Install WSL (Windows Subsystem for Linux)</strong><br />
+   Open <strong>PowerShell (Admin)</strong> and run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   wsl <span class="nt">--install</span>
+</code></pre></div></div>
+<p>Restart your system.</p>
+
+<p>4️⃣ <strong>Install GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>)</strong><br />
+   Open <strong>WSL Terminal</strong> and run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>gh <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>(Note: gh command will also work in powershell, if you are struggling with wsl you can use powershell, you need to install <code class="language-plaintext highlighter-rouge">choco</code> and <code class="language-plaintext highlighter-rouge">gh</code> separately)</p>
+<h3 id="for-windows-powershell-users"><strong>For Windows Powershell Users</strong></h3>
+<p>These are the few command to install   <code class="language-plaintext highlighter-rouge">choco</code> and then <code class="language-plaintext highlighter-rouge">gh</code>, then follow the step 2:
+—</p>
+
+<h4 id="step-by-step-force-install-chocolatey">Step-by-Step: Force Install Chocolatey</h4>
+
+<ol>
+  <li>
+    <p><strong>Open PowerShell as Administrator</strong></p>
+
+    <ul>
+      <li>Search “PowerShell” in Start → Right-click → “Run as Administrator”</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Run this command (force install Chocolatey):</strong></p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Set-ExecutionPolicy</span><span class="w"> </span><span class="nx">Bypass</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">Process</span><span class="w"> </span><span class="nt">-Force</span><span class="p">;</span><span class="w"> </span><span class="err">`</span><span class="w">
+</span><span class="p">[</span><span class="n">System.Net.ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">`</span><span class="w">
+</span><span class="p">[</span><span class="n">System.Net.ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span><span class="w"> </span><span class="o">-bor</span><span class="w"> </span><span class="nx">3072</span><span class="p">;</span><span class="w"> </span><span class="err">`</span><span class="w">
+</span><span class="n">iex</span><span class="w"> </span><span class="p">((</span><span class="n">New-Object</span><span class="w"> </span><span class="nx">System.Net.WebClient</span><span class="p">)</span><span class="o">.</span><span class="nf">DownloadString</span><span class="p">(</span><span class="s1">'https://community.chocolatey.org/install.ps1'</span><span class="p">))</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="step-by-step-install-github-cli-gh-via-choco">Step-by-Step: Install GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>) via choco</h4>
+
+<ol>
+  <li>
+    <p><strong>Install <code class="language-plaintext highlighter-rouge">gh</code> using Chocolatey:</strong></p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">gh</span><span class="w"> </span><span class="nt">-y</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Verify installation:</strong></p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gh</span><span class="w"> </span><span class="nt">--version</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="for-mac--linux-users-skip-wsl"><strong>For Mac &amp; Linux Users</strong> (Skip WSL)</h3>
+<ul>
+  <li><strong>Git &amp; VS Code</strong> are pre-installed in most Linux/macOS systems.</li>
+  <li>Install <strong>GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>)</strong> using:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>gh  <span class="c"># macOS</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>gh <span class="nt">-y</span>  <span class="c"># Linux</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-step-2-create-a-github-account--repository"><strong>🌐 Step 2: Create a GitHub Account &amp; Repository</strong></h2>
+<p>1️⃣ Open <strong><a href="https://github.com/">GitHub</a></strong> in your browser.<br />
+2️⃣ <strong>Sign up or log in</strong> to your account.<br />
+3️⃣ Click on <strong>“New Repository”</strong> and:</p>
+<ul>
+  <li>Repository Name: <strong>Your Roll Number</strong></li>
+  <li>Visibility: <strong>Private</strong></li>
+  <li>Initialize with: ✅ <code class="language-plaintext highlighter-rouge">README.md</code></li>
+</ul>
+
+<hr />
+
+<h2 id="-step-3-open-vs-code--clone-your-repo"><strong>🔗 Step 3: Open VS Code &amp; Clone Your Repo</strong></h2>
+<p>1️⃣ Open <strong>VS Code</strong><br />
+2️⃣ Open <strong>WSL Terminal</strong> (Windows) OR <strong>Powershell</strong> (Windows) OR <strong>Terminal</strong> (Mac/Linux)</p>
+<ul>
+  <li>Shortcut: <strong>Ctrl + `</strong> (tilde key)</li>
+  <li>OR go to <strong>View → Terminal</strong></li>
+</ul>
+
+<p>3️⃣ <strong>Authenticate GitHub CLI in VS Code</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   gh auth login
+</code></pre></div></div>
+<ul>
+  <li>Choose <strong>GitHub.com</strong></li>
+  <li>Choose <strong>HTTPS</strong></li>
+  <li>Copy the <strong>auth link</strong> shown in the terminal.</li>
+  <li><strong>Paste it into your browser</strong> and log in.</li>
+  <li><strong>After successful login, return to the terminal.</strong></li>
+</ul>
+
+<p>4️⃣ <strong>Clone the repository from GitHub</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   git clone <span class="s2">"your_repo_link"</span>
+</code></pre></div></div>
+<ul>
+  <li>Get this <strong>repo link</strong> from <strong>GitHub → Code → Clone → HTTPS</strong></li>
+  <li>Example:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/your-repo.git
+</code></pre></div>    </div>
+  </li>
+  <li>Change directory to the repo:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>your-repo
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-step-4-add-commit-and-push-files"><strong>📝 Step 4: Add, Commit, and Push Files</strong></h2>
+<p>1️⃣ <strong>Create a new file inside your repo folder</strong><br />
+   Example:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">touch </span>example.txt
+   <span class="nb">echo</span> <span class="s2">"This is my first GitHub file"</span> <span class="o">&gt;</span> example.txt
+</code></pre></div></div>
+
+<p>2️⃣ <strong>Stage the file (Add to Git)</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   git add example.txt
+</code></pre></div></div>
+
+<p>3️⃣ <strong>Commit the changes with a message</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   git commit <span class="nt">-m</span> <span class="s2">"Added example.txt"</span>
+</code></pre></div></div>
+<p><strong>NOTE: if you get error that says “who are you ?” you have to add your name and email locally as well, the command for that is</strong>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">git config user.name "Your Name"</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">git config user.email "your.email@example.com"</code></p>
+
+<p>4️⃣ <strong>Check status</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   git status
+</code></pre></div></div>
+
+<p>5️⃣ <strong>Push changes to GitHub</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   git push origin main
+</code></pre></div></div>
+<p><em>(Replace <code class="language-plaintext highlighter-rouge">main</code> with your branch if it’s different.)</em></p>
+
+<hr />
+
+<h2 id="-step-5-verify-your-changes-on-github"><strong>🔎 Step 5: Verify Your Changes on GitHub</strong></h2>
+<p>1️⃣ <strong>Go to GitHub → Your Repository</strong><br />
+2️⃣ <strong>Check if your new file (<code class="language-plaintext highlighter-rouge">example.txt</code>) is uploaded.</strong><br />
+3️⃣ If the file is there, your push was successful! ✅</p>
+
+<hr />
+
+<h2 id="-step-6-add-collaborators-mad-1-mad-2"><strong>👥 Step 6: Add Collaborators (MAD-1, MAD-2)</strong></h2>
+<p>1️⃣ Open your repository on <strong>GitHub</strong><br />
+2️⃣ <strong>Go to Settings → Manage Access</strong><br />
+3️⃣ Click on <strong>Invite Collaborators</strong><br />
+4️⃣ <strong>Add users: Type in the official username of App Dev</strong></p>
+<ul>
+  <li>For MAD I, type <strong>MADI-cs2003</strong></li>
+  <li>For MAD II, type <strong>MADII-cs2006</strong></li>
+</ul>
+
+<p>5️⃣ Send <strong>collaboration invites</strong> and wait for them to accept.</p>
+
+<hr />
+
+<h2 id="-now-youre-ready-to-work-with-github-in-vs-code--wsl">🎯 <strong>Now You’re Ready to Work with GitHub in VS Code + WSL!</strong></h2>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

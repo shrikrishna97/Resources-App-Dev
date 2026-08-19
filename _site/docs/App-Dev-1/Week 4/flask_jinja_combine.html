@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja_combine.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja_combine.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja_combine.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="introduction-to-flask">Introduction to Flask</h3>
+
+<p><strong>Flask</strong> is a Python framework used for building web applications. It allows you to easily create routes, handle requests, and render dynamic content using <strong>Jinja templates</strong>.</p>
+
+<hr />
+
+<h3 id="installing-flask">Installing Flask</h3>
+<p>To begin, install Flask using pip:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>Flask
+</code></pre></div></div>
+
+<h3 id="flask-application-overview">Flask Application Overview</h3>
+<p>The Flask app is created using the <code class="language-plaintext highlighter-rouge">Flask</code> class, which will serve as the core of your application:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app</code> is an instance of the <code class="language-plaintext highlighter-rouge">Flask</code> class. This instance is the application, which handles incoming web requests and serves responses.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Flask</code> constructor takes <code class="language-plaintext highlighter-rouge">__name__</code> as an argument to determine the location of the module.</li>
+</ul>
+
+<hr />
+
+<h3 id="folder-structure-for-a-flask-app">Folder Structure for a Flask App</h3>
+
+<p>To build a proper Flask app, it’s important to follow a specific folder structure. Below is the typical structure of a Flask project:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-flask-app/
+   ├── static/
+   │   └── css/
+   │       └── main.css
+   ├── templates/
+   │   ├── index.html
+   │   └── course.html
+   ├── hello.py
+   └── data.py
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Project Folder (my-flask-app/)</strong>: This is the main folder containing all files for the Flask application.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">static/</code> folder</strong>: Stores static files like CSS, JavaScript, and images.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">css/main.css</code> is stored in <code class="language-plaintext highlighter-rouge">static/css/</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">templates/</code> folder</strong>: Contains HTML files that serve as templates. In the example, it has <code class="language-plaintext highlighter-rouge">index.html</code> and <code class="language-plaintext highlighter-rouge">course.html</code>.</li>
+  <li><strong>Python files</strong>: Files like <code class="language-plaintext highlighter-rouge">hello.py</code> and <code class="language-plaintext highlighter-rouge">data.py</code> are placed directly in the project folder (outside <code class="language-plaintext highlighter-rouge">static</code> and <code class="language-plaintext highlighter-rouge">templates</code>).</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong>: The names of the folders <code class="language-plaintext highlighter-rouge">static</code> and <code class="language-plaintext highlighter-rouge">templates</code> are essential for Flask to locate and serve static assets and templates properly. The project folder can be named anything, but the structure inside it should remain consistent.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="creating-routes">Creating Routes</h3>
+
+<p>Routes in Flask define the URLs that users can access. Each route is associated with a function that determines the response for that URL.</p>
+
+<h4 id="home-route">Home Route</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>  <span class="c1"># http://127.0.0.1:5000/
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/home'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"&lt;h1&gt;My first Webpage with debug mode on&lt;/h1&gt;"</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@app.route('/')</code> and <code class="language-plaintext highlighter-rouge">@app.route('/home')</code> define two URLs that both map to the <code class="language-plaintext highlighter-rouge">home()</code> function.</li>
+  <li>When you navigate to <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/</code> or <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/home</code>, the <code class="language-plaintext highlighter-rouge">home()</code> function is triggered, returning a simple HTML message.</li>
+  <li>This route uses the <code class="language-plaintext highlighter-rouge">GET</code> method by default, which means it simply retrieves the resource (in this case, the HTML content).</li>
+</ul>
+
+<h4 id="custom-route-with-get-and-post-my_app">Custom Route with GET and POST: <code class="language-plaintext highlighter-rouge">/my_app</code></h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/my_app'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"GET"</span><span class="p">,</span> <span class="s">"POST"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">my_app</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">"POST"</span><span class="p">:</span>
+        <span class="n">form_data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"course"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"course.html"</span><span class="p">,</span> <span class="n">jinja</span><span class="o">=</span><span class="n">form_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"home.html"</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@app.route('/my_app', methods=["GET", "POST"])</code>: This route allows both <code class="language-plaintext highlighter-rouge">GET</code> and <code class="language-plaintext highlighter-rouge">POST</code> methods.
+    <ul>
+      <li><strong>GET Method</strong>: When the user accesses this URL directly, it will return the <code class="language-plaintext highlighter-rouge">home.html</code> template (if defined).</li>
+      <li><strong>POST Method</strong>: When a form is submitted to this URL, the <code class="language-plaintext highlighter-rouge">POST</code> method processes the form data.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">form_data = request.form.get("course")</code>: Retrieves form input with the name “course”.</li>
+          <li><code class="language-plaintext highlighter-rouge">render_template("course.html", jinja=form_data)</code>: Renders the <code class="language-plaintext highlighter-rouge">course.html</code> template and passes the variable <code class="language-plaintext highlighter-rouge">form_data</code> as <code class="language-plaintext highlighter-rouge">jinja</code> to be used in the template.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="second-route-second">Second Route: <code class="language-plaintext highlighter-rouge">/second</code></h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/second'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">second</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"home.html"</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>This route responds to <code class="language-plaintext highlighter-rouge">GET</code> requests by rendering the <code class="language-plaintext highlighter-rouge">home.html</code> template.</li>
+</ul>
+
+<hr />
+
+<h3 id="using-jinja-templates">Using Jinja Templates</h3>
+
+<p>Flask uses the <strong>Jinja2</strong> template engine, which allows for creating HTML templates that can dynamically render data. It helps avoid repetitive HTML coding and allows you to inject data directly from the Flask app into the templates.</p>
+
+<h4 id="example-basic-route-with-template">Example: Basic Route with Template</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;name&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Template (<code class="language-plaintext highlighter-rouge">index.html</code>)</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>Hello, {{ name }}!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Change the name in the <span class="nt">&lt;em&gt;</span>browser address bar<span class="nt">&lt;/em&gt;</span> and reload the page.<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="linking-static-files">Linking Static Files</h4>
+<p>To use assets like CSS in your templates, Flask provides the <code class="language-plaintext highlighter-rouge">url_for</code> function:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ url_for('static', filename='css/main.css') }}"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<h4 id="passing-variables-to-templates">Passing Variables to Templates</h4>
+<p>With <code class="language-plaintext highlighter-rouge">render_template()</code>, you can pass variables like strings, integers, lists, or dictionaries:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/president/&lt;int:ord&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">president</span><span class="p">(</span><span class="nb">ord</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'course.html'</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres_dict</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="nb">ord</span><span class="p">,</span> <span class="n">the_title</span><span class="o">=</span><span class="n">pres_dict</span><span class="p">[</span><span class="s">'President'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="running-the-app">Running the App</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app.run(debug=True)</code>: Starts the Flask development server. The <code class="language-plaintext highlighter-rouge">debug=True</code> argument enables:
+    <ul>
+      <li>Automatic reloading when code changes.</li>
+      <li>More detailed error messages, useful during development.</li>
+    </ul>
+  </li>
+  <li><strong>Using the <code class="language-plaintext highlighter-rouge">--app</code> Option</strong>:
+    <ul>
+      <li>You can also run your app using the <code class="language-plaintext highlighter-rouge">--app</code> option, which is particularly useful for Flask versions 2.2 and later:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask <span class="nt">--app</span> hello run <span class="nt">--debug</span>
+</code></pre></div>        </div>
+      </li>
+      <li>The <code class="language-plaintext highlighter-rouge">--debug</code> flag enables the debug mode, which provides detailed error messages and automatically reloads the server when code changes are made. This is especially helpful during development.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="explanation-of-key-concepts">Explanation of Key Concepts</h3>
+
+<ul>
+  <li><strong>GET vs. POST</strong>:
+    <ul>
+      <li><strong>GET</strong>: Retrieves information from the server. It is the default method for Flask routes.</li>
+      <li><strong>POST</strong>: Sends data to the server, often used for submitting forms.</li>
+    </ul>
+  </li>
+  <li><strong>Templates</strong>:
+    <ul>
+      <li>Templates like <code class="language-plaintext highlighter-rouge">home.html</code> and <code class="language-plaintext highlighter-rouge">course.html</code> are used to render dynamic content using Jinja.</li>
+      <li><code class="language-plaintext highlighter-rouge">render_template()</code> allows data (e.g., <code class="language-plaintext highlighter-rouge">form_data</code>) to be passed to HTML templates, where it can be displayed using <code class="language-plaintext highlighter-rouge">{{ jinja }}</code>.</li>
+    </ul>
+  </li>
+  <li><strong>The <code class="language-plaintext highlighter-rouge">__name__</code> Variable</strong>:
+    <ul>
+      <li>In Python, <code class="language-plaintext highlighter-rouge">__name__</code> is a special built-in variable that represents the name of the current module.</li>
+      <li>When a Python script is run directly, the <code class="language-plaintext highlighter-rouge">__name__</code> variable is set to <code class="language-plaintext highlighter-rouge">"__main__"</code>.</li>
+      <li>When a script is imported as a module in another script, <code class="language-plaintext highlighter-rouge">__name__</code> is set to the name of that module.</li>
+    </ul>
+  </li>
+  <li><strong>Using <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code></strong>:
+    <ul>
+      <li>This construct is used to determine if a script is being run directly or being imported:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>        </div>
+      </li>
+      <li>If the script is executed directly, the code inside this block will run (like starting the Flask application).</li>
+      <li>If the script is imported into another module, the code inside this block will not run. This is useful for writing code that should only execute when the file is run as the main program.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="summary">Summary</h3>
+<ul>
+  <li><strong>Flask</strong> allows you to build web applications with minimal setup.</li>
+  <li><strong>Routes</strong> define how different URLs are handled.</li>
+  <li><strong>Jinja templates</strong> are used to render dynamic HTML content.</li>
+  <li>Using <strong><code class="language-plaintext highlighter-rouge">app.run(debug=True)</code></strong> enables a development mode that aids in identifying errors.</li>
+  <li><strong>Folder Structure</strong> is important for managing assets and templates.</li>
+  <li>With <strong><code class="language-plaintext highlighter-rouge">GET</code> and <code class="language-plaintext highlighter-rouge">POST</code> methods</strong>, you can control how data is retrieved or submitted through web forms.</li>
+</ul>
+
+<p>By following these guidelines, you can build a Flask app that is well-organized and capable of serving dynamic web pages using Jinja templates.</p>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

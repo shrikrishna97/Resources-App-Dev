@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-6/VueRouter_CDN.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-6/VueRouter_CDN.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-6/VueRouter_CDN.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="basic-navigation-and-introduction-to-vue-router-vue-2-cdn">Basic Navigation and Introduction to Vue Router (Vue 2 CDN)</h1>
+
+<blockquote>
+  <p><strong>Goal:</strong> Learn how to navigate between pages in a Vue application using <strong>Vue Router</strong> and reusable <strong>Vue Components</strong>.</p>
+</blockquote>
+
+<hr />
+
+<h1 id="1-what-is-navigation">1. What is Navigation?</h1>
+
+<p>Navigation means moving from one page (or view) to another without reloading the entire website.</p>
+
+<p>Traditional websites:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Home → Browser reloads → About → Browser reloads
+</code></pre></div></div>
+
+<p>Vue Single Page Application (SPA):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Home → About → Contact
+(No page reload)
+</code></pre></div></div>
+
+<p>Vue Router handles this navigation.</p>
+
+<hr />
+
+<h1 id="2-what-is-vue-router">2. What is Vue Router?</h1>
+
+<p><strong>Vue Router</strong> is the official routing library for Vue.js.</p>
+
+<p>It allows us to:</p>
+
+<ul>
+  <li>Navigate between pages</li>
+  <li>Create Single Page Applications (SPA)</li>
+  <li>Display different components based on URL</li>
+  <li>Manage browser history</li>
+</ul>
+
+<p>Example URLs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/about
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/contact
+</code></pre></div></div>
+
+<p>Each URL displays a different Vue component.</p>
+
+<hr />
+
+<h1 id="3-include-vue-router-cdn">3. Include Vue Router (CDN)</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/vue-router@3/dist/vue-router.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="4-what-is-a-component">4. What is a Component?</h1>
+
+<p>A component is a reusable piece of UI.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>Navbar</li>
+  <li>Login Form</li>
+  <li>Dashboard</li>
+  <li>Profile Card</li>
+  <li>Footer</li>
+</ul>
+
+<p>Instead of writing everything inside one page, we divide the application into small reusable components.</p>
+
+<p>Example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Home</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">`
+        &lt;div&gt;
+            &lt;h2&gt;Home Page&lt;/h2&gt;
+        &lt;/div&gt;
+    `</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="5-creating-multiple-components">5. Creating Multiple Components</h1>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Home</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;Home Page&lt;/h2&gt;</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">About</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;About Page&lt;/h2&gt;</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Contact</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;Contact Page&lt;/h2&gt;</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Each component represents one page.</p>
+
+<hr />
+
+<h1 id="6-creating-routes">6. Creating Routes</h1>
+
+<p>Routes connect URLs to components.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">Home</span>
+    <span class="p">},</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/about</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">About</span>
+    <span class="p">},</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/contact</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">Contact</span>
+    <span class="p">}</span>
+
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Meaning:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/          → Home Component
+
+/about     → About Component
+
+/contact   → Contact Component
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="7-creating-router-object">7. Creating Router Object</h1>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+
+    <span class="na">routes</span><span class="p">:</span> <span class="nx">routes</span>
+
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+
+    <span class="nx">routes</span>
+
+<span class="p">})</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="8-router-view">8. Router View</h1>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;router-view&gt;</code> is the place where the current page (component) is displayed.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;router-view&gt;&lt;/router-view&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>If URL is</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/
+</code></pre></div></div>
+
+<p>Home component appears.</p>
+
+<p>If URL is</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/about
+</code></pre></div></div>
+
+<p>About component appears.</p>
+
+<hr />
+
+<h1 id="9-router-link">9. Router Link</h1>
+
+<p>Instead of using <code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> tags, Vue Router provides <code class="language-plaintext highlighter-rouge">&lt;router-link&gt;</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/router-link&gt;</span>
+
+<span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/router-link&gt;</span>
+
+<span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/router-link&gt;</span>
+</code></pre></div></div>
+
+<p>Generated HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>But Vue Router prevents page reload.</p>
+
+<hr />
+
+<h1 id="10-complete-example">10. Complete Example</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/vue-router@3/dist/vue-router.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;h1&gt;</span>Vue Router Demo<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/router-link&gt;</span>
+
+    |
+
+    <span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/router-link&gt;</span>
+
+    |
+
+    <span class="nt">&lt;router-link</span> <span class="na">to=</span><span class="s">"/contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/router-link&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+
+    <span class="nt">&lt;router-view&gt;&lt;/router-view&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+
+<span class="kd">const</span> <span class="nx">Home</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;Welcome to Home Page&lt;/h2&gt;</span><span class="dl">"</span>
+
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">About</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;About Us&lt;/h2&gt;</span><span class="dl">"</span>
+
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Contact</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;h2&gt;Contact Page&lt;/h2&gt;</span><span class="dl">"</span>
+
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">Home</span>
+    <span class="p">},</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/about</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">About</span>
+    <span class="p">},</span>
+
+    <span class="p">{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/contact</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">component</span><span class="p">:</span> <span class="nx">Contact</span>
+    <span class="p">}</span>
+
+<span class="p">]</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+
+    <span class="nx">routes</span>
+
+<span class="p">})</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+
+    <span class="na">el</span><span class="p">:</span><span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+
+    <span class="nx">router</span>
+
+<span class="p">})</span>
+
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="11-navigation-flow">11. Navigation Flow</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Browser URL
+      │
+      ▼
+Vue Router
+      │
+      ▼
+Matches Route
+      │
+      ▼
+Loads Component
+      │
+      ▼
+Displays inside &lt;router-view&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="12-summary">12. Summary</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Component</td>
+      <td>Reusable Vue UI block</td>
+    </tr>
+    <tr>
+      <td>Vue Router</td>
+      <td>Handles navigation between pages</td>
+    </tr>
+    <tr>
+      <td>Route</td>
+      <td>Maps a URL to a component</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">router-link</code></td>
+      <td>Creates navigation links without page reload</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">router-view</code></td>
+      <td>Displays the matched component</td>
+    </tr>
+    <tr>
+      <td>SPA</td>
+      <td>Single Page Application where navigation happens without refreshing the page</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="key-points-to-remember">Key Points to Remember</h1>
+
+<ul>
+  <li>Vue Router is the official routing library for Vue.js.</li>
+  <li>Components help organize the application into reusable pieces.</li>
+  <li>Each route maps a URL to a specific component.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">&lt;router-link&gt;</code> instead of <code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> for navigation.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;router-view&gt;</code> is where the selected component is rendered.</li>
+  <li>Vue Router enables <strong>Single Page Application (SPA)</strong> behavior by changing views without reloading the entire page.</li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

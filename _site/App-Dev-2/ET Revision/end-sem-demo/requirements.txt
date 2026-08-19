@@ -1,0 +1,4 @@
+Flask==3.0.3
+Flask-Caching==2.3.0
+Flask-Cors==4.0.1
+Flask-JWT-Extended==4.6.0

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/ET%20Revision/end-sem-notes.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/ET%20Revision/end-sem-notes.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/ET%20Revision/end-sem-notes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="mad-2-recap-end-sem--week-7-12">MAD-2 Recap End-Sem ( Week 7-12)</h1>
+
+<hr />
+
+<h2 id="1-vuex-store">1. Vuex Store</h2>
+
+<p>Vuex is a <strong>central state management</strong> library for Vue 2. Instead of passing data between components manually, all shared state lives in one store.</p>
+
+<h3 id="4-core-concepts-revisited-with-full-example">4 Core Concepts (Revisited with Full Example)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Role</th>
+      <th>Rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">state</code></td>
+      <td>Holds raw data</td>
+      <td>Never mutate directly</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getters</code></td>
+      <td>Derived/computed values from state</td>
+      <td>Return a value, no side effects</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mutations</code></td>
+      <td>The ONLY way to change state</td>
+      <td>Must be synchronous</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actions</code></td>
+      <td>Async logic → commits mutations</td>
+      <td>Use for API calls</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Count: {{ $store.state.count }}<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Double: {{ $store.getters.doubleCount }}<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"$store.commit('INCREMENT')"</span><span class="nt">&gt;</span>+1 (mutation)<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"$store.dispatch('delayedIncrement')"</span><span class="nt">&gt;</span>+1 after 1s (action)<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;hr&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Users: {{ $store.state.users.join(', ') || 'None loaded' }}<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"$store.dispatch('loadUsers')"</span><span class="nt">&gt;</span>Load Users (async action)<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+  <span class="na">state</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">count</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">users</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="p">},</span>
+
+  <span class="na">getters</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Like a computed property — auto-recalculates when state changes</span>
+    <span class="na">doubleCount</span><span class="p">:</span> <span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">*</span> <span class="mi">2</span>
+  <span class="p">},</span>
+
+  <span class="na">mutations</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Direct state change — MUST be synchronous</span>
+    <span class="nx">INCREMENT</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">SET_USERS</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">users</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">state</span><span class="p">.</span><span class="nx">users</span> <span class="o">=</span> <span class="nx">users</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="na">actions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Can be async — calls commit to change state</span>
+    <span class="nx">delayedIncrement</span><span class="p">({</span> <span class="nx">commit</span> <span class="p">})</span> <span class="p">{</span>
+      <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">commit</span><span class="p">(</span><span class="dl">'</span><span class="s1">INCREMENT</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">loadUsers</span><span class="p">({</span> <span class="nx">commit</span> <span class="p">})</span> <span class="p">{</span>
+      <span class="c1">// Simulating an API call</span>
+      <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([</span><span class="dl">'</span><span class="s1">Alice</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Carol</span><span class="dl">'</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">commit</span><span class="p">(</span><span class="dl">'</span><span class="s1">SET_USERS</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">store</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<h3 id="data-flow-in-vuex">Data Flow in Vuex</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Component                  Store
+─────────                  ─────
+this.$store.dispatch()  →  Action  (async, can call API)
+                               ↓
+this.$store.commit()    →  Mutation  (sync, changes state)
+                               ↓
+                           State  (single source of truth)
+                               ↓
+this.$store.state.x     ←  Component reads updated state
+this.$store.getters.x   ←  Component reads derived values
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> Never change <code class="language-plaintext highlighter-rouge">state</code> directly from a component. Always go <code class="language-plaintext highlighter-rouge">dispatch → action → commit → mutation → state</code>.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="2-jwt-vs-session-based-authentication">2. JWT vs Session-Based Authentication</h2>
+
+<p>Both are ways to identify a logged-in user. They differ in <strong>where the user’s identity is stored</strong>.</p>
+
+<h3 id="side-by-side-comparison">Side-by-Side Comparison</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>JWT (Stateless)</th>
+      <th>Session (Stateful)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Where identity stored</td>
+      <td>Inside the token (client)</td>
+      <td>Server-side (DB/memory)</td>
+    </tr>
+    <tr>
+      <td>Server needs to store anything?</td>
+      <td>No</td>
+      <td>Yes (session table/store)</td>
+    </tr>
+    <tr>
+      <td>How client sends it</td>
+      <td><code class="language-plaintext highlighter-rouge">Authorization: Bearer &lt;token&gt;</code> header</td>
+      <td>Cookie with session ID</td>
+    </tr>
+    <tr>
+      <td>Logout</td>
+      <td>Hard (token valid until expiry)</td>
+      <td>Easy (delete session from server)</td>
+    </tr>
+    <tr>
+      <td>Scalability</td>
+      <td>Great (no shared state between servers)</td>
+      <td>Harder (all servers must share session store)</td>
+    </tr>
+    <tr>
+      <td>Token readable by client?</td>
+      <td>Yes (payload is Base64)</td>
+      <td>No (just an opaque ID)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="jwt-flow">JWT Flow</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) POST /login  →  Server checks credentials
+2) Server creates JWT: { user_id: 5, role: "admin", exp: ... }
+3) Client stores JWT (localStorage or httpOnly cookie)
+4) Every request: Authorization: Bearer eyJ...
+5) Server verifies signature — no DB lookup needed
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Flask-JWT-Extended example (backend)
+</span><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">create_access_token</span><span class="p">,</span> <span class="n">jwt_required</span><span class="p">,</span> <span class="n">get_jwt_identity</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">'email'</span><span class="p">]).</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="p">.</span><span class="n">check_password</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">'password'</span><span class="p">]):</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">access_token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Bad credentials"</span><span class="p">),</span> <span class="mi">401</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/profile'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">():</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>   <span class="c1"># decoded from token — no DB hit
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="session-flow">Session Flow</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) POST /login  →  Server checks credentials
+2) Server creates session record: { session_id: "abc123", user_id: 5 }
+3) Server sends cookie: Set-Cookie: session=abc123
+4) Browser sends cookie automatically on every request
+5) Server looks up session_id in DB/Redis to get user_id
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Flask session example (backend)
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">session</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">'email'</span><span class="p">]).</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="p">.</span><span class="n">check_password</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">'password'</span><span class="p">]):</span>
+        <span class="n">session</span><span class="p">[</span><span class="s">'user_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span>   <span class="c1"># stored server-side
+</span>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Logged in"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Bad credentials"</span><span class="p">),</span> <span class="mi">401</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/profile'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s">'user_id'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Not logged in"</span><span class="p">),</span> <span class="mi">401</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s">'user_id'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="when-to-use-which">When to Use Which</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JWT       → APIs, mobile apps, microservices, multiple servers
+Session   → Traditional web apps, when instant logout is critical
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> JWT lives on the client — the server cannot invalidate it early. Session lives on the server — you can kill it instantly.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="3-flask-security-401-unauthorized-vs-403-forbidden">3. Flask-Security: 401 Unauthorized vs 403 Forbidden</h2>
+
+<p>These two HTTP status codes are often confused. They come from different problems.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Meaning</th>
+      <th>Real-world analogy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">401 Unauthorized</code></td>
+      <td>Not authenticated</td>
+      <td>Server does not know who you are</td>
+      <td>Trying to enter a building with no ID badge</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">403 Forbidden</code></td>
+      <td>Not authorized</td>
+      <td>Server knows who you are but you lack permission</td>
+      <td>Showing your ID but you don’t have clearance for that room</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="simple-rule">Simple Rule</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>401  →  "Who are you? Please log in first."
+403  →  "I know who you are, but you can't do this."
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">JWTManager</span><span class="p">,</span> <span class="n">jwt_required</span><span class="p">,</span> <span class="n">get_jwt_identity</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'JWT_SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'super-secret'</span>
+<span class="n">jwt</span> <span class="o">=</span> <span class="n">JWTManager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Simulated user roles
+</span><span class="n">USERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Alice'</span><span class="p">,</span> <span class="s">'role'</span><span class="p">:</span> <span class="s">'user'</span><span class="p">},</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Bob'</span><span class="p">,</span>   <span class="s">'role'</span><span class="p">:</span> <span class="s">'admin'</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/dashboard'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>   <span class="c1"># no valid token → 401 Unauthorized
+</span><span class="k">def</span> <span class="nf">dashboard</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Welcome to dashboard"</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/admin'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">admin_panel</span><span class="p">():</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">USERS</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="n">user</span><span class="p">[</span><span class="s">'role'</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'admin'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"You do not have permission"</span><span class="p">),</span> <span class="mi">403</span>  <span class="c1"># known user, wrong role
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Welcome, Admin"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="what-happens-without-a-token-flask-jwt-extended-default">What Happens Without a Token (Flask-JWT-Extended default)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /dashboard
+  No Authorization header → flask-jwt-extended raises 401 automatically
+  Response: { "msg": "Missing Authorization Header" }
+
+GET /admin
+  Valid token (user Alice, role=user) → passes @jwt_required
+  But role check fails → our code returns 403
+  Response: { "msg": "You do not have permission" }
+</code></pre></div></div>
+
+<h3 id="flask-security-specific-behavior">Flask-Security Specific Behavior</h3>
+
+<p>Flask-Security (the <code class="language-plaintext highlighter-rouge">flask-security-too</code> library) uses these codes precisely:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@auth_required()   →  missing/invalid token/session → 401
+@roles_required('admin')  →  logged in but wrong role → 403
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Exam tip:</strong> 401 means “go log in”. 403 means “you are logged in but still blocked”. The fix for 401 is authentication; the fix for 403 is authorization (changing permissions).</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4-graphql-how-it-works">4. GraphQL: How It Works</h2>
+
+<p>GraphQL is a <strong>query language for APIs</strong>. Instead of multiple REST endpoints, you have one endpoint where the client asks for exactly what it needs.</p>
+
+<h3 id="rest-vs-graphql">REST vs GraphQL</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REST (multiple endpoints, fixed response shape):
+  GET /users/1        →  { id, name, email, address, phone, ... }
+  GET /users/1/posts  →  [ { id, title, body, ... }, ... ]
+
+GraphQL (one endpoint, client controls shape):
+  POST /graphql  with body:
+  {
+    user(id: 1) {
+      name
+      posts {
+        title
+      }
+    }
+  }
+  Response:
+  {
+    "data": {
+      "user": {
+        "name": "Alice",
+        "posts": [{ "title": "Hello World" }]
+      }
+    }
+  }
+</code></pre></div></div>
+
+<h3 id="3-operation-types">3 Operation Types</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Purpose</th>
+      <th>Like REST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">query</code></td>
+      <td>Read data</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mutation</code></td>
+      <td>Create / Update / Delete</td>
+      <td>POST / PUT / DELETE</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">subscription</code></td>
+      <td>Real-time stream</td>
+      <td>WebSocket</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="how-graphql-resolves-a-query-step-by-step">How GraphQL Resolves a Query (Step by Step)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) Client sends POST /graphql with a query string
+2) GraphQL parser reads the query and builds an execution tree
+3) For each field in the query, GraphQL calls the matching resolver function
+4) Resolver fetches data (DB, API, etc.) for that field
+5) Only the requested fields are returned — nothing extra
+6) Response is always JSON: { "data": { ... }, "errors": [...] }
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> One endpoint, client controls shape, resolvers fetch data field by field.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="5-git-branch-creation-and-merge">5. Git: Branch Creation and Merge</h2>
+
+<p>A <strong>branch</strong> is an independent line of development. You create one to work on a feature without touching the main code.</p>
+
+<h3 id="common-commands">Common Commands</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># See all branches</span>
+git branch
+
+<span class="c"># Create a new branch</span>
+git branch feature/login
+
+<span class="c"># Switch to it</span>
+git checkout feature/login
+
+<span class="c"># Create AND switch in one step (modern Git)</span>
+git checkout <span class="nt">-b</span> feature/login
+
+<span class="c"># Make changes, then commit</span>
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add login page"</span>
+
+<span class="c"># Go back to main and merge</span>
+git checkout main
+git merge feature/login
+
+<span class="c"># Delete branch after merge</span>
+git branch <span class="nt">-d</span> feature/login
+</code></pre></div></div>
+
+<h3 id="what-happens-during-a-merge">What Happens During a Merge</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Before merge:
+
+main:    A --- B --- C
+                      \
+feature:               D --- E
+
+After: git checkout main &amp;&amp; git merge feature/login
+
+main:    A --- B --- C ----------- F  (merge commit)
+                      \           /
+feature:               D --- E --
+</code></pre></div></div>
+
+<h3 id="fast-forward-vs-merge-commit">Fast-Forward vs Merge Commit</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Fast-forward (no diverged history):
+  main:    A --- B
+  feature:         C --- D   ← feature is ahead of main
+  After merge: main just moves pointer → A --- B --- C --- D
+  No merge commit created.
+
+Merge commit (histories diverged):
+  main:    A --- B --- C
+  feature:       D --- E
+  After merge: creates new commit F that joins both lines
+</code></pre></div></div>
+
+<h3 id="merge-conflict--what-it-looks-like">Merge Conflict — What It Looks Like</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+  line from main branch
+=======
+  line from feature branch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/login
+</code></pre></div></div>
+
+<p>Fix: edit the file to keep the right version, then:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add conflicted-file.py
+git commit   <span class="c"># completes the merge</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> Branch → commit → checkout main → merge → delete branch. Always pull latest main before merging to reduce conflicts.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="6-server-sent-events-sse-theory">6. Server-Sent Events (SSE): Theory</h2>
+
+<p>SSE is a browser technology where the <strong>server continuously pushes one-way updates</strong> to the client over a single long-lived HTTP connection.</p>
+
+<h3 id="sse-in-one-line">SSE in One Line</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSE = Server -&gt; Client streaming over HTTP (text/event-stream), one-way only.
+</code></pre></div></div>
+
+<h3 id="how-sse-works">How SSE Works</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) Client opens EventSource connection to an SSE endpoint (e.g., /events)
+2) Server keeps the HTTP response open with Content-Type: text/event-stream
+3) Server sends events in chunks as new data arrives
+4) Browser receives each event immediately without polling
+5) If disconnected, browser auto-reconnects by default
+</code></pre></div></div>
+
+<h3 id="sse-message-format">SSE Message Format</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>event: notification
+id: 101
+data: {"msg":"New update available"}
+
+event: score
+data: Team A 2 - 1 Team B
+
+</code></pre></div></div>
+
+<p>Each event ends with a blank line, and <code class="language-plaintext highlighter-rouge">data:</code> can appear multiple times for multi-line payloads.</p>
+
+<h3 id="sse-vs-websocket">SSE vs WebSocket</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>SSE</th>
+      <th>WebSocket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Direction</td>
+      <td>One-way (server -&gt; client)</td>
+      <td>Two-way (client &lt;-&gt; server)</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>Plain HTTP</td>
+      <td>HTTP upgrade to WS</td>
+    </tr>
+    <tr>
+      <td>Reconnect</td>
+      <td>Built-in auto-reconnect</td>
+      <td>Manual reconnect logic usually needed</td>
+    </tr>
+    <tr>
+      <td>Good for</td>
+      <td>Notifications, live dashboards, logs</td>
+      <td>Chats, games, collaborative apps</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> Use SSE when client only needs live updates from server. Use WebSocket when both sides need to send frequent real-time messages.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-websocket-initial-handshake">7. WebSocket: Initial Handshake</h2>
+
+<p>WebSocket gives a <strong>persistent, full-duplex</strong> connection between client and server. The connection starts as an HTTP request, then <strong>upgrades</strong> to WebSocket.</p>
+
+<h3 id="why-websocket-instead-of-http">Why WebSocket Instead of HTTP?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP:    Client → Request → Server → Response → Connection closed
+         (must re-open for every message)
+
+WebSocket: Client ←→ Server (one open connection, both can send any time)
+</code></pre></div></div>
+
+<h3 id="the-handshake-step-by-step">The Handshake (Step by Step)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) Client sends HTTP GET with upgrade headers:
+
+   GET /chat HTTP/1.1
+   Host: example.com
+   Upgrade: websocket
+   Connection: Upgrade
+   Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+   Sec-WebSocket-Version: 13
+
+2) Server responds with 101 Switching Protocols:
+
+   HTTP/1.1 101 Switching Protocols
+   Upgrade: websocket
+   Connection: Upgrade
+   Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+
+3) After 101, HTTP is done. The TCP connection stays open as WebSocket.
+   Both sides can now send/receive frames directly.
+</code></pre></div></div>
+
+<h3 id="key-headers-explained">Key Headers Explained</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Header</th>
+      <th>Who sends it</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Upgrade: websocket</code></td>
+      <td>Client</td>
+      <td>Request protocol switch</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Connection: Upgrade</code></td>
+      <td>Client</td>
+      <td>Tell server this is an upgrade request</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Sec-WebSocket-Key</code></td>
+      <td>Client</td>
+      <td>Random Base64 nonce for handshake verification</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">101 Switching Protocols</code></td>
+      <td>Server</td>
+      <td>Handshake accepted</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Sec-WebSocket-Accept</code></td>
+      <td>Server</td>
+      <td>Derived from client’s key (proves server handled it)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> WebSocket starts as HTTP then upgrades with a 101 response. After that, it is a raw TCP pipe — no headers, no request-response, just frames going both ways.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="8-flask-caching-cachememoize">8. Flask Caching: <code class="language-plaintext highlighter-rouge">@cache.memoize()</code></h2>
+
+<p>Caching stores the result of an expensive function call so it does not have to run again for the same inputs.</p>
+
+<p><strong>One-line setup note:</strong> <code class="language-plaintext highlighter-rouge">SimpleCache</code> is best for local/single-process development, while <code class="language-plaintext highlighter-rouge">RedisCache</code> is preferred for production or multi-instance deployments.</p>
+
+<h3 id="cachecached-vs-cachememoize"><code class="language-plaintext highlighter-rouge">@cache.cached</code> vs <code class="language-plaintext highlighter-rouge">@cache.memoize</code></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Decorator</th>
+      <th>Caches by</th>
+      <th>Use for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@cache.cached(timeout=60)</code></td>
+      <td>URL / fixed key</td>
+      <td>Views with no dynamic argument</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@cache.memoize(timeout=60)</code></td>
+      <td>Function arguments</td>
+      <td>Functions called with different parameters</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_caching</span> <span class="kn">import</span> <span class="n">Cache</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Simple in-memory cache (use Redis in production)
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'CACHE_TYPE'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'SimpleCache'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'CACHE_DEFAULT_TIMEOUT'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">Cache</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/home'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"home() actually ran"</span><span class="p">)</span>   <span class="c1"># only prints on first call, then cached
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Home page data"</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_user_report</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Computing report for user=</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s">, year=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="c1"># Expensive DB query / calculation here
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s">'user_id'</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span> <span class="s">'year'</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span> <span class="s">'sales'</span><span class="p">:</span> <span class="n">user_id</span> <span class="o">*</span> <span class="n">year</span><span class="p">}</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/report/&lt;int:user_id&gt;/&lt;int:year&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">get_user_report</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>  <span class="c1"># cached per (user_id, year) combo
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Clear a memoized result (e.g. after data changes)
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/clear-report/&lt;int:user_id&gt;/&lt;int:year&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clear_report</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="n">cache</span><span class="p">.</span><span class="n">delete_memoized</span><span class="p">(</span><span class="n">get_user_report</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Cache cleared"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="what-gets-cached-and-when">What Gets Cached and When</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First call:  get_user_report(1, 2024)
+  → print runs, result computed, stored in cache under key (1, 2024)
+
+Second call: get_user_report(1, 2024)
+  → print does NOT run, cached result returned immediately
+
+Third call:  get_user_report(2, 2024)   ← different argument!
+  → print runs again, new result stored under key (2, 2024)
+</code></pre></div></div>
+
+<h3 id="caching-with-redis-production-setup">Caching with Redis (Production Setup)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'CACHE_TYPE'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'RedisCache'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'CACHE_REDIS_URL'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'redis://localhost:6379/0'</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> Use <code class="language-plaintext highlighter-rouge">@cache.cached</code> for whole-page or view caching. Use <code class="language-plaintext highlighter-rouge">@cache.memoize</code> when the same function is called with different arguments and each combination needs its own cached result.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="9-cors-frontend-to-backend-access-control">9. CORS: Frontend to Backend Access Control</h2>
+
+<p><strong>CORS</strong> (Cross-Origin Resource Sharing) — browser blocks requests from one origin to another unless the <strong>server explicitly allows it</strong>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Origin = protocol + domain + port
+http://localhost:5173  ≠  http://localhost:5000   ← DIFFERENT (port differs)
+https://myapp.com      ≠  https://api.myapp.com   ← DIFFERENT (subdomain differs)
+</code></pre></div></div>
+
+<h3 id="simple-vs-preflight-request">Simple vs Preflight Request</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Simple (GET / basic POST):   Browser sends request → checks response headers
+Preflight (PUT/DELETE/custom headers): Browser sends OPTIONS first → then actual request
+</code></pre></div></div>
+
+<h3 id="flask-cors-setup">Flask-CORS Setup</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>   <span class="c1"># dev only — allows ALL origins
+</span>
+<span class="c1"># Production: restrict to specific origin
+</span><span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="p">{</span><span class="sa">r</span><span class="s">"/api/*"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"origins"</span><span class="p">:</span> <span class="p">[</span><span class="s">"http://localhost:5173"</span><span class="p">],</span>
+    <span class="s">"methods"</span><span class="p">:</span> <span class="p">[</span><span class="s">"GET"</span><span class="p">,</span> <span class="s">"POST"</span><span class="p">,</span> <span class="s">"PUT"</span><span class="p">,</span> <span class="s">"DELETE"</span><span class="p">],</span>
+    <span class="s">"allow_headers"</span><span class="p">:</span> <span class="p">[</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"Authorization"</span><span class="p">]</span>
+<span class="p">}})</span>
+</code></pre></div></div>
+
+<h3 id="manual-response-with-cors-header--status-code">Manual Response with CORS Header + Status Code</h3>
+
+<p>If not using flask-cors, you can set the header directly on any response:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">make_response</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s">"Hello"</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>   <span class="c1"># 200 = status code
+</span>    <span class="n">resp</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Access-Control-Allow-Origin'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'http://localhost:5173'</span>
+    <span class="k">return</span> <span class="n">resp</span>
+
+<span class="c1"># Inline: return (body, status_code, headers_dict) directly — no make_response needed
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/hello'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Hello"</span><span class="p">),</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s">'Access-Control-Allow-Origin'</span><span class="p">:</span> <span class="s">'http://localhost:5173'</span><span class="p">}</span>
+
+<span class="c1"># For preflight OPTIONS:
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'OPTIONS'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">preflight</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="mi">204</span><span class="p">)</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Access-Control-Allow-Origin'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'http://localhost:5173'</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Access-Control-Allow-Methods'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'GET, POST'</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Access-Control-Allow-Headers'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Content-Type, Authorization'</span>
+    <span class="k">return</span> <span class="n">resp</span>
+</code></pre></div></div>
+
+<h3 id="key-response-headers">Key Response Headers</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Access-Control-Allow-Origin: http://localhost:5173   ← who is allowed
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE ← what methods
+Access-Control-Allow-Headers: Content-Type, Authorization ← what headers
+</code></pre></div></div>
+
+<h3 id="common-mistakes">Common Mistakes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Cause</th>
+      <th>Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“Blocked by CORS policy”</td>
+      <td>No CORS headers on backend</td>
+      <td>Add flask-cors or set headers manually</td>
+    </tr>
+    <tr>
+      <td>Still blocked after adding CORS</td>
+      <td><code class="language-plaintext highlighter-rouge">Authorization</code> header triggers preflight</td>
+      <td>Add <code class="language-plaintext highlighter-rouge">"Authorization"</code> to <code class="language-plaintext highlighter-rouge">allow_headers</code></td>
+    </tr>
+    <tr>
+      <td>Works dev, fails prod</td>
+      <td><code class="language-plaintext highlighter-rouge">CORS(app)</code> allows all in dev</td>
+      <td>Set exact origin in production config</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Quick rule:</strong> CORS is enforced by the <strong>browser</strong>, not the server. The server just adds headers to say “this origin is allowed”. Backend-to-backend calls are never blocked by CORS.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="10-cookies-use-cases">10. Cookies: Use Cases</h2>
+
+<p>A <strong>cookie</strong> is a small key-value string stored in the browser and <strong>automatically sent</strong> with every HTTP request to the matching domain.</p>
+
+<h3 id="cookie-vs-localstorage-vs-sessionstorage">Cookie vs localStorage vs sessionStorage</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Cookie</th>
+      <th>localStorage</th>
+      <th>sessionStorage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sent with requests?</td>
+      <td>Yes (automatic)</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>JS accessible?</td>
+      <td>Yes (unless <code class="language-plaintext highlighter-rouge">HttpOnly</code>)</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Expiry</td>
+      <td>Set by server</td>
+      <td>Never</td>
+      <td>Window close</td>
+    </tr>
+    <tr>
+      <td>Size limit</td>
+      <td>~4 KB</td>
+      <td>~5 MB</td>
+      <td>~5 MB</td>
+    </tr>
+    <tr>
+      <td>Best for</td>
+      <td>Auth sessions, tracking</td>
+      <td>Preferences, cached data</td>
+      <td>Temp form data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="flow-set--store--send--read">Flow: Set → Store → Send → Read</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Server response:  Set-Cookie: session_id=abc123; HttpOnly; Secure; SameSite=Lax
+Browser stores it, then on every request:
+Request header:   Cookie: session_id=abc123
+</code></pre></div></div>
+
+<h3 id="flask-set--read--delete">Flask: Set / Read / Delete</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">make_response</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/set-cookie'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">set_cookie</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Cookie set"</span><span class="p">))</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">'user_pref'</span><span class="p">,</span> <span class="s">'dark_mode'</span><span class="p">,</span>
+        <span class="n">max_age</span><span class="o">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># 7 days
+</span>        <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>       <span class="c1"># JS cannot read → blocks XSS theft
+</span>        <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>         <span class="c1"># HTTPS only
+</span>        <span class="n">samesite</span><span class="o">=</span><span class="s">'Lax'</span>       <span class="c1"># CSRF protection
+</span>    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">resp</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/read-cookie'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_cookie</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">preference</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'user_pref'</span><span class="p">,</span> <span class="s">'light_mode'</span><span class="p">))</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/delete-cookie'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">delete_cookie</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s">"Deleted"</span><span class="p">))</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">delete_cookie</span><span class="p">(</span><span class="s">'user_pref'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resp</span>
+</code></pre></div></div>
+
+<h3 id="key-cookie-flags">Key Cookie Flags</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Effect</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HttpOnly</code></td>
+      <td>JS cannot read it</td>
+      <td>Blocks XSS token theft</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Secure</code></td>
+      <td>HTTPS only</td>
+      <td>Prevents interception</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SameSite=Strict</code></td>
+      <td>Never sent cross-site</td>
+      <td>Strong CSRF protection</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SameSite=Lax</code></td>
+      <td>Top-level nav only</td>
+      <td>Good default</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SameSite=None</code></td>
+      <td>Always cross-site</td>
+      <td>Embedded content (needs <code class="language-plaintext highlighter-rouge">Secure</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Max-Age</code> / <code class="language-plaintext highlighter-rouge">Expires</code></td>
+      <td>When it dies</td>
+      <td>No value = session cookie</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Domain</code></td>
+      <td>Who gets it</td>
+      <td><code class="language-plaintext highlighter-rouge">.example.com</code> = all subdomains</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="vue2--readwrite-a-cookie-from-js">Vue2 — Read/Write a Cookie from JS</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Read</span>
+<span class="nx">getCookie</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">match</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="dl">'</span><span class="s1">(^| )</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">=([^;]+)</span><span class="dl">'</span><span class="p">));</span>
+  <span class="k">return</span> <span class="nx">match</span> <span class="p">?</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">},</span>
+<span class="c1">// Write (only works if NOT HttpOnly)</span>
+<span class="nx">setTheme</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="s2">`theme=</span><span class="p">${</span><span class="nx">value</span><span class="p">}</span><span class="s2">; max-age=</span><span class="p">${</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">365</span><span class="p">}</span><span class="s2">; path=/`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="cookie-size--performance-impact">Cookie Size → Performance Impact</h3>
+
+<p>Cookies are sent on <strong>every</strong> request — including images, CSS, JS files.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10 cookies × 400 B = 4 KB added to every single request
+Page with 50 resources → 200 KB of wasted cookie data
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Issue</th>
+      <th>Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cookie bloats all requests</td>
+      <td>Keep cookies small; use <code class="language-plaintext highlighter-rouge">localStorage</code> for large data</td>
+    </tr>
+    <tr>
+      <td>Static assets also carry cookies</td>
+      <td>Serve images/CSS/JS from a cookie-free CDN domain</td>
+    </tr>
+    <tr>
+      <td>Limits: ~4 KB/cookie, ~50 cookies/domain</td>
+      <td>Stay well under budget</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cookie-domain-and-subdomains">Cookie Domain and Subdomains</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Domain=.y.com  → sent to  y.com ✓  x.y.com ✓  a.b.y.com ✓
+Domain=x.y.com → sent to  x.y.com ✓  y.com ✗  z.y.com ✗
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">'auth_token'</span><span class="p">,</span> <span class="s">'abc123'</span><span class="p">,</span>
+    <span class="n">domain</span><span class="o">=</span><span class="s">'.y.com'</span><span class="p">,</span>   <span class="c1"># leading dot = all subdomains share this cookie
+</span>    <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">samesite</span><span class="o">=</span><span class="s">'Lax'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Security note:</strong> <code class="language-plaintext highlighter-rouge">Domain=.y.com</code> means every subdomain (including a compromised one) gets your cookie. Use exact domain for sensitive auth tokens.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Quick rules:</strong></p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">HttpOnly</code> → security-sensitive tokens (JS cannot steal them)</li>
+    <li><code class="language-plaintext highlighter-rouge">localStorage</code> → large non-sensitive data (not sent with requests)</li>
+    <li><code class="language-plaintext highlighter-rouge">Domain=.y.com</code> → cookie shared across <code class="language-plaintext highlighter-rouge">y.com</code> + all subdomains</li>
+    <li>Keep total cookie size small — it’s added to every request</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="quick-revision-table">Quick Revision Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>One-line Remember</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vuex</td>
+      <td>state → getters → mutations (sync) → actions (async)</td>
+    </tr>
+    <tr>
+      <td>JWT</td>
+      <td>Token on client, server verifies signature, no DB lookup</td>
+    </tr>
+    <tr>
+      <td>Session auth</td>
+      <td>Session ID on client, identity stored on server</td>
+    </tr>
+    <tr>
+      <td>401</td>
+      <td>Not authenticated — go log in</td>
+    </tr>
+    <tr>
+      <td>403</td>
+      <td>Authenticated but not authorized — wrong role/permission</td>
+    </tr>
+    <tr>
+      <td>GraphQL</td>
+      <td>One endpoint, client defines shape, resolvers fetch each field</td>
+    </tr>
+    <tr>
+      <td>Git branch</td>
+      <td><code class="language-plaintext highlighter-rouge">checkout -b</code> → commit → back to main → <code class="language-plaintext highlighter-rouge">merge</code></td>
+    </tr>
+    <tr>
+      <td>SSE</td>
+      <td>One-way server push over HTTP (<code class="language-plaintext highlighter-rouge">text/event-stream</code>)</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>HTTP GET upgrades to WS on <code class="language-plaintext highlighter-rouge">101 Switching Protocols</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@cache.memoize</code></td>
+      <td>Caches by function arguments, not just URL</td>
+    </tr>
+    <tr>
+      <td>CORS</td>
+      <td>Server must send <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Origin</code> header</td>
+    </tr>
+    <tr>
+      <td>Cookies</td>
+      <td>Auto-sent with requests; use <code class="language-plaintext highlighter-rouge">HttpOnly</code> for token security</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

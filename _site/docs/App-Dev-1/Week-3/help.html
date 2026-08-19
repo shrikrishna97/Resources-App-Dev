@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/help.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/help.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/help.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <ol>
+  <li><strong>What is <code class="language-plaintext highlighter-rouge">sys</code> and how to import it in Python?</strong></li>
+  <li><strong>How to handle files in Python?</strong></li>
+  <li><strong>How to read command-line values in Python?</strong></li>
+</ol>
+
+<h3 id="1-what-is-sys-and-how-to-import-it-in-python">1. What is <code class="language-plaintext highlighter-rouge">sys</code> and how to import it in Python?</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">sys</code> module in Python provides access to system-specific parameters and functions. It allows you to interact with the Python interpreter and provides a way to manipulate the runtime environment.</p>
+
+<h4 id="importing-sys">Importing <code class="language-plaintext highlighter-rouge">sys</code>:</h4>
+
+<p>To use the <code class="language-plaintext highlighter-rouge">sys</code> module, you need to import it at the beginning of your Python script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+</code></pre></div></div>
+
+<p>You can also import specific parts of the <code class="language-plaintext highlighter-rouge">sys</code> module, but usually, it’s more common to import the whole module. Example of importing a specific function (not usually done with <code class="language-plaintext highlighter-rouge">sys</code>):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+</code></pre></div></div>
+
+<h3 id="key-features-of-sys">Key Features of <code class="language-plaintext highlighter-rouge">sys</code>:</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sys.argv</code>: A list of command-line arguments passed to your script.</li>
+  <li><code class="language-plaintext highlighter-rouge">sys.exit()</code>: Allows you to exit the program with a specified exit status.</li>
+  <li><code class="language-plaintext highlighter-rouge">sys.stdin</code>, <code class="language-plaintext highlighter-rouge">sys.stdout</code>, <code class="language-plaintext highlighter-rouge">sys.stderr</code>: File objects that represent the standard input, output, and error streams.</li>
+</ul>
+
+<h3 id="example">Example:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Python version:"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">version</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Platform:"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="2-how-to-handle-files-in-python">2. How to Handle Files in Python?</h3>
+
+<p>In Python, handling files is straightforward. You can open, read, write, and close files using built-in functions like <code class="language-plaintext highlighter-rouge">open()</code>, <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">write()</code>, and <code class="language-plaintext highlighter-rouge">close()</code>.</p>
+
+<h4 id="opening-a-file">Opening a File:</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"example.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>  <span class="c1"># Open file in read mode
+</span></code></pre></div></div>
+
+<h4 id="reading-a-file">Reading a File:</h4>
+
+<p>You can read files in various ways:</p>
+<ul>
+  <li><strong>Read the whole content</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Read line by line</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span>  <span class="c1"># strip() removes extra newlines
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="writing-to-a-file">Writing to a File:</h4>
+
+<p>To write to a file, you open it in write (<code class="language-plaintext highlighter-rouge">'w'</code>) or append (<code class="language-plaintext highlighter-rouge">'a'</code>) mode:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"example.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>  <span class="c1"># Open file in write mode
+</span><span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Note</strong>: If the file already exists, opening it in write mode (<code class="language-plaintext highlighter-rouge">'w'</code>) will overwrite its contents.</li>
+</ul>
+
+<h4 id="closing-a-file">Closing a File:</h4>
+
+<p>Always close files after you’re done to free up system resources:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="using-with-to-handle-files">Using <code class="language-plaintext highlighter-rouge">with</code> to handle files:</h4>
+
+<p>A better way to handle files is to use the <code class="language-plaintext highlighter-rouge">with</code> statement. This automatically closes the file for you, even if an error occurs:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"example.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="3-how-to-read-command-line-values-in-python">3. How to Read Command-Line Values in Python?</h3>
+
+<p>Command-line arguments can be accessed using <code class="language-plaintext highlighter-rouge">sys.argv</code>. This is a list where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sys.argv[0]</code> is the script name.</li>
+  <li><code class="language-plaintext highlighter-rouge">sys.argv[1]</code> and onward are the actual command-line arguments passed.</li>
+</ul>
+
+<h4 id="example-1">Example:</h4>
+
+<p>Create a Python script <code class="language-plaintext highlighter-rouge">example.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python example.py &lt;arg1&gt; &lt;arg2&gt;"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Argument 1:"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Argument 2:"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>To run the script from the command line with arguments:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python example.py hello world
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Argument 1: hello
+Argument 2: world
+</code></pre></div></div>
+
+<h3 id="additional-examples">Additional Examples:</h3>
+
+<p>Let’s explore more examples in each of the areas we discussed: using <code class="language-plaintext highlighter-rouge">sys</code>, handling files, and reading command-line arguments.</p>
+
+<h3 id="1-using-sys-module">1. <strong>Using <code class="language-plaintext highlighter-rouge">sys</code> Module</strong></h3>
+
+<h4 id="example-1-checking-the-python-version">Example 1: Checking the Python Version</h4>
+<p>You can check the version of Python being used by accessing <code class="language-plaintext highlighter-rouge">sys.version</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Python Version:"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">version</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="example-2-exiting-the-program-with-sysexit">Example 2: Exiting the Program with <code class="language-plaintext highlighter-rouge">sys.exit()</code></h4>
+<p>The <code class="language-plaintext highlighter-rouge">sys.exit()</code> function can terminate a script early.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your age: "</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">age</span><span class="p">.</span><span class="n">isdigit</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Invalid input. Exiting."</span><span class="p">)</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Exits with an error code
+</span><span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Your age is </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="example-3-using-sysstdin-for-input">Example 3: Using <code class="language-plaintext highlighter-rouge">sys.stdin</code> for Input</h4>
+<p>You can use <code class="language-plaintext highlighter-rouge">sys.stdin.read()</code> to read input directly from the console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Enter something:"</span><span class="p">)</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"You entered: </span><span class="si">{</span><span class="n">input_data</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="2-handling-files-in-python">2. <strong>Handling Files in Python</strong></h3>
+
+<h4 id="example-1-reading-a-file">Example 1: Reading a File</h4>
+
+<p>Let’s say you have a file called <code class="language-plaintext highlighter-rouge">data.txt</code> with the following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, this is line 1.
+This is line 2.
+</code></pre></div></div>
+
+<p>You can read the entire content of the file:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"data.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, this is line 1.
+This is line 2.
+</code></pre></div></div>
+
+<h4 id="example-2-writing-to-a-file">Example 2: Writing to a File</h4>
+<p>This example demonstrates how to write to a file.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"output.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"This is the first line.</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"This is the second line.</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This creates a file called <code class="language-plaintext highlighter-rouge">output.txt</code> with the content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is the first line.
+This is the second line.
+</code></pre></div></div>
+
+<h4 id="example-3-appending-to-a-file">Example 3: Appending to a File</h4>
+<p>You can append to an existing file without overwriting its content:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"output.txt"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"This is the third line.</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This will add a new line to <code class="language-plaintext highlighter-rouge">output.txt</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is the first line.
+This is the second line.
+This is the third line.
+</code></pre></div></div>
+
+<h4 id="example-4-reading-line-by-line">Example 4: Reading Line by Line</h4>
+<p>You can read a file line by line using a loop:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"data.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span>  <span class="c1"># Use strip() to remove any extra newline characters
+</span></code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, this is line 1.
+This is line 2.
+</code></pre></div></div>
+
+<h3 id="3-reading-command-line-arguments">3. <strong>Reading Command-Line Arguments</strong></h3>
+
+<h4 id="example-1-simple-script-using-command-line-arguments">Example 1: Simple Script Using Command-Line Arguments</h4>
+<p>Here’s a simple script that accepts two command-line arguments.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Check if the user provided enough arguments
+</span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py &lt;name&gt; &lt;age&gt;"</span><span class="p">)</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Access the arguments
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Print them
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">. You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s"> years old."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To run this script from the command line:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python script.py Alice 30
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, Alice. You are 30 years old.
+</code></pre></div></div>
+
+<h4 id="example-2-reading-multiple-arguments">Example 2: Reading Multiple Arguments</h4>
+<p>If you want to process multiple arguments from the command line, you can loop through <code class="language-plaintext highlighter-rouge">sys.argv</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"You provided the following arguments:"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you run the script as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python script.py first second third
+</code></pre></div></div>
+
+<p>The output would be:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You provided the following arguments:
+script.py
+first
+second
+third
+</code></pre></div></div>
+
+<h4 id="example-3-handling-missing-command-line-arguments">Example 3: Handling Missing Command-Line Arguments</h4>
+<p>You can check the number of arguments and handle missing values gracefully.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py &lt;first name&gt; &lt;last name&gt; &lt;age&gt;"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Hello </span><span class="si">{</span><span class="n">first_name</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s">, you are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s"> years old."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you don’t pass enough arguments, the script will print the usage instructions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python script.py John
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: python script.py &lt;first name&gt; &lt;last name&gt; &lt;age&gt;
+</code></pre></div></div>
+
+<p>But if you provide the correct number of arguments:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python script.py John Doe 25
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello John Doe, you are 25 years old.
+</code></pre></div></div>
+
+<h3 id="additional-notes">Additional Notes:</h3>
+
+<ul>
+  <li><strong>File Modes</strong>: When working with files, you’ll use different modes:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">'r'</code>: Read (default mode).</li>
+      <li><code class="language-plaintext highlighter-rouge">'w'</code>: Write (overwrites the file).</li>
+      <li><code class="language-plaintext highlighter-rouge">'a'</code>: Append (adds to the end of the file).</li>
+      <li><code class="language-plaintext highlighter-rouge">'r+'</code>: Read and write.</li>
+    </ul>
+  </li>
+  <li><strong>Error Handling with Files</strong>: It’s a good idea to handle errors when working with files.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"nonexistent.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"The file does not exist."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="summary-of-new-examples">Summary of New Examples:</h3>
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">sys</code> Module</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sys.version</code> for checking Python version.</li>
+      <li><code class="language-plaintext highlighter-rouge">sys.exit()</code> for terminating the script early.</li>
+      <li><code class="language-plaintext highlighter-rouge">sys.stdin.read()</code> for reading input from the console.</li>
+    </ul>
+  </li>
+  <li><strong>File Handling</strong>:
+    <ul>
+      <li>Read file content with <code class="language-plaintext highlighter-rouge">read()</code>, write to a file with <code class="language-plaintext highlighter-rouge">write()</code>, and append content with <code class="language-plaintext highlighter-rouge">'a'</code>.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">with</code> to automatically close the file after reading or writing.</li>
+    </ul>
+  </li>
+  <li><strong>Command-Line Arguments</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sys.argv</code> allows you to access command-line arguments.</li>
+      <li>Handle cases where arguments are missing using <code class="language-plaintext highlighter-rouge">len(sys.argv)</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

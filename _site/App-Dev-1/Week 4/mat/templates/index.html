@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histogram with Matplotlib</title>
+</head>
+<body>
+    <h1>Upload Data for Histogram</h1>
+    <form method="post">
+        <label for="data">Enter numbers (comma-separated):</label>
+        <input type="text" id="data" name="data" required>
+        <button type="submit">Generate Histogram</button>
+    </form>
+    {% if request.method == 'POST' %}
+        <h2>Histogram:</h2>
+        <img src="{{ url_for('index') }}" alt="Histogram">
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="introduction-to-flask">Introduction to Flask</h3>
+
+<p><strong>Flask</strong> is a Python framework designed for building web applications. It’s known for being:</p>
+<ul>
+  <li><strong>Small</strong>, <strong>lightweight</strong>, and <strong>simple</strong> compared to other frameworks like Django.</li>
+  <li>Ideal for beginners and small to medium-sized projects due to its minimal setup requirements.</li>
+</ul>
+
+<h3 id="flask-setup">Flask Setup</h3>
+
+<p>To start working with Flask, you need to:</p>
+<ol>
+  <li><strong>Create a Project Directory</strong>:
+    <ul>
+      <li>Create a new folder where you will store all your Flask projects, for example:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Documents/python/flask
+</code></pre></div>        </div>
+      </li>
+      <li>Change into that directory:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>Documents/python/flask
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Install Flask</strong>:
+    <ul>
+      <li>With the virtual environment activated, install Flask using pip:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>Flask
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="testing-flask">Testing Flask</h3>
+
+<ol>
+  <li><strong>Create a Simple Flask App</strong>:
+    <ul>
+      <li>Create a file named <code class="language-plaintext highlighter-rouge">hello.py</code> in your project directory and copy the following code:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'Hello World!'</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Run the Flask App</strong>:
+    <ul>
+      <li>At the command prompt, run the following commands:
+        <ul>
+          <li><strong>Mac OS</strong>:
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
+flask run
+</code></pre></div>            </div>
+          </li>
+          <li><strong>Windows</strong>:
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set </span><span class="nv">FLASK_APP</span><span class="o">=</span>hello.py
+flask run
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>View the Web App</strong>:
+    <ul>
+      <li>Open a browser and navigate to <code class="language-plaintext highlighter-rouge">http://localhost:5000</code>. You should see <code class="language-plaintext highlighter-rouge">Hello World!</code> displayed on the screen.</li>
+      <li>If you encounter a port conflict, try running the server on a different port:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask run <span class="nt">--port</span> 4999
+</code></pre></div>        </div>
+      </li>
+      <li>Then, visit <code class="language-plaintext highlighter-rouge">http://localhost:4999</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Stopping the Server</strong>:
+    <ul>
+      <li>To shut down the server, press <code class="language-plaintext highlighter-rouge">Control-C</code> in the terminal.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="understanding-flask-code">Understanding Flask Code</h3>
+
+<ol>
+  <li><strong>Importing Flask</strong>:
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">Flask</code> class is imported from the <code class="language-plaintext highlighter-rouge">flask</code> library, and an instance of this class represents your web application:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">app = Flask(__name__)</code> creates an application object using the current Python module. This object handles all the operations of the web app.</li>
+    </ul>
+  </li>
+  <li><strong>Creating Routes</strong>:
+    <ul>
+      <li>A <strong>route</strong> in Flask determines how URLs are handled by the application. It is defined using a decorator:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'Hello World!'</span>
+</code></pre></div>        </div>
+      </li>
+      <li>The <strong>decorator</strong> <code class="language-plaintext highlighter-rouge">@app.route('/')</code> tells Flask that the function <code class="language-plaintext highlighter-rouge">hello()</code> should be called when the home page (<code class="language-plaintext highlighter-rouge">/</code>) is accessed.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">hello()</code> function returns the string <code class="language-plaintext highlighter-rouge">'Hello World!'</code>, which is then displayed in the browser.</li>
+    </ul>
+  </li>
+  <li><strong>Adding Additional Routes</strong>:
+    <ul>
+      <li>You can add multiple routes to a Flask app. For example:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/foobar'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">foobar</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'&lt;h1&gt;Hi there, foobar!&lt;/h1&gt;'</span>
+</code></pre></div>        </div>
+      </li>
+      <li>After adding this, running the server and navigating to <code class="language-plaintext highlighter-rouge">http://localhost:5000/foobar</code> will display <code class="language-plaintext highlighter-rouge">Hi there, foobar!</code> in the browser.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="key-concepts-recap">Key Concepts Recap</h3>
+
+<ul>
+  <li><strong>Flask Application Object</strong>: Created with <code class="language-plaintext highlighter-rouge">app = Flask(__name__)</code>, it brings in all the capabilities of the Flask framework.</li>
+  <li><strong>Routes</strong>: Determine which URLs are handled by which functions. Defined using the <code class="language-plaintext highlighter-rouge">@app.route()</code> decorator.</li>
+  <li><strong>Functions in Flask</strong>: Define the actions to be taken when a specific URL is accessed.</li>
+  <li><strong>Development Server</strong>: Flask includes a built-in server that is useful for testing but should not be used in a production environment.</li>
+</ul>
+
+<hr />
+
+<p>This document covers the essential steps and concepts for starting with Flask, including installing Flask and creating basic web applications. It provides a good foundation for learning Flask and building more advanced features.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

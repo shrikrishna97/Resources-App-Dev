@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/flask_jinja.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="flask-and-jinja-templates">Flask and Jinja Templates</h3>
+
+<p><strong>Flask</strong> is a Python framework used for building web applications. It allows you to easily create routes and handle requests. An essential feature of Flask is its ability to use <strong>Jinja templates</strong> for rendering dynamic HTML.</p>
+
+<h3 id="folder-structure-for-a-flask-app">Folder Structure for a Flask App</h3>
+
+<p>To build a proper Flask app, it’s important to follow a specific folder structure. Below is the typical structure of a Flask project:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-flask-app/
+   ├── static/
+   │   └── css/
+   │       └── main.css
+   ├── templates/
+   │   ├── index.html
+   │   └── student.html
+   ├── data.py
+   └── students.py
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Project Folder (my-flask-app/)</strong>: This is the main folder containing all files for the Flask application.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">static/</code> folder</strong>: Stores static files like CSS, JavaScript, and images.
+    <ul>
+      <li>Example: <code class="language-plaintext highlighter-rouge">css/main.css</code> is stored in <code class="language-plaintext highlighter-rouge">static/css/</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">templates/</code> folder</strong>: Contains HTML files that serve as templates. In the example, it has <code class="language-plaintext highlighter-rouge">index.html</code> and <code class="language-plaintext highlighter-rouge">student.html</code>.</li>
+  <li><strong>Python files</strong>: Files like <code class="language-plaintext highlighter-rouge">data.py</code> and <code class="language-plaintext highlighter-rouge">students.py</code> are placed directly in the project folder (outside <code class="language-plaintext highlighter-rouge">static</code> and <code class="language-plaintext highlighter-rouge">templates</code>).</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong>: The names of the folders <code class="language-plaintext highlighter-rouge">static</code> and <code class="language-plaintext highlighter-rouge">templates</code> are essential for Flask to locate and serve static assets and templates properly. The project folder can be named anything, but the structure inside it should remain consistent.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="using-jinja-templates">Using Jinja Templates</h3>
+
+<p>Flask uses the <strong>Jinja2</strong> template engine, which allows for creating HTML templates that can dynamically render data. It helps avoid repetitive HTML coding and allows you to inject data directly from the Flask app into the templates.</p>
+
+<hr />
+
+<h3 id="using-templates-in-flask-routes">Using Templates in Flask Routes</h3>
+
+<p>You can render a template and pass data to it directly from a Flask route using the <code class="language-plaintext highlighter-rouge">render_template</code> function.</p>
+
+<p><strong>Example: Basic Route with Template</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;name&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'hello.html'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Importing <code class="language-plaintext highlighter-rouge">render_template</code></strong>: This function is used to render HTML templates.</li>
+  <li><strong>Route Function</strong>: The <code class="language-plaintext highlighter-rouge">user</code> function renders <code class="language-plaintext highlighter-rouge">hello.html</code> and passes the <code class="language-plaintext highlighter-rouge">name</code> variable to it.</li>
+  <li><strong>Template (<code class="language-plaintext highlighter-rouge">hello.html</code>)</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>Hello, {{ name }}!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Change the name in the <span class="nt">&lt;em&gt;</span>browser address bar<span class="nt">&lt;/em&gt;</span> and reload the page.<span class="nt">&lt;/p&gt;</span>
+
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="linking-static-files">Linking Static Files</h4>
+
+<p>To use assets like CSS in your templates, Flask provides the <code class="language-plaintext highlighter-rouge">url_for</code> function:</p>
+
+<p><strong>Example</strong>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ url_for('static', filename='css/main.css') }}"</span><span class="nt">&gt;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">url_for()</code> function ensures that Flask correctly links to the <code class="language-plaintext highlighter-rouge">main.css</code> file located in the <code class="language-plaintext highlighter-rouge">static/css/</code> folder.</li>
+</ul>
+
+<hr />
+
+<h3 id="passing-variables-to-templates">Passing Variables to Templates</h3>
+
+<p>With <code class="language-plaintext highlighter-rouge">render_template()</code>, you can pass variables like strings, integers, lists, or dictionaries:</p>
+
+<p><strong>Example</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/president/&lt;int:ord&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">president</span><span class="p">(</span><span class="nb">ord</span><span class="p">):</span>
+    <span class="c1"># pres_dict is a dictionary containing president data.
+</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'president.html'</span><span class="p">,</span> <span class="n">pres</span><span class="o">=</span><span class="n">pres_dict</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="nb">ord</span><span class="p">,</span> <span class="n">the_title</span><span class="o">=</span><span class="n">pres_dict</span><span class="p">[</span><span class="s">'President'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Passing Variables</strong>: Here, <code class="language-plaintext highlighter-rouge">pres=pres_dict</code>, <code class="language-plaintext highlighter-rouge">ord=ord</code>, and <code class="language-plaintext highlighter-rouge">the_title=pres_dict['President']</code> are passed to <code class="language-plaintext highlighter-rouge">president.html</code>.</li>
+  <li><strong>Using Variables in the Template</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>{{ pres['President'] }}<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;title&gt;</span>{{ the_title }}<span class="nt">&lt;/title&gt;</span>
+
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>This example demonstrates how <code class="language-plaintext highlighter-rouge">pres</code> is used in the template as a shorthand for <code class="language-plaintext highlighter-rouge">pres_dict</code>, making the template code more concise.</p>
+
+<h4 id="why-use-jinja-with-flask">Why Use Jinja with Flask?</h4>
+
+<ul>
+  <li><strong>Dynamic Content</strong>: Jinja allows injecting dynamic content into HTML.</li>
+  <li><strong>Reuse of Layouts</strong>: Templates reduce redundancy, allowing for consistent layout across multiple pages.</li>
+  <li><strong>Cleaner Code</strong>: It separates the HTML structure from Python logic, making code more maintainable.</li>
+</ul>
+
+<hr />
+
+<h3 id="summary">Summary</h3>
+
+<ul>
+  <li><strong>Folder Structure</strong>: The project must include <code class="language-plaintext highlighter-rouge">static/</code> for assets and <code class="language-plaintext highlighter-rouge">templates/</code> for HTML files.</li>
+  <li><strong>Jinja Templates</strong>: Use <code class="language-plaintext highlighter-rouge">{{ }}</code> for variables and <code class="language-plaintext highlighter-rouge">{% %}</code> for control structures (like loops or conditions).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">render_template</code></strong>: Renders templates and passes variables, making it possible to create dynamic and reusable HTML.</li>
+  <li><strong>Static File Management</strong>: Use <code class="language-plaintext highlighter-rouge">url_for('static', filename='...')</code> for linking CSS, JavaScript, or image files.</li>
+</ul>
+
+<p>By following these guidelines, you can build a Flask app that is well-organized and capable of serving dynamic web pages using Jinja templates.</p>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

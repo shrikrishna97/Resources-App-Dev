@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-1/Week-1-2_OS.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-1/Week-1-2_OS.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-1/Week-1-2_OS.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Prepared Based on: MAD 2 Introductory JavaScript Open Session</p>
+
+<p>Target Audience: Beginners with Python background</p>
+
+<p>Prepared by: Shri Krishna </p>
+
+<p>Last term live session for reference: <a href="https://www.youtube.com/live/dNGVCIAB0rU">Mad-2 week-2 open session</a>
+Last term live session based on this doc: <a href="https://www.youtube.com/live/zSrdnSn5Uds">Mad-2 week-2 open session</a></p>
+
+<hr />
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<p>JavaScript is a versatile language that runs in multiple environments. To get started with JavaScript development, here are the main methods:</p>
+
+<h3 id="a-running-javascript-in-the-browser">A. Running JavaScript in the Browser</h3>
+
+<p>All modern browsers come with built-in JavaScript engines. You can:</p>
+
+<ol>
+  <li>
+    <p><strong>Use the Browser Console</strong></p>
+
+    <ul>
+      <li>Open DevTools (F12 or right-click → Inspect → Console tab).</li>
+      <li>Type JavaScript directly and run it.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Include JavaScript in HTML</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello from HTML script tag!</span><span class="dl">"</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+
+    <p>Or link an external file:</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="b-running-javascript-with-nodejs">B. Running JavaScript with Node.js</h3>
+
+<p>Node.js allows you to run JavaScript outside the browser.</p>
+
+<ol>
+  <li>
+    <p><strong>Install Node.js</strong></p>
+
+    <ul>
+      <li>Download from <a href="https://nodejs.org">https://nodejs.org</a> and install.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Run a script</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node filename.js
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Use REPL (Read-Eval-Print Loop)</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node
+<span class="o">&gt;</span> console.log<span class="o">(</span><span class="s2">"Hello from Node.js"</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="c-using-online-editors">C. Using Online Editors</h3>
+
+<ol>
+  <li>
+    <p><strong>JSFiddle / CodePen / Replit</strong></p>
+
+    <ul>
+      <li>No installation needed.</li>
+      <li>Code and share directly in the browser.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="d-using-integrated-development-environments-ides">D. Using Integrated Development Environments (IDEs)</h3>
+
+<ul>
+  <li>
+    <p><strong>Visual Studio Code</strong> (recommended)</p>
+
+    <ul>
+      <li>Install extensions like ESLint, Prettier, and Live Server.</li>
+      <li>Use built-in terminal to run <code class="language-plaintext highlighter-rouge">node</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>the difference between a <strong>JavaScript engine</strong> and a <strong>JavaScript runtime</strong>, using <strong>Chrome</strong> and <strong>VS Code</strong> as examples:</p>
+
+<hr />
+
+<h2 id="1-javascript-engine">1. JavaScript Engine</h2>
+
+<p>A <strong>JavaScript engine</strong> is the <strong>core program that parses and executes JavaScript code</strong>. It knows only how to understand and execute JavaScript, nothing more.</p>
+
+<h3 id="example-chrome-uses-v8">Example: Chrome uses <strong>V8</strong></h3>
+
+<ul>
+  <li>V8 is a high-performance JavaScript engine developed by Google.</li>
+  <li>It reads JavaScript, optimizes it, and turns it into fast machine code.</li>
+  <li>It knows only about JavaScript syntax and internal data types — not about the DOM or <code class="language-plaintext highlighter-rouge">fetch()</code> or <code class="language-plaintext highlighter-rouge">setTimeout()</code>.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Think of V8 as the “brain” that knows JavaScript — but not how to interact with the browser or OS.</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="2-javascript-runtime">2. JavaScript Runtime</h2>
+
+<p>A <strong>JavaScript runtime</strong> is a <strong>full environment</strong> that uses a JavaScript engine (like V8) and provides additional tools/APIs that JS alone can’t offer — like:</p>
+
+<ul>
+  <li>The DOM (in browsers)</li>
+  <li><code class="language-plaintext highlighter-rouge">setTimeout</code>, <code class="language-plaintext highlighter-rouge">console</code>, <code class="language-plaintext highlighter-rouge">fetch</code></li>
+  <li>Event loop and callback queue</li>
+</ul>
+
+<h3 id="example-chromes-javascript-runtime">Example: Chrome’s JavaScript runtime</h3>
+
+<ul>
+  <li>Engine: V8</li>
+  <li>Runtime: Adds DOM access, timers, <code class="language-plaintext highlighter-rouge">console.log</code>, <code class="language-plaintext highlighter-rouge">alert</code>, <code class="language-plaintext highlighter-rouge">window</code>, etc.</li>
+</ul>
+
+<h3 id="example-vs-code-running-nodejs">Example: VS Code running Node.js</h3>
+
+<ul>
+  <li>Engine: V8 (same as Chrome!)</li>
+  <li>Runtime: Node.js runtime adds <code class="language-plaintext highlighter-rouge">fs</code>, <code class="language-plaintext highlighter-rouge">http</code>, <code class="language-plaintext highlighter-rouge">process</code>, <code class="language-plaintext highlighter-rouge">require</code>, etc. (but no DOM)</li>
+</ul>
+
+<blockquote>
+  <p><strong>Think of the runtime as a kitchen: the engine is the chef, the runtime includes the fridge, oven, ingredients, and tools.</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="-side-by-side-chrome-vs-vs-code-with-node">🔍 Side-by-Side: Chrome vs. VS Code (with Node)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Chrome (Browser Runtime)</th>
+      <th>VS Code + Node.js (Server Runtime)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>JS Engine</td>
+      <td>V8</td>
+      <td>V8</td>
+    </tr>
+    <tr>
+      <td>Has DOM</td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td>Has <code class="language-plaintext highlighter-rouge">setTimeout()</code></td>
+      <td>✅ Yes</td>
+      <td>✅ Yes (provided by Node)</td>
+    </tr>
+    <tr>
+      <td>Has <code class="language-plaintext highlighter-rouge">fs</code> module</td>
+      <td>❌ No</td>
+      <td>✅ Yes (Node’s file system module)</td>
+    </tr>
+    <tr>
+      <td>Has <code class="language-plaintext highlighter-rouge">document.querySelector()</code></td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td>Common use case</td>
+      <td>Web apps, frontend</td>
+      <td>Server-side scripting, backend</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>JavaScript Engine</th>
+      <th>JavaScript Runtime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>What it is</td>
+      <td>Core JS interpreter</td>
+      <td>Full environment to run JS</td>
+    </tr>
+    <tr>
+      <td>Knows about</td>
+      <td>JS syntax &amp; semantics</td>
+      <td>JS + APIs (DOM, timers, file system, etc.)</td>
+    </tr>
+    <tr>
+      <td>Example</td>
+      <td>V8</td>
+      <td>Chrome runtime (browser), Node.js runtime</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[ JavaScript Runtime ]
+  ├── JS Engine (V8) ← The core interpreter (like car engine)
+  ├── Timers (setTimeout, setInterval)
+  ├── Console (console.log)
+  ├── APIs (DOM in browser / fs in Node)
+  └── Event Loop (handles async stuff)</p>
+
+<hr />
+
+<h2 id="2-javascript-basics">2. JavaScript Basics</h2>
+
+<h3 id="21-syntax-overview">2.1 Syntax Overview</h3>
+
+<p>JavaScript syntax is similar to C-style languages. Statements end with semicolons (optional but recommended), and blocks are enclosed in curly braces.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> is </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">age</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> years old.</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This code declares two variables and prints a message using string concatenation.</p>
+
+<h3 id="22-variable-declarations">2.2 Variable Declarations</h3>
+
+<p>JavaScript provides <code class="language-plaintext highlighter-rouge">var</code>, <code class="language-plaintext highlighter-rouge">let</code>, and <code class="language-plaintext highlighter-rouge">const</code> for declaring variables:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>      <span class="c1">// function scoped, hoisted</span>
+<span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>      <span class="c1">// block scoped</span>
+<span class="kd">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>    <span class="c1">// block scoped, immutable</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">var</code> is function-scoped and can lead to unexpected bugs due to hoisting.</li>
+  <li><code class="language-plaintext highlighter-rouge">let</code> is block-scoped and should be used when reassignment is needed.</li>
+  <li><code class="language-plaintext highlighter-rouge">const</code> is also block-scoped but prevents reassignment; prefer <code class="language-plaintext highlighter-rouge">const</code> by default.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-data-types">3. Data Types</h2>
+
+<p>JavaScript has two main categories: primitives and objects.</p>
+
+<h3 id="31-primitive-types">3.1 Primitive Types</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">;</span>   <span class="c1">// string</span>
+<span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>        <span class="c1">// number</span>
+<span class="kd">let</span> <span class="nx">bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>     <span class="c1">// boolean</span>
+<span class="kd">let</span> <span class="nx">empty</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>    <span class="c1">// null (intentional empty)</span>
+<span class="kd">let</span> <span class="nx">undef</span><span class="p">;</span>           <span class="c1">// undefined (not assigned)</span>
+</code></pre></div></div>
+
+<h3 id="32-objects">3.2 Objects</h3>
+
+<p>Objects are key-value pairs like Python dictionaries.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>  <span class="c1">// Accessing properties using dot notation</span>
+</code></pre></div></div>
+
+<p>You can dynamically add or delete properties:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">female</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">delete</span> <span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-control-flow">4. Control Flow</h2>
+
+<h3 id="41-if-else-statement">4.1 If-Else Statement</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Adult</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Minor</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is used for conditional branching.</p>
+
+<h3 id="42-loops">4.2 Loops</h3>
+
+<h4 id="for-loop">For Loop</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="while-loop">While Loop</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+  <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="forin-and-forof-loops"><code class="language-plaintext highlighter-rouge">for...in</code> and <code class="language-plaintext highlighter-rouge">for...of</code> Loops</h2>
+
+<p>JavaScript provides two distinct looping constructs for iterating over data structures: <code class="language-plaintext highlighter-rouge">for...in</code> and <code class="language-plaintext highlighter-rouge">for...of</code>. Understanding their differences is crucial for effective coding.</p>
+
+<h3 id="forin-loop"><code class="language-plaintext highlighter-rouge">for...in</code> Loop</h3>
+
+<p><strong>Purpose:</strong>
+Iterates over the enumerable property keys of an object, including inherited properties.</p>
+
+<p><strong>Syntax:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// code block to be executed</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">};</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>         <span class="c1">// Outputs: name, age</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span> <span class="c1">// Outputs: Alice, 30</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Behavior:</strong></p>
+
+<ul>
+  <li>Returns keys (property names) as strings.</li>
+  <li>Includes enumerable properties from the object’s prototype chain.</li>
+  <li>Not recommended for arrays due to potential unexpected results, especially when the array is extended with custom properties.</li>
+</ul>
+
+<p><strong>Use Case:</strong>
+Best suited for iterating over object properties.</p>
+
+<h3 id="forof-loop"><code class="language-plaintext highlighter-rouge">for...of</code> Loop</h3>
+
+<p><strong>Purpose:</strong>
+Iterates over the values of iterable objects like arrays, strings, maps, sets, etc.</p>
+
+<p><strong>Syntax:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">iterable</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// code block to be executed</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">fruit</span> <span class="k">of</span> <span class="nx">fruits</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span> <span class="c1">// Outputs: apple, banana, cherry</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Behavior:</strong></p>
+
+<ul>
+  <li>Returns the values of the iterable.</li>
+  <li>Does not include properties added to the object (e.g., custom properties on arrays).</li>
+  <li>Maintains the order of iteration as defined by the iterable.</li>
+</ul>
+
+<p><strong>Use Case:</strong>
+Ideal for iterating over arrays, strings, maps, sets, and other iterable collections.</p>
+
+<h3 id="123-comparison-table">12.3 Comparison Table</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th><code class="language-plaintext highlighter-rouge">for...in</code></th>
+      <th><code class="language-plaintext highlighter-rouge">for...of</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Iterates Over</td>
+      <td>Enumerable property keys</td>
+      <td>Iterable values</td>
+    </tr>
+    <tr>
+      <td>Return Value</td>
+      <td>Strings (keys)</td>
+      <td>Actual values</td>
+    </tr>
+    <tr>
+      <td>Applicable To</td>
+      <td>Objects (also arrays, but not ideal)</td>
+      <td>Arrays, strings, maps, sets, etc.</td>
+    </tr>
+    <tr>
+      <td>Includes Inherited Properties</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Iteration Order</td>
+      <td>Not guaranteed</td>
+      <td>Follows the order of the iterable</td>
+    </tr>
+    <tr>
+      <td>Use Case</td>
+      <td>Accessing object properties</td>
+      <td>Accessing values in iterable collections</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong>
+When iterating over arrays, it’s recommended to use <code class="language-plaintext highlighter-rouge">for...of</code> or traditional <code class="language-plaintext highlighter-rouge">for</code> loops instead of <code class="language-plaintext highlighter-rouge">for...in</code> to avoid unexpected behaviors, especially if the array has custom properties or methods.</p>
+
+<h2 id="5-arrays-and-objects">5. Arrays and Objects</h2>
+
+<h3 id="51-arrays">5.1 Arrays</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// Adds to end</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>  <span class="c1">// "apple"</span>
+</code></pre></div></div>
+
+<h3 id="52-objects">5.2 Objects</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">make</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Toyota</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Corolla</span><span class="dl">"</span>
+<span class="p">};</span>
+<span class="nx">car</span><span class="p">.</span><span class="nx">year</span> <span class="o">=</span> <span class="mi">2020</span><span class="p">;</span>       <span class="c1">// Dynamic property addition</span>
+<span class="k">delete</span> <span class="nx">car</span><span class="p">.</span><span class="nx">model</span><span class="p">;</span>      <span class="c1">// Property deletion</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">car</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-execution-environments">6. Execution Environments</h2>
+
+<p>JavaScript operates in various environments, primarily the browser and Node.js. Each environment provides a global object that serves as the top-level context for code execution.</p>
+
+<h3 id="61-global-object-in-different-environments">6.1 Global Object in Different Environments</h3>
+
+<ul>
+  <li><strong>Browser Environment:</strong>
+In browsers, the global object is <code class="language-plaintext highlighter-rouge">window</code>. It represents the browser window and provides methods and properties for interacting with the browser.</li>
+  <li><strong>Node.js Environment:</strong>
+In Node.js, the global object is <code class="language-plaintext highlighter-rouge">global</code>. It provides access to global variables and functions specific to the Node.js environment.</li>
+  <li><strong>Universal Access with:</strong>
+To write environment-agnostic code, JavaScript introduces <code class="language-plaintext highlighter-rouge">globalThis</code> as a standardized way to access the global object across different environments.</li>
+</ul>
+
+<h3 id="62-use-cases-and-examples">6.2 Use Cases and Examples</h3>
+
+<h4 id="621-using-window-in-the-browser">6.2.1 Using <code class="language-plaintext highlighter-rouge">window</code> in the Browser</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">window</code> object allows interaction with the browser window and its components.</p>
+
+<p><strong>Example: Accessing Global Variables and Functions</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declaring a global variable</span>
+<span class="kd">var</span> <span class="nx">siteName</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ExampleSite</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Accessing the global variable via window</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">siteName</span><span class="p">);</span> <span class="c1">// Output: "ExampleSite"</span>
+
+<span class="c1">// Defining a global function</span>
+<span class="kd">function</span> <span class="nx">greetUser</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Welcome to </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">siteName</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Invoking the global function via window</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">greetUser</span><span class="p">();</span> <span class="c1">// Displays alert: "Welcome to ExampleSite"</span>
+
+</code></pre></div></div>
+
+<p><strong>Example: Using Browser-Specific Methods</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Displaying an alert dialog</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">This is an alert box!</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// Opening a new browser window</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://www.example.com</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">_blank</span><span class="dl">"</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h4 id="622-using-global-in-nodejs">6.2.2 Using <code class="language-plaintext highlighter-rouge">global</code> in Node.js</h4>
+
+<p>In Node.js, the <code class="language-plaintext highlighter-rouge">global</code> object provides access to globally available variables and functions.</p>
+
+<p><strong>Example: Defining and Accessing Global Variables</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Defining a global variable</span>
+<span class="nb">global</span><span class="p">.</span><span class="nx">appVersion</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">1.0.0</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Accessing the global variable</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">global</span><span class="p">.</span><span class="nx">appVersion</span><span class="p">);</span> <span class="c1">// Output: "1.0.0"</span>
+
+</code></pre></div></div>
+
+<p><strong>Example: Using Global Functions</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Using setTimeout, a global function in Node.js</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Executed after 2 seconds</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h4 id="623-using-globalthis-for-cross-environment-compatibility">6.2.3 Using <code class="language-plaintext highlighter-rouge">globalThis</code> for Cross-Environment Compatibility</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globalThis</code> object provides a standard way to access the global object, regardless of the environment.</p>
+
+<p><strong>Example: Defining a Global Variable</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Defining a global variable using globalThis</span>
+<span class="nx">globalThis</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">appName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">UniversalApp</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">version</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2.0.0</span><span class="dl">"</span>
+<span class="p">};</span>
+
+<span class="c1">// Accessing the global variable</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalThis</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">appName</span><span class="p">);</span> <span class="c1">// Output: "UniversalApp"</span>
+
+</code></pre></div></div>
+
+<p>By using <code class="language-plaintext highlighter-rouge">globalThis</code>, developers can write code that is compatible across different JavaScript environments without worrying about the specific global object name.</p>
+
+<hr />
+
+<h2 id="7-debugging-techniques">7. Debugging Techniques</h2>
+
+<h3 id="71-console-methods">7.1 Console Methods</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Info</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="dl">"</span><span class="s2">Warning</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The browser console helps test and debug code.</p>
+
+<hr />
+
+<h2 id="8-functions">8. Functions</h2>
+
+<h3 id="81-function-declaration">8.1 Function Declaration</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Classic function syntax.</li>
+  <li>Hoisted (can be called before it is defined).</li>
+  <li>Has its own this context.</li>
+  <li>Hoisted and available before declaration.</li>
+</ul>
+
+<h3 id="82-function-expression">8.2 Function Expression</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">greet</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Not hoisted—must be declared before use.</p>
+
+<h3 id="83-arrow-function">8.3 Arrow Function</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">greet</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Arrow functions use lexical <code class="language-plaintext highlighter-rouge">this</code> and are often more concise.</li>
+  <li>More concise.</li>
+  <li>Not hoisted (must be declared before use).</li>
+  <li>Does NOT have its own this.</li>
+</ul>
+
+<hr />
+
+<h2 id="9-the-this-keyword">9. The <code class="language-plaintext highlighter-rouge">this</code> Keyword</h2>
+
+<h3 id="regular-function">Regular Function:</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">greet</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hi </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// Output: Hi Alice</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Here, this refers to the object user because it’s called as user.greet().</li>
+  <li>Regular functions dynamically bind this depending on how they’re called.</li>
+</ul>
+
+<h3 id="arrow-function">Arrow Function:</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">greet</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hi </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// Output: Hi undefined (in browsers, likely "Hi " or "Hi undefined")</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Arrow functions do not have their own this.</li>
+  <li>They inherit this from the surrounding lexical scope (e.g., the window/global object if declared at the top level).</li>
+  <li>So this.name is undefined.</li>
+</ul>
+
+<p>✅ Use arrow functions when:</p>
+
+<ul>
+  <li>You want to preserve the outer this (e.g., in callbacks).</li>
+  <li>You don’t need your own this, arguments, or super.</li>
+</ul>
+
+<p>❌ Avoid arrow functions when:</p>
+
+<ul>
+  <li>You need to access object-specific this (e.g., methods on objects or classes).</li>
+</ul>
+
+<hr />
+
+<h2 id="summary-table">Summary Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Regular Function</th>
+      <th>Arrow Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Syntax</td>
+      <td>function greet() {}</td>
+      <td>const greet = () =&gt; {}</td>
+    </tr>
+    <tr>
+      <td>Hoisting</td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td>Own this</td>
+      <td>✅ Yes</td>
+      <td>❌ No (lexical this)</td>
+    </tr>
+    <tr>
+      <td>Use as constructor</td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td>Suitable for object method</td>
+      <td>✅ Yes</td>
+      <td>❌ No (usually not preferred)</td>
+    </tr>
+    <tr>
+      <td>Suitable for callbacks</td>
+      <td>✅ Sometimes</td>
+      <td>✅ Often preferred</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="10-hoisting-and-temporal-dead-zone-tdz">10. Hoisting and Temporal Dead Zone (TDZ)</h2>
+
+<p>What is Hoisting? Hoisting is JavaScript’s default behavior of moving declarations to the top of the current scope during the compilation phase. This means that:</p>
+
+<ul>
+  <li>Variable declarations (using var) are hoisted and initialized with undefined.</li>
+  <li>Function declarations are hoisted entirely — both their name and body.</li>
+  <li>Variables declared with let and const are hoisted too, but not initialized. Accessing them before declaration results in a ReferenceError due to the Temporal Dead Zone.</li>
+</ul>
+
+<p>Examples:</p>
+
+<p><strong>var example:</strong></p>
+
+<p>This demonstrates hoisting of variables declared with <code class="language-plaintext highlighter-rouge">var</code>. The declaration is hoisted, but the assignment is not, so <code class="language-plaintext highlighter-rouge">a</code> is <code class="language-plaintext highlighter-rouge">undefined</code> when logged:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>let/const example:</strong></p>
+
+<p>Variables declared with <code class="language-plaintext highlighter-rouge">let</code> and <code class="language-plaintext highlighter-rouge">const</code> are hoisted but not initialized. Trying to access them before declaration results in a <code class="language-plaintext highlighter-rouge">ReferenceError</code> due to the Temporal Dead Zone (TDZ):</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// ReferenceError</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>function declaration:</strong></p>
+
+<p>Function declarations are fully hoisted, so you can call them before the declaration appears in the code:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">greet</span><span class="p">();</span> <span class="c1">// "Hello"</span>
+<span class="kd">function</span> <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>function expression (not hoisted):</strong></p>
+
+<p>Function expressions assigned to variables (even with <code class="language-plaintext highlighter-rouge">var</code>) are not hoisted with their assigned function. Only the variable is hoisted and initialized to <code class="language-plaintext highlighter-rouge">undefined</code>, so calling it before the assignment results in a <code class="language-plaintext highlighter-rouge">TypeError</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="c1">// console.log(greet()); // TypeError: greet is not a function</span>
+<span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">());</span> <span class="c1">// "Hello"</span>
+</code></pre></div></div>
+
+<p>With <code class="language-plaintext highlighter-rouge">let</code> or <code class="language-plaintext highlighter-rouge">const</code>, the variable is hoisted but not initialized. Trying to access it before declaration results in a <code class="language-plaintext highlighter-rouge">ReferenceError</code> due to the Temporal Dead Zone (TDZ):</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// console.log(greetLet); // ReferenceError</span>
+<span class="kd">const</span> <span class="nx">greetLet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">Hi there</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greetLet</span><span class="p">());</span> <span class="c1">// "Hi there"</span>
+</code></pre></div></div>
+
+<p>So while function declarations are fully hoisted, function expressions are only hoisted with their variable declaration — not the function assignment. This is important to understand for debugging and code structure.</p>
+
+<p>Function expressions assigned to variables (even with <code class="language-plaintext highlighter-rouge">var</code>) are not hoisted with their assigned function. Only the variable is hoisted and initialized to <code class="language-plaintext highlighter-rouge">undefined</code>, so calling it before the assignment results in a <code class="language-plaintext highlighter-rouge">TypeError</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">greet</span><span class="p">();</span> <span class="c1">// TypeError: greet is not a function</span>
+<span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="11-scope-in-javascript">11. Scope in JavaScript</h2>
+
+<h3 id="definitions">Definitions</h3>
+
+<ul>
+  <li><strong>Global Scope:</strong> Variables accessible from anywhere in the program. Declared outside functions.</li>
+  <li><strong>Function Scope:</strong> Variables accessible only within the function where they are declared. <code class="language-plaintext highlighter-rouge">var</code> is function-scoped.</li>
+  <li><strong>Block Scope:</strong> Variables accessible only within a specific block (<code class="language-plaintext highlighter-rouge">{}</code>), typically defined using <code class="language-plaintext highlighter-rouge">let</code> or <code class="language-plaintext highlighter-rouge">const</code>.</li>
+  <li><strong>Lexical Scope:</strong> Scope determined by the position of functions and blocks during code definition. Inner functions can access variables from their outer functions.</li>
+</ul>
+
+<h3 id="111-global-scope">11.1 Global Scope</h3>
+
+<p>Variables declared outside functions are accessible everywhere.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">globalVar</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm global</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">globalLet</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm a global let</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">globalConst</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm a global const</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">printGlobal</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalVar</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalLet</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">globalConst</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">printGlobal</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="112-function-scope">11.2 Function Scope</h3>
+
+<p>Variables declared with <code class="language-plaintext highlighter-rouge">var</code> inside a function are only available inside that function. <code class="language-plaintext highlighter-rouge">let</code> and <code class="language-plaintext highlighter-rouge">const</code> behave similarly but are scoped more strictly to blocks.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">localVar</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm a function-scoped var</span><span class="dl">"</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">localLet</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm a function-scoped let</span><span class="dl">"</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">localConst</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">I'm a function-scoped const</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localVar</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localLet</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localConst</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">example</span><span class="p">();</span>
+<span class="c1">// console.log(localVar); // ReferenceError</span>
+<span class="c1">// console.log(localLet); // ReferenceError</span>
+<span class="c1">// console.log(localConst); // ReferenceError</span>
+</code></pre></div></div>
+
+<h3 id="113-block-scope">11.3 Block Scope</h3>
+
+<p><code class="language-plaintext highlighter-rouge">let</code> and <code class="language-plaintext highlighter-rouge">const</code> are block-scoped, meaning they only exist within <code class="language-plaintext highlighter-rouge">{}</code>. <code class="language-plaintext highlighter-rouge">var</code> does not respect block scope.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// Accessible outside the block</span>
+  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>       <span class="c1">// Block-scoped</span>
+  <span class="kd">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>     <span class="c1">// Block-scoped</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span> <span class="c1">// 1 2 3</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>    <span class="c1">// 1</span>
+<span class="c1">// console.log(b); // ReferenceError</span>
+<span class="c1">// console.log(c); // ReferenceError</span>
+</code></pre></div></div>
+
+<h3 id="114-lexical-scope">11.4 Lexical Scope</h3>
+
+<p>Functions remember the scope in which they were defined.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">inner</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Alice</span>
+  <span class="p">}</span>
+  <span class="nx">inner</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">outer</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>###</p>
+
+<h2 id="12-best-practices">12. Best Practices</h2>
+
+<ul>
+  <li>Prefer <code class="language-plaintext highlighter-rouge">const</code> over <code class="language-plaintext highlighter-rouge">let</code> unless reassignment is needed.</li>
+  <li>Avoid <code class="language-plaintext highlighter-rouge">var</code> unless maintaining legacy code.</li>
+  <li>Use strict comparison (<code class="language-plaintext highlighter-rouge">===</code>) instead of loose (<code class="language-plaintext highlighter-rouge">==</code>).</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">MAX_USERS</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">userCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">addUser</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">userCount</span> <span class="o">&lt;</span> <span class="nx">MAX_USERS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">userCount</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="13-summary">13. Summary</h2>
+
+<p>This session covered JavaScript syntax, data types, control flows, arrays, objects, function types, the <code class="language-plaintext highlighter-rouge">this</code> keyword, hoisting, execution environments, scoping, and best practices.</p>
+
+<p>Practice Recommendations:</p>
+
+<ul>
+  <li>
+    <p>Convert Python programs into JavaScript.</p>
+  </li>
+  <li>
+    <p>Practice writing functions using all three declaration styles.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Function Declaration:</strong>([Medium](https://mayanovarini.medium.com/functions-in-javascript-declaration-expression-arrow-d6f907dc850a?utm_source=chatgpt.com “Functions in Javascript (Declaration, Expression, Arrow)</td>
+          <td>by RM”))</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Function Expression:</strong>([Medium](https://mayanovarini.medium.com/functions-in-javascript-declaration-expression-arrow-d6f907dc850a?utm_source=chatgpt.com “Functions in Javascript (Declaration, Expression, Arrow)</td>
+          <td>by RM”))</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Arrow Function:</strong>(<a href="https://www.w3schools.com/js/js_arrow_function.asp?utm_source=chatgpt.com" title="JavaScript Arrow Function - W3Schools">W3Schools</a>)</p>
+  </li>
+  <li>
+    <p>Experiment with <code class="language-plaintext highlighter-rouge">this</code> in different contexts.</p>
+  </li>
+  <li>
+    <p>Use browser dev tools and Node.js to debug and test code.</p>
+  </li>
+  <li>
+    <p>Practice hoisting and scope scenarios.</p>
+  </li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

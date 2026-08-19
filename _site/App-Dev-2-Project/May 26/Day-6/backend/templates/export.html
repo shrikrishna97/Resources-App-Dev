@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reservation Report</title>
+</head>
+<body>
+    Hello {{ username }},
+    Here is the report of all your reservations:
+    {% for reservation in reservations %}
+        <p>User: {{ reservation.username }}</p>
+        <p>Parking Lot: {{ reservation.parking_lot }}</p>
+        <p>Vehicle Number: {{ reservation.vehicle_number }}</p>
+        <p>Status: {{ reservation.status }}</p>
+        <p>Cost: {{ reservation.cost }}</p>
+        <hr>
+    {% endfor %}
+
+    <p>Total Reservations: {{ total_reservations }}</p>
+    <p>Total Cost: {{ total_cost }}</p>
+
+</body>
+</html>

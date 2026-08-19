@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/Virtual_env_activation.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/Virtual_env_activation.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/Virtual_env_activation.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Here’s an guide that includes instructions for installing the <code class="language-plaintext highlighter-rouge">venv</code> module and creating virtual environments on Mac, Linux, and Windows:</p>
+
+<h3 id="prerequisites">Prerequisites:</h3>
+<ul>
+  <li>Python 3.x installed on your system. To check, run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">--version</span>
+</code></pre></div>    </div>
+    <p>or</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="step-1-install-venv-if-not-already-installed">Step 1: Install <code class="language-plaintext highlighter-rouge">venv</code> (if not already installed)</h3>
+
+<h4 id="mac--linux">Mac &amp; Linux:</h4>
+<ul>
+  <li>
+    <p>If you are using a Linux distribution or macOS, you may need to install <code class="language-plaintext highlighter-rouge">venv</code> using your package manager:</p>
+
+    <p><strong>For Debian/Ubuntu</strong>:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>python3-venv
+</code></pre></div>    </div>
+
+    <p><strong>For Fedora</strong>:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf <span class="nb">install </span>python3-venv
+</code></pre></div>    </div>
+
+    <p><strong>For macOS with Homebrew</strong>:
+Python 3 typically comes with <code class="language-plaintext highlighter-rouge">venv</code>, but if not, you can reinstall it:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>python3
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="windows">Windows:</h4>
+<ul>
+  <li>If Python 3 is installed, <code class="language-plaintext highlighter-rouge">venv</code> should be available by default. No additional steps are required.</li>
+</ul>
+
+<hr />
+
+<h3 id="step-2-create-a-virtual-environment">Step 2: Create a Virtual Environment</h3>
+
+<h4 id="mac--linux-1">Mac &amp; Linux:</h4>
+
+<ol>
+  <li><strong>Navigate to the desired directory</strong> where you want to create your virtual environment:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Create the virtual environment</strong> using <code class="language-plaintext highlighter-rouge">venv</code>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> venv venv_name
+</code></pre></div>    </div>
+    <p>Replace <code class="language-plaintext highlighter-rouge">venv_name</code> with the name you want for your virtual environment.</p>
+  </li>
+  <li><strong>Activate the virtual environment</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source </span>venv_name/bin/activate
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Deactivate the virtual environment</strong> when you’re done:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="windows-command-prompt">Windows (Command Prompt):</h4>
+
+<ol>
+  <li><strong>Navigate to the desired directory</strong> where you want to create your virtual environment:
+    <pre><code class="language-cmd">cd path\to\your\project
+</code></pre>
+  </li>
+  <li><strong>Create the virtual environment</strong> using <code class="language-plaintext highlighter-rouge">venv</code>:
+    <pre><code class="language-cmd">python -m venv venv_name
+</code></pre>
+  </li>
+  <li><strong>Activate the virtual environment</strong>:
+    <pre><code class="language-cmd">venv_name\Scripts\activate
+</code></pre>
+  </li>
+  <li><strong>Deactivate the virtual environment</strong> when you’re done:
+    <pre><code class="language-cmd">deactivate
+</code></pre>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="windows-powershell">Windows (PowerShell):</h4>
+
+<ol>
+  <li><strong>Navigate to the desired directory</strong> where you want to create your virtual environment:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cd</span><span class="w"> </span><span class="nx">path\to\your\project</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><strong>Create the virtual environment</strong> using <code class="language-plaintext highlighter-rouge">venv</code>:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python</span><span class="w"> </span><span class="nt">-m</span><span class="w"> </span><span class="nx">venv</span><span class="w"> </span><span class="nx">venv_name</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><strong>Activate the virtual environment</strong>:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="n">\venv_name\Scripts\Activate</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <blockquote>
+      <p>If activation fails, you might need to change the execution policy:</p>
+      <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Set-ExecutionPolicy</span><span class="w"> </span><span class="nx">RemoteSigned</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w">
+</span></code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li><strong>Deactivate the virtual environment</strong> when you’re done:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">deactivate</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="notes">Notes:</h3>
+<ul>
+  <li>Replace <code class="language-plaintext highlighter-rouge">venv_name</code> with the desired name for your virtual environment.</li>
+  <li>After activating the virtual environment, any Python packages you install (e.g., using <code class="language-plaintext highlighter-rouge">pip</code>) will be isolated to that environment.</li>
+  <li>To install packages, use:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>package_name
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

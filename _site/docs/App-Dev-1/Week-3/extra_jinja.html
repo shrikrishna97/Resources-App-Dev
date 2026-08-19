@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/extra_jinja.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/extra_jinja.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/extra_jinja.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Jinja is a templating engine for Python, used primarily in web development to create dynamic HTML pages, though it can also be used for other templating needs. It allows you to use expressions, variables, and control structures in templates, which are rendered with data provided by Python code.</p>
+
+<h3 id="1-lists-and-python-functions">1. <strong>Lists and Python Functions</strong></h3>
+<ul>
+  <li><strong>Python list</strong>: A list is a collection of items in Python, which can be of different types. For example:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">len(list)</code></strong>: This Python function returns the number of elements in a list.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># Returns 4
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-jinja-filters">2. <strong>Jinja Filters</strong></h3>
+<p>In Jinja, <strong>filters</strong> are used to transform data in templates. You can pass data through filters using the pipe <code class="language-plaintext highlighter-rouge">|</code> operator. They are similar to functions in that they take an input, modify it, and return an output.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">list | length</code></strong>: This filter in Jinja is equivalent to Python’s <code class="language-plaintext highlighter-rouge">len()</code> function and returns the length of the list.</li>
+</ul>
+
+<div class="language-jinja highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">{{</span> <span class="nv">my_list</span> <span class="o">| </span><span class="nf">length</span> <span class="cp">}}</span>  # Outputs 4 if my_list is [1, 2, 3, 4]
+</code></pre></div></div>
+
+<h3 id="3-functions-or-methods">3. <strong>Functions or Methods</strong></h3>
+<ul>
+  <li><strong>Functions</strong>: In both Jinja and Python, a function is a block of code designed to perform a particular task. You can define your own functions in Python or use built-in functions.</li>
+  <li><strong>Methods</strong>: These are functions that belong to an object. For example, the <code class="language-plaintext highlighter-rouge">append()</code> method is a function of Python’s list object.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Adds 5 to my_list
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-groupbyproducer-grouping-in-jinja">4. <strong><code class="language-plaintext highlighter-rouge">groupby("producer")</code>: Grouping in Jinja</strong></h3>
+<p>The <code class="language-plaintext highlighter-rouge">groupby</code> filter in Jinja allows you to group a list of dictionaries by a common key, such as <code class="language-plaintext highlighter-rouge">producer</code> in this case. This filter works similarly to SQL’s <code class="language-plaintext highlighter-rouge">GROUP BY</code> clause. It groups data based on a shared value and returns a grouper object.</p>
+
+<p>Example:</p>
+
+<p>Assume you have a list of dictionaries representing movies, each having a <code class="language-plaintext highlighter-rouge">producer</code> key:</p>
+
+<div class="language-jinja highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span> <span class="k">set</span> <span class="nv">movies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="err">{</span><span class="s2">"title"</span><span class="err">:</span> <span class="s2">"Movie A"</span><span class="p">,</span> <span class="s2">"producer"</span><span class="err">:</span> <span class="s2">"Producer 1"</span><span class="err">}</span><span class="p">,</span>
+    <span class="err">{</span><span class="s2">"title"</span><span class="err">:</span> <span class="s2">"Movie B"</span><span class="p">,</span> <span class="s2">"producer"</span><span class="err">:</span> <span class="s2">"Producer 2"</span><span class="err">}</span><span class="p">,</span>
+    <span class="err">{</span><span class="s2">"title"</span><span class="err">:</span> <span class="s2">"Movie C"</span><span class="p">,</span> <span class="s2">"producer"</span><span class="err">:</span> <span class="s2">"Producer 1"</span><span class="err">}</span><span class="p">,</span>
+    <span class="err">{</span><span class="s2">"title"</span><span class="err">:</span> <span class="s2">"Movie D"</span><span class="p">,</span> <span class="s2">"producer"</span><span class="err">:</span> <span class="s2">"Producer 2"</span><span class="err">}</span>
+<span class="p">]</span> <span class="cp">%}</span>
+</code></pre></div></div>
+
+<p>You can group the list by <code class="language-plaintext highlighter-rouge">producer</code> using <code class="language-plaintext highlighter-rouge">groupby</code>:</p>
+
+<div class="language-jinja highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span> <span class="k">for</span> <span class="nv">producer</span><span class="p">,</span> <span class="nv">group</span> <span class="ow">in</span> <span class="nv">movies</span> <span class="o">| </span><span class="nf">groupby</span><span class="p">(</span><span class="s2">"producer"</span><span class="p">)</span> <span class="cp">%}</span>
+  <span class="nt">&lt;h2&gt;</span><span class="cp">{{</span> <span class="nv">producer</span> <span class="cp">}}</span><span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">movie</span> <span class="ow">in</span> <span class="nv">group</span> <span class="cp">%}</span>
+      <span class="nt">&lt;li&gt;</span><span class="cp">{{</span> <span class="nv">movie.title</span> <span class="cp">}}</span><span class="nt">&lt;/li&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Producer 1
+- Movie A
+- Movie C
+
+Producer 2
+- Movie B
+- Movie D
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Grouper</strong>: In this context, the <code class="language-plaintext highlighter-rouge">grouper</code> refers to the value by which the data is grouped, such as <code class="language-plaintext highlighter-rouge">"Producer 1"</code>, <code class="language-plaintext highlighter-rouge">"Producer 2"</code>, etc.</li>
+  <li><strong>Data associated with the grouper</strong>: The grouped items (movies) that share the same value for the specified key (<code class="language-plaintext highlighter-rouge">producer</code>) will be listed under each corresponding grouper.</li>
+</ul>
+
+<h3 id="summary">Summary:</h3>
+<ul>
+  <li><strong>Jinja Filters</strong>: Modify data in templates (e.g., <code class="language-plaintext highlighter-rouge">list | length</code>).</li>
+  <li><strong>Python <code class="language-plaintext highlighter-rouge">len(list)</code></strong>: Returns the length of the list.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">groupby("producer")</code></strong>: Groups items in a list by a specified key (e.g., <code class="language-plaintext highlighter-rouge">producer</code>) and provides a way to iterate over the grouped data.</li>
+</ul>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

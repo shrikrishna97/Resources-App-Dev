@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/Captcha/EXPLANATION.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/Captcha/EXPLANATION.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/Captcha/EXPLANATION.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="complete-captcha-app-explanation">Complete Captcha App Explanation</h1>
+
+<h2 id="folder-structure">Folder Structure</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Captcha/
+├── app.py                      # Backend (Flask + API + Routes)
+├── instance/
+│   └── users.db               # SQLite database (stores users)
+├── templates/
+│   ├── index.html             # Login/Signup page (Flask-rendered)
+│   └── dashboard.html         # Protected page (after login)
+└── static/
+    ├── script.js              # Handles login/signup logic
+    └── captcha.html           # Captcha verification page
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="complete-user-journey">Complete User Journey</h2>
+
+<h3 id="step-1-user-opens-app"><strong>Step 1: User Opens App</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Browser</span> <span class="err">→</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span>
+         <span class="err">↓</span>
+<span class="n">Flask</span> <span class="p">(</span><span class="n">app</span><span class="p">.</span><span class="n">py</span> <span class="n">Line</span> <span class="mi">84</span><span class="p">)</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"index.html"</span><span class="p">)</span>
+         <span class="err">↓</span>
+<span class="n">Shows</span><span class="p">:</span> <span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="p">(</span><span class="n">Login</span> <span class="o">+</span> <span class="n">Signup</span> <span class="n">forms</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>User sees:</strong> Two forms - Login and Signup</p>
+
+<hr />
+
+<h3 id="step-2a-user-signs-up-new-user"><strong>Step 2A: User Signs Up (New User)</strong></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">User</span> <span class="nx">fills</span> <span class="nx">signup</span> <span class="nx">form</span> <span class="err">→</span> <span class="nx">Clicks</span> <span class="dl">"</span><span class="s2">Sign Up</span><span class="dl">"</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">js</span> <span class="nx">Line</span> <span class="mi">2</span><span class="o">-</span><span class="mi">14</span><span class="p">)</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">signupForm</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Sends POST request to /api/signup</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/signup</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span> <span class="p">})</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+         <span class="err">↓</span>
+<span class="nx">Flask</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">py</span> <span class="nx">Line</span> <span class="mi">25</span><span class="o">-</span><span class="mi">35</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nx">SignupAPI</span><span class="p">(</span><span class="nx">Resource</span><span class="p">):</span>
+    <span class="nx">def</span> <span class="nx">post</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="err">#</span> <span class="nx">Check</span> <span class="k">if</span> <span class="nx">username</span> <span class="nx">exists</span>
+        <span class="err">#</span> <span class="nx">Create</span> <span class="k">new</span> <span class="nx">user</span> <span class="k">in</span> <span class="nx">database</span>
+        <span class="err">#</span> <span class="nx">Return</span> <span class="nx">success</span><span class="o">/</span><span class="nx">error</span>
+         <span class="err">↓</span>
+<span class="nx">Database</span><span class="p">:</span> <span class="nx">New</span> <span class="nx">user</span> <span class="nx">saved</span> <span class="k">in</span> <span class="nx">users</span><span class="p">.</span><span class="nx">db</span>
+         <span class="err">↓</span>
+<span class="nx">Response</span> <span class="nx">to</span> <span class="nx">Browser</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">User registered successfully</span><span class="dl">"</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Result:</strong> User account created, can now login</p>
+
+<hr />
+
+<h3 id="step-2b-user-logs-in"><strong>Step 2B: User Logs In</strong></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">User</span> <span class="nx">fills</span> <span class="nx">login</span> <span class="nx">form</span> <span class="err">→</span> <span class="nx">Clicks</span> <span class="dl">"</span><span class="s2">Login</span><span class="dl">"</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">js</span> <span class="nx">Line</span> <span class="mi">17</span><span class="o">-</span><span class="mi">37</span><span class="p">)</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">loginForm</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Sends POST request to /api/login</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/login</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span> <span class="p">})</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+         <span class="err">↓</span>
+<span class="nx">Flask</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">py</span> <span class="nx">Line</span> <span class="mi">38</span><span class="o">-</span><span class="mi">62</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nx">LoginAPI</span><span class="p">(</span><span class="nx">Resource</span><span class="p">):</span>
+    <span class="nx">def</span> <span class="nx">post</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="err">#</span> <span class="nx">Check</span> <span class="nx">username</span> <span class="o">+</span> <span class="nx">password</span>
+        <span class="nx">user</span> <span class="o">=</span> <span class="nx">User</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">filter_by</span><span class="p">(</span><span class="nx">username</span><span class="o">=</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="o">=</span><span class="nx">password</span><span class="p">).</span><span class="nx">first</span><span class="p">()</span>
+        
+        <span class="nx">session</span><span class="p">[</span><span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">username</span>  <span class="err">#</span> <span class="nx">Create</span> <span class="nx">session</span> <span class="nx">cookie</span>
+        
+        <span class="k">if</span> <span class="nx">password</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">1234</span><span class="dl">"</span><span class="p">:</span>  <span class="err">#</span> <span class="nx">SPECIAL</span> <span class="nx">CASE</span>
+            <span class="err">#</span> <span class="nx">Generate</span> <span class="nx">random</span> <span class="nx">math</span> <span class="nx">question</span>
+            <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+            <span class="nx">session</span><span class="p">[</span><span class="dl">"</span><span class="s2">captcha_answer</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Store</span> <span class="nx">answer</span> <span class="k">in</span> <span class="nx">session</span>
+            <span class="k">return</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">captcha_required</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">question</span><span class="dl">"</span><span class="p">:</span> <span class="nx">f</span><span class="dl">"</span><span class="s2">{a} + {b}</span><span class="dl">"</span><span class="p">}</span>
+        
+        <span class="k">return</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Login successful</span><span class="dl">"</span><span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="two-possible-login-paths"><strong>Two Possible Login Paths:</strong></h3>
+
+<h4 id="path-a-normal-login-password--1234"><strong>Path A: Normal Login (password ≠ “1234”)</strong></h4>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Flask</span> <span class="nx">returns</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">js</span> <span class="nx">Line</span> <span class="mi">31</span><span class="o">-</span><span class="mi">32</span><span class="p">)</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/dashboard</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// Redirect to dashboard</span>
+<span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">Browser</span> <span class="err">→</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:5000/dashboard</span>
+         <span class="err">↓</span>
+<span class="nx">Flask</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">py</span> <span class="nx">Line</span> <span class="mi">89</span><span class="o">-</span><span class="mi">92</span><span class="p">)</span>
+<span class="p">@</span><span class="nd">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="dl">"</span><span class="s2">/dashboard</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">def</span> <span class="nx">dashboard</span><span class="p">():</span>
+    <span class="k">if</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">session</span><span class="p">:</span>  <span class="err">#</span> <span class="nx">Check</span> <span class="k">if</span> <span class="nx">logged</span> <span class="k">in</span>
+        <span class="k">return</span> <span class="nx">render_template</span><span class="p">(</span><span class="dl">"</span><span class="s2">index.html</span><span class="dl">"</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Not</span> <span class="nx">logged</span> <span class="k">in</span> <span class="err">→</span> <span class="nx">back</span> <span class="nx">to</span> <span class="nx">login</span>
+    <span class="k">return</span> <span class="nx">render_template</span><span class="p">(</span><span class="dl">"</span><span class="s2">dashboard.html</span><span class="dl">"</span><span class="p">,</span> <span class="nx">user</span><span class="o">=</span><span class="nx">session</span><span class="p">[</span><span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">])</span>
+         <span class="err">↓</span>
+<span class="nx">Shows</span><span class="p">:</span> <span class="nx">dashboard</span><span class="p">.</span><span class="nx">html</span> <span class="kd">with</span> <span class="dl">"</span><span class="s2">Welcome, [username]!</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p><strong>Result:</strong> User logged in successfully</p>
+
+<hr />
+
+<h4 id="path-b-special-login-password--1234--captcha-required"><strong>Path B: Special Login (password = “1234”) → CAPTCHA Required</strong></h4>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Flask</span> <span class="nx">returns</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">captcha_required</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">question</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5 + 3</span><span class="dl">"</span><span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">js</span> <span class="nx">Line</span> <span class="mi">28</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">captcha_required</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">captcha_question</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">question</span><span class="p">);</span>  <span class="c1">// Save question in browser</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/static/captcha.html</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// Redirect to captcha page</span>
+<span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">Browser</span> <span class="err">→</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:5000/static/captcha.html</span>
+         <span class="err">↓</span>
+<span class="nx">captcha</span><span class="p">.</span><span class="nx">html</span> <span class="nx">loads</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">captcha</span><span class="p">.</span><span class="nx">html</span> <span class="nx">Line</span> <span class="mi">23</span><span class="o">-</span><span class="mi">25</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">captcha_question</span><span class="dl">'</span><span class="p">);</span>  <span class="c1">// Get "5 + 3"</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">captcha-question</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">question</span><span class="p">;</span>  <span class="c1">// Show it</span>
+</code></pre></div></div>
+
+<p><strong>User sees:</strong> CAPTCHA page with math question: “5 + 3”</p>
+
+<hr />
+
+<h3 id="step-3-user-solves-captcha"><strong>Step 3: User Solves CAPTCHA</strong></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">User</span> <span class="nx">enters</span> <span class="nx">answer</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">g</span><span class="p">.,</span> <span class="dl">"</span><span class="s2">8</span><span class="dl">"</span><span class="p">)</span> <span class="err">→</span> <span class="nx">Clicks</span> <span class="dl">"</span><span class="s2">Verify</span><span class="dl">"</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">captcha</span><span class="p">.</span><span class="nx">html</span> <span class="nx">Line</span> <span class="mi">27</span><span class="o">-</span><span class="mi">46</span><span class="p">)</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">verifyCaptcha</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">captcha-answer</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>  <span class="c1">// Get "8"</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/captcha</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">answer</span> <span class="p">})</span>  <span class="c1">// Send answer to server</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+         <span class="err">↓</span>
+<span class="nx">Flask</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">py</span> <span class="nx">Line</span> <span class="mi">65</span><span class="o">-</span><span class="mi">72</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nx">CaptchaAPI</span><span class="p">(</span><span class="nx">Resource</span><span class="p">):</span>
+    <span class="nx">def</span> <span class="nx">post</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="nx">answer</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">answer</span><span class="dl">"</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Get</span> <span class="dl">"</span><span class="s2">8</span><span class="dl">"</span>
+        <span class="nx">correct</span> <span class="o">=</span> <span class="nx">session</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">captcha_answer</span><span class="dl">"</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Get</span> <span class="nx">correct</span> <span class="nx">answer</span> <span class="k">from</span> <span class="nx">session</span>
+        
+        <span class="k">if</span> <span class="nx">answer</span> <span class="o">==</span> <span class="nx">correct</span><span class="p">:</span>  <span class="err">#</span> <span class="dl">"</span><span class="s2">8</span><span class="dl">"</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">8</span><span class="dl">"</span>
+            <span class="k">return</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CAPTCHA passed</span><span class="dl">"</span><span class="p">}</span>
+        <span class="nl">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incorrect CAPTCHA</span><span class="dl">"</span><span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">JavaScript</span> <span class="p">(</span><span class="nx">captcha</span><span class="p">.</span><span class="nx">html</span> <span class="nx">Line</span> <span class="mi">38</span><span class="o">-</span><span class="mi">43</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alertBox</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">CAPTCHA passed! Redirecting...</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/dashboard</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>  <span class="c1">// Redirect after 1 second</span>
+<span class="p">}</span>
+         <span class="err">↓</span>
+<span class="nx">Browser</span> <span class="err">→</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:5000/dashboard</span>
+         <span class="err">↓</span>
+<span class="nx">Shows</span><span class="p">:</span> <span class="nx">Dashboard</span> <span class="kd">with</span> <span class="dl">"</span><span class="s2">Welcome, [username]!</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p><strong>Result:</strong> CAPTCHA verified, user logged in</p>
+
+<hr />
+
+<h3 id="step-4-user-logs-out"><strong>Step 4: User Logs Out</strong></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">User</span> <span class="nx">clicks</span> <span class="dl">"</span><span class="s2">Logout</span><span class="dl">"</span> <span class="nx">button</span>
+         <span class="err">↓</span>
+<span class="nx">Browser</span> <span class="err">→</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:5000/logout</span>
+         <span class="err">↓</span>
+<span class="nx">Flask</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">py</span> <span class="nx">Line</span> <span class="mi">95</span><span class="o">-</span><span class="mi">99</span><span class="p">)</span>
+<span class="p">@</span><span class="nd">app</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="dl">"</span><span class="s2">/logout</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">def</span> <span class="nx">logout</span><span class="p">():</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="nx">None</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Remove</span> <span class="nx">user</span> <span class="k">from</span> <span class="nx">session</span> <span class="p">(</span><span class="k">delete</span> <span class="nx">session</span> <span class="nx">cookie</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">Redirect</span> <span class="nx">to</span> <span class="nx">home</span>
+         <span class="err">↓</span>
+<span class="nx">Browser</span> <span class="err">→</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:5000/</span>
+         <span class="err">↓</span>
+<span class="nx">Shows</span><span class="p">:</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span> <span class="p">(</span><span class="nx">Login</span> <span class="nx">page</span> <span class="nx">again</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Result:</strong> User logged out</p>
+
+<hr />
+
+<h2 id="key-concepts-used">Key Concepts Used</h2>
+
+<h3 id="1-flask-session-backend">1. <strong>Flask Session (Backend)</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">session</span><span class="p">[</span><span class="s">"user"</span><span class="p">]</span> <span class="o">=</span> <span class="n">username</span>           <span class="c1"># Store user in session cookie
+</span><span class="n">session</span><span class="p">[</span><span class="s">"captcha_answer"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"8"</span>      <span class="c1"># Store captcha answer in session
+</span><span class="k">if</span> <span class="s">"user"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">session</span><span class="p">:</span>            <span class="c1"># Check if logged in
+</span><span class="n">session</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">"user"</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>            <span class="c1"># Remove user (logout)
+</span></code></pre></div></div>
+
+<p><strong>How it works:</strong></p>
+<ul>
+  <li>Flask creates an encrypted cookie named <code class="language-plaintext highlighter-rouge">session</code></li>
+  <li>Stored in browser but <strong>JavaScript cannot read it</strong> (HttpOnly)</li>
+  <li>Browser automatically sends it with every request</li>
+  <li>Flask decrypts and validates it on each request</li>
+</ul>
+
+<hr />
+
+<h3 id="2-sessionstorage-frontend">2. <strong>sessionStorage (Frontend)</strong></h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">captcha_question</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">5 + 3</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// Store question in browser</span>
+<span class="kd">const</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">captcha_question</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// Get question</span>
+</code></pre></div></div>
+
+<p><strong>How it works:</strong></p>
+<ul>
+  <li>Stored in browser memory</li>
+  <li>JavaScript CAN read and modify it</li>
+  <li>Cleared when browser tab closes</li>
+  <li>NOT sent to server automatically</li>
+  <li>Used for temporary client-side data</li>
+</ul>
+
+<hr />
+
+<h3 id="3-restful-api-endpoints">3. <strong>RESTful API Endpoints</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">signup</span>    <span class="err">→</span> <span class="n">POST</span> <span class="err">→</span> <span class="n">Create</span> <span class="n">new</span> <span class="n">user</span>
+<span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">login</span>     <span class="err">→</span> <span class="n">POST</span> <span class="err">→</span> <span class="n">Authenticate</span> <span class="n">user</span>
+<span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">captcha</span>   <span class="err">→</span> <span class="n">POST</span> <span class="err">→</span> <span class="n">Verify</span> <span class="n">captcha</span> <span class="n">answer</span>
+</code></pre></div></div>
+
+<p><strong>Why use APIs?</strong></p>
+<ul>
+  <li>Clean separation between frontend and backend</li>
+  <li>Frontend (JavaScript) communicates with backend (Flask) via JSON</li>
+  <li>Easy to test and maintain</li>
+</ul>
+
+<hr />
+
+<h3 id="4-protected-route">4. <strong>Protected Route</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/dashboard"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">dashboard</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s">"user"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">session</span><span class="p">:</span>  <span class="c1"># Not logged in
+</span>        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"index.html"</span><span class="p">)</span>  <span class="c1"># Redirect to login
+</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"dashboard.html"</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s">"user"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><strong>Security:</strong></p>
+<ul>
+  <li>Checks if user is logged in before showing dashboard</li>
+  <li>If not logged in, shows login page</li>
+  <li>Session cookie proves user is authenticated</li>
+</ul>
+
+<hr />
+
+<h2 id="data-flow-diagram">Data Flow Diagram</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="err">┌─────────────┐</span>
+<span class="err">│</span>   <span class="n">Browser</span>   <span class="err">│</span>
+<span class="err">└──────┬──────┘</span>
+       <span class="err">│</span>
+       <span class="err">│</span> <span class="mf">1.</span> <span class="n">Visit</span> <span class="o">/</span>
+       <span class="err">↓</span>
+<span class="err">┌─────────────────────────┐</span>
+<span class="err">│</span>  <span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="o">+</span> <span class="n">script</span><span class="p">.</span><span class="n">js</span> <span class="err">│</span>  <span class="p">(</span><span class="n">Login</span><span class="o">/</span><span class="n">Signup</span> <span class="n">forms</span><span class="p">)</span>
+<span class="err">└──────┬──────────────────┘</span>
+       <span class="err">│</span>
+       <span class="err">│</span> <span class="mf">2.</span> <span class="n">Submit</span> <span class="n">login</span> <span class="p">(</span><span class="n">password</span> <span class="o">=</span> <span class="s">"1234"</span><span class="p">)</span>
+       <span class="err">↓</span>
+<span class="err">┌─────────────────────┐</span>
+<span class="err">│</span>  <span class="n">Flask</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">login</span>   <span class="err">│</span>
+<span class="err">│</span>  <span class="o">-</span> <span class="n">Check</span> <span class="n">user</span>       <span class="err">│</span>
+<span class="err">│</span>  <span class="o">-</span> <span class="n">Create</span> <span class="n">session</span>   <span class="err">│</span> <span class="n">session</span><span class="p">[</span><span class="s">"user"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"john"</span>
+<span class="err">│</span>  <span class="o">-</span> <span class="n">Generate</span> <span class="n">captcha</span> <span class="err">│</span> <span class="n">session</span><span class="p">[</span><span class="s">"captcha_answer"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"8"</span>
+<span class="err">└──────┬──────────────┘</span>
+       <span class="err">│</span>
+       <span class="err">│</span> <span class="mf">3.</span> <span class="n">Return</span> <span class="p">{</span><span class="s">"status"</span><span class="p">:</span> <span class="s">"captcha_required"</span><span class="p">,</span> <span class="s">"question"</span><span class="p">:</span> <span class="s">"5 + 3"</span><span class="p">}</span>
+       <span class="err">↓</span>
+<span class="err">┌─────────────────────┐</span>
+<span class="err">│</span>  <span class="n">captcha</span><span class="p">.</span><span class="n">html</span>       <span class="err">│</span>  <span class="p">(</span><span class="n">Shows</span> <span class="s">"5 + 3"</span><span class="p">)</span>
+<span class="err">│</span>  <span class="n">sessionStorage</span>     <span class="err">│</span> <span class="n">captcha_question</span> <span class="o">=</span> <span class="s">"5 + 3"</span>
+<span class="err">└──────┬──────────────┘</span>
+       <span class="err">│</span>
+       <span class="err">│</span> <span class="mf">4.</span> <span class="n">User</span> <span class="n">enters</span> <span class="s">"8"</span> <span class="err">→</span> <span class="n">Click</span> <span class="n">Verify</span>
+       <span class="err">↓</span>
+<span class="err">┌─────────────────────┐</span>
+<span class="err">│</span>  <span class="n">Flask</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">captcha</span> <span class="err">│</span>
+<span class="err">│</span>  <span class="o">-</span> <span class="n">Compare</span> <span class="n">answer</span>   <span class="err">│</span>  <span class="s">"8"</span> <span class="o">==</span> <span class="n">session</span><span class="p">[</span><span class="s">"captcha_answer"</span><span class="p">]</span>
+<span class="err">└──────┬──────────────┘</span>
+       <span class="err">│</span>
+       <span class="err">│</span> <span class="mf">5.</span> <span class="n">Return</span> <span class="p">{</span><span class="s">"status"</span><span class="p">:</span> <span class="s">"success"</span><span class="p">}</span>
+       <span class="err">↓</span>
+<span class="err">┌─────────────────────┐</span>
+<span class="err">│</span>  <span class="n">dashboard</span><span class="p">.</span><span class="n">html</span>     <span class="err">│</span>  <span class="n">Welcome</span><span class="p">,</span> <span class="p">{{</span> <span class="n">user</span> <span class="p">}}</span><span class="err">!</span>
+<span class="err">└─────────────────────┘</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="why-templates-vs-static-folders">Why <code class="language-plaintext highlighter-rouge">templates/</code> vs <code class="language-plaintext highlighter-rouge">static/</code> Folders?</h2>
+
+<h3 id="templates-folder---server-side-rendering"><code class="language-plaintext highlighter-rouge">templates/</code> Folder - Server-Side Rendering</h3>
+
+<p><strong>Files here are RENDERED by Flask using Jinja2</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"index.html"</span><span class="p">)</span>  <span class="c1"># Flask processes this
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/dashboard"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">dashboard</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"dashboard.html"</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s">"user"</span><span class="p">])</span>
+    <span class="c1"># Flask injects session["user"] into the template
+</span></code></pre></div></div>
+
+<p><strong>What happens:</strong></p>
+<ol>
+  <li>Flask reads the HTML file</li>
+  <li>Processes Jinja2 syntax <code class="language-plaintext highlighter-rouge">{{ user }}</code>, <code class="language-plaintext highlighter-rouge">{% if %}</code>, etc.</li>
+  <li>Injects Python variables</li>
+  <li>Sends final HTML to browser</li>
+</ol>
+
+<p><strong>Example:</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- dashboard.html --&gt;</span>
+<span class="nt">&lt;h1&gt;</span>Welcome, {{ user }}!<span class="nt">&lt;/h1&gt;</span>  <span class="c">&lt;!-- Flask replaces {{ user }} with actual username --&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="static-folder---direct-access-no-processing"><code class="language-plaintext highlighter-rouge">static/</code> Folder - Direct Access (No Processing)</h3>
+
+<p><strong>Files here are sent AS-IS to the browser</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In script.js</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/static/captcha.html</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// Direct access, no Flask processing</span>
+</code></pre></div></div>
+
+<p><strong>What happens:</strong></p>
+<ol>
+  <li>Browser requests <code class="language-plaintext highlighter-rouge">/static/captcha.html</code></li>
+  <li>Flask sends the file <strong>without any processing</strong></li>
+  <li>No Jinja2, no Python variables</li>
+  <li>Pure HTML/CSS/JS</li>
+</ol>
+
+<p><strong>Why captcha.html is in static?</strong></p>
+<ul>
+  <li>Captcha page doesn’t need Flask to inject any data</li>
+  <li>The captcha question is stored in <code class="language-plaintext highlighter-rouge">sessionStorage</code> (frontend)</li>
+  <li>It’s a pure JavaScript page</li>
+  <li>No server-side rendering needed</li>
+  <li>Faster loading (no server processing)</li>
+</ul>
+
+<hr />
+
+<h2 id="why-this-design">Why This Design?</h2>
+
+<ol>
+  <li><strong>Security:</strong> Password “1234” triggers extra verification (CAPTCHA)</li>
+  <li><strong>Session Management:</strong> User stays logged in across pages using session cookies</li>
+  <li><strong>API Structure:</strong> Clean separation between frontend (JavaScript) and backend (Flask)</li>
+  <li><strong>User Experience:</strong> Smooth flow with redirects and alerts</li>
+  <li><strong>Protection:</strong> Dashboard is protected - requires login to access</li>
+</ol>
+
+<hr />
+
+<h2 id="session-vs-sessionstorage">Session vs sessionStorage</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Flask Session</th>
+      <th>sessionStorage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Location</strong></td>
+      <td>Server-side (cookie in browser)</td>
+      <td>Client-side (browser memory)</td>
+    </tr>
+    <tr>
+      <td><strong>Created By</strong></td>
+      <td>Backend (Flask)</td>
+      <td>Frontend (JavaScript)</td>
+    </tr>
+    <tr>
+      <td><strong>Security</strong></td>
+      <td>High (encrypted/signed)</td>
+      <td>Low (visible to user)</td>
+    </tr>
+    <tr>
+      <td><strong>JS Access</strong></td>
+      <td>No (HttpOnly)</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Auto-sent to Server</strong></td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Use Case</strong></td>
+      <td>User authentication</td>
+      <td>Temporary UI data</td>
+    </tr>
+    <tr>
+      <td><strong>Example in App</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">session["user"]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">sessionStorage.getItem("captcha_question")</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="how-to-run">How to Run</h2>
+
+<ol>
+  <li><strong>Install dependencies:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-sqlalchemy flask-restful
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Run the app:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Open browser:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:5000/
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Test the flow:</strong>
+    <ul>
+      <li>Sign up with any username/password</li>
+      <li>Login with password = “1234” to trigger CAPTCHA</li>
+      <li>Solve the math question</li>
+      <li>Access dashboard</li>
+      <li>Logout</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="api-endpoints-summary">API Endpoints Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Purpose</th>
+      <th>Request Body</th>
+      <th>Response</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td>GET</td>
+      <td>Show login page</td>
+      <td>-</td>
+      <td>HTML page</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/dashboard</code></td>
+      <td>GET</td>
+      <td>Show dashboard (protected)</td>
+      <td>-</td>
+      <td>HTML page</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/logout</code></td>
+      <td>GET</td>
+      <td>Logout user</td>
+      <td>-</td>
+      <td>Redirect to <code class="language-plaintext highlighter-rouge">/</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/api/signup</code></td>
+      <td>POST</td>
+      <td>Create new user</td>
+      <td><code class="language-plaintext highlighter-rouge">{username, password}</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{status, message}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/api/login</code></td>
+      <td>POST</td>
+      <td>Authenticate user</td>
+      <td><code class="language-plaintext highlighter-rouge">{username, password}</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{status, message/question}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/api/captcha</code></td>
+      <td>POST</td>
+      <td>Verify captcha</td>
+      <td><code class="language-plaintext highlighter-rouge">{answer}</code></td>
+      <td><code class="language-plaintext highlighter-rouge">{status, message}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="key-takeaways">Key Takeaways</h2>
+
+<ol>
+  <li><strong>Flask session cookies</strong> are secure and managed by the backend</li>
+  <li><strong>sessionStorage</strong> is for temporary client-side data</li>
+  <li><strong>templates/</strong> = Files rendered by Flask with Jinja2</li>
+  <li><strong>static/</strong> = Pure HTML/CSS/JS files served as-is</li>
+  <li><strong>Protected routes</strong> check session before allowing access</li>
+  <li><strong>RESTful APIs</strong> enable clean frontend-backend communication</li>
+</ol>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

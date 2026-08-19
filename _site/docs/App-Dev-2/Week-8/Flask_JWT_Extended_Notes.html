@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-8/Flask_JWT_Extended_Notes.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-8/Flask_JWT_Extended_Notes.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-8/Flask_JWT_Extended_Notes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="flask-jwt-extended-complete-guide">Flask-JWT-Extended Complete Guide</h1>
+
+<h2 id="what-is-jwt">What is JWT?</h2>
+
+<p><strong>JWT (JSON Web Token)</strong> is a compact, URL-safe way to represent claims between two parties. It’s commonly used for <strong>authentication</strong> in web applications.</p>
+
+<p>A JWT consists of three parts separated by dots (<code class="language-plaintext highlighter-rouge">.</code>):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>header.payload.signature
+</code></pre></div></div>
+
+<p>Example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzAxIiwiZXhwIjoxNzYyODc4NzI3fQ.abc123signature
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="why-use-jwt">Why Use JWT?</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Session-Based Auth</th>
+      <th>JWT-Based Auth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Storage</td>
+      <td>Server stores session</td>
+      <td>Client stores token</td>
+    </tr>
+    <tr>
+      <td>Scalability</td>
+      <td>Harder (session sharing needed)</td>
+      <td>Easier (stateless)</td>
+    </tr>
+    <tr>
+      <td>API-friendly</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Mobile-friendly</td>
+      <td>Limited</td>
+      <td>Excellent</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="what-do-these-terms-mean">What do these terms mean?</h3>
+
+<p><strong>Stateless:</strong><br />
+The server does NOT remember anything about the user between requests. Each request carries all the information needed (the JWT token) to verify the user. The server doesn’t need to store any session data.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request 1: "Here's my token" → Server validates token → Response
+Request 2: "Here's my token" → Server validates token → Response
+(Server doesn't remember Request 1 when handling Request 2)
+</code></pre></div></div>
+
+<p><strong>API-friendly (Why Sessions are NOT):</strong><br />
+Sessions rely on <strong>cookies</strong>, which browsers handle automatically. But APIs are used by:</p>
+<ul>
+  <li>Mobile apps (Android/iOS)</li>
+  <li>Other servers (backend-to-backend)</li>
+  <li>JavaScript frontend (Vue, React)</li>
+</ul>
+
+<p>These clients don’t automatically handle cookies like browsers do. JWT tokens are easier - just send the token in the header!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Session-Based (Cookie):
+Browser automatically sends cookie ✓
+Mobile App needs extra work to handle cookies ✗
+Other APIs need extra work ✗
+
+JWT-Based (Header):
+Browser: Add "Authorization: Bearer token" ✓
+Mobile App: Add "Authorization: Bearer token" ✓  
+Other APIs: Add "Authorization: Bearer token" ✓
+(Same simple approach works everywhere!)
+</code></pre></div></div>
+
+<p><strong>Session Sharing Needed:</strong><br />
+In session-based auth, the server stores user sessions in memory. Problem: If you have multiple servers (for scaling), they don’t share memory!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────────┐
+│  Session-Based Problem (Multiple Servers)               │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  User logs in → Server 1 (stores session in memory)    │
+│                                                         │
+│  Next request goes to → Server 2                        │
+│  Server 2: "Who are you? I don't have your session!"   │
+│                                                         │
+│  Solution: Share sessions via Redis/Database (complex) │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  JWT Solution (Stateless)                               │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  User logs in → Gets token                              │
+│                                                         │
+│  Request to Server 1: "Bearer token..." → Works!       │
+│  Request to Server 2: "Bearer token..." → Works!       │
+│  Request to Server 3: "Bearer token..." → Works!       │
+│                                                         │
+│  (All servers can verify token using the same secret)  │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="installing-flask-jwt-extended">Installing Flask-JWT-Extended</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-jwt-extended
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="basic-configuration">Basic Configuration</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">JWTManager</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"JWT_SECRET_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"your-secret-key"</span>  <span class="c1"># Change this in production!
+</span>
+<span class="n">jwt</span> <span class="o">=</span> <span class="n">JWTManager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="important-configuration-options">Important Configuration Options</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Config Key</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">JWT_SECRET_KEY</code></td>
+      <td>Secret key for signing tokens</td>
+      <td>Required</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">JWT_ACCESS_TOKEN_EXPIRES</code></td>
+      <td>Token expiry time</td>
+      <td>15 minutes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">JWT_TOKEN_LOCATION</code></td>
+      <td>Where to look for tokens</td>
+      <td><code class="language-plaintext highlighter-rouge">["headers"]</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="core-concepts">Core Concepts</h2>
+
+<h3 id="1-user-identity-loader-jwtuser_identity_loader">1. User Identity Loader (<code class="language-plaintext highlighter-rouge">@jwt.user_identity_loader</code>)</h3>
+
+<p>This decorator defines <strong>what information</strong> will be stored in the token to identify the user.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">jwt</span><span class="p">.</span><span class="n">user_identity_loader</span>
+<span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">.</span><span class="n">username</span>  <span class="c1"># This becomes the "identity" stored in the token
+</span></code></pre></div></div>
+
+<p><strong>Key Point:</strong> The return value is stored in the token’s <code class="language-plaintext highlighter-rouge">sub</code> (subject) claim.</p>
+
+<hr />
+
+<h3 id="2-user-lookup-loader-jwtuser_lookup_loader">2. User Lookup Loader (<code class="language-plaintext highlighter-rouge">@jwt.user_lookup_loader</code>)</h3>
+
+<p>This decorator defines <strong>how to retrieve the user object</strong> from the database using the identity stored in the token.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">jwt</span><span class="p">.</span><span class="n">user_lookup_loader</span>
+<span class="k">def</span> <span class="nf">user_lookup</span><span class="p">(</span><span class="n">_jwt_header</span><span class="p">,</span> <span class="n">jwt_data</span><span class="p">):</span>
+    <span class="n">identity</span> <span class="o">=</span> <span class="n">jwt_data</span><span class="p">[</span><span class="s">"sub"</span><span class="p">]</span>  <span class="c1"># Get the identity from token
+</span>    <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">identity</span><span class="p">).</span><span class="n">one_or_none</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><strong>Key Point:</strong> This enables the use of <code class="language-plaintext highlighter-rouge">current_user</code> in protected routes.</p>
+
+<hr />
+
+<h3 id="3-creating-access-tokens">3. Creating Access Tokens</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">create_access_token</span>
+
+<span class="c1"># Create token with user object
+</span><span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Create token with just username
+</span><span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="s">"user_01"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-protecting-routes-jwt_required">4. Protecting Routes (<code class="language-plaintext highlighter-rouge">@jwt_required()</code>)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">jwt_required</span><span class="p">,</span> <span class="n">current_user</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/protected'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">protected</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"user"</span><span class="p">:</span> <span class="n">current_user</span><span class="p">.</span><span class="n">username</span><span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-getting-identity-get_jwt_identity">5. Getting Identity (<code class="language-plaintext highlighter-rouge">get_jwt_identity()</code>)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">get_jwt_identity</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/profile'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">():</span>
+    <span class="n">current_username</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>  <span class="c1"># Returns what user_identity_loader returned
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s">"username"</span><span class="p">:</span> <span class="n">current_username</span><span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Returns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">current_user</code></td>
+      <td>Full user object (from database)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get_jwt_identity()</code></td>
+      <td>Just the identity (e.g., username)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="role-based-access-control-rbac">Role-Based Access Control (RBAC)</h2>
+
+<h3 id="method-1-store-role-in-token-claims">Method 1: Store Role in Token Claims</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">create_access_token</span><span class="p">,</span> <span class="n">get_jwt</span>
+
+<span class="c1"># When creating token, add extra claims
+</span><span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span>
+    <span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+    <span class="n">additional_claims</span><span class="o">=</span><span class="p">{</span><span class="s">"role"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># In protected route, check the role
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/admin'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">admin_only</span><span class="p">():</span>
+    <span class="n">claims</span> <span class="o">=</span> <span class="n">get_jwt</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">claims</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"role"</span><span class="p">)</span> <span class="o">!=</span> <span class="s">"admin"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Admin access required"</span><span class="p">},</span> <span class="mi">403</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Welcome, Admin!"</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="method-2-check-role-from-database-via-current_user">Method 2: Check Role from Database (via current_user)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/admin'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">admin_only</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="p">.</span><span class="n">role</span> <span class="o">!=</span> <span class="s">"admin"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Admin access required"</span><span class="p">},</span> <span class="mi">403</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Welcome, Admin!"</span><span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="flow-diagram">Flow Diagram</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────────────────┐
+│                        JWT Authentication Flow                   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  1. LOGIN REQUEST                                                │
+│     Client ──────────────────────────────────► Server           │
+│     POST /login                                                  │
+│     {"username": "user_01", "password": "1234"}                 │
+│                                                                  │
+│  2. TOKEN CREATION                                               │
+│     Server validates credentials                                 │
+│     ↓                                                            │
+│     @jwt.user_identity_loader runs                               │
+│     ↓                                                            │
+│     create_access_token(identity=user)                          │
+│     ↓                                                            │
+│     Token created with user.username as "sub"                   │
+│                                                                  │
+│  3. TOKEN RESPONSE                                               │
+│     Server ──────────────────────────────────► Client           │
+│     {"access_token": "eyJhbGciOi..."}                           │
+│                                                                  │
+│  4. PROTECTED REQUEST                                            │
+│     Client ──────────────────────────────────► Server           │
+│     GET /dashboard                                               │
+│     Authorization: Bearer eyJhbGciOi...                          │
+│                                                                  │
+│  5. TOKEN VERIFICATION                                           │
+│     @jwt_required() validates token                              │
+│     ↓                                                            │
+│     @jwt.user_lookup_loader runs                                 │
+│     ↓                                                            │
+│     current_user is now available                                │
+│                                                                  │
+│  6. PROTECTED RESPONSE                                           │
+│     Server ──────────────────────────────────► Client           │
+│     {"username": "user_01", "message": "success"}               │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="complete-example-with-roles">Complete Example with Roles</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">JWTManager</span><span class="p">,</span> 
+    <span class="n">create_access_token</span><span class="p">,</span> 
+    <span class="n">jwt_required</span><span class="p">,</span> 
+    <span class="n">current_user</span><span class="p">,</span>
+    <span class="n">get_jwt_identity</span><span class="p">,</span>
+    <span class="n">get_jwt</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="c1"># ============== APP CONFIGURATION ==============
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"SQLALCHEMY_DATABASE_URI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"sqlite:///jwt-roles.sqlite3"</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"JWT_SECRET_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"super-secret-key-change-in-production"</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"JWT_ACCESS_TOKEN_EXPIRES"</span><span class="p">]</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Token valid for 1 hour
+</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">jwt</span> <span class="o">=</span> <span class="n">JWTManager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">().</span><span class="n">push</span><span class="p">()</span>
+
+
+<span class="c1"># ============== USER MODEL ==============
+</span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s">"user"</span><span class="p">)</span>  <span class="c1"># "user" or "admin"
+</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"&lt;User </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">&gt;"</span>
+
+
+<span class="c1"># ============== JWT CALLBACKS ==============
+</span>
+<span class="o">@</span><span class="n">jwt</span><span class="p">.</span><span class="n">user_identity_loader</span>
+<span class="k">def</span> <span class="nf">user_identity_callback</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="s">"""
+    This function is called when creating a token.
+    It defines WHAT to store in the token to identify the user.
+    Here, we store the username.
+    """</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">.</span><span class="n">username</span>
+
+
+<span class="o">@</span><span class="n">jwt</span><span class="p">.</span><span class="n">user_lookup_loader</span>
+<span class="k">def</span> <span class="nf">user_lookup_callback</span><span class="p">(</span><span class="n">_jwt_header</span><span class="p">,</span> <span class="n">jwt_data</span><span class="p">):</span>
+    <span class="s">"""
+    This function is called on every protected route.
+    It defines HOW to load the user from the database.
+    The 'sub' claim contains the identity (username in our case).
+    """</span>
+    <span class="n">identity</span> <span class="o">=</span> <span class="n">jwt_data</span><span class="p">[</span><span class="s">"sub"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">identity</span><span class="p">).</span><span class="n">one_or_none</span><span class="p">()</span>
+
+
+<span class="c1"># ============== ROUTES ==============
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/register'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="s">"""
+    Register a new user.
+    POST /register
+    Body: {"username": "john", "password": "secret", "role": "user"}
+    """</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    
+    <span class="c1"># Check if user already exists
+</span>    <span class="k">if</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"username"</span><span class="p">]).</span><span class="n">first</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"Username already exists"</span><span class="p">),</span> <span class="mi">400</span>
+    
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+        <span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"username"</span><span class="p">],</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span>  <span class="c1"># In production, hash this!
+</span>        <span class="n">role</span><span class="o">=</span><span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"role"</span><span class="p">,</span> <span class="s">"user"</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"User registered successfully"</span><span class="p">),</span> <span class="mi">201</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="s">"""
+    Login and get access token.
+    POST /login
+    Body: {"username": "john", "password": "secret"}
+    Returns: {"access_token": "eyJ..."}
+    """</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">credentials</span><span class="p">[</span><span class="s">"username"</span><span class="p">]).</span><span class="n">one_or_none</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="n">user</span><span class="p">.</span><span class="n">password</span> <span class="o">!=</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"password"</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"Invalid username or password"</span><span class="p">),</span> <span class="mi">401</span>
+    
+    <span class="c1"># Create token with additional claims (role)
+</span>    <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span>
+        <span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">additional_claims</span><span class="o">=</span><span class="p">{</span><span class="s">"role"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span><span class="p">}</span>  <span class="c1"># Store role in token
+</span>    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/dashboard'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">dashboard</span><span class="p">():</span>
+    <span class="s">"""
+    Protected route - accessible by any logged-in user.
+    GET /dashboard
+    Header: Authorization: Bearer &lt;token&gt;
+    """</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">=</span><span class="s">"Welcome to your dashboard!"</span><span class="p">,</span>
+        <span class="n">user_id</span><span class="o">=</span><span class="n">current_user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+        <span class="n">username</span><span class="o">=</span><span class="n">current_user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span>
+        <span class="n">role</span><span class="o">=</span><span class="n">current_user</span><span class="p">.</span><span class="n">role</span>
+    <span class="p">)</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/profile'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">():</span>
+    <span class="s">"""
+    Example using get_jwt_identity() vs current_user
+    """</span>
+    <span class="c1"># Method 1: Using get_jwt_identity() - returns just the identity (username)
+</span>    <span class="n">identity</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    
+    <span class="c1"># Method 2: Using current_user - returns the full User object
+</span>    <span class="n">user</span> <span class="o">=</span> <span class="n">current_user</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
+        <span class="n">identity_from_get_jwt_identity</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span>  <span class="c1"># "john"
+</span>        <span class="n">username_from_current_user</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span>  <span class="c1"># "john"
+</span>        <span class="n">full_user_details</span><span class="o">=</span><span class="p">{</span>
+            <span class="s">"id"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+            <span class="s">"username"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s">"role"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/admin'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">admin_panel</span><span class="p">():</span>
+    <span class="s">"""
+    Admin-only route.
+    Checks role from token claims.
+    """</span>
+    <span class="c1"># Get claims from token
+</span>    <span class="n">claims</span> <span class="o">=</span> <span class="n">get_jwt</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">claims</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"role"</span><span class="p">)</span> <span class="o">!=</span> <span class="s">"admin"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"Admin access required"</span><span class="p">),</span> <span class="mi">403</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">=</span><span class="s">"Welcome to Admin Panel!"</span><span class="p">,</span>
+        <span class="n">admin_user</span><span class="o">=</span><span class="n">current_user</span><span class="p">.</span><span class="n">username</span>
+    <span class="p">)</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/users'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">list_users</span><span class="p">():</span>
+    <span class="s">"""
+    Admin-only route - checks role from database.
+    Alternative approach using current_user.role
+    """</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="p">.</span><span class="n">role</span> <span class="o">!=</span> <span class="s">"admin"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"Admin access required"</span><span class="p">),</span> <span class="mi">403</span>
+    
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
+        <span class="n">users</span><span class="o">=</span><span class="p">[{</span><span class="s">"id"</span><span class="p">:</span> <span class="n">u</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="s">"username"</span><span class="p">:</span> <span class="n">u</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="s">"role"</span><span class="p">:</span> <span class="n">u</span><span class="p">.</span><span class="n">role</span><span class="p">}</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">users</span><span class="p">]</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># ============== DATABASE INITIALIZATION ==============
+</span>
+<span class="k">def</span> <span class="nf">init_db</span><span class="p">():</span>
+    <span class="s">"""Create tables and add sample users"""</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+    
+    <span class="c1"># Add sample users if database is empty
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">first</span><span class="p">():</span>
+        <span class="n">admin</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"admin"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">"admin123"</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"admin"</span><span class="p">)</span>
+        <span class="n">user1</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"user_01"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">"1234"</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"user"</span><span class="p">)</span>
+        <span class="n">user2</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"user_02"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">"5678"</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"user"</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add_all</span><span class="p">([</span><span class="n">admin</span><span class="p">,</span> <span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">])</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Sample users created!"</span><span class="p">)</span>
+
+
+<span class="c1"># ============== MAIN ==============
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">init_db</span><span class="p">()</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="testing-the-api-thunder-client--browser">Testing the API (Thunder Client / Browser)</h2>
+
+<h3 id="using-thunder-client-vs-code-extension">Using Thunder Client (VS Code Extension)</h3>
+
+<h4 id="1-register-a-user">1. Register a User</h4>
+<ul>
+  <li><strong>Method:</strong> <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li><strong>URL:</strong> <code class="language-plaintext highlighter-rouge">http://localhost:5000/register</code></li>
+  <li><strong>Body Tab:</strong> Select <code class="language-plaintext highlighter-rouge">JSON</code>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="2-login">2. Login</h4>
+<ul>
+  <li><strong>Method:</strong> <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li><strong>URL:</strong> <code class="language-plaintext highlighter-rouge">http://localhost:5000/login</code></li>
+  <li><strong>Body Tab:</strong> Select <code class="language-plaintext highlighter-rouge">JSON</code>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><strong>Response:</strong> Copy the <code class="language-plaintext highlighter-rouge">access_token</code> value
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="3-access-protected-route">3. Access Protected Route</h4>
+<ul>
+  <li><strong>Method:</strong> <code class="language-plaintext highlighter-rouge">GET</code></li>
+  <li><strong>URL:</strong> <code class="language-plaintext highlighter-rouge">http://localhost:5000/dashboard</code></li>
+  <li><strong>Headers Tab:</strong> Add header:
+| Header | Value |
+|——–|——-|
+| <code class="language-plaintext highlighter-rouge">Authorization</code> | <code class="language-plaintext highlighter-rouge">Bearer &lt;paste_your_token_here&gt;</code> |</li>
+</ul>
+
+<h4 id="4-try-admin-route">4. Try Admin Route</h4>
+<ul>
+  <li><strong>Method:</strong> <code class="language-plaintext highlighter-rouge">GET</code></li>
+  <li><strong>URL:</strong> <code class="language-plaintext highlighter-rouge">http://localhost:5000/admin</code></li>
+  <li><strong>Headers Tab:</strong> Same <code class="language-plaintext highlighter-rouge">Authorization: Bearer &lt;token&gt;</code> header</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong> GET routes like <code class="language-plaintext highlighter-rouge">/dashboard</code> can also be tested in browser, but you cannot easily add headers. Use Thunder Client for protected routes.</p>
+</blockquote>
+
+<h3 id="thunder-client-screenshot-reference">Thunder Client Screenshot Reference</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌────────────────────────────────────────────────────────┐
+│  Thunder Client                                         │
+├────────────────────────────────────────────────────────┤
+│  [POST ▼]  http://localhost:5000/login      [Send]     │
+├────────────────────────────────────────────────────────┤
+│  Body  │  Headers  │  Auth  │  Tests                   │
+├────────────────────────────────────────────────────────┤
+│  ○ None  ○ Form  ● JSON  ○ XML  ○ Text                │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ {                                                 │ │
+│  │     "username": "john",                          │ │
+│  │     "password": "secret123"                      │ │
+│  │ }                                                 │ │
+│  └──────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────┘
+
+For Protected Routes - Headers Tab:
+┌────────────────────────────────────────────────────────┐
+│  Header Name        │  Header Value                    │
+├────────────────────────────────────────────────────────┤
+│  Authorization      │  Bearer eyJhbGciOi...            │
+└────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="quick-reference">Quick Reference</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function/Decorator</th>
+      <th>Purpose</th>
+      <th>Returns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@jwt.user_identity_loader</code></td>
+      <td>Define what to store in token</td>
+      <td>Identity value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@jwt.user_lookup_loader</code></td>
+      <td>Define how to load user from identity</td>
+      <td>User object</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">create_access_token(identity=user)</code></td>
+      <td>Create a new JWT token</td>
+      <td>Token string</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@jwt_required()</code></td>
+      <td>Protect a route</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">current_user</code></td>
+      <td>Get loaded user object</td>
+      <td>User model instance</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get_jwt_identity()</code></td>
+      <td>Get identity from token</td>
+      <td>Identity value (e.g., username)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get_jwt()</code></td>
+      <td>Get all claims from token</td>
+      <td>Dict with all claims</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="common-errors--solutions">Common Errors &amp; Solutions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Cause</th>
+      <th>Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Missing Authorization Header</code></td>
+      <td>No token sent</td>
+      <td>Add <code class="language-plaintext highlighter-rouge">Authorization: Bearer &lt;token&gt;</code> header</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Token has expired</code></td>
+      <td>Token expired</td>
+      <td>Login again to get new token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Invalid token</code></td>
+      <td>Wrong or tampered token</td>
+      <td>Use correct token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">User not found</code></td>
+      <td>user_lookup_loader returned None</td>
+      <td>Check database</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<ol>
+  <li><strong>Setup</strong>: Configure <code class="language-plaintext highlighter-rouge">JWT_SECRET_KEY</code> and initialize <code class="language-plaintext highlighter-rouge">JWTManager</code></li>
+  <li><strong>Identity Loader</strong>: Decides what to store in token (e.g., username)</li>
+  <li><strong>Lookup Loader</strong>: Loads user from database using identity</li>
+  <li><strong>Login</strong>: Validate credentials → Create token → Return token</li>
+  <li><strong>Protected Routes</strong>: Use <code class="language-plaintext highlighter-rouge">@jwt_required()</code> decorator</li>
+  <li><strong>Access User</strong>: Use <code class="language-plaintext highlighter-rouge">current_user</code> (full object) or <code class="language-plaintext highlighter-rouge">get_jwt_identity()</code> (identity only)</li>
+  <li><strong>Roles</strong>: Store in token claims or check from database</li>
+</ol>
+
+<hr />
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://flask-jwt-extended.readthedocs.io/">Flask-JWT-Extended Documentation</a></li>
+  <li><a href="https://jwt.io/">JWT.io - Decode and verify tokens</a></li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

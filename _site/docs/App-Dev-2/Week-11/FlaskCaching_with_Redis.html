@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-11/FlaskCaching_with_Redis.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-11/FlaskCaching_with_Redis.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-11/FlaskCaching_with_Redis.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h1 id="complete-beginners-guide-flask-caching-with-redis"><strong>Complete Beginner’s Guide: Flask-Caching with Redis</strong></h1>
+
+<hr />
+
+<h2 id="1-why-do-we-need-caching"><strong>1. Why Do We Need Caching?</strong></h2>
+
+<p>Imagine a Flask route that:</p>
+
+<ul>
+  <li>Fetches large amounts of data from a database, <strong>or</strong></li>
+  <li>Does heavy calculations.</li>
+</ul>
+
+<p>If 100 users request that route at the same time:</p>
+
+<ul>
+  <li><strong>Without caching</strong> → Flask recomputes 100 times → slow, high CPU usage.</li>
+  <li><strong>With caching</strong> → Flask computes once, stores the result in memory (Redis), and instantly serves the cached result to the next 99 users.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-our-solution"><strong>2. Our Solution</strong></h2>
+
+<p>We will:</p>
+
+<ul>
+  <li>Use <strong>Redis</strong> as our cache store (fast, in-memory, key-value database).</li>
+  <li>Use <strong>Flask-Caching</strong> to integrate Redis into Flask.</li>
+  <li>
+    <p>Learn two techniques:</p>
+
+    <ol>
+      <li><strong><code class="language-plaintext highlighter-rouge">@cache.cached</code></strong> – Cache full route responses.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">@cache.memoize</code></strong> – Cache function results based on arguments.</li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="3-step-by-step-setup"><strong>3. Step-by-Step Setup</strong></h2>
+
+<h3 id="31-install-python-packages"><strong>3.1 Install Python packages</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-caching redis
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="32-install-redis"><strong>3.2 Install Redis</strong></h3>
+
+<p>⚠ <strong>Windows Users</strong> – Redis latest version isn’t supported natively. Use <strong>WSL (Windows Subsystem for Linux)</strong>.</p>
+
+<h4 id="linux--ubuntu--wsl"><strong>Linux / Ubuntu / WSL</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>redis-server
+</code></pre></div></div>
+
+<h4 id="macos"><strong>macOS</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>redis
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="33-start-redis-server"><strong>3.3 Start Redis Server</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-server
+</code></pre></div></div>
+
+<p>Check if it’s working:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli ping
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PONG
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="34-install-redisinsight-optional-for-viewing-cache-data"><strong>3.4 Install RedisInsight (Optional, for Viewing Cache Data)</strong></h3>
+
+<ol>
+  <li>Visit <strong><a href="https://redis.io/insight/">https://redis.io/insight/</a></strong></li>
+  <li>Fill <strong>Name, Email, Organization</strong> to download.</li>
+  <li>Install and run RedisInsight.</li>
+  <li>
+    <p>Click <strong>Add Redis Database</strong>:</p>
+
+    <ul>
+      <li>Host: <code class="language-plaintext highlighter-rouge">localhost</code></li>
+      <li>Port: <code class="language-plaintext highlighter-rouge">6379</code></li>
+    </ul>
+  </li>
+  <li>Connect → You can now see keys &amp; values.</li>
+</ol>
+
+<hr />
+
+<h2 id="4-understanding-cachecached-and-key-prefixes"><strong>4. Understanding <code class="language-plaintext highlighter-rouge">@cache.cached</code> and Key Prefixes</strong></h2>
+
+<h3 id="41-what-cachecached-does"><strong>4.1 What <code class="language-plaintext highlighter-rouge">@cache.cached</code> Does</strong></h3>
+
+<ul>
+  <li>Stores the <strong>entire HTML response</strong> of a route.</li>
+  <li>Perfect for static or slow-changing pages.</li>
+  <li>Returns the cached page instantly until it expires.</li>
+</ul>
+
+<h3 id="42-why-key-prefixes"><strong>4.2 Why Key Prefixes?</strong></h3>
+
+<p>Without a prefix, two routes might accidentally generate the same cache key.
+Example:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/</code> → might store as <code class="language-plaintext highlighter-rouge">view//</code></li>
+  <li>Another unrelated route could overwrite it.</li>
+</ul>
+
+<p>With a prefix:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="s">"homepage"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The Redis key will start with <code class="language-plaintext highlighter-rouge">homepage</code>, avoiding conflicts.</p>
+
+<hr />
+
+<h2 id="5-understanding-cachememoize-and-key-prefixes"><strong>5. Understanding <code class="language-plaintext highlighter-rouge">@cache.memoize</code> and Key Prefixes</strong></h2>
+
+<h3 id="51-why-not-use-cached-for-everything"><strong>5.1 Why Not Use <code class="language-plaintext highlighter-rouge">@cached</code> for Everything?</strong></h3>
+
+<p><code class="language-plaintext highlighter-rouge">@cached</code> ignores function arguments — meaning:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/square/4</code> and <code class="language-plaintext highlighter-rouge">/square/5</code> could use the same cache entry — wrong results.</li>
+</ul>
+
+<h3 id="52-how-memoize-solves-it"><strong>5.2 How <code class="language-plaintext highlighter-rouge">@memoize</code> Solves It</strong></h3>
+
+<p><code class="language-plaintext highlighter-rouge">@memoize</code> automatically includes <strong>function arguments</strong> in the cache key.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/square/4</code> gets one cache entry.</li>
+  <li><code class="language-plaintext highlighter-rouge">/square/5</code> gets another.</li>
+</ul>
+
+<h3 id="53-key-prefix-with-memoize"><strong>5.3 Key Prefix with Memoize</strong></h3>
+
+<p>You can group memoized entries with a prefix:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="p">...</span>
+</code></pre></div></div>
+
+<p>Keys will be like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask_cache_memoize:get_data:args
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-clearing-and-deleting-cache-items"><strong>6. Clearing and Deleting Cache Items</strong></h2>
+
+<p>Sometimes, you don’t want to wait for the timeout to expire — maybe the data has changed, and you need to refresh the cache immediately.</p>
+
+<h3 id="61-cacheclear"><strong>6.1 <code class="language-plaintext highlighter-rouge">cache.clear()</code></strong></h3>
+
+<ul>
+  <li>Removes <strong>all cache entries</strong> from Redis for your app.</li>
+  <li>Useful for a “Clear Cache” admin button.</li>
+  <li><strong>Warning</strong>: This wipes everything — both <code class="language-plaintext highlighter-rouge">@cached</code> and <code class="language-plaintext highlighter-rouge">@memoize</code> entries.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/clear-cache"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clear_cache</span><span class="p">():</span>
+    <span class="n">cache</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s">"All cache cleared!"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="62-cachedeletekey"><strong>6.2 <code class="language-plaintext highlighter-rouge">cache.delete(key)</code></strong></h3>
+
+<ul>
+  <li>Deletes <strong>a specific cache key</strong>.</li>
+  <li>Useful if you know exactly what you want to remove.</li>
+</ul>
+
+<p>Example: removing the cache for the homepage route:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/delete-homepage-cache"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">delete_homepage_cache</span><span class="p">():</span>
+    <span class="n">cache</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"homepage"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">"Homepage cache deleted!"</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>💡 <strong>Tip</strong>: To find the key name, check RedisInsight or know your <code class="language-plaintext highlighter-rouge">key_prefix</code> / function signature.</p>
+
+<hr />
+
+<h2 id="7-full-working-flask-app"><strong>7. Full Working Flask App</strong></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_caching</span> <span class="kn">import</span> <span class="n">Cache</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Config from Flask documentation style
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_mapping</span><span class="p">({</span>
+    <span class="s">"CACHE_TYPE"</span><span class="p">:</span> <span class="s">"RedisCache"</span><span class="p">,</span>
+    <span class="s">"CACHE_REDIS_HOST"</span><span class="p">:</span> <span class="s">"localhost"</span><span class="p">,</span>
+    <span class="s">"CACHE_REDIS_PORT"</span><span class="p">:</span> <span class="mi">6379</span><span class="p">,</span>
+    <span class="s">"CACHE_REDIS_DB"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">"CACHE_REDIS_URL"</span><span class="p">:</span> <span class="s">"redis://localhost:6379/0"</span><span class="p">,</span>
+    <span class="s">"CACHE_DEFAULT_TIMEOUT"</span><span class="p">:</span> <span class="mi">60</span>
+<span class="p">})</span>
+
+<span class="n">cache</span> <span class="o">=</span> <span class="n">Cache</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Cached full route with key_prefix
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">cached</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">key_prefix</span><span class="o">=</span><span class="s">"homepage"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"Home generated at </span><span class="si">{</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span><span class="si">}</span><span class="s">"</span>
+
+<span class="c1"># Memoized function result (different for each number)
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/square/&lt;int:num&gt;"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">cache</span><span class="p">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Simulating heavy work
+</span>    <span class="k">return</span> <span class="sa">f</span><span class="s">"Square of </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s"> is </span><span class="si">{</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="si">}</span><span class="s">"</span>
+
+<span class="c1"># Clear all cache
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/clear-cache"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clear_cache</span><span class="p">():</span>
+    <span class="n">cache</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s">"All cache cleared!"</span>
+
+<span class="c1"># Delete only homepage cache
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/delete-homepage-cache"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">delete_homepage_cache</span><span class="p">():</span>
+    <span class="n">cache</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"homepage"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">"Homepage cache deleted!"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-running-the-app"><strong>8. Running the App</strong></h2>
+
+<h3 id="linux--macos--windows-wsl"><strong>Linux / macOS / Windows WSL</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py 
+<span class="c"># OR</span>
+python3 app.py
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-viewing-cached-keys-in-redisinsight"><strong>9. Viewing Cached Keys in RedisInsight</strong></h2>
+
+<p>You might see:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>homepage                         -&gt; cached HTML for "/"
+flask_cache_memoize:square:4     -&gt; result for square(4)
+flask_cache_memoize:square:5     -&gt; result for square(5)
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Keys</strong>: strings (names of cached items).</li>
+  <li><strong>Values</strong>: binary data (Python pickled objects).</li>
+</ul>
+
+<hr />
+
+<h2 id="10-before-vs-after-caching--example"><strong>10. Before vs After Caching — Example</strong></h2>
+
+<h3 id="without-caching"><strong>Without Caching:</strong></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /square/5  -&gt; 2.002 seconds
+GET /square/5  -&gt; 2.004 seconds
+</code></pre></div></div>
+
+<p>Every request runs the heavy computation.</p>
+
+<h3 id="with-caching"><strong>With Caching:</strong></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /square/5  -&gt; 2.001 seconds   (first run, cache miss)
+GET /square/5  -&gt; 0.001 seconds   (second run, cache hit)
+</code></pre></div></div>
+
+<p><strong>Result:</strong> Instant response after first computation.</p>
+
+<hr />
+
+<h2 id="11-logic-flow-diagram"><strong>11. Logic Flow Diagram</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Browser Request]
+        |
+        v
+   [Flask App]
+        |
+        v
+[Check Redis Cache] -----&gt; (Cache Hit) ---&gt; [Return Cached Response]
+        |
+    (Cache Miss)
+        |
+        v
+ [Run Actual Code]
+        |
+        v
+ [Store in Redis]
+        |
+        v
+[Send Response to Browser]
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="12-summary--best-practices"><strong>12. Summary &amp; Best Practices</strong></h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">@cached</code></strong> – Use for whole route caching (static pages).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">@memoize</code></strong> – Use for caching function results per argument.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">cache.clear()</code></strong> – Wipes all cache entries.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">cache.delete(key)</code></strong> – Deletes a specific cache key.</li>
+  <li><strong>Key Prefix</strong> – Avoids overwriting unrelated cache entries.</li>
+  <li><strong>Timeout</strong> – Always set reasonable cache expiry to avoid stale data.</li>
+  <li>Use <strong>RedisInsight</strong> for easy debugging.</li>
+  <li>Cache only <strong>expensive computations or slow-changing data</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="-extra-notes--stopping-and-restarting-redis">🛠 <strong>Extra Notes — Stopping and Restarting Redis</strong></h2>
+
+<p>When running Flask with Redis caching, you might get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not create server TCP listening socket *:6379: bind: Address already in use
+</code></pre></div></div>
+
+<p>This means <strong>Redis is already running</strong> on port <code class="language-plaintext highlighter-rouge">6379</code>.</p>
+
+<h3 id="check-if-redis-is-running"><strong>Check if Redis is running</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli ping
+</code></pre></div></div>
+
+<p>If it returns:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PONG
+</code></pre></div></div>
+
+<p>then Redis is already running — no need to start it again.</p>
+
+<hr />
+
+<h3 id="graceful-shutdown-preferred"><strong>Graceful shutdown (preferred)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli shutdown
+</code></pre></div></div>
+
+<p>Safely closes Redis and saves data if persistence is enabled.</p>
+
+<hr />
+
+<h3 id="using-systemd-linux-wsl-with-systemd"><strong>Using systemd (Linux, WSL with systemd)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl stop redis
+<span class="nb">sudo </span>systemctl status redis  <span class="c"># check status</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="older-sysv-init-systems"><strong>Older SysV init systems</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>service redis-server stop
+<span class="c"># or</span>
+<span class="nb">sudo</span> /etc/init.d/redis-server stop
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="kill-by-pid"><strong>Kill by PID</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux | <span class="nb">grep</span> <span class="s1">'[r]edis-server'</span>   <span class="c"># find PID</span>
+<span class="nb">sudo kill</span> &lt;PID&gt;                  <span class="c"># gentle</span>
+<span class="nb">sudo kill</span> <span class="nt">-9</span> &lt;PID&gt;               <span class="c"># force</span>
+</code></pre></div></div>
+
+<p><strong>One-liner:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo kill</span> <span class="nt">-9</span> <span class="si">$(</span>ps <span class="nt">-ef</span> | <span class="nb">grep</span> <span class="s1">'[r]edis-server'</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span><span class="si">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="kill-by-port"><strong>Kill by Port</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>lsof <span class="nt">-i</span> :6379               <span class="c"># find PID using port 6379</span>
+<span class="nb">sudo kill</span> <span class="nt">-9</span> <span class="si">$(</span><span class="nb">sudo </span>lsof <span class="nt">-t</span> <span class="nt">-i</span>:6379<span class="si">)</span>
+<span class="c"># or</span>
+<span class="nb">sudo </span>fuser <span class="nt">-k</span> 6379/tcp
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="pkill-shortcut"><strong>pkill shortcut</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pkill <span class="nt">-f</span> redis-server
+<span class="c"># or</span>
+<span class="nb">sudo </span>pkill redis-server
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="if-running-in-docker"><strong>If running in Docker</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps                       <span class="c"># find container id</span>
+docker stop &lt;container_id&gt;      <span class="c"># graceful</span>
+docker <span class="nb">kill</span> &lt;container_id&gt;      <span class="c"># immediate</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Recommendation:</strong> Always try <code class="language-plaintext highlighter-rouge">redis-cli shutdown</code> or <code class="language-plaintext highlighter-rouge">systemctl stop redis</code> before using <code class="language-plaintext highlighter-rouge">kill -9</code> or <code class="language-plaintext highlighter-rouge">pkill</code>.
+Brute-force killing can cause data loss if persistence is enabled.</p>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

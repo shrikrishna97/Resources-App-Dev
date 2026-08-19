@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/App/SQL.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/App/SQL.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/App/SQL.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="flask-and-sqlalchemy-guide">Flask and SQLAlchemy Guide</h1>
+
+<h3 id="pre-requisite--download-vs-code-python-pip">Pre-requisite:  Download VS Code, python, pip.</h3>
+
+<p><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-1/week-5/App">App Github link</a></p>
+
+<p><strong>NOTE: This document might get updated multiple times till last session.</strong></p>
+
+<h2 id="session-1-introduction-to-flask-and-jinja-templates"><strong><a href="https://www.youtube.com/live/wBI5SZjaAD8?feature=shared">Session 1: Introduction to Flask and Jinja Templates</a></strong></h2>
+
+<h3 id="1-introduction-to-flask"><strong>1. Introduction to Flask</strong></h3>
+
+<ul>
+  <li>Flask is a lightweight Python web micro framework for building web applications.</li>
+  <li>It follows the WSGI (Web Server Gateway Interface) standard.</li>
+  <li>Provides flexibility and simplicity with minimal setup.</li>
+</ul>
+
+<h3 id="2-setting-up-a-flask-application"><strong>2. Setting Up a Flask Application</strong></h3>
+
+<h4 id="installation"><strong>Installation</strong></h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask
+</code></pre></div></div>
+
+<h4 id="basic-flask-application"><strong>Basic Flask Application</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, Flask!"</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Run <code class="language-plaintext highlighter-rouge">python app.py</code> and visit <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/</code>.</li>
+</ul>
+
+<h3 id="3-jinja-templates"><strong>3. Jinja Templates</strong></h3>
+
+<ul>
+  <li>Jinja2 is a templating engine used in Flask for rendering dynamic HTML.</li>
+  <li>Supports variables, loops, and conditionals.</li>
+</ul>
+
+<h4 id="example-template-templatesindexhtml"><strong>Example Template (templates/index.html)</strong></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;title&gt;</span>Flask App<span class="nt">&lt;/title&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Welcome, {{ name }}<span class="nt">&lt;/h1&gt;</span>
+    {% if items %}
+        <span class="nt">&lt;ul&gt;</span>
+            {% for item in items %}
+                <span class="nt">&lt;li&gt;</span>{{ item }}<span class="nt">&lt;/li&gt;</span>
+            {% endfor %}
+        <span class="nt">&lt;/ul&gt;</span>
+    {% else %}
+        <span class="nt">&lt;p&gt;</span>No items found.<span class="nt">&lt;/p&gt;</span>
+    {% endif %}
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<h4 id="flask-route-to-render-template"><strong>Flask Route to Render Template</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/items'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"User"</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s">"Apple"</span><span class="p">,</span> <span class="s">"Banana"</span><span class="p">,</span> <span class="s">"Cherry"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="4-why-sqlalchemy-over-sqlite"><strong>4. Why SQLAlchemy Over SQLite?</strong></h3>
+
+<ul>
+  <li>SQLite is good for small applications but lacks scalability and advanced querying.</li>
+  <li>SQLAlchemy provides an ORM (Object-Relational Mapping) for better maintainability and flexibility.</li>
+  <li>SQLAlchemy has easier(english) queries than SQLite(SQL).</li>
+</ul>
+
+<hr />
+
+<h2 id="session-2-database-models-and-crud-operations"><strong><a href="https://www.youtube.com/live/e1F621aPDKw?feature=shared">Session 2: Database Models and CRUD Operations</a></strong></h2>
+
+<h3 id="1-recap-of-flask--jinja"><strong>1. Recap of Flask &amp; Jinja</strong></h3>
+
+<ul>
+  <li>A quick recap of Flask routing, templates, and rendering data dynamically.</li>
+</ul>
+
+<h3 id="2-setting-up-sqlalchemy"><strong>2. Setting Up SQLAlchemy</strong></h3>
+
+<h4 id="installation-1"><strong>Installation</strong></h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-sqlalchemy
+</code></pre></div></div>
+
+<h4 id="configuring-the-database"><strong>Configuring the Database</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.sqlite3'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="3-creating-a-model-user-table"><strong><a href="https://www.youtube.com/live/IZf7aW8S-zM?feature=shared">3. Creating a Model (User Table)</a></strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="4-adding-data-to-the-database"><strong>4. Adding Data to the Database</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"JohnDoe"</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="5-fetching-and-displaying-data"><strong>5. Fetching and Displaying Data</strong></h3>
+
+<h4 id="flask-route"><strong>Flask Route</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/users'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">users</span><span class="p">():</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'users.html'</span><span class="p">,</span> <span class="n">users</span><span class="o">=</span><span class="n">users</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="jinja-template-templatesusershtml"><strong>Jinja Template (templates/users.html)</strong></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;ul&gt;</span>
+    {% for user in users %}
+        <span class="nt">&lt;li&gt;</span>{{ user.username }}<span class="nt">&lt;/li&gt;</span>
+    {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="session-3-relationships-and-advanced-sqlalchemy"><strong>Session 3: Relationships and Advanced SQLAlchemy</strong></h2>
+
+<h3 id="1-recap-of-models-and-crud-operations"><strong>1. Recap of Models and CRUD Operations</strong></h3>
+
+<ul>
+  <li>Brief discussion on database setup, creating models, and performing CRUD operations.</li>
+</ul>
+
+<h3 id="2-one-to-many-relationship-user-and-class"><strong>2. One-to-Many Relationship (User and Class)</strong></h3>
+
+<h4 id="creating-models-with-relationships"><strong>Creating Models with Relationships</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'creator'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="3-querying-related-data"><strong>3. Querying Related Data</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="k">class</span> <span class="nc">in</span> <span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">class</span><span class="p">.</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="4-many-to-many-relationship-user-and-class-participants"><strong>4. Many-to-Many Relationship (User and Class Participants)</strong></h3>
+
+<h4 id="creating-an-association-table"><strong>Creating an Association Table</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">class_participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'class_participants'</span><span class="p">,</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'class_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'class.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="n">class_participants</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'participated_classes'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="5-final-recap-and-qa"><strong>5. Final Recap and Q&amp;A</strong></h3>
+
+<ul>
+  <li>Best practices with SQLAlchemy.</li>
+  <li>How to integrate authentication and role-based access.</li>
+  <li>Discuss future enhancements like migrations and API integrations.</li>
+</ul>
+
+<hr />
+
+<h3 id="understanding-__name__-in-flask"><strong>Understanding <code class="language-plaintext highlighter-rouge">__name__</code> in Flask</strong></h3>
+
+<p>When creating a <strong>Flask application</strong>, we usually initialize it like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c1"># Here __name__ is passed
+</span></code></pre></div></div>
+
+<h4 id="why-do-we-pass-__name__"><strong>Why Do We Pass <code class="language-plaintext highlighter-rouge">__name__</code>?</strong></h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">__name__</code> represents the <strong>module name</strong> of the script that is being executed.</li>
+  <li>If the script is run <strong>directly</strong>, <code class="language-plaintext highlighter-rouge">__name__</code> is set to <code class="language-plaintext highlighter-rouge">"__main__"</code>.</li>
+  <li>If the script is <strong>imported</strong> into another module, <code class="language-plaintext highlighter-rouge">__name__</code> is set to the <strong>module’s name</strong>.</li>
+  <li><strong>Flask uses this to locate resources</strong> like templates and static files.</li>
+</ul>
+
+<hr />
+
+<h3 id="counter-example-without-using-__name__"><strong>Counter-Example: Without Using <code class="language-plaintext highlighter-rouge">__name__</code></strong></h3>
+
+<p>You <strong>can</strong> create a Flask app without passing <code class="language-plaintext highlighter-rouge">__name__</code>, but you have to manually specify configurations.</p>
+
+<h4 id="example"><strong>Example:</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="s">"custom_app"</span><span class="p">)</span>  <span class="c1"># Instead of __name__, using a custom string
+</span>
+<span class="c1"># Manually set the template folder
+</span><span class="n">app</span><span class="p">.</span><span class="n">template_folder</span> <span class="o">=</span> <span class="s">"my_templates"</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, Flask without __name__!"</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="how-is-this-different"><strong>How is this different?</strong></h4>
+
+<ol>
+  <li>Flask won’t automatically detect templates and static files
+    <ul>
+      <li>You must <strong>manually specify</strong> <code class="language-plaintext highlighter-rouge">app.template_folder = "my_templates"</code> and <code class="language-plaintext highlighter-rouge">app.static_folder = "my_static"</code>.</li>
+    </ul>
+  </li>
+  <li>If the script is imported, Flask might not behave correctly
+    <ul>
+      <li>Some features like relative imports may break.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="when-not-to-use-__name__"><strong>When NOT to Use <code class="language-plaintext highlighter-rouge">__name__</code></strong></h3>
+
+<ul>
+  <li>If you have a <strong>custom module structure</strong> and don’t rely on Flask’s default behavior.</li>
+  <li>If you’re manually configuring everything (templates, static files, etc.).</li>
+  <li>If you’re <strong>embedding Flask into a larger system</strong> where module resolution is handled differently.</li>
+</ul>
+
+<hr />
+
+<h3 id="best-practice"><strong>Best Practice?</strong></h3>
+
+<p>Using <code class="language-plaintext highlighter-rouge">Flask(__name__)</code> is still <strong>recommended</strong> unless you have a <strong>strong reason to override it</strong>. It ensures Flask correctly locates templates, static files, and configurations automatically.</p>
+
+<h3 id="why-do-we-use-if-__name__--__main__-in-flask"><strong>Why Do We Use <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code> in Flask?</strong></h3>
+
+<p>In <strong>Python</strong>, the special variable <code class="language-plaintext highlighter-rouge">__name__</code> helps determine <strong>how a script is being run</strong>:</p>
+
+<ul>
+  <li>If the script is <strong>run directly</strong>, <code class="language-plaintext highlighter-rouge">__name__</code> is set to <code class="language-plaintext highlighter-rouge">"__main__"</code>.</li>
+  <li>If the script is <strong>imported into another module</strong>, <code class="language-plaintext highlighter-rouge">__name__</code> is set to the <strong>module name</strong> instead.</li>
+</ul>
+
+<h3 id="how-it-works-in-flask"><strong>How It Works in Flask</strong></h3>
+
+<p>When writing a Flask app, we typically include:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This ensures that the Flask server <strong>only starts when the script is run directly</strong>.</p>
+
+<hr />
+
+<h3 id="what-happens-if-we-dont-use-it"><strong>What Happens If We Don’t Use It?</strong></h3>
+
+<h4 id="example-without-if-__name__--__main__"><strong>Example Without <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code></strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#filename: my_flask_app.py
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, Flask!"</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># This runs even when the module is imported!
+</span></code></pre></div></div>
+
+<p><strong>Problem:</strong>
+ If another script <strong>imports this file</strong>, Flask will <strong>automatically start the server</strong>, even if you don’t want it to.</p>
+
+<hr />
+
+<h3 id="when-importing-this-module"><strong>When Importing This Module</strong></h3>
+
+<p>Consider another file importing this script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">my_flask_app</span>  <span class="c1"># my_flask_app.py contains Flask code
+</span></code></pre></div></div>
+
+<ul>
+  <li>If <strong><code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code> is missing</strong>, the Flask app will <strong>start running automatically</strong>.</li>
+  <li>With <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code>, the server <strong>only starts when explicitly executed</strong>, not when imported.</li>
+</ul>
+
+<hr />
+
+<h3 id="when-can-we-skip-it"><strong>When Can We Skip It?</strong></h3>
+
+<p>If you’re using a <strong>Flask app factory pattern</strong>, you often don’t need <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code>.</p>
+
+<h4 id="example-using-flask-run-instead"><strong>Example: Using <code class="language-plaintext highlighter-rouge">flask run</code> Instead</strong></h4>
+
+<p>Instead of:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python my_flask_app.py
+</code></pre></div></div>
+
+<p>You can use:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask run
+</code></pre></div></div>
+
+<p>In this case, Flask automatically finds the app, and <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code> is not needed.</p>
+
+<hr />
+
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+
+<ul>
+  <li><strong>Prevents unintended execution when importing the module</strong></li>
+  <li><strong>Ensures the Flask app runs only when executed as a script</strong></li>
+  <li><strong>Good practice for maintainability and modularity</strong></li>
+</ul>
+
+<h3 id="is-__main__-important-or-can-we-write-something-else"><strong>Is <code class="language-plaintext highlighter-rouge">"__main__"</code> Important, or Can We Write Something Else?</strong></h3>
+
+<p>Yes, <code class="language-plaintext highlighter-rouge">__main__</code> is <strong>important</strong> because it’s a special Python identifier. You <strong>cannot</strong> replace it with something else.</p>
+
+<hr />
+
+<h3 id="why-is-__main__-special"><strong>Why Is <code class="language-plaintext highlighter-rouge">__main__</code> Special?</strong></h3>
+
+<p>When Python executes a script, it sets the special variable <code class="language-plaintext highlighter-rouge">__name__</code> based on how the script is being run:</p>
+
+<ul>
+  <li>If the script is <strong>executed directly</strong>, Python sets <code class="language-plaintext highlighter-rouge">__name__ = "__main__"</code>.</li>
+  <li>If the script is <strong>imported as a module</strong>, <code class="language-plaintext highlighter-rouge">__name__</code> is set to the script’s filename (without <code class="language-plaintext highlighter-rouge">.py</code>).</li>
+</ul>
+
+<h4 id="example-1"><strong>Example</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_script.py
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"__name__ is: </span><span class="si">{</span><span class="n">__name__</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Running directly"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Running directly:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python my_script.py
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__name__ is: __main__
+Running directly
+</code></pre></div></div>
+
+<p><strong>Importing into another script:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">my_script</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__name__ is: my_script
+</code></pre></div></div>
+
+<p><em>(Notice <code class="language-plaintext highlighter-rouge">"Running directly"</code> does <strong>not</strong> appear.)</em></p>
+
+<hr />
+
+<h3 id="what-if-we-change-__main__"><strong>What If We Change <code class="language-plaintext highlighter-rouge">"__main__"</code>?</strong></h3>
+
+<p>You <strong>cannot</strong> replace <code class="language-plaintext highlighter-rouge">"__main__"</code> with a different string. If you do this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"custom_name"</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"This will never run"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>It <strong>will never execute</strong>, because Python will never set <code class="language-plaintext highlighter-rouge">__name__</code> to <code class="language-plaintext highlighter-rouge">"custom_name"</code>.</p>
+
+<hr />
+
+<h3 id="conclusion-1"><strong>Conclusion</strong></h3>
+
+<ul>
+  <li><strong>You MUST use <code class="language-plaintext highlighter-rouge">"__main__"</code> because it’s predefined by Python.</strong></li>
+  <li><strong>It ensures the script runs only when executed directly, not when imported.</strong></li>
+  <li><strong>If you replace <code class="language-plaintext highlighter-rouge">"__main__"</code> with something else, the condition will never be <code class="language-plaintext highlighter-rouge">True</code>!</strong></li>
+</ul>
+
+<hr />
+<h3 id="understanding-the-difference-script-vs-module-vs-python-file-vs-flask-app"><strong>Understanding the Difference: Script vs. Module vs. Python File vs. Flask App</strong></h3>
+
+<p>To fully understand <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code>, let’s break it down into four key concepts:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Definition</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Python File</strong></td>
+      <td>A <code class="language-plaintext highlighter-rouge">.py</code> file that contains Python code. It can be a script, a module, or a Flask app.</td>
+      <td><code class="language-plaintext highlighter-rouge">my_script.py</code>, <code class="language-plaintext highlighter-rouge">my_module.py</code></td>
+    </tr>
+    <tr>
+      <td><strong>Script</strong></td>
+      <td>A Python file that is meant to be executed directly (not imported).</td>
+      <td><code class="language-plaintext highlighter-rouge">python my_script.py</code></td>
+    </tr>
+    <tr>
+      <td><strong>Module</strong></td>
+      <td>A Python file that is designed to be <strong>imported</strong> into another script.</td>
+      <td><code class="language-plaintext highlighter-rouge">import my_module</code></td>
+    </tr>
+    <tr>
+      <td><strong>Flask App</strong></td>
+      <td>A Python file that runs a Flask application, typically with <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> to ensure correct execution.</td>
+      <td><code class="language-plaintext highlighter-rouge">app.py</code> (Flask entry point)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="1️⃣-__name__-in-scripts-__name__--__main__"><strong>1️⃣ <code class="language-plaintext highlighter-rouge">__name__</code> in Scripts (<code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code>)</strong></h2>
+<p>A <strong>script</strong> is a Python file intended to be run directly. If we print <code class="language-plaintext highlighter-rouge">__name__</code> inside a script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_script.py
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Script executed, __name__ = </span><span class="si">{</span><span class="n">__name__</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="running-the-script-directly"><strong>Running the Script Directly</strong></h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python my_script.py
+</code></pre></div></div>
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Script executed, __name__ = __main__
+</code></pre></div></div>
+<p>✅ Since it was run directly, Python sets <code class="language-plaintext highlighter-rouge">__name__ = "__main__"</code>.</p>
+
+<hr />
+
+<h2 id="2️⃣-__name__-in-modules-__name__--module_name"><strong>2️⃣ <code class="language-plaintext highlighter-rouge">__name__</code> in Modules (<code class="language-plaintext highlighter-rouge">__name__ == "module_name"</code>)</strong></h2>
+<p>A <strong>module</strong> is a Python file meant to be imported into another script.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_module.py
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Module loaded, __name__ = </span><span class="si">{</span><span class="n">__name__</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="importing-the-module"><strong>Importing the Module</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># another_script.py
+</span><span class="kn">import</span> <span class="nn">my_module</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Module loaded, __name__ = my_module
+</code></pre></div></div>
+<p>✅ Since <code class="language-plaintext highlighter-rouge">my_module.py</code> was <strong>imported</strong>, <code class="language-plaintext highlighter-rouge">__name__</code> is set to <code class="language-plaintext highlighter-rouge">"my_module"</code> instead of <code class="language-plaintext highlighter-rouge">"__main__"</code>.</p>
+
+<hr />
+
+<h2 id="3️⃣-python-file-that-can-be-both-a-script-and-a-module"><strong>3️⃣ Python File That Can Be Both a Script and a Module</strong></h2>
+<p>If you want a file to be <strong>both runnable and importable</strong>, use:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Running as a script"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Imported as a module"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="running-directly"><strong>Running Directly</strong></h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python my_file.py
+</code></pre></div></div>
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Running as a script
+</code></pre></div></div>
+
+<h3 id="importing-in-another-file"><strong>Importing in Another File</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">my_file</span>
+</code></pre></div></div>
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Imported as a module
+</code></pre></div></div>
+
+<p>✅ This is useful when you want a Python file to behave <strong>differently</strong> based on how it’s executed.</p>
+
+<hr />
+
+<h2 id="4️⃣-__name__-in-flask-apps"><strong>4️⃣ <code class="language-plaintext highlighter-rouge">__name__</code> in Flask Apps</strong></h2>
+<p>Flask uses <code class="language-plaintext highlighter-rouge">__name__</code> to locate resources (templates, static files) and correctly configure the app.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c1"># Uses module name
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, Flask!"</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>  
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># Runs only when script is executed directly
+</span></code></pre></div></div>
+
+<h3 id="why-use-__name__"><strong>Why use <code class="language-plaintext highlighter-rouge">__name__</code>?</strong></h3>
+<ol>
+  <li>✅ If <strong>run directly</strong> (<code class="language-plaintext highlighter-rouge">python app.py</code>), <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> → Flask starts normally.</li>
+  <li>✅ If <strong>imported</strong> (<code class="language-plaintext highlighter-rouge">from app import app</code>), <code class="language-plaintext highlighter-rouge">__name__ == "app"</code> → It won’t start automatically.</li>
+</ol>
+
+<p>This prevents unnecessary execution when the app is imported elsewhere (e.g., for testing or deployment).</p>
+
+<hr />
+
+<h2 id="key-differences-summarized"><strong>Key Differences Summarized</strong></h2>
+<p>| Type | Purpose | <code class="language-plaintext highlighter-rouge">__name__</code> Value |
+|——|———|—————–|
+| <strong>Script</strong> | A file meant to be executed directly | <code class="language-plaintext highlighter-rouge">"__main__"</code> |
+| <strong>Module</strong> | A file meant to be imported | <code class="language-plaintext highlighter-rouge">"module_name"</code> |
+| <strong>Python File</strong> | General Python code (can be script or module) | Depends on how it’s used |
+| <strong>Flask App</strong> | Web application that runs with Flask | <code class="language-plaintext highlighter-rouge">"__main__"</code> when executed, <code class="language-plaintext highlighter-rouge">"app"</code> when imported |</p>
+
+<hr />
+
+<h3 id="-can-i-use-something-other-than-__main__">** Can I Use Something Other Than <code class="language-plaintext highlighter-rouge">"__main__"</code>?**</h3>
+<p>No, <code class="language-plaintext highlighter-rouge">__main__</code> is a <strong>special keyword</strong> defined by Python.<br />
+However, you can create your own main function and call it inside <code class="language-plaintext highlighter-rouge">if __name__ == "__main__"</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Hello from main function!"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+<p>This keeps the code <strong>clean</strong> while still ensuring proper execution.</p>
+
+<hr />
+
+<h2 id="final-takeaways"><strong>Final Takeaways</strong></h2>
+<p>✔ <strong>Use <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> to prevent unintended execution when importing a script.</strong><br />
+✔ <strong>Flask uses <code class="language-plaintext highlighter-rouge">__name__</code> to correctly load templates and static files.</strong><br />
+✔ <strong>Scripts run with <code class="language-plaintext highlighter-rouge">"__main__"</code>, modules run with their filename.</strong><br />
+✔ <strong>For Flask, always use <code class="language-plaintext highlighter-rouge">if __name__ == "__main__": app.run(debug=True)</code> to control execution.</strong></p>
+
+<hr />
+
+<h3 id="differences-between-rdbms-sql--sqlite--sqlite3--sqlalchemy--flask-sqlalchemy"><strong>Differences Between RDBMS (SQL) → SQLite → SQLite3 → SQLAlchemy → Flask-SQLAlchemy</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Concept</strong></th>
+      <th><strong>What It Is</strong></th>
+      <th style="text-align: center"><strong>Key Features</strong></th>
+      <th><strong>Use Case</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>RDBMS (SQL)</strong></td>
+      <td>A <strong>Relational Database Management System</strong> that stores data in tables using SQL</td>
+      <td style="text-align: center">Supports structured queries (SQL), relations (tables), transactions, indexing, etc.</td>
+      <td>MySQL, PostgreSQL, SQLite, Oracle, etc.</td>
+    </tr>
+    <tr>
+      <td><strong>SQLite</strong></td>
+      <td>A lightweight, file-based <strong>SQL database engine</strong> (subset of RDBMS)</td>
+      <td style="text-align: center">Self-contained, serverless, zero configuration, stores database as a single <code class="language-plaintext highlighter-rouge">.db</code> file</td>
+      <td>Ideal for small-scale apps, embedded systems, mobile apps</td>
+    </tr>
+    <tr>
+      <td><strong>sqlite3 (Python module)</strong></td>
+      <td>Python’s <strong>built-in library</strong> for working with SQLite databases</td>
+      <td style="text-align: center">Provides a <strong>direct interface</strong> to SQLite, executes SQL queries using Python</td>
+      <td>Direct SQL execution in Python scripts</td>
+    </tr>
+    <tr>
+      <td><strong>SQLAlchemy</strong></td>
+      <td>A <strong>Python ORM (Object-Relational Mapper)</strong> for working with databases</td>
+      <td style="text-align: center">Provides an abstraction layer over SQL, supports multiple RDBMSs (SQLite, MySQL, PostgreSQL, etc.), allows object-oriented DB operations</td>
+      <td>Large-scale applications needing DB flexibility</td>
+    </tr>
+    <tr>
+      <td><strong>Flask-SQLAlchemy</strong></td>
+      <td>A <strong>Flask extension</strong> integrating SQLAlchemy with Flask</td>
+      <td style="text-align: center">Simplifies SQLAlchemy setup in Flask, provides Flask-specific features like <code class="language-plaintext highlighter-rouge">app.config['SQLALCHEMY_DATABASE_URI']</code></td>
+      <td>Web applications using Flask with a database backend</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="detailed-explanation-of-each"><strong>Detailed Explanation of Each</strong></h2>
+
+<h3 id="1-rdbms-sql"><strong>1. RDBMS (SQL)</strong></h3>
+
+<ul>
+  <li>A <strong>Relational Database Management System</strong> that follows <strong>SQL (Structured Query Language)</strong> to manage data.</li>
+  <li>Examples: <strong>MySQL, PostgreSQL, SQLite, Oracle, SQL Server</strong>.</li>
+  <li>Uses <strong>tables, rows, and columns</strong> for structured data storage.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-sqlite"><strong>2. SQLite</strong></h3>
+
+<ul>
+  <li>A <strong>lightweight, embedded SQL database</strong>.</li>
+  <li>Stores the entire database in a <strong>single file</strong> (<code class="language-plaintext highlighter-rouge">.db</code>).</li>
+  <li><strong>No separate server</strong> is required—everything runs in the application itself.</li>
+  <li>Limited in concurrency (can handle multiple reads but has issues with multiple writes).</li>
+</ul>
+
+<hr />
+
+<h3 id="3-sqlite3-python-module"><strong>3. sqlite3 (Python Module)</strong></h3>
+
+<ul>
+  <li>
+    <p>Python’s <strong>built-in module</strong> for interacting with SQLite.</p>
+  </li>
+  <li>
+    <p>Provides methods like:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+  
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"database.db"</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+  
+<span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
+<span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO users (name) VALUES ('John Doe')"</span><span class="p">)</span>
+  
+<span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Raw SQL</strong> is required; no ORM (Object-Relational Mapping) support.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-sqlalchemy-python-orm"><strong>4. SQLAlchemy (Python ORM)</strong></h3>
+
+<ul>
+  <li>
+    <p>A <strong>powerful ORM (Object-Relational Mapper)</strong> for Python.</p>
+  </li>
+  <li>
+    <p>Supports multiple databases <strong>(MySQL, PostgreSQL, SQLite, etc.)</strong>.</p>
+  </li>
+  <li>
+    <p>Allows database interactions using Python <strong>classes and objects</strong> instead of raw SQL.</p>
+  </li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span><span class="p">,</span> <span class="n">sessionmaker</span>
+  
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">'sqlite:///database.db'</span><span class="p">)</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+  
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">'users'</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+  
+<span class="n">Base</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+  
+<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+  
+<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"Alice"</span><span class="p">)</span>
+<span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="5-flask-sqlalchemy"><strong>5. Flask-SQLAlchemy</strong></h3>
+
+<ul>
+  <li>
+    <p>A Flask <strong>extension</strong> that integrates SQLAlchemy seamlessly with Flask applications.</p>
+  </li>
+  <li>
+    <p><strong>Simplifies configuration</strong> and initialization of SQLAlchemy within Flask.</p>
+  </li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+  
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+  
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+  
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="summary"><strong>Summary</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Concept</strong></th>
+      <th><strong>Key Role</strong></th>
+      <th><strong>Raw SQL Required?</strong></th>
+      <th><strong>Use Case</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>RDBMS (SQL)</strong></td>
+      <td>General SQL databases</td>
+      <td>✅ Yes</td>
+      <td>Large-scale applications needing structured data</td>
+    </tr>
+    <tr>
+      <td><strong>SQLite</strong></td>
+      <td>Lightweight embedded database</td>
+      <td>✅ Yes</td>
+      <td>Small-scale applications, mobile apps</td>
+    </tr>
+    <tr>
+      <td><strong>sqlite3 (Python module)</strong></td>
+      <td>Direct SQLite access in Python</td>
+      <td>✅ Yes</td>
+      <td>Python scripts working with SQLite</td>
+    </tr>
+    <tr>
+      <td><strong>SQLAlchemy (ORM)</strong></td>
+      <td>Object-oriented database management</td>
+      <td>❌ No</td>
+      <td>Large-scale applications needing DB flexibility</td>
+    </tr>
+    <tr>
+      <td><strong>Flask-SQLAlchemy</strong></td>
+      <td>SQLAlchemy for Flask apps</td>
+      <td>❌ No</td>
+      <td>Flask applications needing DB integration</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="which-one-should-you-use"><strong>Which One Should You Use?</strong></h3>
+
+<ul>
+  <li><strong>For small projects</strong> → SQLite (<code class="language-plaintext highlighter-rouge">sqlite3</code> if using raw SQL, <code class="language-plaintext highlighter-rouge">SQLAlchemy</code> for ORM).</li>
+  <li><strong>For Flask apps</strong> → <code class="language-plaintext highlighter-rouge">Flask-SQLAlchemy</code> (simplifies database management in web applications).</li>
+  <li><strong>For large applications</strong> → Use <code class="language-plaintext highlighter-rouge">SQLAlchemy</code> with a full RDBMS like PostgreSQL or MySQL for scalability.</li>
+</ul>
+
+<hr />
+
+<h3 id="final-thoughts"><strong>Final Thoughts</strong></h3>
+
+<ul>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">sqlite3</code> if you only need raw SQL queries in Python.</strong></li>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">SQLAlchemy</code> if you want an ORM to manage database operations with Python objects.</strong></li>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">Flask-SQLAlchemy</code> if you’re building a Flask app and need an easy way to integrate SQLAlchemy.</strong></li>
+</ul>
+
+<h3 id="practical-example-transitioning-from-sqlite3-to-flask-sqlalchemy"><strong>Practical Example: Transitioning from <code class="language-plaintext highlighter-rouge">sqlite3</code> to <code class="language-plaintext highlighter-rouge">Flask-SQLAlchemy</code></strong></h3>
+
+<p>Below, we will first create a <strong>database using <code class="language-plaintext highlighter-rouge">sqlite3</code> (raw SQL)</strong> and then <strong>convert it to use Flask-SQLAlchemy (ORM approach).</strong></p>
+
+<hr />
+
+<h2 id="step-1-using-sqlite3-raw-sql-approach"><strong>Step 1: Using <code class="language-plaintext highlighter-rouge">sqlite3</code> (Raw SQL Approach)</strong></h2>
+
+<p>This method uses direct SQL queries to create a database, insert data, and fetch results.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Connect to SQLite (creates 'database.db' if not exists)
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"database.db"</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># Create 'users' table
+</span><span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"""
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL
+)
+"""</span><span class="p">)</span>
+
+<span class="c1"># Insert data
+</span><span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO users (name, age) VALUES (?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="s">"Alice"</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO users (name, age) VALUES (?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="s">"Bob"</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+
+<span class="c1"># Commit and close connection
+</span><span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Fetch and display data
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"database.db"</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT * FROM users"</span><span class="p">)</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Users from sqlite3:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="problems-with-sqlite3"><strong>Problems with <code class="language-plaintext highlighter-rouge">sqlite3</code>:</strong></h3>
+
+<ul>
+  <li>Writing raw SQL queries manually.</li>
+  <li>No object-oriented access to data.</li>
+  <li>Harder to maintain as the project grows.</li>
+</ul>
+
+<hr />
+
+<h2 id="step-2-using-flask-sqlalchemy-orm-approach"><strong>Step 2: Using <code class="language-plaintext highlighter-rouge">Flask-SQLAlchemy</code> (ORM Approach)</strong></h2>
+
+<p>Now, we <strong>convert</strong> the above SQLite logic into <strong>Flask-SQLAlchemy</strong> for a cleaner, object-oriented approach.</p>
+
+<h3 id="1️⃣-install-flask-sqlalchemy"><strong>1️⃣ Install Flask-SQLAlchemy</strong></h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-sqlalchemy
+</code></pre></div></div>
+
+<h3 id="2️⃣-convert-to-flask-sqlalchemy"><strong>2️⃣ Convert to Flask-SQLAlchemy</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///database.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Define ORM Model
+</span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Create tables
+</span><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+<span class="c1"># Insert Data
+</span><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">user1</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"Alice"</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">user2</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"Bob"</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user1</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user2</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="c1"># Fetch and display data
+</span><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Users from Flask-SQLAlchemy:"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="key-differences--benefits-of-flask-sqlalchemy"><strong>Key Differences &amp; Benefits of Flask-SQLAlchemy</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th><code class="language-plaintext highlighter-rouge">sqlite3</code> (Raw SQL)</th>
+      <th><code class="language-plaintext highlighter-rouge">Flask-SQLAlchemy</code> (ORM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Querying</td>
+      <td>Manual SQL statements</td>
+      <td>Pythonic Object-Oriented Queries</td>
+    </tr>
+    <tr>
+      <td>Insert Data</td>
+      <td><code class="language-plaintext highlighter-rouge">cursor.execute("INSERT INTO users VALUES (?, ?)", (name, age))</code></td>
+      <td><code class="language-plaintext highlighter-rouge">db.session.add(User(name="Alice", age=25))</code></td>
+    </tr>
+    <tr>
+      <td>Fetch Data</td>
+      <td><code class="language-plaintext highlighter-rouge">cursor.execute("SELECT * FROM users")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">User.query.all()</code></td>
+    </tr>
+    <tr>
+      <td>Maintainability</td>
+      <td>Difficult for large apps</td>
+      <td>Clean &amp; Scalable</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="when-to-use-each"><strong>When to Use Each?</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Use Case</strong></th>
+      <th><strong>sqlite3</strong></th>
+      <th><strong>Flask-SQLAlchemy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Small scripts</td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td>Flask Web Apps</td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+    <tr>
+      <td>Large Databases</td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+    <tr>
+      <td>Object-Oriented DB Handling</td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="final-takeaway"><strong>Final Takeaway</strong></h3>
+
+<p>If you’re just running a quick script, <strong>sqlite3</strong> works fine. But for <strong>Flask applications, Flask-SQLAlchemy is the way to go</strong> because it offers cleaner, more maintainable, and scalable database handling.</p>
+
+<hr />
+
+<p>Here are all the common SQLAlchemy queries categorized by CRUD (Create, Read, Update, Delete) operations.</p>
+
+<hr />
+
+<h3 id="1-setting-up-sqlalchemy"><strong>1. Setting Up SQLAlchemy</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///test.db'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="crud-operations-in-sqlalchemy"><strong>CRUD Operations in SQLAlchemy</strong></h2>
+
+<h3 id="2-create-insert-data"><strong>2. Create (Insert) Data</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Adding a single user
+</span><span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"JohnDoe"</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">"john@example.com"</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="c1"># Adding multiple users
+</span><span class="n">users</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"Alice"</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">"alice@example.com"</span><span class="p">),</span>
+    <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"Bob"</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">"bob@example.com"</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add_all</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-read-select-data"><strong>3. Read (Select) Data</strong></h3>
+
+<h4 id="31-get-all-users"><strong>3.1 Get all users</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>  
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="32-get-a-single-user-by-id"><strong>3.2 Get a single user by ID</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Fetches the user with id = 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="33-filter-users-by-condition"><strong>3.3 Filter users by condition</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"Alice"</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>  <span class="c1"># Fetch first user with username Alice
+</span><span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">'%@example.com'</span><span class="p">)).</span><span class="nb">all</span><span class="p">()</span>  <span class="c1"># Fetch all users with email ending in @example.com
+</span></code></pre></div></div>
+
+<h4 id="34-query-using-multiple-filters"><strong>3.4 Query using multiple filters</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@example.com"</span><span class="p">)).</span><span class="nb">all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="35-order-and-limit-query-results"><strong>3.5 Order and Limit Query Results</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span><span class="p">.</span><span class="n">desc</span><span class="p">()).</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nb">all</span><span class="p">()</span>  <span class="c1"># Get the latest 5 users
+</span></code></pre></div></div>
+
+<h4 id="36-count-number-of-users"><strong>3.6 Count number of users</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user_count</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">count</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user_count</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-update-data"><strong>4. Update Data</strong></h3>
+
+<h4 id="41-update-a-single-record"><strong>4.1 Update a single record</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">user</span><span class="p">.</span><span class="n">username</span> <span class="o">=</span> <span class="s">"JohnUpdated"</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="42-update-multiple-records"><strong>4.2 Update multiple records</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">'%@example.com'</span><span class="p">)).</span><span class="n">update</span><span class="p">({</span><span class="s">"email"</span><span class="p">:</span> <span class="s">"newemail@example.com"</span><span class="p">})</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-delete-data"><strong>5. Delete Data</strong></h3>
+
+<h4 id="51-delete-a-single-user"><strong>5.1 Delete a single user</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="52-delete-multiple-users"><strong>5.2 Delete multiple users</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">).</span><span class="n">delete</span><span class="p">()</span>
+<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+<h2 id="flask-sqlalchemy-relationships-one-to-one-one-to-many-and-many-to-many">Flask-SQLAlchemy Relationships: One-to-One, One-to-Many, and Many-to-Many</h2>
+
+<h2 id="1-one-to-one-relationship">1. One-to-One Relationship</h2>
+<p>A <strong>one-to-one</strong> relationship ensures that each record in one table is linked to exactly one record in another table. This can be useful when storing additional details about a user, like a profile.</p>
+
+<h3 id="example-2">Example:</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Profile'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'user'</span><span class="p">,</span> <span class="n">uselist</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cascade</span><span class="o">=</span><span class="s">"all, delete-orphan"</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Profile</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">bio</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>Each <strong>User</strong> has only one <strong>Profile</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">uselist=False</code> ensures that a single object is returned instead of a list.</li>
+</ul>
+
+<hr />
+<h2 id="2-one-to-many-relationship">2. One-to-Many Relationship</h2>
+<p>A <strong>one-to-many</strong> relationship is where a record in one table can be associated with multiple records in another table. For example, a <strong>user can create multiple classes</strong>.</p>
+
+<h3 id="example-3">Example:</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'creator'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>A <strong>User</strong> can create multiple <strong>Class</strong> entries.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">backref='creator'</code> makes it easy to access the user who created the class.</li>
+</ul>
+
+<hr />
+<h2 id="3-many-to-many-relationship">3. Many-to-Many Relationship</h2>
+<p>A <strong>many-to-many</strong> relationship occurs when multiple records in one table are related to multiple records in another table. This is useful when <strong>students enroll in multiple classes</strong>.</p>
+
+<h3 id="example-4">Example:</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">class_participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'class_participants'</span><span class="p">,</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'class_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'class.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="n">class_participants</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'participants'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>A <strong>User</strong> can enroll in multiple <strong>Class</strong> instances, and a <strong>Class</strong> can have multiple <strong>Users</strong>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">secondary=class_participants</code> defines the join table for this relationship.</li>
+</ul>
+
+<hr />
+<h2 id="example-usage-in-flask-routes">Example Usage in Flask Routes</h2>
+<p>Adding users and enrolling them in classes:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">appp</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/enroll_user/&lt;int:user_id&gt;/&lt;int:class_id&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">enroll_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">class_id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="n">class_instance</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_id</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">class_instance</span><span class="p">:</span>
+        <span class="n">class_instance</span><span class="p">.</span><span class="n">participants</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"User </span><span class="si">{</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s"> enrolled in </span><span class="si">{</span><span class="n">class_instance</span><span class="p">.</span><span class="n">title</span><span class="si">}</span><span class="s">"</span>
+    <span class="k">return</span> <span class="s">"User or Class not found"</span>
+</code></pre></div></div>
+<ul>
+  <li>This route allows users to enroll in a class.</li>
+</ul>
+
+<hr />
+<h2 id="summary-1">Summary</h2>
+<p>| Relationship | Example Use Case | Implementation |
+|————-|—————-|—————-|
+| <strong>One-to-One</strong> | User &amp; Profile | <code class="language-plaintext highlighter-rouge">db.relationship(..., uselist=False)</code> |
+| <strong>One-to-Many</strong> | User &amp; Created Classes | <code class="language-plaintext highlighter-rouge">db.relationship(..., backref='creator')</code> |
+| <strong>Many-to-Many</strong> | Students &amp; Classes | <code class="language-plaintext highlighter-rouge">db.relationship(..., secondary=table_name, backref='participants')</code> |</p>
+
+<p>This guide provides a structured approach to handling relationships in Flask-SQLAlchemy.</p>
+
+<hr />
+
+<h2 id="advanced-queries"><strong>Advanced Queries</strong></h2>
+
+<h3 id="6-aggregate-functions"><strong>6. Aggregate Functions</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">func</span>
+
+<span class="c1"># Get the number of users
+</span><span class="n">user_count</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="nb">id</span><span class="p">)).</span><span class="n">scalar</span><span class="p">()</span>
+
+<span class="c1"># Get the maximum user ID
+</span><span class="n">max_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="nb">id</span><span class="p">)).</span><span class="n">scalar</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="7-many-to-many-relationship-query"><strong>7. Many-to-Many Relationship Query</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example Many-to-Many association
+</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">participated_classes</span><span class="p">)</span>  <span class="c1"># Prints all classes the user participated in
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="8-many-to-many-relationship-query-using-append"><strong>8. Many-to-Many Relationship Query Using <code class="language-plaintext highlighter-rouge">append()</code></strong></h2>
+
+<p>When dealing with a <strong>many-to-many</strong> relationship, we use <code class="language-plaintext highlighter-rouge">append()</code> to associate objects instead of <code class="language-plaintext highlighter-rouge">db.session.add()</code>.</p>
+
+<h3 id="example-user--class-many-to-many-relationship"><strong>Example: User &amp; Class Many-to-Many Relationship</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Association table
+</span><span class="n">class_participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'class_participants'</span><span class="p">,</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">)),</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'class_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'class.id'</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="n">class_participants</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">"participants"</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="n">class_participants</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">"classes"</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="adding-a-user-to-a-class"><strong>Adding a User to a Class</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Fetch existing user and class
+</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">class</span> <span class="err">= </span><span class="nc">Class</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Use append() to associate the user with the class
+</span><span class="n">class</span><span class="p">.</span><span class="n">participants</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Commit changes
+</span><span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="fetching-all-classes-a-user-participated-in"><strong>Fetching All Classes a User Participated In</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="k">class</span> <span class="nc">in</span> <span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">class</span><span class="p">.</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="key-difference-between-append-and-dbsessionadd"><strong>Key Difference Between <code class="language-plaintext highlighter-rouge">append()</code> and <code class="language-plaintext highlighter-rouge">db.session.add()</code></strong></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">db.session.add()</code> is used to <strong>add new objects</strong> to the database.</li>
+  <li><code class="language-plaintext highlighter-rouge">append()</code> is used to <strong>add relationships</strong> between existing objects in a <strong>many-to-many</strong> or <strong>one-to-many</strong> relationship.</li>
+</ul>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">and_</code> in SQLAlchemy is used for combining multiple conditions in a query using <strong>logical AND</strong>. It comes from <code class="language-plaintext highlighter-rouge">sqlalchemy import and_</code> and is especially useful when filtering with multiple conditions.</p>
+
+<hr />
+
+<h2 id="9-using-and_-for-multiple-filters"><strong>9. Using <code class="language-plaintext highlighter-rouge">and_</code> for Multiple Filters</strong></h2>
+
+<p><code class="language-plaintext highlighter-rouge">and_</code> allows you to apply multiple filter conditions in queries.</p>
+
+<h3 id="example-using-and_-to-filter-queries"><strong>Example: Using <code class="language-plaintext highlighter-rouge">and_</code> to Filter Queries</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">and_</span>
+
+<span class="c1"># Fetch users with username "Alice" AND email ending with "@example.com"
+</span><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@example.com"</span><span class="p">))).</span><span class="nb">all</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="alternative-without-and_"><strong>Alternative Without <code class="language-plaintext highlighter-rouge">and_</code></strong></h3>
+
+<p>You can also write the same query like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@example.com"</span><span class="p">)).</span><span class="nb">all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>SQLAlchemy automatically treats multiple arguments in <code class="language-plaintext highlighter-rouge">.filter()</code> as an AND condition.</p>
+
+<hr />
+
+<h3 id="10-using-or_-for-or-conditions"><strong>10. Using <code class="language-plaintext highlighter-rouge">or_</code> for OR Conditions</strong></h3>
+
+<p>For OR conditions, use <code class="language-plaintext highlighter-rouge">or_</code> instead of <code class="language-plaintext highlighter-rouge">and_</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">or_</span>
+
+<span class="c1"># Fetch users who have username "Alice" OR email ending with "@example.com"
+</span><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">or_</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@example.com"</span><span class="p">))).</span><span class="nb">all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="11-combining-and_-and-or_"><strong>11. Combining <code class="language-plaintext highlighter-rouge">and_</code> and <code class="language-plaintext highlighter-rouge">or_</code></strong></h3>
+
+<p>For complex queries, you can combine <code class="language-plaintext highlighter-rouge">and_</code> and <code class="language-plaintext highlighter-rouge">or_</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">username</span> <span class="o">!=</span> <span class="s">"Bob"</span><span class="p">,</span> <span class="n">or_</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@gmail.com"</span><span class="p">),</span> <span class="n">User</span><span class="p">.</span><span class="n">email</span><span class="p">.</span><span class="n">like</span><span class="p">(</span><span class="s">"%@yahoo.com"</span><span class="p">)))).</span><span class="nb">all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>This query:</p>
+
+<ul>
+  <li>Excludes users with username <code class="language-plaintext highlighter-rouge">"Bob"</code></li>
+  <li>Includes users with emails ending in <code class="language-plaintext highlighter-rouge">"@gmail.com"</code> or <code class="language-plaintext highlighter-rouge">"@yahoo.com"</code></li>
+</ul>
+
+<hr />
+
+<h3 id="summary-2"><strong>Summary</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">and_(cond1, cond2)</code></td>
+      <td>Returns records that satisfy <strong>both conditions</strong>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">or_(cond1, cond2)</code></td>
+      <td>Returns records that satisfy <strong>at least one condition</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="difference-between-backref-and-back_populates-in-sqlalchemy"><strong>Difference Between <code class="language-plaintext highlighter-rouge">backref</code> and <code class="language-plaintext highlighter-rouge">back_populates</code> in SQLAlchemy</strong></h3>
+
+<p>Both <code class="language-plaintext highlighter-rouge">backref</code> and <code class="language-plaintext highlighter-rouge">back_populates</code> are used to define <strong>bidirectional relationships</strong> in SQLAlchemy, but they work in slightly different ways.</p>
+
+<hr />
+
+<h2 id="1️⃣-backref-automatic-back-population"><strong>1️⃣ <code class="language-plaintext highlighter-rouge">backref</code> (Automatic Back Population)</strong></h2>
+
+<ul>
+  <li><strong>Single-sided declaration</strong> (only in one model).</li>
+  <li><strong>SQLAlchemy automatically creates</strong> the reverse relationship.</li>
+  <li>Less explicit, but more concise.</li>
+</ul>
+
+<h3 id="example-using-backref"><strong>Example Using <code class="language-plaintext highlighter-rouge">backref</code></strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'creator'</span><span class="p">)</span>  <span class="c1"># Creates 'creator' in Class
+</span>
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="how-it-works"><strong>How It Works?</strong></h3>
+
+<ul>
+  <li>In <code class="language-plaintext highlighter-rouge">User</code>, we define <code class="language-plaintext highlighter-rouge">classes = db.relationship('Class', backref='creator')</code></li>
+  <li>SQLAlchemy <strong>automatically creates</strong> <code class="language-plaintext highlighter-rouge">creator</code> in <code class="language-plaintext highlighter-rouge">Class</code>, so we can do:</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">)</span>  <span class="c1"># List of classes created by the user
+</span>
+<span class="n">classs</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">classs</span><span class="p">.</span><span class="n">creator</span><span class="p">)</span>  <span class="c1"># User who created the class (automatically available)
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-back_populates-explicit-two-sided-definition"><strong>2️⃣ <code class="language-plaintext highlighter-rouge">back_populates</code> (Explicit Two-Sided Definition)</strong></h2>
+
+<ul>
+  <li><strong>Manually defined on both models.</strong></li>
+  <li>Used when more control is needed.</li>
+</ul>
+
+<h3 id="example-using-back_populates"><strong>Example Using <code class="language-plaintext highlighter-rouge">back_populates</code></strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'creator'</span><span class="p">)</span>  <span class="c1"># Explicit
+</span>
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">creator</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'classes'</span><span class="p">)</span>  <span class="c1"># Explicit
+</span></code></pre></div></div>
+
+<h3 id="how-it-works-1"><strong>How It Works?</strong></h3>
+
+<ul>
+  <li>We explicitly define the relationship <strong>on both sides</strong> using <code class="language-plaintext highlighter-rouge">back_populates</code>.</li>
+  <li>This means:</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">)</span>  <span class="c1"># Works as expected
+</span>
+<span class="n">classs</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">classs</span><span class="p">.</span><span class="n">creator</span><span class="p">)</span>  <span class="c1"># Also works because of explicit back_populates
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="key-differences"><strong>Key Differences:</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th><code class="language-plaintext highlighter-rouge">backref</code></th>
+      <th><code class="language-plaintext highlighter-rouge">back_populates</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Definition</strong></td>
+      <td>Defined on <strong>one model only</strong></td>
+      <td>Defined on <strong>both models</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Automatic?</strong></td>
+      <td>Yes, SQLAlchemy <strong>automatically</strong> creates the reverse relationship</td>
+      <td>No, you must <strong>explicitly define</strong> both sides</td>
+    </tr>
+    <tr>
+      <td><strong>Use Case</strong></td>
+      <td>When you want a <strong>quick</strong> bidirectional relationship</td>
+      <td>When you need <strong>more control</strong> over the relationship</td>
+    </tr>
+    <tr>
+      <td><strong>Flexibility</strong></td>
+      <td>Less flexible</td>
+      <td>More flexible (e.g., setting additional relationship parameters)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="when-to-use-what"><strong>When to Use What?</strong></h2>
+
+<ul>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">backref</code></strong> when you want <strong>quick bidirectional access</strong> without writing redundant code.</li>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">back_populates</code></strong> when you need <strong>more control</strong> (e.g., when adding additional parameters like lazy loading or cascade behavior).</li>
+</ul>
+
+<h3 id="can-we-use-backref-in-a-many-to-many-relationship"><strong>Can We Use <code class="language-plaintext highlighter-rouge">backref</code> in a Many-to-Many Relationship?</strong></h3>
+
+<p>Yes, we can use <code class="language-plaintext highlighter-rouge">backref</code> in a <strong>many-to-many relationship</strong>, but there are some nuances.</p>
+
+<p>In <strong>many-to-many relationships</strong>, we usually define an <strong>association table</strong> (without an explicit model) using <code class="language-plaintext highlighter-rouge">db.Table</code>, and <code class="language-plaintext highlighter-rouge">backref</code> works in this case.</p>
+
+<hr />
+
+<h2 id="example-many-to-many-with-backref"><strong>Example: Many-to-Many with <code class="language-plaintext highlighter-rouge">backref</code></strong></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">class_participants</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'class_participants'</span><span class="p">,</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'class_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'class.id'</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="n">class_participants</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'participants'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="how-backref-works-here"><strong>How <code class="language-plaintext highlighter-rouge">backref</code> Works Here</strong></h3>
+
+<ul>
+  <li><strong>In <code class="language-plaintext highlighter-rouge">User</code></strong>: We define <code class="language-plaintext highlighter-rouge">classes = db.relationship('Class', secondary=class_participants, backref='participants')</code></li>
+  <li><strong>In <code class="language-plaintext highlighter-rouge">Class</code></strong>: SQLAlchemy <strong>automatically creates</strong> <code class="language-plaintext highlighter-rouge">participants</code>, allowing us to access users from the <code class="language-plaintext highlighter-rouge">Class</code> model.</li>
+</ul>
+
+<h3 id="querying-the-data"><strong>Querying the Data</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">classes</span><span class="p">)</span>  <span class="c1"># List of classes the user participated in
+</span>
+<span class="n">classs</span> <span class="o">=</span> <span class="n">Class</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">classs</span><span class="p">.</span><span class="n">participants</span><span class="p">)</span>  <span class="c1"># List of users who participated in this class
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="what-if-we-use-an-association-model"><strong>What If We Use an Association Model?</strong></h2>
+
+<p>If we use an <strong>explicit association model</strong> (instead of <code class="language-plaintext highlighter-rouge">db.Table</code>), <code class="language-plaintext highlighter-rouge">backref</code> <strong>cannot be used directly</strong>. Instead, we must use <strong><code class="language-plaintext highlighter-rouge">back_populates</code></strong>.</p>
+
+<h3 id="example-many-to-many-using-an-explicit-model"><strong>Example: Many-to-Many Using an Explicit Model</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ClassParticipant</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># Extra column makes it an association model
+</span>    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">class_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'class.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'class_associations'</span><span class="p">)</span>
+    <span class="n">classs</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Class'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'class_associations'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">class_associations</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'ClassParticipant'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'user'</span><span class="p">)</span>  <span class="c1"># Use back_populates
+</span>
+<span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">class_associations</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'ClassParticipant'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'class'</span><span class="p">)</span>  <span class="c1"># Use back_populates
+</span></code></pre></div></div>
+
+<h3 id="key-differences-1"><strong>Key Differences</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Can We Use <code class="language-plaintext highlighter-rouge">backref</code>?</th>
+      <th>Alternative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Using <code class="language-plaintext highlighter-rouge">db.Table</code> for Many-to-Many</strong></td>
+      <td>✅ Yes, with <code class="language-plaintext highlighter-rouge">secondary=...</code></td>
+      <td>Works perfectly</td>
+    </tr>
+    <tr>
+      <td><strong>Using an Association Model (Explicit Table)</strong></td>
+      <td>❌ No</td>
+      <td>Use <code class="language-plaintext highlighter-rouge">back_populates</code> instead</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="conclusion-2"><strong>Conclusion</strong></h2>
+
+<ul>
+  <li>✅ <strong>Yes, <code class="language-plaintext highlighter-rouge">backref</code> can be used</strong> in a <strong>many-to-many relationship</strong> <strong>if</strong> using <code class="language-plaintext highlighter-rouge">db.Table</code> for the association.</li>
+  <li>❌ If you have an <strong>explicit association model</strong>, use <strong><code class="language-plaintext highlighter-rouge">back_populates</code></strong> instead of <code class="language-plaintext highlighter-rouge">backref</code>.</li>
+</ul>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

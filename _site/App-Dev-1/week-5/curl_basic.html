@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/curl_basic.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/curl_basic.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/curl_basic.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>When getting started with <code class="language-plaintext highlighter-rouge">curl</code>, there are a few basic and commonly used commands that can be quite helpful. These commands will cover a wide range of common use cases, from simple GET requests to more complex interactions with APIs:</p>
+
+<h3 id="1-basic-get-request">1. <strong>Basic GET Request</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Fetches the content of the specified URL.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://example.com
+</code></pre></div>    </div>
+  </li>
+  <li>This retrieves the content of the webpage at <code class="language-plaintext highlighter-rouge">https://example.com</code> and prints it to the terminal.</li>
+</ul>
+
+<h3 id="2-get-with-verbose-output">2. <strong>GET with Verbose Output</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -v &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Shows detailed information about the request and response, including headers.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -v https://example.com
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Useful for debugging HTTP request issues and seeing detailed headers in the request and response.</li>
+</ul>
+
+<h3 id="3-follow-redirects">3. <strong>Follow Redirects</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -L &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Follow HTTP <code class="language-plaintext highlighter-rouge">3xx</code> redirects.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -L http://example.com
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Use this when a URL redirects to another location, and you want <code class="language-plaintext highlighter-rouge">curl</code> to automatically follow the redirect and get the final response.</li>
+</ul>
+
+<h3 id="4-download-a-file">4. <strong>Download a File</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -O &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Saves the file at the specified URL to the current directory, keeping the original filename.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -O https://example.com/file.zip
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Handy when you want to download files directly to your local machine.</li>
+</ul>
+
+<h3 id="5-custom-headers">5. <strong>Custom Headers</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -H "Header: value" &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Adds custom headers to the request.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -H "Authorization: Bearer &lt;token&gt;" https://api.example.com/data
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Often used when interacting with APIs that require authentication or specific headers.</li>
+</ul>
+
+<h3 id="6-send-data-with-post">6. <strong>Send Data with POST</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -X POST -d "param1=value1&amp;param2=value2" &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Sends data to the server using a POST request.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -d "username=user&amp;password=pass" https://example.com/login
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Useful when submitting form data or interacting with APIs.</li>
+</ul>
+
+<h3 id="7-send-json-data">7. <strong>Send JSON Data</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -X POST -H "Content-Type: application/json" -d '{"key": "value"}' &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Sends JSON data with a <code class="language-plaintext highlighter-rouge">POST</code> request.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Content-Type: application/json" -d '{"username": "user", "password": "pass"}' https://example.com/api/login
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: This is commonly used when interacting with JSON-based RESTful APIs.</li>
+</ul>
+
+<h3 id="8-store-output-to-a-file">8. <strong>Store Output to a File</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl &lt;URL&gt; -o &lt;filename&gt;</code></li>
+  <li><strong>Purpose</strong>: Saves the output to a specified file.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://example.com -o output.html
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: This saves the content of <code class="language-plaintext highlighter-rouge">https://example.com</code> to <code class="language-plaintext highlighter-rouge">output.html</code> instead of displaying it in the terminal.</li>
+</ul>
+
+<h3 id="9-include-http-headers-in-output">9. <strong>Include HTTP Headers in Output</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -i &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Fetches the response and includes the HTTP headers in the output.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -i https://example.com
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Useful if you want to see both the headers and the response body together.</li>
+</ul>
+
+<h3 id="10-upload-a-file">10. <strong>Upload a File</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -X POST -F "file=@path/to/file" &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Uploads a file to a server.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -F "image=@/path/to/image.jpg" https://example.com/upload
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: This is helpful when you need to upload files through APIs that support <code class="language-plaintext highlighter-rouge">multipart/form-data</code>.</li>
+</ul>
+
+<h3 id="11-check-response-time">11. <strong>Check Response Time</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -w "@curl-format.txt" -o /dev/null -s &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Allows you to measure different aspects of the request timing (like DNS lookup, connection time).</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -w "Time: %{time_total}\n" -o /dev/null -s https://example.com
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Useful for performance testing and analyzing the time taken for each step of a request.</li>
+</ul>
+
+<h3 id="12-get-http-status-code-only">12. <strong>Get HTTP Status Code Only</strong></h3>
+<ul>
+  <li><strong>Command</strong>: <code class="language-plaintext highlighter-rouge">curl -s -o /dev/null -w "%{http_code}" &lt;URL&gt;</code></li>
+  <li><strong>Purpose</strong>: Outputs only the HTTP status code.</li>
+  <li><strong>Example</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -s -o /dev/null -w "%{http_code}" https://example.com
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Case</strong>: Useful when you want to check if a URL is accessible and returns a specific HTTP status code (e.g., <code class="language-plaintext highlighter-rouge">200</code> for OK).</li>
+</ul>
+
+<h3 id="summary-table">Summary Table:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Command</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl &lt;URL&gt;</code></td>
+      <td>Basic GET request.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -v &lt;URL&gt;</code></td>
+      <td>Verbose output with headers.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -L &lt;URL&gt;</code></td>
+      <td>Follow redirects.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -O &lt;URL&gt;</code></td>
+      <td>Download a file with its original name.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -H</code></td>
+      <td>Add custom headers.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -X POST</code></td>
+      <td>Send a POST request.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -X POST -d</code></td>
+      <td>Send form data with a POST request.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -X POST -H "Content-Type: application/json" -d</code></td>
+      <td>Send JSON data.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl &lt;URL&gt; -o &lt;filename&gt;</code></td>
+      <td>Save output to a file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -i &lt;URL&gt;</code></td>
+      <td>Include headers in the response.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -F</code></td>
+      <td>Upload a file to a server.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -w</code></td>
+      <td>Display timing details of the request.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">curl -s -o /dev/null -w</code></td>
+      <td>Get HTTP status code only.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These commands cover most of the common scenarios you’ll encounter when working with <code class="language-plaintext highlighter-rouge">curl</code>. As you get more familiar with <code class="language-plaintext highlighter-rouge">curl</code>, you may discover additional flags and options that are helpful for more advanced use cases.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

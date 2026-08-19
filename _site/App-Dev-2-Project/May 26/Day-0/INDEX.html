@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/INDEX.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/INDEX.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/INDEX.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="documentation-index---vehicle-parking-application">Documentation Index - Vehicle Parking Application</h1>
+
+<p>Welcome to Day 1 Session Setup! This file guides you to the right documentation for your needs.</p>
+
+<hr />
+
+<h2 id="quick-navigation">Quick Navigation</h2>
+
+<h3 id="i-want-to-get-started-immediately">I Want to Get Started Immediately</h3>
+<p><strong>Read:</strong> <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> (20-30 min)</p>
+<ul>
+  <li>Prerequisites checking</li>
+  <li>Why we use each technology</li>
+  <li>Step-by-step backend setup</li>
+  <li>Step-by-step frontend setup</li>
+  <li>Running both servers</li>
+  <li>Link to backend API testing section</li>
+  <li>Troubleshooting pointers to backend/frontend guides</li>
+</ul>
+
+<p><strong>Result:</strong> You’ll have the application running locally on http://localhost:5173 (frontend) and http://localhost:5000 (backend)</p>
+
+<hr />
+
+<h2 id="complete-documentation-read-in-this-order">Complete Documentation (Read in This Order)</h2>
+
+<h3 id="1-start-prerequisites--setup">1. <strong>START: Prerequisites &amp; Setup</strong></h3>
+<p>📄 <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> (20-30 min read)</p>
+
+<p><strong>What’s covered:</strong></p>
+<ul>
+  <li>Do you have Python 3.8+ and Node.js 16+ installed?</li>
+  <li>Quick overview of technology choices and why they matter</li>
+  <li>Complete copy-paste instructions for backend setup</li>
+  <li>Complete copy-paste instructions for frontend setup</li>
+  <li>How to run both servers simultaneously</li>
+  <li>Where to test APIs after backend implementation</li>
+  <li>Troubleshooting pointers</li>
+</ul>
+
+<p><strong>Start here unless you already have the app running.</strong></p>
+
+<hr />
+
+<h3 id="2-backend-deep-dive">2. <strong>Backend Deep Dive</strong></h3>
+<p>📄 <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.html">BACKEND_SETUP.md</a> (45-60 min read)</p>
+
+<p><strong>What’s covered:</strong></p>
+<ul>
+  <li>Backend Architecture Overview (component flow, auth/authz design)</li>
+  <li>Complete Flask application code</li>
+  <li>Database models: User, ParkingLot, ParkingSpot, Reservation</li>
+  <li>Configuration setup (Flask, JWT, CORS, SQLAlchemy)</li>
+  <li>Authentication routes: /api/auth/register, /api/auth/login, /api/auth/profile</li>
+  <li>Admin routes: /api/parking-lots (POST), role-based access checks</li>
+  <li>User/Public routes: /api/parking-lots (GET), /api/parking-lots/<id>/spots (GET)</id></li>
+  <li>Reservation routes: Create, Read, Update, Delete with role-based access</li>
+  <li>JWT verification and token lifecycle</li>
+  <li>RBAC implementation (Admin vs User role checks)</li>
+  <li>Error handling patterns</li>
+  <li>Testing with curl examples</li>
+</ul>
+
+<p><strong>Read this if:</strong></p>
+<ul>
+  <li>You’re building or understanding the backend</li>
+  <li>You need to know how authentication works</li>
+  <li>You want to add or modify API endpoints</li>
+  <li>You’re debugging backend issues</li>
+</ul>
+
+<hr />
+
+<h3 id="3-frontend-deep-dive">3. <strong>Frontend Deep Dive</strong></h3>
+<p>📄 <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.html">FRONTEND_SETUP.md</a> (45-60 min read)</p>
+
+<p><strong>What’s covered:</strong></p>
+<ul>
+  <li>Frontend Architecture Overview (routing, component hierarchy, portals)</li>
+  <li>Two portal system: Admin and User (separate login flows)</li>
+  <li>Component organization (views, components, router structure)</li>
+  <li>Component-by-component explanation:
+    <ul>
+      <li>LandingPage (portal selection)</li>
+      <li>AdminView &amp; AdminLogin (admin portal with tabs)</li>
+      <li>UserView, UserLogin, UserRegister (user portal)</li>
+      <li>Dashboard, Lots, Spots, Reservations components</li>
+    </ul>
+  </li>
+  <li>Vue Router configuration</li>
+  <li>Axios API request patterns</li>
+  <li>localStorage token management</li>
+  <li>Styling and responsive design</li>
+  <li>Environment variables setup</li>
+  <li>HMR (hot module replacement) during development</li>
+</ul>
+
+<p><strong>Read this if:</strong></p>
+<ul>
+  <li>You’re building or understanding the frontend</li>
+  <li>You need to know how components interact</li>
+  <li>You want to add new features or modify existing components</li>
+  <li>You’re debugging frontend issues</li>
+</ul>
+
+<hr />
+
+<h3 id="4-security-reference">4. <strong>Security Reference</strong></h3>
+<p>📄 <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> (30-45 min read)</p>
+
+<p><strong>What’s covered:</strong></p>
+<ul>
+  <li>JWT (JSON Web Tokens) explained step-by-step</li>
+  <li>JWT structure and anatomy</li>
+  <li>Token lifecycle (creation → validation → expiration)</li>
+  <li>RBAC (Role-Based Access Control) explained</li>
+  <li>Admin vs User roles and permissions</li>
+  <li>Role-based decorators in Flask</li>
+  <li>RBAC access matrix (who can access what)</li>
+  <li>Frontend authorization patterns (UI based on role)</li>
+  <li>Combined JWT + RBAC flow diagrams</li>
+  <li>Debugging authentication/authorization issues</li>
+  <li>Common security mistakes to avoid</li>
+</ul>
+
+<p><strong>Read this if:</strong></p>
+<ul>
+  <li>You want to understand JWT and RBAC concepts</li>
+  <li>You’re implementing new role-based features</li>
+  <li>You’re debugging authentication/authorization issues</li>
+  <li>You want to know how tokens work “under the hood”</li>
+</ul>
+
+<hr />
+
+<h2 id="reading-paths-by-role">Reading Paths by Role</h2>
+
+<h3 id="im-not-sure-where-to-start">I’m Not Sure Where to Start</h3>
+<ol>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> ← <strong>Start here</strong></li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> (optional, read if interested in auth)</li>
+</ol>
+
+<h3 id="im-building-the-backend">I’m Building the Backend</h3>
+<ol>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> (setup)</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.html">BACKEND_SETUP.md</a> ← <strong>Focus here</strong></li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> (understand JWT/RBAC)</li>
+</ol>
+
+<h3 id="im-building-the-frontend">I’m Building the Frontend</h3>
+<ol>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> (setup)</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.html">FRONTEND_SETUP.md</a> ← <strong>Focus here</strong></li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> (understand token management)</li>
+</ol>
+
+<h3 id="im-building-both-full-stack">I’m Building Both (Full Stack)</h3>
+<ol>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> (setup)</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.html">BACKEND_SETUP.md</a> (backend code)</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.html">FRONTEND_SETUP.md</a> (frontend code)</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> (how they communicate securely)</li>
+</ol>
+
+<h3 id="i-just-need-quick-troubleshooting">I Just Need Quick Troubleshooting</h3>
+<ul>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> → Go to “Troubleshooting” section</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.html">BACKEND_SETUP.md</a> → Use “Troubleshooting” + API testing sections</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.html">FRONTEND_SETUP.md</a> → Use “Troubleshooting” section</li>
+  <li><a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> → Read “Debugging Authentication” section</li>
+</ul>
+
+<hr />
+
+<h2 id="file-overview">File Overview</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Purpose</th>
+      <th>Duration</th>
+      <th>When to Read</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PREREQUISITES_AND_SETUP.md</td>
+      <td>Entry point with full setup</td>
+      <td>20-30 min</td>
+      <td>First thing</td>
+    </tr>
+    <tr>
+      <td>BACKEND_SETUP.md</td>
+      <td>Flask implementation</td>
+      <td>45-60 min</td>
+      <td>Building backend</td>
+    </tr>
+    <tr>
+      <td>FRONTEND_SETUP.md</td>
+      <td>Vue 3 implementation</td>
+      <td>45-60 min</td>
+      <td>Building frontend</td>
+    </tr>
+    <tr>
+      <td>SECURITY_GUIDE.md</td>
+      <td>Auth concepts reference</td>
+      <td>30-45 min</td>
+      <td>Understanding JWT/RBAC</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="how-do-i-know-when-im-ready">How Do I Know When I’m Ready?</h2>
+
+<p>After reading <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a>, you should be able to:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Run <code class="language-plaintext highlighter-rouge">python --version</code> and <code class="language-plaintext highlighter-rouge">node --version</code> successfully</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Start the backend server with <code class="language-plaintext highlighter-rouge">python app.py</code> (runs on 5000)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Start the frontend server with <code class="language-plaintext highlighter-rouge">npm run dev</code> (runs on 5173)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Open http://localhost:5173 and see the landing page</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Create a test user account (register)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Log in as that user</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />See the user dashboard</li>
+</ul>
+
+<p>If all checkboxes are done, you’re ready to build!</p>
+
+<hr />
+
+<h2 id="pro-tips">Pro Tips</h2>
+
+<ol>
+  <li><strong>Keep both servers running</strong> - One terminal for backend, one for frontend</li>
+  <li><strong>Check ports 5000 and 5173</strong> - Must be available (not already in use)</li>
+  <li><strong>Save tokens locally</strong> - Don’t reload the page, tokens are in localStorage</li>
+  <li><strong>Use the curl examples</strong> - In BACKEND_SETUP.md to test API directly</li>
+  <li><strong>Hot module reload</strong> - Vite reloads frontend automatically when you save (you’ll see changes instantly)</li>
+  <li><strong>Check browser console</strong> - Press F12, go to Console tab to see debugging info</li>
+</ol>
+
+<hr />
+
+<h2 id="need-help">Need Help?</h2>
+
+<ol>
+  <li><strong>Setup failing?</strong> → Check <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a> “Troubleshooting”</li>
+  <li><strong>API returning errors?</strong> → Check <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.html">BACKEND_SETUP.md</a> error handling and curl examples</li>
+  <li><strong>Frontend not working?</strong> → Check <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.html">FRONTEND_SETUP.md</a> component explanations</li>
+  <li><strong>Authentication issues?</strong> → Check <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html">SECURITY_GUIDE.md</a> debugging section</li>
+</ol>
+
+<hr />
+
+<h2 id="reading-duration-estimate">Reading Duration Estimate</h2>
+
+<ul>
+  <li><strong>Total first-time</strong>: ~2-3 hours (prerequisites + setup + testing)</li>
+  <li><strong>Just setup</strong>: 20-30 minutes</li>
+  <li><strong>Backend focus</strong>: 50-75 minutes</li>
+  <li><strong>Frontend focus</strong>: 50-75 minutes</li>
+  <li><strong>Full stack</strong>: 2-3 hours</li>
+  <li><strong>Reference lookup</strong>: 5-15 minutes</li>
+</ul>
+
+<p><strong>Don’t read everything at once</strong> - Start with <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">PREREQUISITES_AND_SETUP.md</a>, get it running, then read the deep dives as needed.</p>
+
+<hr />
+
+<p><img width="1302" height="1502" alt="image" src="https://github.com/user-attachments/assets/e5ab75cb-ec8d-4342-a12e-c937d671d579" /></p>
+
+<hr />
+
+<h2 id="learning-outcomes">Learning Outcomes</h2>
+
+<p>After completing this Day 1 setup, you’ll understand:</p>
+
+<ul>
+  <li>How Flask backends handle authentication and authorization</li>
+  <li>How Vue frontends communicate with backends via API</li>
+  <li>How JWT tokens work and why they’re secure</li>
+  <li>How role-based access control (RBAC) restricts what users can do</li>
+  <li>How to structure a full-stack application</li>
+  <li>How to debug common authentication issues</li>
+</ul>
+
+<hr />
+
+<p><strong>Ready to start?</strong> → <a href="/Resources-App-Dev/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html">Go to 00_PREREQUISITES_AND_SETUP.md</a></p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

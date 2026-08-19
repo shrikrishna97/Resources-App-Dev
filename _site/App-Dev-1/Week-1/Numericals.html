@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-1/Numericals.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-1/Numericals.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-1/Numericals.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h3 id="q1">Q1</h3>
+<p>Suppose a client machine <strong>A</strong> is communicating with a data center <strong>B</strong> located 8000 km away from <strong>A</strong>.<br />
+The speed of light in the cable is assumed to be <code class="language-plaintext highlighter-rouge">2 × 10^8 m/s</code> (instead of the default <code class="language-plaintext highlighter-rouge">3 × 10^8 m/s</code>).</p>
+
+<p>How long will it take for a <strong>request to reach the server and for the response to return back to the client (round-trip time)</strong>?</p>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             request ————&gt;&gt;———————
+   Client A                          Server B
+             &lt;&lt;—————— response ————
+   Distance between A and B = 8000 km
+</code></pre></div></div>
+<p>Latency is the delay between sending a request and receiving a response in a system.</p>
+
+<ul>
+  <li>
+    <p>Formula:<br />
+Speed = Distance / Time<br />
+Time = Distance / Speed</p>
+  </li>
+  <li>
+    <p>One-way distance:<br />
+8000 × 1000 = 8 × 10^6 m</p>
+  </li>
+  <li>
+    <p>One-way time:<br />
+(8 × 10^6) / (2 × 10^8) = 0.04 s</p>
+  </li>
+  <li>
+    <p>Round-trip time (RTT):<br />
+2 × 0.04 = 0.08 s</p>
+  </li>
+  <li>
+    <p>Converting to milliseconds:<br />
+0.08 × 1000 = <strong>80 ms</strong></p>
+  </li>
+</ul>
+
+<p><strong>Final Answer:</strong><br />
+Latency (Round-trip latency) = <strong>80 ms</strong></p>
+
+<hr />
+
+<h3 id="q2">Q2</h3>
+<p>Suppose a client machine <strong>C</strong> is communicating with a data center <strong>D</strong> located 15000 km away from <strong>C</strong>.<br />
+Assume that the TCP connection has already been established and is kept alive.<br />
+If the client can send a <strong>new request only after receiving an acknowledgement (response) for the previous request</strong>, what is the maximum number of successful requests that can be completed from <strong>C</strong> to <strong>D</strong> in one second?</p>
+
+<p>(Assume the speed of light in cable is <code class="language-plaintext highlighter-rouge">2 × 10^8 m/s</code>.)</p>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             request ————&gt;&gt;———————
+   Client C                          Server D
+             &lt;&lt;—————— response ————
+   Distance between C and D = 15000 km
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Formula:<br />
+Speed = Distance / Time<br />
+Time = Distance / Speed</p>
+  </li>
+  <li>
+    <p>One-way distance:<br />
+15000 × 1000 = 1.5 × 10^7 m</p>
+  </li>
+  <li>
+    <p>One-way time:<br />
+(1.5 × 10^7) / (2 × 10^8) = 0.075 s = 75 ms</p>
+  </li>
+  <li>
+    <p>Round-trip time (RTT):<br />
+2 × 75 ms = 150 ms</p>
+  </li>
+  <li>
+    <p>Number of requests possible in 1 second (1000 ms):<br />
+1000 / 150 ≈ 6.67</p>
+  </li>
+  <li>
+    <p>Only <strong>6 full request–response cycles</strong> can complete in 1 second.<br />
+(The 7th would not complete within the 1 second window.)</p>
+  </li>
+</ul>
+
+<p><strong>Final Answer:</strong><br />
+Maximum number of successful requests = <strong>6 per second</strong></p>
+
+<hr />
+
+<h3 id="q3">Q3</h3>
+<p>Consider a client located <strong>6000 km</strong> from a server.<br />
+The client makes a request through a <strong>cable</strong>, but after the request reaches the server, the cable breaks and the <strong>response is sent to the client via air</strong>.</p>
+
+<p>If this change of medium causes an <strong>additional delay of 75 ms at the server</strong>, how long will the client have to wait before receiving the response?</p>
+
+<p>(Assume speed of light in cable = <code class="language-plaintext highlighter-rouge">2 × 10^8 m/s</code>, in air = <code class="language-plaintext highlighter-rouge">3 × 10^8 m/s</code>)</p>
+
+<p><em>Assume RTT = latency.</em></p>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             request ————&gt;&gt;——————— (cable)
+   Client A                          Server B
+             &lt;&lt;—————— response ———— (air)
+   Distance between A and B = 6000 km
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>Formula:</strong><br />
+Latency = request time + response time + server delay</p>
+  </li>
+  <li>
+    <p><strong>Request time (cable):</strong><br />
+6000 × 1000 / 2 × 10^8 = 0.03 s = 30 ms</p>
+  </li>
+  <li>
+    <p><strong>Response time (air):</strong><br />
+6000 × 1000 / 3 × 10^8 = 0.02 s = 20 ms</p>
+  </li>
+  <li>
+    <p><strong>Server delay:</strong><br />
+75 ms = 0.075 s  ( you can choose either second or milisecond , but we will prefer <code class="language-plaintext highlighter-rouge">ms</code> in this course)</p>
+  </li>
+  <li>
+    <p><strong>Total client wait (latency):</strong><br />
+0.03 + 0.02 + 0.075 = 0.125 s = 125 ms</p>
+  </li>
+</ul>
+
+<p><strong>Final Answer:</strong><br />
+Client wait time (latency) = <strong>125 ms</strong></p>
+
+<hr />
+
+<h3 id="q4">Q4</h3>
+<p>A client <strong>C</strong> and a server <strong>S</strong>, located 12,000 km apart, are connected via a cable.<br />
+A request is sent by the client to the server, but while sending back the response, the cable breaks and the response is now sent via <strong>air</strong>.</p>
+
+<p>This change in medium causes an <strong>additional delay of 20 ms</strong>.</p>
+
+<p>As compared to the Round Trip Time (RTT) of the healthy network, the RTT of the faulty system would <strong>__</strong>__.</p>
+
+<p><strong>Options:</strong><br />
+A. Increase<br />
+B. Decrease<br />
+C. Remain Same<br />
+D. Insufficient Information</p>
+
+<p>(Speed of light in cable = <code class="language-plaintext highlighter-rouge">2 × 10^8 m/s</code>, in air = <code class="language-plaintext highlighter-rouge">3 × 10^8 m/s</code>)</p>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             request ————&gt;&gt;——————— (cable)
+   Client C                          Server S
+             &lt;&lt;—————— response ———— (air)
+   Distance between A and B = 12000 km
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>Case 1: Healthy network</strong><br />
+RTT1 = 2 × (12000 × 1000 / 2 × 10^8) = 0.12 s = 120 ms</p>
+  </li>
+  <li>
+    <p><strong>Case 2: Faulty network</strong><br />
+RTT2 = (12000 × 1000 / 2 × 10^8) + (12000 × 1000 / 3 × 10^8) + 0.02<br />
+     = 0.06 + 0.04 + 0.02<br />
+     = 0.12 s = 120 ms</p>
+  </li>
+</ul>
+
+<p><strong>Conclusion:</strong><br />
+RTT remains the same despite the medium change and server delay.</p>
+
+<p><strong>Answer:</strong> C. Remain Same</p>
+
+<hr />
+
+<h3 id="q5">Q5</h3>
+<p>A network has a bandwidth of <strong>8 Gbps</strong>. A client wants to send <strong>5000 requests per second</strong> over this network. <br />
+What should be the size of <strong>each request</strong> in <strong>MB</strong>?</p>
+
+<p><em>Use the following unit conversions:</em></p>
+<ul>
+  <li>1 Byte = 8 bits</li>
+  <li>1 KB = 1000 Bytes</li>
+  <li>1 MB = 1000 KB</li>
+  <li>1 GB = 1000 MB</li>
+</ul>
+
+<p><strong>Hint:</strong> Bandwidth can be expressed in two equivalent ways:</p>
+<ol>
+  <li>Bandwidth = Number of requests per second × Size of each request</li>
+  <li>Bandwidth = Total data per second</li>
+</ol>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<p><strong>Step 1: Using requests/sec × size per request</strong></p>
+
+<p>Bandwidth (bits/sec) = Number of requests/sec × Size per request (bits)</p>
+
+<p>8,000,000,000 = 5000 × S</p>
+
+<p>S = 8,000,000,000 / 5000 = 1,600,000 bits</p>
+
+<p>Convert to bytes:</p>
+
+<p>S = 1,600,000 / 8 = 200,000 Bytes = 0.2 MB</p>
+
+<hr />
+
+<p><strong>Step 2: Using total data per second analogy</strong></p>
+
+<p>Total data sent per second = 5000 requests × 0.2 MB/request = 1000 MB = 1 GB/s</p>
+
+<p>Convert to bits/sec:</p>
+
+<p>1 GB = 8 × 10^9 bits → Bandwidth = 8 Gbps</p>
+
+<p>This confirms the calculation matches the given network bandwidth.</p>
+
+<hr />
+
+<p><strong>Answer:</strong><br />
+Size of each request = <strong>0.2 MB</strong></p>
+
+<hr />
+
+<p><strong>Key Takeaway:</strong></p>
+<ul>
+  <li><strong>Bandwidth = requests/sec × size per request</strong> → emphasizes <strong>request granularity</strong></li>
+  <li><strong>Bandwidth = total data per second</strong> → emphasizes <strong>total data transferred</strong><br />
+Both approaches give the same result and help understand network data flow.</li>
+</ul>
+
+<hr />
+
+<h3 id="q8">Q8</h3>
+
+<p><img width="912" height="786" alt="image" src="https://github.com/user-attachments/assets/59e0282a-4eeb-4ccb-8aff-4066bc81da3c" /></p>
+
+<hr />
+
+<h2 id="step-1-extract-bandwidth-segments-from-the-graph">Step 1: Extract bandwidth segments from the graph</h2>
+
+<p>From the graph you shared:</p>
+
+<ul>
+  <li><strong>0–4 h:</strong> BW = 8 Mb/s</li>
+  <li><strong>4–8 h:</strong> BW = 6 Mb/s</li>
+  <li><strong>8–12 h:</strong> BW = 8 Mb/s</li>
+  <li><strong>12–16 h:</strong> BW = 2 Mb/s</li>
+  <li><strong>16–20 h:</strong> BW = 2 Mb/s</li>
+  <li><strong>20–24 h:</strong> BW = 4 Mb/s</li>
+</ul>
+
+<p><em>(These are the orange steps in the graph representing total network usage.)</em></p>
+
+<hr />
+
+<h2 id="step-2-formula">Step 2: Formula</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Data= Bandwidth × Time
+</code></pre></div></div>
+
+<ul>
+  <li>Time must be in seconds (1 hour = 3600 s)</li>
+  <li>Convert bits to bytes by dividing by 8</li>
+</ul>
+
+<hr />
+
+<h2 id="step-3-calculate-total-data">Step 3: Calculate total data</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Segment 0–4 h: 8 Mb/s × 4 h = 8 × 4 × 3600 = 115,200 Mb
+Segment 4–8 h: 6 Mb/s × 4 h = 6 × 4 × 3600 = 86,400 Mb
+Segment 8–10 h: 8 Mb/s × 2 h = 8 × 2 × 3600 = 57,600 Mb
+Segment 10–14 h: 2 Mb/s × 4 h = 2 × 4 × 3600 = 28,800 Mb
+Segment 14–18 h: 4 Mb/s × 4 h = 4 × 4 × 3600 = 57,600 Mb
+</code></pre></div></div>
+
+<p>Sum = 115,200 + 86,400 + 57,600 + 28,800 + 57,600 = 345,600 Mb</p>
+
+<p>Convert to <strong>MB</strong>: 345,600 / 8 = 43,200 MB = 43.2 GB</p>
+
+<ul>
+  <li><strong>Answer: 43.2 GB</strong> → <strong>Option C</strong> is correct.</li>
+</ul>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

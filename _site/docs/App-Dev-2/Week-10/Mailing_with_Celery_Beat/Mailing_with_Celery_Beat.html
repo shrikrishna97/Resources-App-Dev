@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+<h1 id="mailing-with-python--how-to-send-e-mails-with-celery-beat"><strong>Mailing with Python — How to Send E-mails with Celery Beat</strong></h1>
+
+<blockquote>
+  <p><strong>Prerequisite:</strong> Make sure you have read/watched the first session — <strong>Introduction to Asynchronous Tasks with Celery</strong> — where we covered Celery Worker, Redis, <code class="language-plaintext highlighter-rouge">.delay()</code>, and the basic project setup.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-what-is-celery-beat"><strong>1. What is Celery Beat?</strong></h2>
+
+<p>In the previous session, we learned how to trigger tasks <strong>manually</strong> using <code class="language-plaintext highlighter-rouge">.delay()</code> — for example, when a user clicks “Export Report.”</p>
+
+<p>But some tasks need to run <strong>automatically on a schedule</strong>:</p>
+<ul>
+  <li>Send a <strong>monthly report</strong> to the admin on the 1st of every month.</li>
+  <li>Send <strong>daily reminders</strong> to users who have pending book requests.</li>
+</ul>
+
+<p><strong>Celery Beat</strong> is the scheduler. It watches the clock and pushes tasks into the queue at the right time.</p>
+
+<h3 id="analogy"><strong>Analogy</strong></h3>
+
+<ul>
+  <li><strong>Celery Worker</strong> = The cook in the kitchen who makes the food.</li>
+  <li><strong>Celery Beat</strong> = The manager who says “make lunch at 12 PM every day.”</li>
+</ul>
+
+<p>Beat does <strong>NOT</strong> execute tasks. It only tells the worker <strong>when</strong> to execute them.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Celery Beat (scheduler)
+  │
+  │ "It's 8:00 AM, time for daily_reminder"
+  │
+  ▼
+Redis Broker (queue)
+  │
+  │ task message waiting...
+  │
+  ▼
+Celery Worker (executor)
+  │
+  │ picks up task, runs send_daily_reminder()
+  │
+  ▼
+Task Complete ✓
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-celery-worker-vs-celery-beat"><strong>2. Celery Worker vs Celery Beat</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Celery Worker</th>
+      <th>Celery Beat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>What it does</strong></td>
+      <td>Picks up tasks from the queue and <strong>executes</strong> them</td>
+      <td><strong>Schedules</strong> periodic tasks and puts them in the queue</td>
+    </tr>
+    <tr>
+      <td><strong>Analogy</strong></td>
+      <td>The cook in the kitchen</td>
+      <td>The manager who makes the schedule</td>
+    </tr>
+    <tr>
+      <td><strong>Runs tasks?</strong></td>
+      <td>Yes</td>
+      <td>No — it only sends task messages to the broker</td>
+    </tr>
+    <tr>
+      <td><strong>Required?</strong></td>
+      <td>Always (without it, no tasks run)</td>
+      <td>Only if you have periodic/scheduled tasks</td>
+    </tr>
+    <tr>
+      <td><strong>Command</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">celery -A celery_worker.celery_app worker --loglevel=info</code></td>
+      <td><code class="language-plaintext highlighter-rouge">celery -A celery_worker.celery_app beat --loglevel=info</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3-sending-emails-with-python"><strong>3. Sending Emails with Python</strong></h2>
+
+<p>Before we get to Celery Beat, let’s understand how to send emails in Python. We use the built-in <code class="language-plaintext highlighter-rouge">smtplib</code> and <code class="language-plaintext highlighter-rouge">email</code> libraries — no extra install needed.</p>
+
+<h3 id="31-how-smtp-works"><strong>3.1 How SMTP Works</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Your Python code
+  │
+  │ Connects to SMTP server (like a post office)
+  │
+  ▼
+SMTP Server (MailHog in development / Gmail in production)
+  │
+  │ Delivers the email
+  │
+  ▼
+Recipient's inbox
+</code></pre></div></div>
+
+<h3 id="32-basic-email-sending-code"><strong>3.2 Basic Email Sending Code</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
+<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+<span class="kn">import</span> <span class="nn">smtplib</span>
+
+<span class="k">def</span> <span class="nf">send_email</span><span class="p">(</span><span class="n">to_address</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s">"text"</span><span class="p">):</span>
+    <span class="s">"""Send an email using SMTP."""</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'To'</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_address</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'From'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'library@example.com'</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'Subject'</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+
+    <span class="k">if</span> <span class="n">content</span> <span class="o">==</span> <span class="s">"html"</span><span class="p">:</span>
+        <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s">'html'</span><span class="p">))</span>  <span class="c1"># HTML email body
+</span>    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s">'plain'</span><span class="p">))</span>  <span class="c1"># Plain text email body
+</span>
+    <span class="c1"># Connect to SMTP server and send
+</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">smtplib</span><span class="p">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">1025</span><span class="p">)</span>  <span class="c1"># MailHog
+</span>    <span class="n">s</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="s">'library@example.com'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>  <span class="c1"># MailHog doesn't need a real password
+</span>    <span class="n">s</span><span class="p">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<h3 id="what-is-mimemultipart--mimetext"><strong>What is MIMEMultipart / MIMEText?</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">MIMEMultipart</code></td>
+      <td>Creates the email “envelope” — holds To, From, Subject, and the body</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">MIMEText</code></td>
+      <td>The actual message content — can be plain text or HTML</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Think of it like a physical letter:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MIMEMultipart</code> = the envelope (has the address, return address, stamp)</li>
+  <li><code class="language-plaintext highlighter-rouge">MIMEText</code> = the letter inside the envelope</li>
+</ul>
+
+<hr />
+
+<h2 id="4-mailhog--catching-emails-locally"><strong>4. MailHog — Catching Emails Locally</strong></h2>
+
+<p>In development, you don’t want to send real emails. <strong>MailHog</strong> is a fake SMTP server that catches all outgoing emails and shows them in a web UI.</p>
+
+<h3 id="41-install-mailhog"><strong>4.1 Install MailHog</strong></h3>
+
+<h4 id="wsl-windows-users"><strong>WSL (Windows Users)</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> golang-go
+go <span class="nb">install </span>github.com/mailhog/MailHog@latest
+</code></pre></div></div>
+
+<h4 id="macos"><strong>macOS</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>mailhog
+</code></pre></div></div>
+
+<h3 id="42-run-mailhog"><strong>4.2 Run MailHog</strong></h3>
+
+<h4 id="wsl"><strong>WSL</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/go/bin/MailHog
+</code></pre></div></div>
+
+<h4 id="macos-1"><strong>macOS</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mailhog
+</code></pre></div></div>
+
+<h3 id="43-access-mailhog-ui"><strong>4.3 Access MailHog UI</strong></h3>
+
+<p>Open browser: <strong>http://localhost:8025</strong></p>
+
+<p>All emails sent by your tasks will appear here — no real emails are sent!</p>
+
+<h3 id="44-smtp-settings-for-mailhog"><strong>4.4 SMTP Settings for MailHog</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SMTP_HOST</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">SMTP_PORT</span> <span class="o">=</span> <span class="mi">1025</span>       <span class="c1"># MailHog's SMTP port
+</span><span class="n">SENDER_EMAIL</span> <span class="o">=</span> <span class="s">'library@example.com'</span>
+<span class="n">SENDER_PASSWORD</span> <span class="o">=</span> <span class="s">''</span>   <span class="c1"># MailHog doesn't need a password
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> MailHog is NOT a Python package. It is a standalone tool installed via Go.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="5-adding-beat-schedule-to-celery_workerpy"><strong>5. Adding Beat Schedule to <code class="language-plaintext highlighter-rouge">celery_worker.py</code></strong></h2>
+
+<p>In the previous session, our <code class="language-plaintext highlighter-rouge">celery_worker.py</code> only had the Celery config and <code class="language-plaintext highlighter-rouge">FlaskTask</code>. Now we add the <strong>beat schedule</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span><span class="p">,</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">celery.schedules</span> <span class="kn">import</span> <span class="n">crontab</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="c1"># Create Celery app
+</span><span class="n">celery_app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span>
+    <span class="s">'tasks'</span><span class="p">,</span>
+    <span class="n">broker</span><span class="o">=</span><span class="s">'redis://localhost:6379/1'</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s">'redis://localhost:6379/2'</span><span class="p">,</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s">'tasks'</span><span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Flask app context for tasks
+</span><span class="k">class</span> <span class="nc">FlaskTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">celery_app</span><span class="p">.</span><span class="n">Task</span> <span class="o">=</span> <span class="n">FlaskTask</span>
+
+<span class="c1"># Set timezone (important for scheduled tasks)
+</span><span class="n">celery_app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">timezone</span> <span class="o">=</span> <span class="s">'Asia/Kolkata'</span>
+
+<span class="c1"># ---------- Beat Schedule (Periodic Tasks) ----------
+</span><span class="n">celery_app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">beat_schedule</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'monthly-report'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_monthly_report'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="n">crontab</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">day_of_month</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="c1"># Runs at 9:00 AM on the 1st of every month
+</span>    <span class="p">},</span>
+    <span class="s">'daily-reminder'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_daily_reminder'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="n">crontab</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="c1"># Runs every day at 8:00 AM
+</span>    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="new-parts-explained"><strong>New Parts Explained</strong></h3>
+
+<h4 id="from-celeryschedules-import-crontab"><strong><code class="language-plaintext highlighter-rouge">from celery.schedules import crontab</code></strong></h4>
+
+<p>This is what lets us define “when” to run tasks.</p>
+
+<h4 id="celery_appconftimezone--asiakolkata"><strong><code class="language-plaintext highlighter-rouge">celery_app.conf.timezone = 'Asia/Kolkata'</code></strong></h4>
+
+<p>Important! Without this, Celery uses UTC. If you set <code class="language-plaintext highlighter-rouge">crontab(hour=8)</code>, it will run at 8 AM UTC, not 8 AM IST. Set the timezone to match your location.</p>
+
+<h4 id="beat_schedule--crontab-explained"><strong><code class="language-plaintext highlighter-rouge">beat_schedule</code> — Crontab Explained</strong></h4>
+
+<p><code class="language-plaintext highlighter-rouge">crontab()</code> follows the same pattern as Linux cron:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab(minute, hour, day_of_week, day_of_month, month_of_year)
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Crontab</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Every minute</td>
+      <td><code class="language-plaintext highlighter-rouge">crontab()</code></td>
+      <td>Default — runs every minute</td>
+    </tr>
+    <tr>
+      <td>Every day at 8 AM</td>
+      <td><code class="language-plaintext highlighter-rouge">crontab(hour=8, minute=0)</code></td>
+      <td>Daily at 8:00</td>
+    </tr>
+    <tr>
+      <td>Every Monday at 9 AM</td>
+      <td><code class="language-plaintext highlighter-rouge">crontab(hour=9, minute=0, day_of_week=1)</code></td>
+      <td>Weekly</td>
+    </tr>
+    <tr>
+      <td>1st of every month at 9 AM</td>
+      <td><code class="language-plaintext highlighter-rouge">crontab(hour=9, minute=0, day_of_month=1)</code></td>
+      <td>Monthly</td>
+    </tr>
+    <tr>
+      <td>Every 30 seconds</td>
+      <td>Not directly — use <code class="language-plaintext highlighter-rouge">30.0</code> (float) instead of crontab</td>
+      <td>Testing only</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="the-task-key-must-match-exactly"><strong>The <code class="language-plaintext highlighter-rouge">'task'</code> key must match exactly</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_monthly_report'</span><span class="p">,</span>
+<span class="c1">#        ↑       ↑
+#        file    function name
+</span></code></pre></div></div>
+
+<p>This must match the actual function name in <code class="language-plaintext highlighter-rouge">tasks.py</code>. If you rename the function, update this too.</p>
+
+<h4 id="for-testing--run-every-30-seconds"><strong>For Testing — Run Every 30 Seconds</strong></h4>
+
+<p>Don’t wait for 8 AM during development! Temporarily change the schedule:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">celery_app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">beat_schedule</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'test-monthly-report'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_monthly_report'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>  <span class="c1"># every 30 seconds
+</span>    <span class="p">},</span>
+    <span class="s">'test-daily-reminder'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_daily_reminder'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>  <span class="c1"># every 30 seconds
+</span>    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-writing-the-tasks--taskspy"><strong>6. Writing the Tasks — <code class="language-plaintext highlighter-rouge">tasks.py</code></strong></h2>
+
+<p>Now we write the actual scheduled tasks that send emails.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery_worker</span> <span class="kn">import</span> <span class="n">celery_app</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">BookRequest</span>
+<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
+<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+<span class="kn">import</span> <span class="nn">smtplib</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+
+<span class="c1"># ---------- Email Configuration ----------
+</span><span class="n">SMTP_HOST</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">SMTP_PORT</span> <span class="o">=</span> <span class="mi">1025</span>       <span class="c1"># MailHog
+</span><span class="n">SENDER_EMAIL</span> <span class="o">=</span> <span class="s">'library@example.com'</span>
+<span class="n">SENDER_PASSWORD</span> <span class="o">=</span> <span class="s">''</span>
+
+
+<span class="k">def</span> <span class="nf">send_email</span><span class="p">(</span><span class="n">to_address</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s">"text"</span><span class="p">):</span>
+    <span class="s">"""Helper function to send emails via MailHog (local SMTP)."""</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'To'</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_address</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'From'</span><span class="p">]</span> <span class="o">=</span> <span class="n">SENDER_EMAIL</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">'Subject'</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+
+    <span class="k">if</span> <span class="n">content</span> <span class="o">==</span> <span class="s">"html"</span><span class="p">:</span>
+        <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s">'html'</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s">'plain'</span><span class="p">))</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">smtplib</span><span class="p">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">SMTP_HOST</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">SMTP_PORT</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">SENDER_EMAIL</span><span class="p">,</span> <span class="n">SENDER_PASSWORD</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+<span class="c1"># ============================================================
+# Task 1: Monthly Report (Scheduled by Beat — 1st of every month)
+# ============================================================
+</span><span class="o">@</span><span class="n">celery_app</span><span class="p">.</span><span class="n">task</span>
+<span class="k">def</span> <span class="nf">send_monthly_report</span><span class="p">():</span>
+    <span class="s">"""Sends a monthly summary report to the admin."""</span>
+    <span class="n">admin</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="s">'admin'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">admin</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">"No admin found"</span>
+
+    <span class="c1"># Gather all book requests data
+</span>    <span class="n">all_requests</span> <span class="o">=</span> <span class="n">BookRequest</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="n">request_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">all_requests</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="n">request_data</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s">'username'</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s">'book_name'</span><span class="p">:</span> <span class="n">req</span><span class="p">.</span><span class="n">book_name</span><span class="p">,</span>
+            <span class="s">'status'</span><span class="p">:</span> <span class="n">req</span><span class="p">.</span><span class="n">status</span><span class="p">,</span>
+            <span class="s">'date'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">request_date</span><span class="p">)</span>
+        <span class="p">})</span>
+
+    <span class="c1"># Generate HTML email using Jinja2 template
+</span>    <span class="n">html_body</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'monthly_report.html'</span><span class="p">,</span> <span class="n">requests</span><span class="o">=</span><span class="n">request_data</span><span class="p">)</span>
+    <span class="n">send_email</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">email</span><span class="p">,</span> <span class="s">"Monthly Library Report"</span><span class="p">,</span> <span class="n">html_body</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s">"html"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s">"Monthly report sent to admin."</span>
+
+
+<span class="c1"># ============================================================
+# Task 2: Daily Reminder (Scheduled by Beat — every day at 8 AM)
+# ============================================================
+</span><span class="o">@</span><span class="n">celery_app</span><span class="p">.</span><span class="n">task</span>
+<span class="k">def</span> <span class="nf">send_daily_reminder</span><span class="p">():</span>
+    <span class="s">"""Sends reminders to users with pending book requests."""</span>
+    <span class="n">pending</span> <span class="o">=</span> <span class="n">BookRequest</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">'pending'</span><span class="p">).</span><span class="nb">all</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">pending</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="n">send_email</span><span class="p">(</span>
+            <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">,</span>
+            <span class="s">"Reminder: Pending Book Request"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s">"Hi </span><span class="si">{</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">, your request for '</span><span class="si">{</span><span class="n">req</span><span class="p">.</span><span class="n">book_name</span><span class="si">}</span><span class="s">' is still pending. "</span>
+            <span class="sa">f</span><span class="s">"Please visit the library to collect it."</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"Daily reminders sent to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pending</span><span class="p">)</span><span class="si">}</span><span class="s"> users."</span>
+
+
+<span class="c1"># ============================================================
+# Task 3: Export Report (Triggered by user via .delay())
+# ============================================================
+</span><span class="o">@</span><span class="n">celery_app</span><span class="p">.</span><span class="n">task</span>
+<span class="k">def</span> <span class="nf">generate_user_report</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="s">"""Generates and emails a report for a specific user's book requests."""</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">"User not found"</span>
+
+    <span class="n">requests</span> <span class="o">=</span> <span class="n">BookRequest</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="nb">all</span><span class="p">()</span>
+    <span class="n">request_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">requests</span><span class="p">:</span>
+        <span class="n">request_data</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s">'book_name'</span><span class="p">:</span> <span class="n">req</span><span class="p">.</span><span class="n">book_name</span><span class="p">,</span>
+            <span class="s">'status'</span><span class="p">:</span> <span class="n">req</span><span class="p">.</span><span class="n">status</span><span class="p">,</span>
+            <span class="s">'date'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">request_date</span><span class="p">)</span>
+        <span class="p">})</span>
+
+    <span class="n">html_body</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'monthly_report.html'</span><span class="p">,</span> <span class="n">requests</span><span class="o">=</span><span class="n">request_data</span><span class="p">)</span>
+    <span class="n">send_email</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">,</span> <span class="s">"Your Book Requests Report"</span><span class="p">,</span> <span class="n">html_body</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s">"html"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"Report sent to </span><span class="si">{</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">."</span>
+</code></pre></div></div>
+
+<h3 id="how-each-task-gets-triggered"><strong>How Each Task Gets Triggered</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Triggered By</th>
+      <th>How</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">send_monthly_report</code></td>
+      <td>Celery Beat (automatic)</td>
+      <td>Beat checks crontab → sends to Redis → Worker executes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">send_daily_reminder</code></td>
+      <td>Celery Beat (automatic)</td>
+      <td>Beat checks crontab → sends to Redis → Worker executes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">generate_user_report</code></td>
+      <td>User hitting <code class="language-plaintext highlighter-rouge">/export-report</code></td>
+      <td>Flask calls <code class="language-plaintext highlighter-rouge">.delay()</code> → sends to Redis → Worker executes</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="7-html-email-template--templatesmonthly_reporthtml"><strong>7. HTML Email Template — <code class="language-plaintext highlighter-rouge">templates/monthly_report.html</code></strong></h2>
+
+<p>This is a Jinja2 template used by <code class="language-plaintext highlighter-rouge">render_template()</code> inside tasks. It generates a nice HTML email.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Monthly Report<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Monthly Library Report<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">"1"</span> <span class="na">cellpadding=</span><span class="s">"8"</span> <span class="na">cellspacing=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;thead&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Book<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Status<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody&gt;</span>
+            {% for req in requests %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ req.username }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ req.book_name }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ req.status }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ req.date }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+            {% endfor %}
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Why HTML?</strong> Plain text emails look boring. With HTML you can add tables, colors, and formatting — which is expected in a professional report email.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="8-running-everything--4-terminals--mailhog"><strong>8. Running Everything — 4 Terminals + MailHog</strong></h2>
+
+<p>Now you need <strong>4 terminals</strong> (+ optional 5th for MailHog):</p>
+
+<h3 id="81-terminal-layout"><strong>8.1 Terminal Layout</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌───────────────────────────┬───────────────────────────┐
+│  Terminal 1: Redis        │  Terminal 2: Flask App     │
+│  redis-server             │  python app.py             │
+├───────────────────────────┼───────────────────────────┤
+│  Terminal 3: Celery       │  Terminal 4: Celery Beat   │
+│  Worker                   │  (Scheduler)               │
+│  celery -A celery_worker  │  celery -A celery_worker   │
+│  .celery_app worker ...   │  .celery_app beat ...      │
+├───────────────────────────┴───────────────────────────┤
+│  Terminal 5 (optional): MailHog                        │
+│  ~/go/bin/MailHog                                      │
+└───────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<h3 id="82-commands-for-wsl-windows-users"><strong>8.2 Commands for WSL (Windows Users)</strong></h3>
+
+<p><strong>Terminal 1 — Redis Server:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-server
+</code></pre></div></div>
+
+<p><strong>Terminal 2 — Flask App:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+<span class="nb">source env</span>/bin/activate
+python app.py
+</code></pre></div></div>
+
+<p><strong>Terminal 3 — Celery Worker:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+<span class="nb">source env</span>/bin/activate
+celery <span class="nt">-A</span> celery_worker.celery_app worker <span class="nt">--loglevel</span><span class="o">=</span>info
+</code></pre></div></div>
+
+<p><strong>Terminal 4 — Celery Beat:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+<span class="nb">source env</span>/bin/activate
+celery <span class="nt">-A</span> celery_worker.celery_app beat <span class="nt">--loglevel</span><span class="o">=</span>info
+</code></pre></div></div>
+
+<p><strong>Terminal 5 — MailHog (optional but recommended):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/go/bin/MailHog
+</code></pre></div></div>
+
+<p>Then open <strong>http://localhost:8025</strong> in your browser to see caught emails.</p>
+
+<h3 id="83-commands-for-macos--linux"><strong>8.3 Commands for macOS / Linux</strong></h3>
+
+<p>Same as above — open 4-5 terminal tabs.</p>
+
+<h3 id="84-using-windows-powershell"><strong>8.4 Using Windows PowerShell</strong></h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 1: Redis</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">redis-server</span><span class="w">
+
+</span><span class="c"># Terminal 2: Flask</span><span class="w">
+</span><span class="n">python</span><span class="w"> </span><span class="nx">app.py</span><span class="w">
+
+</span><span class="c"># Terminal 3: Celery Worker</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">bash</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="s2">"cd /mnt/c/path/to/project &amp;&amp; source env/bin/activate &amp;&amp; celery -A celery_worker.celery_app worker --loglevel=info"</span><span class="w">
+
+</span><span class="c"># Terminal 4: Celery Beat</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">bash</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="s2">"cd /mnt/c/path/to/project &amp;&amp; source env/bin/activate &amp;&amp; celery -A celery_worker.celery_app beat --loglevel=info"</span><span class="w">
+
+</span><span class="c"># Terminal 5: MailHog</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">~/go/bin/MailHog</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="9-complete-flow--what-happens-when"><strong>9. Complete Flow — What Happens When</strong></h2>
+
+<h3 id="flow-1-monthly-report-automatic--beat-scheduled"><strong>Flow 1: Monthly Report (Automatic — Beat Scheduled)</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Celery Beat is running, watching the clock
+2. It's the 1st of the month, 9:00 AM IST
+3. Beat sends message: "run tasks.send_monthly_report" → Redis
+4. Celery Worker picks up the message from Redis
+5. Worker runs send_monthly_report():
+   a. Queries the admin user from database
+   b. Queries all book requests
+   c. Renders monthly_report.html template
+   d. Sends HTML email to admin via MailHog
+6. Email appears in MailHog UI at localhost:8025
+7. In worker terminal: "Task tasks.send_monthly_report succeeded"
+</code></pre></div></div>
+
+<h3 id="flow-2-daily-reminder-automatic--beat-scheduled"><strong>Flow 2: Daily Reminder (Automatic — Beat Scheduled)</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Every day at 8:00 AM IST
+2. Beat sends message: "run tasks.send_daily_reminder" → Redis
+3. Worker picks up the message
+4. Worker runs send_daily_reminder():
+   a. Queries all pending book requests
+   b. For each pending request:
+      - Finds the user
+      - Sends a plain text reminder email
+5. All reminder emails appear in MailHog
+6. In worker terminal: "Daily reminders sent to 3 users."
+</code></pre></div></div>
+
+<h3 id="flow-3-user-export-manual--triggered-by-delay"><strong>Flow 3: User Export (Manual — Triggered by <code class="language-plaintext highlighter-rouge">.delay()</code>)</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User sends GET /export-report with JWT token
+2. Flask calls generate_user_report.delay(user_id)
+3. Flask immediately returns: {"msg": "Report is being generated..."}
+4. Worker picks up the task
+5. Worker queries user's book requests, generates HTML, sends email
+6. Email appears in MailHog
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="10-testing-tips"><strong>10. Testing Tips</strong></h2>
+
+<h3 id="101-set-beat-schedule-to-30-seconds-for-testing"><strong>10.1 Set Beat Schedule to 30 Seconds for Testing</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">celery_app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">beat_schedule</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'test-monthly'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_monthly_report'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>  <span class="c1"># every 30 seconds
+</span>    <span class="p">},</span>
+    <span class="s">'test-reminder'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'task'</span><span class="p">:</span> <span class="s">'tasks.send_daily_reminder'</span><span class="p">,</span>
+        <span class="s">'schedule'</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>  <span class="c1"># every 30 seconds
+</span>    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="102-add-test-data"><strong>10.2 Add Test Data</strong></h3>
+
+<p>Before testing, register some users and create book requests using <strong>Thunder Client</strong> (VS Code extension).</p>
+
+<p><strong>Step 1 — Register an admin</strong></p>
+
+<ul>
+  <li>Method: <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li>URL: <code class="language-plaintext highlighter-rouge">http://localhost:5000/register</code></li>
+  <li>Body → JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>Step 2 — Register a regular user</strong></p>
+
+<ul>
+  <li>Method: <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li>URL: <code class="language-plaintext highlighter-rouge">http://localhost:5000/register</code></li>
+  <li>Body → JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>Step 3 — Login as alice (get the token)</strong></p>
+
+<ul>
+  <li>Method: <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li>URL: <code class="language-plaintext highlighter-rouge">http://localhost:5000/login</code></li>
+  <li>Body → JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Copy the <code class="language-plaintext highlighter-rouge">access_token</code> from the response.</li>
+</ul>
+
+<hr />
+
+<p><strong>Step 4 — Request a book</strong></p>
+
+<ul>
+  <li>Method: <code class="language-plaintext highlighter-rouge">POST</code></li>
+  <li>URL: <code class="language-plaintext highlighter-rouge">http://localhost:5000/request-book</code></li>
+  <li>Headers → Add: <code class="language-plaintext highlighter-rouge">Authorization</code> : <code class="language-plaintext highlighter-rouge">Bearer &lt;paste_token_here&gt;</code></li>
+  <li>Body → JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"book_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flask Mastery"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="103-check-mailhog"><strong>10.3 Check MailHog</strong></h3>
+
+<p>Open <strong>http://localhost:8025</strong> — you should see the monthly report email and daily reminder emails appearing every 30 seconds.</p>
+
+<hr />
+
+<h2 id="11-summary--what-you-need-for-mad-2-project"><strong>11. Summary — What You Need for MAD-2 Project</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>What to Use</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Background task on demand (export)</td>
+      <td><code class="language-plaintext highlighter-rouge">task.delay()</code> in a Flask route</td>
+      <td><code class="language-plaintext highlighter-rouge">tasks.py</code>, <code class="language-plaintext highlighter-rouge">app.py</code></td>
+    </tr>
+    <tr>
+      <td>Monthly report to admin</td>
+      <td><code class="language-plaintext highlighter-rouge">celery beat</code> with <code class="language-plaintext highlighter-rouge">crontab(day_of_month=1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">celery_worker.py</code>, <code class="language-plaintext highlighter-rouge">tasks.py</code></td>
+    </tr>
+    <tr>
+      <td>Daily reminder to users</td>
+      <td><code class="language-plaintext highlighter-rouge">celery beat</code> with <code class="language-plaintext highlighter-rouge">crontab(hour=8)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">celery_worker.py</code>, <code class="language-plaintext highlighter-rouge">tasks.py</code></td>
+    </tr>
+    <tr>
+      <td>Email sending</td>
+      <td><code class="language-plaintext highlighter-rouge">smtplib</code> with MailHog (development)</td>
+      <td><code class="language-plaintext highlighter-rouge">tasks.py</code></td>
+    </tr>
+    <tr>
+      <td>HTML email template</td>
+      <td>Jinja2 <code class="language-plaintext highlighter-rouge">render_template</code></td>
+      <td><code class="language-plaintext highlighter-rouge">templates/monthly_report.html</code></td>
+    </tr>
+    <tr>
+      <td>Flask context in tasks</td>
+      <td><code class="language-plaintext highlighter-rouge">FlaskTask</code> class</td>
+      <td><code class="language-plaintext highlighter-rouge">celery_worker.py</code></td>
+    </tr>
+    <tr>
+      <td>Task queue broker</td>
+      <td>Redis</td>
+      <td><code class="language-plaintext highlighter-rouge">celery_worker.py</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="checklist-for-your-project"><strong>Checklist for Your Project</strong></h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Redis installed and running (WSL for Windows)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">celery_worker.py</code> with broker, backend, FlaskTask, and beat_schedule</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">tasks.py</code> with <code class="language-plaintext highlighter-rouge">@celery_app.task</code> for each background task</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">send_email()</code> helper function using <code class="language-plaintext highlighter-rouge">smtplib</code></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Monthly report task that queries data and sends HTML email to admin</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Daily reminder task that finds pending items and emails users</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />At least one route that triggers a task using <code class="language-plaintext highlighter-rouge">.delay()</code></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />HTML email template in <code class="language-plaintext highlighter-rouge">templates/</code></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />MailHog installed for testing emails locally</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All 4-5 terminals running: Redis, Flask, Celery Worker, Celery Beat, MailHog</li>
+</ul>
+
+<h3 id="remember"><strong>Remember</strong></h3>
+
+<ul>
+  <li><strong>Celery Worker</strong> = executes tasks (always needed)</li>
+  <li><strong>Celery Beat</strong> = schedules periodic tasks (needed for monthly/daily tasks)</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">.delay()</code></strong> = trigger a task manually from a Flask route</li>
+  <li><strong>MailHog</strong> = catches emails locally so you can test without sending real emails</li>
+  <li><strong>FlaskTask</strong> = gives Celery access to Flask’s <code class="language-plaintext highlighter-rouge">db.session</code> and <code class="language-plaintext highlighter-rouge">render_template</code></li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

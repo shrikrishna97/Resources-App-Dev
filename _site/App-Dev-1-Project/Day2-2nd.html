@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/Day2-2nd.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/Day2-2nd.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/Day2-2nd.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="day-2-database-setup-models-and-user-authentication---coding-session"><strong>Day 2: Database Setup, Models, and User Authentication - Coding Session</strong></h3>
+
+<h3 id="objective"><strong>Objective:</strong></h3>
+<p>By the end of this session, you will learn how to set up a database in Flask using <strong>Flask-SQLAlchemy</strong>, define models, perform basic CRUD operations (Create, Read, Update, Delete), and implement user authentication with <strong>Flask-Security</strong>.</p>
+
+<hr />
+
+<h3 id="1-setting-up-the-database-with-flask-sqlalchemy"><strong>1. Setting Up the Database with Flask-SQLAlchemy</strong></h3>
+
+<h4 id="step-1-install-required-libraries"><strong>Step 1: Install Required Libraries</strong></h4>
+<p>Ensure you have Flask-SQLAlchemy and Flask-Security installed. In your terminal, run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask_sqlalchemy flask_security
+</code></pre></div></div>
+
+<h4 id="step-2-configure-the-database"><strong>Step 2: Configure the Database</strong></h4>
+
+<p>In your <code class="language-plaintext highlighter-rouge">app.py</code> file, add the following configuration to set up <strong>Flask-SQLAlchemy</strong> and <strong>Flask-Security</strong> for user authentication:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">Security</span><span class="p">,</span> <span class="n">SQLAlchemyUserDatastore</span>
+<span class="kn">from</span> <span class="nn">flask_bcrypt</span> <span class="kn">import</span> <span class="n">Bcrypt</span>
+
+<span class="c1"># Initialize the Flask application
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Flask-SQLAlchemy Configuration
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>  <span class="c1"># Database URI for SQLite
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># Disable modification tracking
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'mysecretkey'</span>  <span class="c1"># Secret key for session protection
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECURITY_PASSWORD_SALT'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'somesalt'</span>  <span class="c1"># Salt for password hashing
+</span>
+<span class="c1"># Initialize Bcrypt for password hashing
+</span><span class="n">bcrypt</span> <span class="o">=</span> <span class="n">Bcrypt</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Initialize SQLAlchemy with the app
+</span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Initialize Flask-Security
+</span><span class="n">user_datastore</span> <span class="o">=</span> <span class="n">SQLAlchemyUserDatastore</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">Role</span><span class="p">)</span>
+<span class="n">security</span> <span class="o">=</span> <span class="n">Security</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">user_datastore</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">SQLALCHEMY_DATABASE_URI</code></strong>: Specifies the database URI (SQLite in this case).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SECRET_KEY</code></strong>: Protects Flask sessions.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SECURITY_PASSWORD_SALT</code></strong>: A salt value for securely hashing passwords.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Flask-Security</code> Setup</strong>: We initialize <strong>Flask-Security</strong> by creating a <strong><code class="language-plaintext highlighter-rouge">SQLAlchemyUserDatastore</code></strong> object, which connects the user model with <strong>Flask-Security</strong>’s built-in functionalities.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-creating-database-models-for-user-authentication"><strong>2. Creating Database Models for User Authentication</strong></h3>
+
+<p>Now we will define the models for <strong>User</strong> and <strong>Role</strong> that are used by <strong>Flask-Security</strong>.</p>
+
+<h4 id="step-1-define-the-user-and-role-models"><strong>Step 1: Define the User and Role Models</strong></h4>
+
+<p>In <code class="language-plaintext highlighter-rouge">models.py</code>, create the following models:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">UserMixin</span><span class="p">,</span> <span class="n">RoleMixin</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="c1"># Initialize db object
+</span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+
+<span class="c1"># Role Model
+</span><span class="k">class</span> <span class="nc">Role</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">RoleMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'role'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s">'dynamic'</span><span class="p">)</span>
+
+<span class="c1"># User Model
+</span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password_hash</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">role_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'role.id'</span><span class="p">))</span>
+
+    <span class="c1"># For relationship with CRUD operations
+</span>    <span class="n">operations</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'CrudOperation'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'user'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+  <li><strong>Role Model</strong>: The <code class="language-plaintext highlighter-rouge">Role</code> model represents the roles (like Admin, Manager, Customer). It uses <strong><code class="language-plaintext highlighter-rouge">RoleMixin</code></strong> to integrate with Flask-Security.</li>
+  <li><strong>User Model</strong>: The <code class="language-plaintext highlighter-rouge">User</code> model includes essential fields like <code class="language-plaintext highlighter-rouge">username</code>, <code class="language-plaintext highlighter-rouge">email</code>, and <code class="language-plaintext highlighter-rouge">password_hash</code>. It also uses <strong><code class="language-plaintext highlighter-rouge">UserMixin</code></strong> from Flask-Security, which provides common functionalities like <code class="language-plaintext highlighter-rouge">is_authenticated</code>, <code class="language-plaintext highlighter-rouge">is_active</code>, etc.</li>
+  <li><strong>Relationship</strong>: A <code class="language-plaintext highlighter-rouge">User</code> can have many <code class="language-plaintext highlighter-rouge">CrudOperation</code> records, and we use <strong><code class="language-plaintext highlighter-rouge">db.relationship</code></strong> to define this one-to-many relationship.</li>
+</ul>
+
+<hr />
+
+<h3 id="3-initializing-the-database"><strong>3. Initializing the Database</strong></h3>
+
+<p>After defining the models, let’s initialize the database by creating the tables.</p>
+
+<h4 id="step-1-initialize-the-database"><strong>Step 1: Initialize the Database</strong></h4>
+
+<p>Run the following commands in your terminal to create the database:</p>
+
+<ol>
+  <li>Open the Flask shell:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask shell
+</code></pre></div></div>
+
+<ol>
+  <li>Import the <code class="language-plaintext highlighter-rouge">db</code> object from your app and create all tables:</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">db</span>
+<span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>  <span class="c1"># Create all tables defined in models.py
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="4-user-authentication-with-flask-security"><strong>4. User Authentication with Flask-Security</strong></h3>
+
+<p>Now that we have set up the database models, let’s implement user authentication.</p>
+
+<h4 id="step-1-registering-a-new-user"><strong>Step 1: Registering a New User</strong></h4>
+
+<p>Here’s how you can register a new user in Flask:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">flash</span>
+<span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">login_user</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">bcrypt</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Role</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/register'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">'POST'</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'username'</span><span class="p">]</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'email'</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'password'</span><span class="p">]</span>
+        <span class="n">password_hash</span> <span class="o">=</span> <span class="n">bcrypt</span><span class="p">.</span><span class="n">generate_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">).</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>  <span class="c1"># Hashing the password
+</span>        
+        <span class="c1"># Create a new user with a role (e.g., 'Customer')
+</span>        <span class="n">role</span> <span class="o">=</span> <span class="n">Role</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Customer'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">password_hash</span><span class="o">=</span><span class="n">password_hash</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>  <span class="c1"># Add to the session
+</span>        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># Commit to the database
+</span>        
+        <span class="n">flash</span><span class="p">(</span><span class="s">'Your account has been created!'</span><span class="p">,</span> <span class="s">'success'</span><span class="p">)</span>  <span class="c1"># Flash success message
+</span>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'login'</span><span class="p">))</span>  <span class="c1"># Redirect to login page
+</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'register.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+  <li><strong>Flask-Security</strong> does the heavy lifting of handling user login, authentication, and security. The <code class="language-plaintext highlighter-rouge">register</code> function creates a new user, hashes the password using <strong>Bcrypt</strong>, and assigns them a role (e.g., <code class="language-plaintext highlighter-rouge">Customer</code>).</li>
+</ul>
+
+<h4 id="step-2-logging-in-a-user"><strong>Step 2: Logging in a User</strong></h4>
+
+<p>Flask-Security provides <strong>login management</strong> out of the box. Here’s how you log a user in:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">login_user</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">'POST'</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'username'</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'password'</span><span class="p">]</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+        
+        <span class="c1"># Check if user exists and if password matches
+</span>        <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">bcrypt</span><span class="p">.</span><span class="n">check_password_hash</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">password_hash</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>  <span class="c1"># Log the user in
+</span>            <span class="n">flash</span><span class="p">(</span><span class="s">'Login successful!'</span><span class="p">,</span> <span class="s">'success'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'dashboard'</span><span class="p">))</span>  <span class="c1"># Redirect to the dashboard
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s">'Login failed. Check username and/or password.'</span><span class="p">,</span> <span class="s">'danger'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'login.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">login_user(user)</code></strong>: This function logs the user in by setting the appropriate session variables.</li>
+  <li><strong>Password Validation</strong>: The <strong><code class="language-plaintext highlighter-rouge">bcrypt.check_password_hash()</code></strong> function compares the entered password with the hashed password stored in the database.</li>
+</ul>
+
+<h4 id="step-3-protecting-routes-with-authentication"><strong>Step 3: Protecting Routes with Authentication</strong></h4>
+
+<p>We can restrict certain routes to logged-in users only using Flask-Security’s <strong><code class="language-plaintext highlighter-rouge">@login_required</code></strong> decorator.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/dashboard'</span><span class="p">)</span>
+<span class="o">@</span><span class="n">login_required</span>
+<span class="k">def</span> <span class="nf">dashboard</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'dashboard.html'</span><span class="p">)</span>  <span class="c1"># Accessible only to logged-in users
+</span></code></pre></div></div>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">@login_required</code></strong> ensures that only authenticated users can access the <code class="language-plaintext highlighter-rouge">dashboard</code> route.</li>
+</ul>
+
+<hr />
+
+<h3 id="5-implementing-crud-operations"><strong>5. Implementing CRUD Operations</strong></h3>
+
+<h4 id="create-read-update-delete-users"><strong>Create, Read, Update, Delete Users</strong></h4>
+
+<p>Refer to the previous sections for <strong>CRUD operations</strong> on users, which include creating, reading, updating, and deleting users in the database.</p>
+
+<hr />
+
+<h3 id="6-handling-forms-and-flash-messages"><strong>6. Handling Forms and Flash Messages</strong></h3>
+
+<p><strong>Forms</strong> allow you to gather user input, and <strong>flash messages</strong> provide feedback after actions like adding or updating records.</p>
+
+<h4 id="using-flash-messages-for-feedback"><strong>Using Flash Messages for Feedback</strong></h4>
+
+<p>Add the following to your templates to show flash messages:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"flashes"</span><span class="nt">&gt;</span>
+            {% for category, message in messages %}
+                <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"{{ category }}"</span><span class="nt">&gt;</span>{{ message }}<span class="nt">&lt;/li&gt;</span>
+            {% endfor %}
+        <span class="nt">&lt;/ul&gt;</span>
+    {% endif %}
+{% endwith %}
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="7-conclusion"><strong>7. Conclusion</strong></h3>
+
+<p>In this session, you’ve learned:</p>
+<ul>
+  <li>How to set up and configure a database with <strong>Flask-SQLAlchemy</strong>.</li>
+  <li>How to create database models (representing tables) for <strong>User</strong> and <strong>Role</strong>.</li>
+  <li>How to implement <strong>user authentication</strong> with <strong>Flask-Security</strong>: registering, logging in, and restricting access to routes.</li>
+  <li>How to perform basic <strong>CRUD operations</strong>: create, read, update, and delete records.</li>
+  <li>How to handle <strong>forms</strong> and display <strong>flash messages</strong> to give feedback to users.</li>
+</ul>
+
+<p>With this foundational knowledge, you can now start building more secure and interactive Flask applications.</p>
+
+<hr />
+
+<p><strong>Questions</strong>:</p>
+<ul>
+  <li>What are the differences between <strong>Flask-SQLAlchemy</strong> and <strong>Flask-Migrate</strong>?</li>
+  <li>How do you use <strong>Flask-Security</strong> for user authentication?</li>
+  <li>What is the difference between <strong>UserMixin</strong> and <strong>RoleMixin</strong> in <strong>Flask-Security</strong>?</li>
+</ul>
+
+<p><strong>Resources</strong>:</p>
+<ul>
+  <li><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy Documentation</a></li>
+  <li><a href="https://flask-migrate.readthedocs.io/en/latest/">Flask-Migrate Documentation</a></li>
+  <li><a href="https://flask-security.readthedocs.io/en/stable/">Flask-Security Documentation</a></li>
+  <li><a href="https://flask-security.readthedocs.io/en/stable/quickstart.html">Flask-Security Quickstart</a></li>
+</ul>
+
+<p><strong>Additional Resources</strong>:</p>
+<ul>
+  <li><a href="https://flask-security.readthedocs.io/en/stable/cookbook.html">Flask-Security Cookbook</a></li>
+  <li><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/cookbook/">Flask-SQLAlchemy Cookbook</a></li>
+</ul>
+
+<p><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main">Shri Krishna’s github</a></p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/mock.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/mock.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/mock.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h3 id="1-question-4-encoding-calculation">1. <strong>Question 4 (Encoding Calculation)</strong></h3>
+<p><strong>Question:</strong>
+Let ( L = {‘a’, ‘b’, ‘c’, ‘d’, ‘A’, ‘B’, ‘C’, ‘D’, ‘0’, ‘1’, ‘ ‘} ) be a complete character set. If a document that uses fixed encoding for all characters is created using the character set ( L ) and has a disk size of 2 Kilobytes, the number of characters in the document would be_______. [Take 1 Byte = 8 bits, 1 KB = 1000 Bytes, 1 MB = 1000 Kilobytes and so on.]</p>
+
+<p><strong>Solution:</strong></p>
+<ol>
+  <li>The character set ( L ) contains <strong>11</strong> unique characters.</li>
+  <li>To encode these characters, we need <strong>4 bits</strong> (since ( 2^4 = 16 ) is the smallest power of 2 that can represent all 11 characters).</li>
+  <li>The document size is <strong>2 Kilobytes (KB)</strong>, which is <strong>2000 bytes</strong> (since 1 KB = 1000 Bytes).</li>
+  <li>Each character takes <strong>4 bits</strong> to store.</li>
+  <li>( 1 ) byte = ( 8 ) bits , so each byte can store <strong>2 characters</strong>.</li>
+  <li>Therefore, in <strong>2000 bytes</strong>, we can store:
+2000 * 2 = 4000 characters.</li>
+</ol>
+
+<p><strong>Answer:</strong> 4000 characters.</p>
+
+<hr />
+
+<h3 id="2-question-6-number-of-characters-with-5-bits">2. <strong>Question 6 (Number of Characters with 5 Bits)</strong></h3>
+<p><strong>Question:</strong>
+How many characters can be encoded using 5 bits?</p>
+
+<p><strong>Solution:</strong></p>
+<ul>
+  <li>With <strong>5 bits</strong>, the total number of combinations we can represent is:
+    <pre><code class="language-math">2^5 = 32
+</code></pre>
+  </li>
+  <li>So, <strong>32 characters</strong> can be encoded using <strong>5 bits</strong>.</li>
+</ul>
+
+<p><strong>Answer:</strong> 32</p>
+
+<hr />
+
+<h3 id="3-question-7-ascii-representation-calculation">3. <strong>Question 7 (ASCII Representation Calculation)</strong></h3>
+<p><strong>Question:</strong>
+How many bits are required to represent ‘IITM’ in ASCII?</p>
+
+<p><strong>Solution:</strong></p>
+
+<ol>
+  <li><strong>Each</strong> character in <strong>ASCII</strong> is represented by <strong>8 bits</strong> (1 byte).</li>
+  <li>The string <strong>‘IITM’</strong> has <strong>4 characters</strong>.</li>
+  <li>Total bits required:
+    <pre><code class="language-math">4 * 8 = 32 \, \text{bits}
+</code></pre>
+  </li>
+</ol>
+
+<p><strong>Answer:</strong> 32 bits</p>
+
+<hr />
+
+<h3 id="4-question-8-data-consumption-calculation">4. <strong>Question 8 (Data Consumption Calculation)</strong></h3>
+<p><strong>Question:</strong>
+A mobile client starts from and is cruising away continuously at 60 kmph from the network tower whose network range is 40 km and bandwidth is 120 Mbps. How much data (in Gigabytes) will be consumed by the client who is continuously using the entire bandwidth before completely moving out of the network?</p>
+
+<p><em>Take 1 Byte = 8 bits, 1 KB = 1000 Bytes, 1 MB = 1000 Kilobytes and so on.</em><br />
+<em>Consider the speed of light in air to be 3 x 10^8 m/sec.</em></p>
+
+<hr />
+
+<h4 id="solution">Solution:</h4>
+
+<p><strong>Step 1: Understanding the Problem</strong><br />
+The mobile client moves away from the network tower at a speed of 60 kmph. The range of the network is 40 km, so once the client moves beyond 40 km, it will lose the network signal. The bandwidth available is 120 Mbps (megabits per second).</p>
+
+<p><strong>Step 2: Calculate Time in the Network Range</strong><br />
+Since the client is moving away from the tower at 60 kmph and the range is 40 km:</p>
+
+<ul>
+  <li>Speed = 60 kmph</li>
+  <li>Distance = 40 km</li>
+</ul>
+
+<p>We need to calculate the time taken to move out of the range:</p>
+<pre><code class="language-math">\text{Time (t)} = \frac{\text{Distance}}{\text{Speed}} = \frac{40 \, \text{km}}{60 \, \text{kmph}}
+</code></pre>
+<p>Converting time to seconds:</p>
+<pre><code class="language-math">\text{Time} = \frac{40}{60} \, \text{hours} = \frac{2}{3} \, \text{hours} = \frac{2}{3} \times 3600 \, \text{seconds} = 2400 \, \text{seconds}
+</code></pre>
+<p><strong>Step 3: Calculate Data Consumption</strong><br />
+The client is using the full bandwidth of 120 Mbps for the entire duration of 2400 seconds.</p>
+
+<ul>
+  <li>Bandwidth (BW) = 120 Mbps (megabits per second)</li>
+</ul>
+
+<p>To find the total data consumed:</p>
+<pre><code class="language-math">\text{Data (in megabits)} = \text{BW} \times \text{Time} = 120 \, \text{Mbps} \times 2400 \, \text{s} = 288000 \, \text{Mb}
+</code></pre>
+<p><strong>Step 4: Convert Megabits to Gigabytes</strong><br />
+Since we have data in megabits (Mb), let’s convert it to Gigabytes (GB):</p>
+
+<p>1 Byte = 8 bits, so 1 MB (Megabyte) = 8 Mb (Megabits).</p>
+<pre><code class="language-math">\text{Data (in megabytes)} = \frac{288000 \, \text{Mb}}{8} = 36000 \, \text{MB}
+</code></pre>
+
+<p>And since 1 GB = 1000 MB:</p>
+
+<pre><code class="language-math">\text{Data (in GB)} = \frac{36000 \, \text{MB}}{1000} = 36 \, \text{GB}
+</code></pre>
+<p>The data consumed by the client before moving out of the network is <strong>36 GB</strong>.</p>
+
+<p><strong>Answer: C. 36</strong></p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

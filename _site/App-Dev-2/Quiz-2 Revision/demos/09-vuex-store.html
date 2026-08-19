@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo 09 - Vuex Store</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; }
+    button { padding: 8px 12px; margin-right: 8px; }
+    ul { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Section 9 Demo: Vuex Store</h2>
+  <div id="app">
+    <p>Count: {{ $store.state.count }}</p>
+    <p>doubleCount (getter): {{ $store.getters.doubleCount }}</p>
+    <button @click="incrementCount">Increment</button>
+    <button @click="loadUsers">Load Users (Action)</button>
+
+    <ul>
+      <li v-for="u in $store.state.users" :key="u">{{ u }}</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  <script>
+    var store = new Vuex.Store({
+      state: { count: 0, users: [] },
+      getters: {
+        doubleCount: function (state) {
+          return state.count * 2;
+        }
+      },
+      mutations: {
+        INCREMENT: function (state) { state.count++; },
+        SET_USERS: function (state, users) { state.users = users; }
+      },
+      actions: {
+        fetchUsers: function ({ commit }) {
+          setTimeout(function () {
+            commit('SET_USERS', ['Asha', 'Rahul', 'Nina']);
+          }, 400);
+        }
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      store: store,
+      methods: {
+        incrementCount: function () {
+          this.$store.commit('INCREMENT');
+        },
+        loadUsers: function () {
+          this.$store.dispatch('fetchUsers');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-9/Async_Tasks_with_Celery.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-9/Async_Tasks_with_Celery.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-9/Async_Tasks_with_Celery.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h1 id="introduction-to-asynchronous-tasks-with-celery"><strong>Introduction to Asynchronous Tasks with Celery</strong></h1>
+
+<hr />
+
+<h2 id="1-what-is-celery-and-why-do-we-need-it"><strong>1. What is Celery and Why Do We Need It?</strong></h2>
+
+<h3 id="the-problem"><strong>The Problem</strong></h3>
+
+<p>Imagine your Flask app needs to:</p>
+
+<ul>
+  <li><strong>Export a CSV/HTML report</strong> and email it to a user on request.</li>
+  <li>Send a <strong>monthly report</strong> email to the admin with all data.</li>
+  <li>Send <strong>daily reminders</strong> to users who have active bookings.</li>
+</ul>
+
+<p>If you do these inside a normal Flask route:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User clicks "Export Report"
+  → Flask starts generating the report (5-10 seconds)
+  → Flask sends the email (2-3 seconds)
+  → User stares at a loading screen for 13 seconds
+  → Other users' requests are BLOCKED
+</code></pre></div></div>
+
+<p><strong>This is terrible!</strong> Flask handles one request at a time (per worker). Long tasks block everything.</p>
+
+<h3 id="the-solution-celery"><strong>The Solution: Celery</strong></h3>
+
+<p>Celery is a <strong>task queue</strong> — it lets you run time-consuming tasks <strong>in the background</strong>, outside of your Flask request-response cycle.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User clicks "Export Report"
+  → Flask tells Celery: "Hey, do this task in the background"
+  → Flask immediately responds: "Your report is being generated!"
+  → User is happy, can keep using the app
+  → Celery quietly generates and emails the report in the background
+</code></pre></div></div>
+
+<h3 id="simple-analogy"><strong>Simple Analogy</strong></h3>
+
+<p>Think of a restaurant:</p>
+
+<ul>
+  <li><strong>Without Celery</strong> = The waiter takes your order, goes to the kitchen, cooks the food himself, then comes back. Other customers wait.</li>
+  <li><strong>With Celery</strong> = The waiter takes your order, hands it to the kitchen (task queue), and immediately goes to serve other customers. The kitchen (Celery worker) prepares the food in the background.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-how-celery-works--the-architecture"><strong>2. How Celery Works — The Architecture</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────────┐
+│                    HOW CELERY WORKS                      │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  Flask App ──sends task──▶ Redis (Broker) ──▶ Celery   │
+│  (Producer)              (Message Queue)    (Worker)    │
+│                                                         │
+│  Flask says:             Redis stores:     Worker does: │
+│  "Send email"            the task message  the actual   │
+│                          until a worker    email sending│
+│                          picks it up                    │
+│                                                         │
+│  Worker stores result back in Redis (Backend)           │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<h3 id="three-key-components"><strong>Three Key Components</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>What It Is</th>
+      <th>Our Choice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Producer</strong></td>
+      <td>The app that creates tasks (Flask)</td>
+      <td>Flask app</td>
+    </tr>
+    <tr>
+      <td><strong>Broker</strong></td>
+      <td>Message queue that holds tasks</td>
+      <td>Redis</td>
+    </tr>
+    <tr>
+      <td><strong>Worker</strong></td>
+      <td>Process that executes tasks</td>
+      <td>Celery worker</td>
+    </tr>
+    <tr>
+      <td><strong>Backend</strong></td>
+      <td>Stores task results</td>
+      <td>Redis</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="why-redis"><strong>Why Redis?</strong></h3>
+
+<p>Redis is an <strong>in-memory key-value store</strong> — extremely fast. Celery uses it as:</p>
+
+<ol>
+  <li><strong>Broker</strong> — to queue task messages (like a to-do list for workers).</li>
+  <li><strong>Backend</strong> — to store task results (so you can check if a task succeeded).</li>
+</ol>
+
+<p>We will use Redis for Flask-Caching (Week-11), so it serves double duty here.</p>
+
+<hr />
+
+<h2 id="3-setup-and-installation"><strong>3. Setup and Installation</strong></h2>
+
+<h3 id="31-install-python-packages"><strong>3.1 Install Python Packages</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-sqlalchemy celery redis
+</code></pre></div></div>
+
+<h3 id="32-install-and-start-redis"><strong>3.2 Install and Start Redis</strong></h3>
+
+<h4 id="windows-wsl--windows-subsystem-for-linux"><strong>Windows (WSL — Windows Subsystem for Linux)</strong></h4>
+
+<p>⚠ Redis does not run natively on Windows. You <strong>must</strong> use WSL.</p>
+
+<p><strong>Step 1: Open PowerShell as Administrator and install WSL (if not done already)</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wsl</span><span class="w"> </span><span class="nt">--install</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Restart your PC after installation. Then open WSL terminal.</p>
+
+<p><strong>Step 2: Install Redis inside WSL</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> redis-server
+</code></pre></div></div>
+
+<p><strong>Step 3: Start Redis server</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-server
+</code></pre></div></div>
+
+<p><strong>Step 4: Test Redis (in a new WSL terminal tab)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli ping
+</code></pre></div></div>
+
+<p>Output: <code class="language-plaintext highlighter-rouge">PONG</code></p>
+
+<h4 id="macos"><strong>macOS</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>redis
+redis-server
+</code></pre></div></div>
+
+<p>Test:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli ping
+</code></pre></div></div>
+
+<h4 id="linux--ubuntu"><strong>Linux / Ubuntu</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> redis-server
+redis-server
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-project-structure"><strong>4. Project Structure</strong></h2>
+
+<p>Here is how we organize Celery in a Flask project:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project/
+├── app.py              # Flask application
+├── models.py           # SQLAlchemy models
+├── celery_worker.py    # Celery configuration
+├── tasks.py            # All Celery tasks
+├── templates/
+│   └── monthly_report.html
+└── instance/
+    └── database.db
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Why separate files?</strong></p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">celery_worker.py</code> — Celery config stays separate from Flask. The celery worker process imports this file.</li>
+    <li><code class="language-plaintext highlighter-rouge">tasks.py</code> — All background tasks in one place. Easy to find and maintain.</li>
+    <li>This avoids <strong>circular imports</strong> (Flask imports Celery, Celery imports Flask — breaks!).</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="5-step-by-step-code"><strong>5. Step-by-Step Code</strong></h2>
+
+<p>We will build a simple app with:</p>
+<ul>
+  <li>A <code class="language-plaintext highlighter-rouge">User</code> model and a <code class="language-plaintext highlighter-rouge">BookRequest</code> model (like a library book request).</li>
+  <li>A <strong>trigger export</strong> route that starts a background task on demand using <code class="language-plaintext highlighter-rouge">.delay()</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="51-modelspy--database-models"><strong>5.1 <code class="language-plaintext highlighter-rouge">models.py</code> — Database Models</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s">'user'</span><span class="p">)</span>  <span class="c1"># 'admin' or 'user'
+</span>
+    <span class="n">requests</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'BookRequest'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s">'user'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BookRequest</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">book_name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s">'pending'</span><span class="p">)</span>  <span class="c1"># 'pending', 'approved', 'returned'
+</span>    <span class="n">request_date</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">server_default</span><span class="o">=</span><span class="n">db</span><span class="p">.</span><span class="n">func</span><span class="p">.</span><span class="n">now</span><span class="p">())</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="52-apppy--flask-application"><strong>5.2 <code class="language-plaintext highlighter-rouge">app.py</code> — Flask Application</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">JWTManager</span><span class="p">,</span> <span class="n">create_access_token</span><span class="p">,</span> <span class="n">jwt_required</span><span class="p">,</span> <span class="n">get_jwt_identity</span><span class="p">,</span> <span class="n">get_jwt</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">BookRequest</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///library.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'JWT_SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'super-secret-key'</span>
+
+<span class="n">db</span><span class="p">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">jwt</span> <span class="o">=</span> <span class="n">JWTManager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+<span class="c1"># ---------- Auth Routes ----------
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/register'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+        <span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'username'</span><span class="p">],</span>
+        <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'email'</span><span class="p">],</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'password'</span><span class="p">],</span>
+        <span class="n">role</span><span class="o">=</span><span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'role'</span><span class="p">,</span> <span class="s">'user'</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'User registered'</span><span class="p">}),</span> <span class="mi">201</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'username'</span><span class="p">],</span> <span class="n">password</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'password'</span><span class="p">]).</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'Invalid credentials'</span><span class="p">}),</span> <span class="mi">401</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">additional_claims</span><span class="o">=</span><span class="p">{</span><span class="s">'role'</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'access_token'</span><span class="p">:</span> <span class="n">token</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="c1"># ---------- Book Request Routes ----------
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/request-book'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">request_book</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">BookRequest</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">book_name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'book_name'</span><span class="p">])</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'Book requested'</span><span class="p">}),</span> <span class="mi">201</span>
+
+<span class="c1"># ---------- Trigger Export (Async Task) ----------
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/export-report'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">export_report</span><span class="p">():</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+
+    <span class="c1"># Import here to avoid circular imports
+</span>    <span class="kn">from</span> <span class="nn">tasks</span> <span class="kn">import</span> <span class="n">generate_user_report</span>
+
+    <span class="c1"># .delay() sends the task to Celery worker in background
+</span>    <span class="n">generate_user_report</span><span class="p">.</span><span class="n">delay</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'Report is being generated. You will receive it via email.'</span><span class="p">}),</span> <span class="mi">200</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Key point:</strong> Notice <code class="language-plaintext highlighter-rouge">generate_user_report.delay(user_id)</code> — the <code class="language-plaintext highlighter-rouge">.delay()</code> method sends the task to the Celery worker. Flask does NOT wait for it to finish. It immediately returns the response to the user.</p>
+
+<hr />
+
+<h3 id="53-celery_workerpy--celery-configuration"><strong>5.3 <code class="language-plaintext highlighter-rouge">celery_worker.py</code> — Celery Configuration</strong></h3>
+
+<p>This is the <strong>brain</strong> of Celery. It configures:</p>
+<ul>
+  <li>Which broker (Redis) to use</li>
+  <li>How to access Flask’s app context (so tasks can use <code class="language-plaintext highlighter-rouge">db</code>, <code class="language-plaintext highlighter-rouge">render_template</code>, etc.)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span><span class="p">,</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="c1"># Create Celery app
+# broker = where tasks are queued (Redis DB 1)
+# backend = where results are stored (Redis DB 2)
+</span><span class="n">celery_app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span>
+    <span class="s">'tasks'</span><span class="p">,</span>
+    <span class="n">broker</span><span class="o">=</span><span class="s">'redis://localhost:6379/1'</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s">'redis://localhost:6379/2'</span><span class="p">,</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s">'tasks'</span><span class="p">]</span>  <span class="c1"># tells Celery where to find task functions
+</span><span class="p">)</span>
+
+
+<span class="c1"># This class ensures every task runs inside Flask's app context
+# Without this, tasks can't use db.session, render_template, etc.
+</span><span class="k">class</span> <span class="nc">FlaskTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">celery_app</span><span class="p">.</span><span class="n">Task</span> <span class="o">=</span> <span class="n">FlaskTask</span>
+</code></pre></div></div>
+
+<h3 id="understanding-each-part"><strong>Understanding Each Part</strong></h3>
+
+<h4 id="broker-and-backend-urls"><strong>Broker and Backend URLs</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis://localhost:6379/1
+        ↑         ↑    ↑
+        host     port  database number
+</code></pre></div></div>
+
+<p>Redis has 16 databases (0-15). We use:</p>
+<ul>
+  <li>DB 0 → Flask-Caching (if used)</li>
+  <li>DB 1 → Celery broker (task queue)</li>
+  <li>DB 2 → Celery backend (task results)</li>
+</ul>
+
+<p>This keeps things separate and clean.</p>
+
+<h4 id="includetasks"><strong><code class="language-plaintext highlighter-rouge">include=['tasks']</code></strong></h4>
+
+<p>Tells Celery: “Look in <code class="language-plaintext highlighter-rouge">tasks.py</code> to find the task functions.” Without this, Celery won’t know about your <code class="language-plaintext highlighter-rouge">@celery_app.task</code> functions.</p>
+
+<h4 id="flasktask--why-do-we-need-this"><strong><code class="language-plaintext highlighter-rouge">FlaskTask</code> — Why Do We Need This?</strong></h4>
+
+<p>Celery workers run in a <strong>separate process</strong> from Flask. They don’t have Flask’s application context by default. But our tasks need:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">db.session</code> to query the database</li>
+  <li><code class="language-plaintext highlighter-rouge">render_template</code> to generate HTML emails</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">FlaskTask</code> class wraps every task execution inside <code class="language-plaintext highlighter-rouge">with app.app_context()</code>, giving tasks access to Flask features.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Without FlaskTask:
+  Celery worker runs task → tries db.session → CRASH! "Working outside of application context"
+
+With FlaskTask:
+  Celery worker runs task → FlaskTask wraps it in app.app_context() → db.session works ✓
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="54-taskspy--an-on-demand-export-task"><strong>5.4 <code class="language-plaintext highlighter-rouge">tasks.py</code> — An On-Demand Export Task</strong></h3>
+
+<p>This task is triggered by the user via the <code class="language-plaintext highlighter-rouge">/export-report</code> route. It runs in the background.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery_worker</span> <span class="kn">import</span> <span class="n">celery_app</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">BookRequest</span>
+
+
+<span class="c1"># ---------- Task: Export Report (Triggered by User via .delay()) ----------
+</span><span class="o">@</span><span class="n">celery_app</span><span class="p">.</span><span class="n">task</span>
+<span class="k">def</span> <span class="nf">generate_user_report</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="s">"""Generates and prints a report for a specific user's book requests."""</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">"User not found"</span>
+
+    <span class="n">requests</span> <span class="o">=</span> <span class="n">BookRequest</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="nb">all</span><span class="p">()</span>
+    
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Report for </span><span class="si">{</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s"> ---"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">requests</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Book: </span><span class="si">{</span><span class="n">req</span><span class="p">.</span><span class="n">book_name</span><span class="si">}</span><span class="s"> | Status: </span><span class="si">{</span><span class="n">req</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s"> | Date: </span><span class="si">{</span><span class="n">req</span><span class="p">.</span><span class="n">request_date</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"--- End Report ---</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"Report generated for </span><span class="si">{</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">."</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>We are just printing the report here. In the <strong>next session (Mailing with Celery Beat)</strong>, we will add email sending, HTML templates, and scheduled tasks.</p>
+</blockquote>
+
+<h3 id="understanding-celery_apptask"><strong>Understanding <code class="language-plaintext highlighter-rouge">@celery_app.task</code></strong></h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">@celery_app.task</code> decorator converts a normal Python function into a Celery task. This gives the function special methods:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normal call (runs immediately, blocks)
+</span><span class="n">generate_user_report</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Async call (sends to Celery worker, does NOT block)
+</span><span class="n">generate_user_report</span><span class="p">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Async call with more options
+</span><span class="n">generate_user_report</span><span class="p">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">countdown</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>  <span class="c1"># run after 60 seconds
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>What Happens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task()</code></td>
+      <td>Runs immediately (normal function call, no Celery involved)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task.delay(args)</code></td>
+      <td>Sends to Celery worker, runs in background</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task.apply_async(args, kwargs)</code></td>
+      <td>Like delay() but with extra options (countdown, eta, etc.)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="6-running-everything--step-by-step"><strong>6. Running Everything — Step by Step</strong></h2>
+
+<p>You need <strong>3 separate terminals</strong> running at the same time:</p>
+
+<h3 id="61-terminal-layout"><strong>6.1 Terminal Layout</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌───────────────────────────┬───────────────────────────┐
+│  Terminal 1: Redis        │  Terminal 2: Flask App     │
+│  redis-server             │  python app.py             │
+├───────────────────────────┼───────────────────────────┤
+│  Terminal 3: Celery       │                            │
+│  Worker                   │                            │
+│  celery -A celery_worker  │                            │
+│  .celery_app worker ...   │                            │
+└───────────────────────────┴───────────────────────────┘
+</code></pre></div></div>
+
+<h3 id="62-commands-for-wsl-windows-users"><strong>6.2 Commands for WSL (Windows Users)</strong></h3>
+
+<p>Open <strong>3 WSL terminal tabs/windows</strong>.</p>
+
+<p><strong>Terminal 1 — Redis Server:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-server
+</code></pre></div></div>
+
+<p><strong>Terminal 2 — Flask App:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+<span class="nb">source env</span>/bin/activate
+python app.py
+</code></pre></div></div>
+
+<p><strong>Terminal 3 — Celery Worker:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/your/project
+<span class="nb">source env</span>/bin/activate
+celery <span class="nt">-A</span> celery_worker.celery_app worker <span class="nt">--loglevel</span><span class="o">=</span>info
+</code></pre></div></div>
+
+<h3 id="63-commands-for-macos--linux"><strong>6.3 Commands for macOS / Linux</strong></h3>
+
+<p>Same commands as above. Open 3 terminal tabs.</p>
+
+<p><strong>Terminal 1:</strong> <code class="language-plaintext highlighter-rouge">redis-server</code>
+<strong>Terminal 2:</strong> <code class="language-plaintext highlighter-rouge">python app.py</code>
+<strong>Terminal 3:</strong> <code class="language-plaintext highlighter-rouge">celery -A celery_worker.celery_app worker --loglevel=info</code></p>
+
+<h3 id="64-using-windows-powershell-running-wsl-commands-from-powershell"><strong>6.4 Using Windows PowerShell (Running WSL commands from PowerShell)</strong></h3>
+
+<p>If you prefer PowerShell, you can run WSL commands by prefixing with <code class="language-plaintext highlighter-rouge">wsl</code>:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 1: Redis</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">redis-server</span><span class="w">
+
+</span><span class="c"># Terminal 2: Flask (run normally in PowerShell if Python is installed on Windows)</span><span class="w">
+</span><span class="n">python</span><span class="w"> </span><span class="nx">app.py</span><span class="w">
+
+</span><span class="c"># Terminal 3: Celery Worker (run inside WSL)</span><span class="w">
+</span><span class="n">wsl</span><span class="w"> </span><span class="nx">bash</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="s2">"cd /mnt/c/path/to/project &amp;&amp; source env/bin/activate &amp;&amp; celery -A celery_worker.celery_app worker --loglevel=info"</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>Tip:</strong> Celery does not work natively on Windows. Always run Celery worker inside WSL or use a Linux/macOS machine.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-what-happens-when-you-hit-the-route"><strong>7. What Happens When You Hit the Route</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User sends GET /export-report with JWT token
+2. Flask route calls: generate_user_report.delay(user_id)
+3. Flask immediately returns: {"msg": "Report is being generated..."}
+4. Meanwhile, in your Celery Worker terminal you will see:
+   [2026-04-04 10:00:00] Task tasks.generate_user_report[abc-123] received
+   --- Report for Alice ---
+     Book: Flask Mastery | Status: pending | Date: 2026-04-01
+   --- End Report ---
+   [2026-04-04 10:00:01] Task tasks.generate_user_report[abc-123] succeeded
+</code></pre></div></div>
+
+<p>The user got an instant response. The heavy work happened in the worker process.</p>
+
+<hr />
+
+<h2 id="8-using-a-simple-list-instead-of-database-for-quick-testing"><strong>8. Using a Simple List Instead of Database (For Quick Testing)</strong></h2>
+
+<p>If you just want to understand Celery without a database, here’s a minimal example:</p>
+
+<h3 id="apppy-minimal"><code class="language-plaintext highlighter-rouge">app.py</code> (Minimal)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Simple in-memory data
+</span><span class="n">users</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Alice'</span><span class="p">,</span> <span class="s">'email'</span><span class="p">:</span> <span class="s">'alice@example.com'</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Bob'</span><span class="p">,</span> <span class="s">'email'</span><span class="p">:</span> <span class="s">'bob@example.com'</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">books</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">'user_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'book'</span><span class="p">:</span> <span class="s">'Flask Mastery'</span><span class="p">,</span> <span class="s">'status'</span><span class="p">:</span> <span class="s">'pending'</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">'user_id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'book'</span><span class="p">:</span> <span class="s">'Vue.js Guide'</span><span class="p">,</span> <span class="s">'status'</span><span class="p">:</span> <span class="s">'pending'</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/send-reminders'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">send_reminders</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">tasks</span> <span class="kn">import</span> <span class="n">send_reminder_to_all</span>
+    <span class="n">send_reminder_to_all</span><span class="p">.</span><span class="n">delay</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'Reminders are being sent in background!'</span><span class="p">})</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="celery_workerpy-minimal"><code class="language-plaintext highlighter-rouge">celery_worker.py</code> (Minimal)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span>
+
+<span class="n">celery_app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span>
+    <span class="s">'tasks'</span><span class="p">,</span>
+    <span class="n">broker</span><span class="o">=</span><span class="s">'redis://localhost:6379/1'</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s">'redis://localhost:6379/2'</span><span class="p">,</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s">'tasks'</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="taskspy-minimal"><code class="language-plaintext highlighter-rouge">tasks.py</code> (Minimal)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">celery_worker</span> <span class="kn">import</span> <span class="n">celery_app</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="o">@</span><span class="n">celery_app</span><span class="p">.</span><span class="n">task</span>
+<span class="k">def</span> <span class="nf">send_reminder_to_all</span><span class="p">():</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Alice'</span><span class="p">,</span> <span class="s">'email'</span><span class="p">:</span> <span class="s">'alice@example.com'</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Bob'</span><span class="p">,</span> <span class="s">'email'</span><span class="p">:</span> <span class="s">'bob@example.com'</span><span class="p">},</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Sending reminder to </span><span class="si">{</span><span class="n">user</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="si">}</span><span class="s"> at </span><span class="si">{</span><span class="n">user</span><span class="p">[</span><span class="s">'email'</span><span class="p">]</span><span class="si">}</span><span class="s">..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Simulating a slow operation
+</span>    <span class="k">return</span> <span class="s">"All reminders sent!"</span>
+</code></pre></div></div>
+
+<p>Run 3 terminals (Redis, Flask, Celery worker) and hit <code class="language-plaintext highlighter-rouge">http://localhost:5000/send-reminders</code>. You’ll see the task running in the Celery worker terminal with a 2-second gap between each user — but the browser response was instant!</p>
+
+<hr />
+
+<h2 id="9-common-errors-and-fixes"><strong>9. Common Errors and Fixes</strong></h2>
+
+<h3 id="error-1-working-outside-of-application-context"><strong>Error 1: “Working outside of application context”</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RuntimeError: Working outside of application context.
+</code></pre></div></div>
+
+<p><strong>Cause:</strong> Your task is trying to use <code class="language-plaintext highlighter-rouge">db.session</code> or <code class="language-plaintext highlighter-rouge">render_template</code> without Flask context.</p>
+
+<p><strong>Fix:</strong> Make sure your <code class="language-plaintext highlighter-rouge">FlaskTask</code> class is set up in <code class="language-plaintext highlighter-rouge">celery_worker.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FlaskTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">celery_app</span><span class="p">.</span><span class="n">Task</span> <span class="o">=</span> <span class="n">FlaskTask</span>
+</code></pre></div></div>
+
+<h3 id="error-2-received-unregistered-task"><strong>Error 2: “Received unregistered task”</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KeyError: 'tasks.generate_user_report'
+</code></pre></div></div>
+
+<p><strong>Cause:</strong> Celery doesn’t know about your tasks.</p>
+
+<p><strong>Fix:</strong> Make sure <code class="language-plaintext highlighter-rouge">include=['tasks']</code> is in your Celery config:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">celery_app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s">'tasks'</span><span class="p">,</span> <span class="n">broker</span><span class="o">=</span><span class="s">'...'</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s">'...'</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s">'tasks'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="error-3-connection-refused-to-redis"><strong>Error 3: “Connection refused” to Redis</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis.exceptions.ConnectionError: Error connecting to localhost:6379
+</code></pre></div></div>
+
+<p><strong>Cause:</strong> Redis server is not running.</p>
+
+<p><strong>Fix:</strong> Start Redis:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-server
+</code></pre></div></div>
+
+<h3 id="error-4-celery-not-working-on-windows"><strong>Error 4: Celery not working on Windows</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ValueError: not enough values to unpack
+</code></pre></div></div>
+
+<p><strong>Cause:</strong> Celery 4+ does not support Windows natively.</p>
+
+<p><strong>Fix:</strong> Run Celery inside WSL. See Section 6.2.</p>
+
+<hr />
+
+<h2 id="10-quick-reference"><strong>10. Quick Reference</strong></h2>
+
+<h3 id="install"><strong>Install</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-sqlalchemy flask-jwt-extended celery redis
+</code></pre></div></div>
+
+<h3 id="run-3-terminals-needed"><strong>Run (3 terminals needed)</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Terminal</th>
+      <th>Command</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><code class="language-plaintext highlighter-rouge">redis-server</code></td>
+      <td>Start message broker</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><code class="language-plaintext highlighter-rouge">python app.py</code></td>
+      <td>Start Flask app</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><code class="language-plaintext highlighter-rouge">celery -A celery_worker.celery_app worker --loglevel=info</code></td>
+      <td>Start task executor</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="requirementstxt"><strong>requirements.txt</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Flask
+Flask-SQLAlchemy
+Flask-JWT-Extended
+celery
+redis
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="11-whats-next"><strong>11. What’s Next?</strong></h2>
+
+<p>In this session we covered the <strong>Celery Worker</strong> — how to run tasks in the background using <code class="language-plaintext highlighter-rouge">.delay()</code>.</p>
+
+<p>But what about tasks that need to run <strong>automatically on a schedule</strong>? Like:</p>
+<ul>
+  <li>Send a monthly report on the 1st of every month</li>
+  <li>Send daily reminders every morning at 8 AM</li>
+</ul>
+
+<p>That’s where <strong>Celery Beat</strong> comes in. In the next session, we will cover:</p>
+
+<ul>
+  <li><strong>Celery Beat</strong> — the scheduler that triggers tasks automatically</li>
+  <li><strong>Sending emails</strong> with Python’s <code class="language-plaintext highlighter-rouge">smtplib</code></li>
+  <li><strong>MailHog</strong> — catching emails locally for testing</li>
+  <li><strong>HTML email templates</strong> with Jinja2</li>
+  <li><strong>Monthly report</strong> and <strong>daily reminder</strong> tasks</li>
+</ul>
+
+<p>👉 <strong>Next: Mailing with Python — How to Send E-mails with Celery Beat</strong></p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

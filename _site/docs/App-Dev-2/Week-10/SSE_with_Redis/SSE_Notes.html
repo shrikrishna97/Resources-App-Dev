@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="server-sent-events-sse--complete-notes">Server-Sent Events (SSE) — Complete Notes</h1>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#1-what-is-sse">What is SSE?</a></li>
+  <li><a href="#2-how-sse-works-the-flow">How SSE Works (The Flow)</a></li>
+  <li><a href="#3-sse-event-stream-format">SSE Event Stream Format</a></li>
+  <li><a href="#4-flask-sse-with-blueprint">Flask-SSE with Blueprint </a></li>
+  <li><a href="#5-can-we-use-sse-without-blueprint">Can We Use SSE Without Blueprint?</a></li>
+  <li><a href="#6-how-client-sends-data-to-server-for-sse-push">How Client Sends Data to Server for SSE Push</a></li>
+  <li><a href="#7-pubsub-pattern-and-sse">Pub/Sub Pattern and SSE</a></li>
+  <li><a href="#8-sse-vs-websockets-vs-polling-vs-webhooks">SSE vs WebSockets vs Polling vs Webhooks</a></li>
+  <li><a href="#9-json-data-exchange-between-frontend-and-backend">JSON Data Exchange Between Frontend and Backend</a></li>
+</ol>
+
+<hr />
+
+<h2 id="1-what-is-sse">1. What is SSE?</h2>
+
+<p><strong>Server-Sent Events (SSE)</strong> is a technology where the <strong>server pushes data to the client</strong> over a single, long-lived HTTP connection. The client opens a connection once, and the server keeps sending updates whenever it wants.</p>
+
+<p><strong>Key Points:</strong></p>
+<ul>
+  <li><strong>One-way communication</strong>: Server → Client only</li>
+  <li>Uses plain HTTP (no special protocol like WebSocket)</li>
+  <li>Client uses the browser’s built-in <code class="language-plaintext highlighter-rouge">EventSource</code> API</li>
+  <li>Server responds with <code class="language-plaintext highlighter-rouge">Content-Type: text/event-stream</code></li>
+  <li>Connection <strong>auto-reconnects</strong> if dropped (built-in browser behavior)</li>
+  <li>Works over HTTP/1.1 and HTTP/2</li>
+</ul>
+
+<p><strong>Real-world analogy:</strong> Think of a radio station. You tune in (open connection), and the station keeps broadcasting (server keeps pushing). You can’t talk back through the radio.</p>
+
+<p><strong>Use cases:</strong></p>
+<ul>
+  <li>Live notifications</li>
+  <li>Stock price tickers</li>
+  <li>Live score updates</li>
+  <li>Social media feed updates</li>
+  <li>Server log streaming</li>
+</ul>
+
+<hr />
+
+<h2 id="2-how-sse-works-the-flow">2. How SSE Works (The Flow)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client (Browser)                         Server (Flask)
+     |                                        |
+     |--- GET /stream  ----------------------&gt;|  (EventSource opens connection)
+     |                                        |
+     |&lt;-- text/event-stream (kept open) ------|  (Server keeps connection alive)
+     |                                        |
+     |&lt;-- data: {"message": "Hello"} --------|  (Server pushes event)
+     |                                        |
+     |&lt;-- data: {"message": "Update!"} ------|  (Another push whenever needed)
+     |                                        |
+     |  (connection stays open...)            |
+</code></pre></div></div>
+
+<p>Step by step:</p>
+<ol>
+  <li>Client creates <code class="language-plaintext highlighter-rouge">new EventSource("/stream")</code> — this opens a GET request</li>
+  <li>Server responds with <code class="language-plaintext highlighter-rouge">Content-Type: text/event-stream</code> and keeps the connection open</li>
+  <li>Whenever the server has new data, it writes to this open connection</li>
+  <li>Client receives the data through event listeners</li>
+  <li>If the connection drops, the browser <strong>automatically reconnects</strong> after a few seconds</li>
+</ol>
+
+<hr />
+
+<h2 id="3-sse-event-stream-format">3. SSE Event Stream Format</h2>
+
+<p>The server sends data in a specific text format. Each message is separated by <strong>two newlines</strong> (<code class="language-plaintext highlighter-rouge">\n\n</code>).</p>
+
+<p><strong>Fields available:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">data:</code></td>
+      <td>The actual data payload</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">event:</code></td>
+      <td>Custom event name (like “notify”, “update”)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id:</code></td>
+      <td>Unique ID for the event (for reconnection)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">retry:</code></td>
+      <td>Reconnection time in milliseconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example of raw SSE stream:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>event: notify
+data: {"message": "Hello World"}
+
+event: notify
+data: {"message": "Another notification"}
+
+data: This is a message without a custom event name
+
+</code></pre></div></div>
+
+<ul>
+  <li>If no <code class="language-plaintext highlighter-rouge">event:</code> field → received as a generic <code class="language-plaintext highlighter-rouge">message</code> event</li>
+  <li>If <code class="language-plaintext highlighter-rouge">event: notify</code> is set → must use <code class="language-plaintext highlighter-rouge">addEventListener('notify', ...)</code> on client</li>
+</ul>
+
+<hr />
+
+<h2 id="4-flask-sse-with-blueprint">4. Flask-SSE with Blueprint</h2>
+
+<p>Before using Blueprint with SSE, first understand Blueprint in normal Flask apps.</p>
+
+<h3 id="what-is-a-blueprint">What is a Blueprint?</h3>
+
+<p>A Blueprint in Flask is a way to organize your application into reusable components. Think of it as a “mini-app” that can be plugged into your main app.</p>
+
+<h3 id="how-blueprint-works-in-normal-flask-apps-not-only-sse">How Blueprint Works in Normal Flask Apps (Not Only SSE)</h3>
+
+<p>Blueprint is a Flask feature for organizing routes into modules.</p>
+
+<p>Without Blueprint, all routes usually stay in one big app file.
+With Blueprint, we split routes by feature, and then attach them to the main app.</p>
+
+<p>Typical pattern:</p>
+<ol>
+  <li>Create a blueprint in a feature file (for example auth, blog, admin).</li>
+  <li>Add routes to that blueprint (login route, signup route, dashboard route, etc.).</li>
+  <li>Register that blueprint in main app using app.register_blueprint(…).</li>
+  <li>Flask adds those routes into the app under the given prefix.</li>
+</ol>
+
+<p>Simple mental model:</p>
+<ul>
+  <li>Main app = central router</li>
+  <li>Blueprint = feature route group</li>
+  <li>register_blueprint = plug that route group into main app</li>
+</ul>
+
+<h3 id="code-example-normal-blueprint">Code Example (Normal Blueprint)</h3>
+
+<p><strong>auth.py</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span>
+
+<span class="n">auth_bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s">'auth'</span><span class="p">,</span> <span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">auth_bp</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'Login Page'</span>
+</code></pre></div></div>
+
+<p><strong>app.py</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">auth</span> <span class="kn">import</span> <span class="n">auth_bp</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">auth_bp</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s">'/auth'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="url-at-the-end-how-it-looks">URL at the End (How It Looks)</h3>
+
+<ul>
+  <li>Route written inside blueprint: <code class="language-plaintext highlighter-rouge">/login</code></li>
+  <li>Prefix used while registering: <code class="language-plaintext highlighter-rouge">/auth</code></li>
+  <li>Final URL in browser: <code class="language-plaintext highlighter-rouge">/auth/login</code></li>
+</ul>
+
+<p>Formula:</p>
+
+<p><code class="language-plaintext highlighter-rouge">final_url = url_prefix + route_inside_blueprint</code></p>
+
+<p>If you do not use Blueprint, you usually write directly in app:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'Login Page'</span>
+</code></pre></div></div>
+
+<p>Then final URL is simply: <code class="language-plaintext highlighter-rouge">/login</code></p>
+
+<p>Example structure (concept only):</p>
+<ul>
+  <li>auth blueprint handles routes like /auth/login, /auth/logout</li>
+  <li>blog blueprint handles routes like /blog/create, /blog/list</li>
+  <li>admin blueprint handles routes like /admin/users, /admin/reports</li>
+</ul>
+
+<p>Why teams use Blueprint in general:</p>
+<ul>
+  <li>Better project structure as app grows</li>
+  <li>Easier maintenance (feature-wise separation)</li>
+  <li>Reusability across projects</li>
+  <li>Cleaner collaboration (different people can work on different blueprints)</li>
+</ul>
+
+<h3 id="now-apply-this-to-sse">Now Apply This to SSE</h3>
+
+<p>In this session, we use <code class="language-plaintext highlighter-rouge">flask-sse</code> library, which already provides a ready-made Blueprint named <code class="language-plaintext highlighter-rouge">sse</code> for SSE streaming.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Flask-SSE gives you a pre-built blueprint called `sse`
+</span><span class="kn">from</span> <span class="nn">flask_sse</span> <span class="kn">import</span> <span class="n">sse</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">sse</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s">"/stream"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This single line creates a <code class="language-plaintext highlighter-rouge">/stream</code> endpoint that:</p>
+<ul>
+  <li>Handles the <code class="language-plaintext highlighter-rouge">EventSource</code> connection from the client</li>
+  <li>Streams events using Redis as a message broker (Pub/Sub)</li>
+  <li>Manages the <code class="language-plaintext highlighter-rouge">text/event-stream</code> response automatically</li>
+</ul>
+
+<h3 id="blueprint-working-here-sse-mental-model">Blueprint Working Here (SSE Mental Model)</h3>
+
+<p>Think of Flask-SSE Blueprint as a prebuilt SSE route pack.</p>
+
+<p>When we do:</p>
+
+<p><code class="language-plaintext highlighter-rouge">app.register_blueprint(sse, url_prefix="/stream")</code></p>
+
+<p>Flask adds the SSE routes under <code class="language-plaintext highlighter-rouge">/stream</code>, so we do not have to manually write low-level streaming route code.</p>
+
+<p>In simple SSE flow:</p>
+<ul>
+  <li>Your app receives normal requests like <code class="language-plaintext highlighter-rouge">/</code> and <code class="language-plaintext highlighter-rouge">/send_notification</code></li>
+  <li>Flask-SSE Blueprint handles the streaming route (for example <code class="language-plaintext highlighter-rouge">/stream</code>)</li>
+  <li>When you call <code class="language-plaintext highlighter-rouge">sse.publish(...)</code>, the message goes to Redis</li>
+  <li>The Blueprint is subscribed to Redis and forwards that message to connected browsers</li>
+</ul>
+
+<p>So Blueprint here helps with:</p>
+<ul>
+  <li>clean structure (SSE logic stays separate)</li>
+  <li>less boilerplate</li>
+  <li>safer first setup for beginners</li>
+</ul>
+
+<h3 id="sessions-code">Session’s Code</h3>
+
+<p><strong>app.py:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_sse</span> <span class="kn">import</span> <span class="n">sse</span>          <span class="c1"># import the SSE blueprint
+</span><span class="kn">import</span> <span class="nn">redis</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"REDIS_URL"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"redis://localhost:6379"</span>  <span class="c1"># Redis is REQUIRED for flask-sse
+</span>
+<span class="n">app</span><span class="p">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">sse</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s">"/stream"</span><span class="p">)</span>   <span class="c1"># Register at /stream
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/send_notification'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">notify</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>                              <span class="c1"># Get JSON from client
+</span>    <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">"error"</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s">"No message provided"</span><span class="p">),</span> <span class="mi">400</span>
+
+    <span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="n">sse</span><span class="p">.</span><span class="n">publish</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="n">message</span><span class="p">},</span> <span class="nb">type</span><span class="o">=</span><span class="s">'notify'</span><span class="p">)</span>  <span class="c1"># Push to all listeners
+</span>        <span class="c1"># type='notify' means the event name is "notify"
+</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">"success"</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s">"Notification sent"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>templates/index.html:</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Flask - Notification System<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Real-Time Notification<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"message"</span><span class="nt">&gt;</span>Notification Text<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"message"</span> <span class="na">v-model=</span><span class="s">"message"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"textToBackend"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Send<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Notifications<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"notification"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../static/script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong>script.js (Client Side):</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">message</span><span class="p">:</span> <span class="dl">""</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="p">(){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">loadEventSource</span><span class="p">()</span>    <span class="c1">// Start listening when page loads</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">loadEventSource</span><span class="p">(){</span>
+            <span class="c1">// Open SSE connection to /stream</span>
+            <span class="kd">const</span> <span class="nx">eventSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventSource</span><span class="p">(</span><span class="dl">"</span><span class="s2">/stream</span><span class="dl">"</span><span class="p">)</span>
+
+            <span class="c1">// Listen for 'notify' events specifically</span>
+            <span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">notify</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+                <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>       <span class="c1">// Parse the JSON</span>
+                <span class="kd">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">notification</span><span class="dl">'</span><span class="p">)</span>
+                <span class="kd">const</span> <span class="nx">notification1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">)</span>
+                <span class="nx">notification1</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span>
+                <span class="nx">container</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">notification1</span><span class="p">)</span>           <span class="c1">// Add to top of list</span>
+            <span class="p">})</span>
+        <span class="p">},</span>
+
+        <span class="nx">textToBackend</span><span class="p">(){</span>
+            <span class="c1">// Send data to server via regular POST (NOT through SSE)</span>
+            <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/send_notification</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
+                <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="p">})</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">){</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">""</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="how-to-run-sessions-code">How to Run Session’s Code</h3>
+
+<ol>
+  <li>Start Redis in one terminal.</li>
+  <li>Install required packages in another terminal.</li>
+  <li>Run the Flask app.</li>
+  <li>Open the app in browser and test notifications.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 1</span>
+redis-server
+
+<span class="c"># Terminal 2</span>
+pip <span class="nb">install </span>flask flask-sse redis
+python app.py
+</code></pre></div></div>
+
+<ul>
+  <li>Event names must match:
+    <ul>
+      <li>Server sends <code class="language-plaintext highlighter-rouge">type='notify'</code></li>
+      <li>Client listens with <code class="language-plaintext highlighter-rouge">addEventListener('notify', ...)</code></li>
+    </ul>
+  </li>
+  <li>Endpoint paths must match:
+    <ul>
+      <li>SSE endpoint in JS: <code class="language-plaintext highlighter-rouge">/stream</code></li>
+      <li>POST endpoint in JS: <code class="language-plaintext highlighter-rouge">/send_notification</code></li>
+    </ul>
+  </li>
+  <li>Keep Redis running while testing, otherwise SSE publish will fail.</li>
+  <li>Test with two browser tabs to verify real-time broadcast to multiple listeners.</li>
+</ul>
+
+<h3 id="why-does-flask-sse-need-redis">Why does flask-sse need Redis?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">flask-sse</code> uses Redis <strong>Pub/Sub</strong> internally. When you call <code class="language-plaintext highlighter-rouge">sse.publish(...)</code>, it publishes the message to a Redis channel. The SSE blueprint endpoint subscribes to that channel and forwards messages to all connected clients. This is how multiple browser tabs/users all receive the same notification.</p>
+
+<h3 id="why-is-it-a-blueprint">Why is it a Blueprint?</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">flask-sse</code> library chose the Blueprint pattern because:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">/stream</code> endpoint needs special handling (long-lived connection, streaming response)</li>
+  <li>It keeps the SSE logic separate and reusable</li>
+  <li>You can mount it at any URL prefix you want (<code class="language-plaintext highlighter-rouge">/stream</code>, <code class="language-plaintext highlighter-rouge">/events</code>, <code class="language-plaintext highlighter-rouge">/sse</code>, etc.)</li>
+</ul>
+
+<hr />
+
+<h2 id="5-can-we-use-sse-without-blueprint">5. Can We Use SSE Without Blueprint?</h2>
+
+<h3 id="yes-absolutely">YES! Absolutely.</h3>
+
+<p>You do NOT need <code class="language-plaintext highlighter-rouge">flask-sse</code> or a Blueprint to use SSE. It is possible to build SSE directly with Flask streaming responses.</p>
+
+<h3 id="then-why-are-we-not-starting-with-that-approach">Then why are we not starting with that approach?</h3>
+
+<p>For first learning sessions, we usually avoid the manual approach because it adds many moving parts at once:</p>
+<ul>
+  <li>You must manage long-lived client connections yourself</li>
+  <li>You must handle disconnects/reconnect behavior cleanly</li>
+  <li>You must think about concurrency (multiple clients at same time)</li>
+  <li>You may need extra production setup details early (workers, scaling, buffering)</li>
+</ul>
+
+<p>That can hide the core SSE idea for beginners.</p>
+
+<h3 id="why-blueprint-first-is-easier-to-understand">Why Blueprint-first is easier to understand</h3>
+
+<p>Using Flask-SSE + Blueprint lets you focus on the main concept first:</p>
+<ul>
+  <li>client opens EventSource</li>
+  <li>server publishes event</li>
+  <li>client receives update</li>
+</ul>
+
+<p>Once this mental model is clear, then learning “SSE without Blueprint” becomes much easier because you already understand what should happen end-to-end.</p>
+
+<h3 id="simple-learning-path">Simple learning path</h3>
+
+<ol>
+  <li>Start with Blueprint-based SSE to understand the flow.</li>
+  <li>Practice event types and channels.</li>
+  <li>Then move to manual SSE implementation to learn internals.</li>
+</ol>
+
+<p>So yes, SSE without Blueprint is valid and useful, but for teaching and first-time clarity, Blueprint is the smoother starting point.</p>
+
+<hr />
+
+<h2 id="6-how-client-sends-data-to-server-for-sse-push">6. How Client Sends Data to Server for SSE Push</h2>
+
+<p><strong>SSE is one-way (Server → Client). The client CANNOT send data through the SSE connection.</strong></p>
+
+<p>So how does data get to the server? Through <strong>regular HTTP requests</strong> (POST, PUT, etc.)!</p>
+
+<h3 id="the-pattern">The Pattern:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client A(admin) (sends data)          Server              Client B(user) (receives SSE)
+     |                           |                        |
+     |--- POST /send_notification --&gt;|                    |
+     |   {message: "Hello"}      |                        |
+     |                           |--- SSE push ----------&gt;|
+     |                           |   data: {"message":    |
+     |                           |          "Hello"}      |
+     |&lt;-- 200 OK ---------------|                        |
+</code></pre></div></div>
+
+<h3 id="in-our-code">In Our Code:</h3>
+
+<ol>
+  <li>(Admin)User types a message in the input box</li>
+  <li>Clicks “Send” button → triggers <code class="language-plaintext highlighter-rouge">textToBackend()</code> method</li>
+  <li><code class="language-plaintext highlighter-rouge">textToBackend()</code> makes a <strong>regular <code class="language-plaintext highlighter-rouge">fetch()</code> POST request</strong> to <code class="language-plaintext highlighter-rouge">/send_notification</code></li>
+  <li>The server receives the POST, then uses <code class="language-plaintext highlighter-rouge">sse.publish()</code> to push it to all SSE listeners</li>
+  <li>All connected browsers receive the message through their <code class="language-plaintext highlighter-rouge">EventSource</code></li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is a REGULAR HTTP POST — NOT related to SSE</span>
+<span class="nx">textToBackend</span><span class="p">(){</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/send_notification</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="other-ways-the-server-can-get-data-to-push-via-sse">Other Ways the Server Can Get Data to Push via SSE:</h3>
+
+<ul>
+  <li><strong>Celery task completion</strong> — when an async task finishes, publish a notification</li>
+  <li><strong>Database change</strong> — a trigger or periodic check detects a new row</li>
+  <li><strong>Scheduled job</strong> — Celery Beat sends periodic updates</li>
+  <li><strong>External API</strong> — server polls an external API and pushes updates to clients
+…etc.</li>
+</ul>
+
+<hr />
+
+<h2 id="7-pubsub-pattern-and-sse">7. Pub/Sub Pattern and SSE</h2>
+
+<h3 id="what-is-pubsub">What is Pub/Sub?</h3>
+
+<p><strong>Pub/Sub (Publish/Subscribe)</strong> is a messaging pattern where:</p>
+<ul>
+  <li><strong>Publishers</strong> send messages to a <strong>channel/topic</strong> (they don’t know who is listening)</li>
+  <li><strong>Subscribers</strong> listen to a <strong>channel/topic</strong> (they don’t know who is sending)</li>
+  <li>A <strong>message broker</strong> (like Redis) sits in the middle and routes messages</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Publisher ──&gt; [Redis Channel: "notifications"] ──&gt; Subscriber 1
+                                                ──&gt; Subscriber 2
+                                                ──&gt; Subscriber 3
+</code></pre></div></div>
+
+<h3 id="how-pubsub-relates-to-sse">How Pub/Sub Relates to SSE</h3>
+
+<p><code class="language-plaintext highlighter-rouge">flask-sse</code> uses <strong>Redis Pub/Sub</strong> internally:</p>
+
+<ol>
+  <li>When you call <code class="language-plaintext highlighter-rouge">sse.publish({"message": "Hello"}, type='notify')</code>:
+    <ul>
+      <li>Flask publishes the message to a <strong>Redis channel</strong></li>
+    </ul>
+  </li>
+  <li>The <code class="language-plaintext highlighter-rouge">/stream</code> endpoint (SSE Blueprint):
+    <ul>
+      <li>Subscribes to that Redis channel</li>
+      <li>When a message arrives on the channel, it forwards it to the client via SSE</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /send_notification
+        |
+        v
+sse.publish() ──&gt; Redis Channel "sse" ──&gt; /stream endpoint ──&gt; EventSource (Browser)
+                                       ──&gt; /stream endpoint ──&gt; EventSource (Browser)
+                                       ──&gt; /stream endpoint ──&gt; EventSource (Browser)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-sse-vs-websockets-vs-polling-vs-webhooks">8. SSE vs WebSockets vs Polling vs Webhooks</h2>
+
+<h3 id="quick-comparison">Quick Comparison</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>SSE</th>
+      <th>WebSockets</th>
+      <th>Polling</th>
+      <th>Webhooks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Direction</td>
+      <td>Server → Client</td>
+      <td>Both ways</td>
+      <td>Client → Server</td>
+      <td>Server → Server</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>HTTP</td>
+      <td>ws:// (upgrade)</td>
+      <td>HTTP</td>
+      <td>HTTP</td>
+    </tr>
+    <tr>
+      <td>Connection</td>
+      <td>Long-lived</td>
+      <td>Long-lived</td>
+      <td>Short (repeated)</td>
+      <td>Short (one-shot)</td>
+    </tr>
+    <tr>
+      <td>Auto-reconnect</td>
+      <td>Yes (built-in)</td>
+      <td>No (manual)</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Browser API</td>
+      <td><code class="language-plaintext highlighter-rouge">EventSource</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WebSocket</code></td>
+      <td><code class="language-plaintext highlighter-rouge">fetch</code>/<code class="language-plaintext highlighter-rouge">setInterval</code></td>
+      <td>N/A (server-side)</td>
+    </tr>
+    <tr>
+      <td>Complexity</td>
+      <td>Low</td>
+      <td>Medium</td>
+      <td>Very Low</td>
+      <td>Low</td>
+    </tr>
+    <tr>
+      <td>Real-time</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No (delayed)</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Binary data</td>
+      <td>No (text only)</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="polling-short-polling">Polling (Short Polling)</h3>
+
+<p><strong>What:</strong> Client repeatedly asks the server “Any updates?” at fixed intervals.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client                    Server
+  |--- GET /updates -------&gt;|  (any new data?)
+  |&lt;-- 200 "no" ------------|
+  |                          |  (wait 5 seconds)
+  |--- GET /updates -------&gt;|  (any new data?)
+  |&lt;-- 200 "no" ------------|
+  |                          |  (wait 5 seconds)
+  |--- GET /updates -------&gt;|  (any new data?)
+  |&lt;-- 200 {"msg":"Hello"} -|  (yes! here it is)
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Client-side polling</span>
+<span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/updates</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">hasUpdate</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>  <span class="c1">// Every 5 seconds</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Server-side
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/updates'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_updates</span><span class="p">():</span>
+    <span class="c1"># Check database or cache for new data
+</span>    <span class="n">new_data</span> <span class="o">=</span> <span class="n">get_latest_notification</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">new_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">hasUpdate</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">new_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">hasUpdate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Pros:</strong> Simple, works everywhere, no special server setup
+<strong>Cons:</strong> Wastes bandwidth, not truly real-time, unnecessary requests when no data</p>
+
+<hr />
+
+<h3 id="long-polling">Long Polling</h3>
+
+<p><strong>What:</strong> Client sends a request, server <strong>holds it open</strong> until there’s new data, then responds.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client                    Server
+  |--- GET /updates -------&gt;|  (any new data?)
+  |                          |  (holds connection... waits...)
+  |                          |  (30 seconds later, new data arrives)
+  |&lt;-- 200 {"msg":"Hello"} -|
+  |--- GET /updates -------&gt;|  (immediately reconnects)
+  |                          |  (holds connection again...)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Server-side long polling
+</span><span class="kn">import</span> <span class="nn">queue</span>
+
+<span class="n">update_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/updates'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">long_poll</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">update_queue</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># Block for up to 30 seconds
+</span>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">queue</span><span class="p">.</span><span class="n">Empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">hasUpdate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Pros:</strong> More efficient than short polling, near real-time
+<strong>Cons:</strong> Still uses many HTTP connections, complex to implement properly</p>
+
+<hr />
+
+<h3 id="websockets">WebSockets</h3>
+
+<p><strong>What:</strong> Full-duplex (two-way) communication channel. Both client and server can send messages at any time.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client                    Server
+  |--- HTTP Upgrade -------&gt;|  (Upgrade to WebSocket)
+  |&lt;-- 101 Switching -------|
+  |                          |
+  |&lt;=== WebSocket Open ====&gt;|  (Full-duplex connection)
+  |                          |
+  |--- "Hello server" -----&gt;|  (Client can send)
+  |&lt;-- "Hello client" ------|  (Server can send)
+  |--- "Chat message" -----&gt;|  (Client can send anytime)
+  |&lt;-- "Notification" ------|  (Server can send anytime)
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Client-side WebSocket</span>
+<span class="kd">const</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://localhost:5000/ws</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello from client!</span><span class="dl">"</span><span class="p">)</span>     <span class="c1">// Client sends to server</span>
+<span class="p">}</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">From server:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">// Server sends to client</span>
+<span class="p">}</span>
+
+<span class="nx">ws</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connection closed</span><span class="dl">"</span><span class="p">)</span>
+    <span class="c1">// Must manually reconnect!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Server-side (using flask-socketio or similar)
+</span><span class="kn">from</span> <span class="nn">flask_socketio</span> <span class="kn">import</span> <span class="n">SocketIO</span>
+
+<span class="n">socketio</span> <span class="o">=</span> <span class="n">SocketIO</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">socketio</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">'message'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handle_message</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Received:'</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">socketio</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="s">'response'</span><span class="p">,</span> <span class="p">{</span><span class="s">'msg'</span><span class="p">:</span> <span class="s">'Hello from server'</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>When to use WebSockets over SSE:</strong></p>
+<ul>
+  <li>Chat applications (need two-way)</li>
+  <li>Online gaming</li>
+  <li>Collaborative editing (Google Docs-like)</li>
+  <li>When client needs to send frequent messages to server</li>
+</ul>
+
+<p><strong>When SSE is better than WebSockets:</strong></p>
+<ul>
+  <li>Notifications (one-way push)</li>
+  <li>Live feeds, dashboards</li>
+  <li>When simplicity matters</li>
+  <li>When auto-reconnect is important</li>
+</ul>
+
+<hr />
+
+<h3 id="webhooks">Webhooks</h3>
+
+<p><strong>What:</strong> Server-to-server notification. When an event happens on Service A, it makes an HTTP POST to Service B’s URL.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Service A (GitHub)              Your Server
+     |                              |
+     | (someone pushes code)        |
+     |--- POST /webhook -----------&gt;|  (HTTP callback)
+     |    {event: "push",           |
+     |     repo: "myapp"}           |
+     |&lt;-- 200 OK ------------------|
+</code></pre></div></div>
+
+<p><strong>Webhooks are NOT related to the browser at all.</strong> They are server-to-server.</p>
+
+<p><strong>Example: GitHub Webhook</strong></p>
+
+<p>When someone pushes to your repo, GitHub POSTs to your server:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/webhook/github'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">github_webhook</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'X-GitHub-Event'</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s">'push'</span><span class="p">:</span>
+        <span class="n">branch</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'ref'</span><span class="p">]</span>
+        <span class="n">pusher</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'pusher'</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">pusher</span><span class="si">}</span><span class="s"> pushed to </span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        
+        <span class="c1"># You could push this to clients via SSE!
+</span>        <span class="n">sse</span><span class="p">.</span><span class="n">publish</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">pusher</span><span class="si">}</span><span class="s"> pushed to </span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s">"</span><span class="p">},</span> <span class="nb">type</span><span class="o">=</span><span class="s">'notify'</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">"ok"</span><span class="p">),</span> <span class="mi">200</span>
+</code></pre></div></div>
+
+<p><strong>Combining Webhooks + SSE:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GitHub ──webhook POST──&gt; Your Flask Server ──SSE push──&gt; Browser
+</code></pre></div></div>
+
+<p>This is a powerful pattern! External services notify your server via webhooks, and you push those updates to browser clients via SSE.</p>
+
+<p><strong>Common Webhook providers:</strong></p>
+<ul>
+  <li>GitHub (repo events)</li>
+  <li>Stripe (payment events)</li>
+  <li>Razorpay (payment events)</li>
+  <li>Slack (message events)</li>
+  <li>Twilio (SMS events)</li>
+</ul>
+
+<hr />
+
+<h3 id="visual-summary">Visual Summary</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POLLING:      Client ──asks──&gt; Server   (repeated, wasteful)
+LONG POLL:    Client ──waits──&gt; Server  (held open, one response)
+SSE:          Client &lt;──stream── Server (one-way, auto-reconnect)
+WEBSOCKET:    Client &lt;══════&gt; Server    (two-way, full-duplex)
+WEBHOOK:      Server A ──POST──&gt; Server B (server-to-server callback)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-json-data-exchange-between-frontend-and-backend">9. JSON Data Exchange Between Frontend and Backend</h2>
+
+<p>When frontend and backend talk through APIs, data travels as <strong>plain text</strong> over HTTP. JSON (JavaScript Object Notation) is the standard format used. But both sides need to <strong>convert</strong> between their native data types and JSON text. This is where <code class="language-plaintext highlighter-rouge">JSON.stringify()</code>, <code class="language-plaintext highlighter-rouge">JSON.parse()</code>, <code class="language-plaintext highlighter-rouge">jsonify()</code>, and <code class="language-plaintext highlighter-rouge">request.json</code> come in.</p>
+
+<h3 id="the-core-idea">The Core Idea</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Frontend (JavaScript)                    Network (HTTP)                    Backend (Flask/Python)
+                                                    
+ JS Object/Dict                          JSON String                       Python Dict
+ {message: "Hello"}  ──stringify──&gt;  '{"message": "Hello"}'  ──request──&gt;  {"message": "Hello"}
+                                                    
+ JS Object/Dict                          JSON String                       Python Dict
+ {message: "Hello"}  &lt;──parse────  '{"message": "Hello"}'  &lt;──jsonify──  {"message": "Hello"}
+</code></pre></div></div>
+
+<p><strong>Key rule:</strong> Data on the wire (HTTP body) is always a <strong>JSON string</strong> (plain text). Both sides must convert to/from their native objects.</p>
+
+<hr />
+
+<h3 id="what-is-a-json-string">What is a JSON String?</h3>
+
+<p>A JSON string is just <strong>plain text</strong> that follows JSON formatting rules.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'{"message": "Hello", "count": 5}'
+</code></pre></div></div>
+
+<p>This is NOT a JavaScript object or a Python dict. It is a <strong>string</strong> — a sequence of characters. You cannot do <code class="language-plaintext highlighter-rouge">.message</code> or <code class="language-plaintext highlighter-rouge">["message"]</code> on it directly. You must <strong>parse</strong> it first.</p>
+
+<hr />
+
+<h3 id="frontend-side-javascript">Frontend Side (JavaScript)</h3>
+
+<h4 id="jsonstringify--object--json-string"><code class="language-plaintext highlighter-rouge">JSON.stringify()</code> — Object → JSON String</h4>
+
+<p>Converts a JavaScript object into a JSON string. Used when <strong>sending data to the server</strong>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">,</span> <span class="na">count</span><span class="p">:</span> <span class="mi">5</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span><span class="p">);</span>         <span class="c1">// "object"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">jsonString</span><span class="p">);</span>  <span class="c1">// "string"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span>         <span class="c1">// '{"message":"Hello","count":5}'</span>
+</code></pre></div></div>
+
+<p><strong>Where you use it:</strong> Inside <code class="language-plaintext highlighter-rouge">fetch()</code> when sending POST/PUT requests.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/data</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span> <span class="p">})</span>   <span class="c1">// Must stringify!</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>If you forget <code class="language-plaintext highlighter-rouge">JSON.stringify()</code> and pass the raw object, the server receives <code class="language-plaintext highlighter-rouge">[object Object]</code> as text — which is useless.</p>
+
+<h4 id="jsonparse--json-string--object"><code class="language-plaintext highlighter-rouge">JSON.parse()</code> — JSON String → Object</h4>
+
+<p>Converts a JSON string back into a JavaScript object. Used when <strong>receiving data from the server</strong>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{"message":"Hello","count":5}</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">jsonString</span><span class="p">);</span>  <span class="c1">// "string"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span><span class="p">);</span>         <span class="c1">// "object"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>        <span class="c1">// "Hello"</span>
+</code></pre></div></div>
+
+<p><strong>Where you use it:</strong> After receiving a response, or inside SSE event listeners.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// After fetch</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/data</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>       <span class="c1">// res.json() internally does JSON.parse()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>  <span class="c1">// Now it's a JS object, can access properties</span>
+    <span class="p">})</span>
+
+<span class="c1">// Inside SSE listener</span>
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">notify</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>  <span class="c1">// event.data is a JSON string</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>            <span class="c1">// Now it's a JS object</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">res.json()</code> in fetch is a shortcut — it reads the response body and runs <code class="language-plaintext highlighter-rouge">JSON.parse()</code> on it automatically.</p>
+
+<hr />
+
+<h3 id="backend-side-flaskpython">Backend Side (Flask/Python)</h3>
+
+<h4 id="jsonify--python-dict--json-response"><code class="language-plaintext highlighter-rouge">jsonify()</code> — Python Dict → JSON Response</h4>
+
+<p>Converts a Python dict into a proper HTTP response with JSON body and correct headers.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">jsonify</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello"</span><span class="p">,</span> <span class="s">"count"</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>   <span class="c1"># Python dict
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>                         <span class="c1"># Converts to JSON response
+</span></code></pre></div></div>
+
+<p>What <code class="language-plaintext highlighter-rouge">jsonify()</code> does internally:</p>
+<ol>
+  <li>Takes the Python dict</li>
+  <li>Converts it to a JSON string using <code class="language-plaintext highlighter-rouge">json.dumps()</code> (Python’s built-in serializer)</li>
+  <li>Wraps it in a Flask <code class="language-plaintext highlighter-rouge">Response</code> object</li>
+  <li>Sets <code class="language-plaintext highlighter-rouge">Content-Type: application/json</code> header automatically</li>
+</ol>
+
+<p>So when the frontend receives this response, it gets:</p>
+<ul>
+  <li>Body: <code class="language-plaintext highlighter-rouge">'{"message": "Hello", "count": 5}'</code> (JSON string)</li>
+  <li>Header: <code class="language-plaintext highlighter-rouge">Content-Type: application/json</code></li>
+</ul>
+
+<h4 id="jsonify-vs-jsondumps"><code class="language-plaintext highlighter-rouge">jsonify()</code> vs <code class="language-plaintext highlighter-rouge">json.dumps()</code></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">jsonify</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello"</span><span class="p">}</span>
+
+<span class="c1"># json.dumps() — just converts dict to JSON string (plain text)
+</span><span class="n">json_string</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>       <span class="c1"># '{"message": "Hello"}'
+# type: str
+</span>
+<span class="c1"># jsonify() — converts dict to a full Flask Response with JSON content type
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>             <span class="c1"># Response object
+# type: flask.wrappers.Response
+# Content-Type header is set to application/json
+</span></code></pre></div></div>
+
+<p>Use <code class="language-plaintext highlighter-rouge">jsonify()</code> when returning API responses. Use <code class="language-plaintext highlighter-rouge">json.dumps()</code> when you just need the string (e.g., inside SSE event data).</p>
+
+<h4 id="requestjson--reading-json-from-incoming-request"><code class="language-plaintext highlighter-rouge">request.json</code> — Reading JSON from Incoming Request</h4>
+
+<p>When the frontend sends JSON via POST, Flask can read it with <code class="language-plaintext highlighter-rouge">request.json</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/send_notification'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">notify</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>                <span class="c1"># Parses JSON body into Python dict
+</span>    <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">"success"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>What <code class="language-plaintext highlighter-rouge">request.json</code> does internally:</p>
+<ol>
+  <li>Reads the raw request body (which is a JSON string)</li>
+  <li>Runs <code class="language-plaintext highlighter-rouge">json.loads()</code> on it (Python’s built-in deserializer)</li>
+  <li>Returns a Python dict</li>
+</ol>
+
+<p>This only works if the client sent <code class="language-plaintext highlighter-rouge">Content-Type: application/json</code> header.</p>
+
+<hr />
+
+<h3 id="complete-flow-frontend-sends-backend-receives-backend-responds-frontend-reads">Complete Flow: Frontend Sends, Backend Receives, Backend Responds, Frontend Reads</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Step 1: Frontend prepares data
+         JS Object: { message: "Hello" }
+                |
+                | JSON.stringify()
+                v
+         JSON String: '{"message":"Hello"}'
+                |
+                | fetch() sends this as HTTP body
+                v
+
+Step 2: Backend receives data
+         Raw HTTP body: '{"message":"Hello"}'  (JSON string)
+                |
+                | request.json (internally json.loads())
+                v
+         Python Dict: {"message": "Hello"}
+                |
+                | process, validate, save to DB, etc.
+                v
+
+Step 3: Backend sends response
+         Python Dict: {"status": "success", "message": "Saved"}
+                |
+                | jsonify() (internally json.dumps() + Response wrapper)
+                v
+         HTTP Response body: '{"status":"success","message":"Saved"}'
+                |
+                | sent back to frontend
+                v
+
+Step 4: Frontend reads response
+         Raw response body: '{"status":"success","message":"Saved"}'
+                |
+                | res.json() (internally JSON.parse())
+                v
+         JS Object: { status: "success", message: "Saved" }
+         Now you can do: data.status, data.message
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="sse-specific-json-flow">SSE-Specific JSON Flow</h3>
+
+<p>In SSE, the server pushes data as a string inside the <code class="language-plaintext highlighter-rouge">data:</code> field of the event stream.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Server side — flask-sse
+</span><span class="n">sse</span><span class="p">.</span><span class="n">publish</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello"</span><span class="p">},</span> <span class="nb">type</span><span class="o">=</span><span class="s">'notify'</span><span class="p">)</span>
+<span class="c1"># Internally, flask-sse does json.dumps({"message": "Hello"})
+# So the event stream looks like:
+#   event: notify
+#   data: {"message": "Hello"}
+</span></code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Client side — EventSource</span>
+<span class="nx">eventSource</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">notify</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>        <span class="c1">// "string"  ← It's a JSON string!</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>               <span class="c1">// '{"message":"Hello"}'</span>
+
+    <span class="kd">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// Parse it into JS object</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parsed</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>           <span class="c1">// "Hello"</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">event.data</code> is ALWAYS a string. If the server sends JSON, you MUST <code class="language-plaintext highlighter-rouge">JSON.parse()</code> it on the client.</p>
+
+<hr />
+
+<h3 id="quick-reference-table">Quick Reference Table</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>Where</th>
+      <th>Direction</th>
+      <th>Input</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">JSON.stringify()</code></td>
+      <td>JavaScript (Frontend)</td>
+      <td>Object → String</td>
+      <td>JS Object</td>
+      <td>JSON String</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">JSON.parse()</code></td>
+      <td>JavaScript (Frontend)</td>
+      <td>String → Object</td>
+      <td>JSON String</td>
+      <td>JS Object</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res.json()</code></td>
+      <td>JavaScript (Frontend)</td>
+      <td>String → Object</td>
+      <td>Response body</td>
+      <td>JS Object (shortcut for JSON.parse)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">jsonify()</code></td>
+      <td>Flask (Backend)</td>
+      <td>Dict → Response</td>
+      <td>Python Dict</td>
+      <td>Flask Response (JSON body + headers)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">json.dumps()</code></td>
+      <td>Python (Backend)</td>
+      <td>Dict → String</td>
+      <td>Python Dict</td>
+      <td>JSON String (plain text)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">json.loads()</code></td>
+      <td>Python (Backend)</td>
+      <td>String → Dict</td>
+      <td>JSON String</td>
+      <td>Python Dict</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">request.json</code></td>
+      <td>Flask (Backend)</td>
+      <td>String → Dict</td>
+      <td>Request body</td>
+      <td>Python Dict (shortcut for json.loads)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="common-mistakes">Common Mistakes</h3>
+
+<ol>
+  <li><strong>Forgetting <code class="language-plaintext highlighter-rouge">JSON.stringify()</code> in fetch body</strong>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WRONG — sends "[object Object]" as text</span>
+<span class="nx">body</span><span class="p">:</span> <span class="p">{</span> <span class="nl">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span> <span class="p">}</span>
+
+<span class="c1">// CORRECT</span>
+<span class="nl">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Forgetting <code class="language-plaintext highlighter-rouge">Content-Type</code> header</strong>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WRONG — Flask won't parse request.json without this</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span> <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">})</span>
+
+<span class="c1">// CORRECT</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Using <code class="language-plaintext highlighter-rouge">event.data</code> without parsing in SSE</strong>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WRONG — event.data is a string, not an object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>   <span class="c1">// undefined</span>
+
+<span class="c1">// CORRECT</span>
+<span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>         <span class="c1">// "Hello"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Confusing <code class="language-plaintext highlighter-rouge">jsonify()</code> with <code class="language-plaintext highlighter-rouge">json.dumps()</code></strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># WRONG for API response — returns plain text, no JSON content-type
+</span><span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"status"</span><span class="p">:</span> <span class="s">"ok"</span><span class="p">})</span>
+
+<span class="c1"># CORRECT for API response
+</span><span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">"ok"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="quick-revision-cheat-sheet">Quick Revision Cheat Sheet</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSE = Server pushes to client (one-way, HTTP, auto-reconnect)
+WebSocket = Both can talk (two-way, ws://, manual reconnect)
+Polling = Client keeps asking (wasteful, simple)
+Long Polling = Client asks, server waits to reply (less waste)
+Webhook = Server-to-server callback (HTTP POST on event)
+
+flask-sse = Blueprint + Redis Pub/Sub (easy but needs Redis)
+Pure Flask SSE = Response generator + queue (no extras needed)
+
+Client sends data via regular POST → Server pushes via SSE
+EventSource API = Browser's built-in SSE client
+Content-Type: text/event-stream = What makes it SSE
+
+Format:
+    event: notify\n
+    data: {"message": "hello"}\n
+    \n
+
+JSON Flow:
+    Frontend sends:  JSON.stringify(obj) → JSON string → fetch body
+    Backend reads:   request.json → Python dict (json.loads internally)
+    Backend sends:   jsonify(dict) → JSON response (json.dumps + headers)
+    Frontend reads:  res.json() → JS object (JSON.parse internally)
+    SSE data:        event.data is always a string → JSON.parse(event.data)
+</code></pre></div></div>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

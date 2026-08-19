@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/SQLAlchemy_notes.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/SQLAlchemy_notes.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/week-5/SQLAlchemy_notes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>When working with <strong>Flask-SQLAlchemy</strong> in a Flask web application, it’s crucial to understand how to perform queries and handle errors that may arise during database interactions. Here is a detailed set of notes on <strong>Flask-SQLAlchemy</strong> queries and how to implement <strong>error handling</strong> effectively:</p>
+
+<hr />
+
+<h3 id="1-setting-up-flask-sqlalchemy"><strong>1. Setting up Flask-SQLAlchemy:</strong></h3>
+<p>Before performing queries and handling errors, you need to set up <strong>Flask-SQLAlchemy</strong> in your Flask application:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///example.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SQLALCHEMY_DATABASE_URI</code>: Specifies the database URL (in this case, SQLite).</li>
+  <li><code class="language-plaintext highlighter-rouge">SQLALCHEMY_TRACK_MODIFICATIONS</code>: Disables tracking modifications for better performance.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-defining-models"><strong>2. Defining Models:</strong></h3>
+<p>Define a database model (table) using classes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">'&lt;User </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">&gt;'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">db.Model</code>: Base class for all models.</li>
+  <li><code class="language-plaintext highlighter-rouge">db.Column</code>: Defines a column in the table with attributes like <code class="language-plaintext highlighter-rouge">primary_key</code>, <code class="language-plaintext highlighter-rouge">unique</code>, and <code class="language-plaintext highlighter-rouge">nullable</code>.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">db.create_all()</code> to create tables based on models:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+  <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-performing-queries"><strong>3. Performing Queries:</strong></h3>
+<p><strong>Flask-SQLAlchemy</strong> supports various types of queries:</p>
+<ul>
+  <li><strong>Creating a new record</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'john@example.com'</span><span class="p">)</span>
+ <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+ <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">db.session.add()</code>: Adds the record to the session.</li>
+      <li><code class="language-plaintext highlighter-rouge">db.session.commit()</code>: Commits the transaction to the database.</li>
+    </ul>
+  </li>
+  <li><strong>Reading records</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># Get a user by primary key
+</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   
+ <span class="c1"># Get a user by filter
+</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+   
+ <span class="c1"># Get all users
+</span> <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Updating a record</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+ <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">'new_email@example.com'</span>
+ <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Deleting a record</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+ <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+ <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-error-handling-in-flask-sqlalchemy"><strong>4. Error Handling in Flask-SQLAlchemy:</strong></h3>
+<p>Handling errors during database operations is crucial for ensuring that your application can recover gracefully. Common errors include <code class="language-plaintext highlighter-rouge">IntegrityError</code> (e.g., when attempting to insert duplicate data) and <code class="language-plaintext highlighter-rouge">OperationalError</code> (e.g., when there’s a problem connecting to the database).</p>
+
+<h4 id="using-try-except-blocks"><strong>Using <code class="language-plaintext highlighter-rouge">try-except</code> Blocks:</strong></h4>
+<p>Wrap database operations in <code class="language-plaintext highlighter-rouge">try-except</code> blocks to catch and handle specific exceptions:</p>
+
+<ul>
+  <li><strong>Example 1: Handling <code class="language-plaintext highlighter-rouge">IntegrityError</code> when adding a new user:</strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+   
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'john@example.com'</span><span class="p">)</span>
+     <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+     <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+ <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+     <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">rollback</span><span class="p">()</span>
+     <span class="k">print</span><span class="p">(</span><span class="s">"Error: Duplicate entry or constraint violation."</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">db.session.rollback()</code>: Reverts the session to the state before the transaction began, which is important after an error to avoid invalid session states.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">IntegrityError</code></strong>: Catches issues like unique constraint violations (e.g., trying to add a user with a username or email that already exists).</li>
+    </ul>
+  </li>
+  <li><strong>Example 2: Handling <code class="language-plaintext highlighter-rouge">OperationalError</code> when connecting to the database:</strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">OperationalError</span>
+   
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+ <span class="k">except</span> <span class="n">OperationalError</span><span class="p">:</span>
+     <span class="k">print</span><span class="p">(</span><span class="s">"Error: Unable to connect to the database."</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="handling-multiple-exceptions"><strong>Handling Multiple Exceptions:</strong></h4>
+<ul>
+  <li>Handle multiple types of exceptions in one <code class="language-plaintext highlighter-rouge">try-except</code> block:
+   ```python
+   from sqlalchemy.exc import IntegrityError, OperationalError</li>
+</ul>
+
+<p>try:
+       new_user = User(username=’jane_doe’, email=’jane@example.com’)
+       db.session.add(new_user)
+       db.session.commit()
+   except IntegrityError:
+       db.session.rollback()
+       print(“Error: Duplicate username or email.”)
+   except OperationalError:
+       print(“Error: Database connection issue.”)
+   except Exception as e:
+       print(f”An unexpected error occurred: {str(e)}”)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#### **Using Flask’s `@app.errorhandler` for Global Error Handling:**
+   - You can handle exceptions globally in a Flask app using `@app.errorhandler`:
+   ```python
+   from flask import jsonify
+   from sqlalchemy.exc import IntegrityError
+
+   @app.errorhandler(IntegrityError)
+   def handle_integrity_error(e):
+       db.session.rollback()
+       return jsonify(error="Duplicate entry detected"), 400
+</code></pre></div></div>
+
+<ul>
+  <li>This method can return a custom error message to the client and ensures that the session is rolled back properly.</li>
+</ul>
+
+<hr />
+
+<h3 id="5-common-sqlalchemy-exceptions"><strong>5. Common SQLAlchemy Exceptions:</strong></h3>
+<p>Here are some frequently encountered exceptions when working with SQLAlchemy:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">IntegrityError</code></strong>: Raised for constraint violations (e.g., unique constraints, foreign keys).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OperationalError</code></strong>: Raised for errors like database connection issues or table not found.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">InvalidRequestError</code></strong>: Raised when a request is not valid, such as when trying to use an invalid query or accessing a closed session.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">FlushError</code></strong>: Raised when there are issues with flushing data to the database, typically during <code class="language-plaintext highlighter-rouge">db.session.commit()</code>.</li>
+</ul>
+
+<h3 id="6-best-practices-for-error-handling-with-flask-sqlalchemy"><strong>6. Best Practices for Error Handling with Flask-SQLAlchemy:</strong></h3>
+
+<ul>
+  <li><strong>Always Rollback After an Error</strong>: Use <code class="language-plaintext highlighter-rouge">db.session.rollback()</code> to ensure that the session state is clean after a failed transaction.</li>
+  <li><strong>Log Errors for Debugging</strong>: Use logging to record errors and understand the cause of issues:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">logging</span>
+ <span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">'error.log'</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">ERROR</span><span class="p">)</span>
+   
+ <span class="k">try</span><span class="p">:</span>
+     <span class="c1"># Some database operation
+</span> <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use Specific Exception Classes</strong>: Catch specific exceptions like <code class="language-plaintext highlighter-rouge">IntegrityError</code> to handle known issues, rather than using a generic <code class="language-plaintext highlighter-rouge">Exception</code> class.</li>
+  <li><strong>Graceful User Feedback</strong>: If handling exceptions in routes, ensure that the user receives friendly and clear feedback about what went wrong, especially for input validation errors.</li>
+</ul>
+
+<hr />
+
+<h3 id="7-example-complete-code-with-error-handling"><strong>7. Example: Complete Code with Error Handling:</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///example.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/add_user'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_user</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'username'</span><span class="p">],</span> <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'email'</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s">"User added successfully"</span><span class="p">),</span> <span class="mi">201</span>
+    <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="s">"Username or email already exists"</span><span class="p">),</span> <span class="mi">400</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)),</span> <span class="mi">500</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This example demonstrates adding a user through a POST request with error handling.</li>
+  <li>It handles <code class="language-plaintext highlighter-rouge">IntegrityError</code> for duplicate usernames or emails and provides a custom error message.</li>
+  <li>Other general exceptions return a 500 status code with the error message.</li>
+</ul>
+
+<hr />
+
+<p>The <code class="language-plaintext highlighter-rouge">first_or_404</code> method is a handy feature provided by <strong>Flask-SQLAlchemy</strong> for handling queries when you want to return a single result or automatically raise a <code class="language-plaintext highlighter-rouge">404 Not Found</code> error if the query does not yield any results. This is especially useful when building APIs where you want to ensure a resource exists before proceeding with further actions.</p>
+
+<h3 id="8-using-first_or_404-with-flask-sqlalchemy"><strong>8. Using <code class="language-plaintext highlighter-rouge">first_or_404</code> with Flask-SQLAlchemy:</strong></h3>
+
+<ul>
+  <li><strong>Purpose</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">first_or_404</code> is a method used when querying for a single record, ensuring that if no result is found, a <code class="language-plaintext highlighter-rouge">404 Not Found</code> error is automatically raised.</li>
+      <li>It simplifies the process of handling missing resources by combining the query and error handling in a single step.</li>
+    </ul>
+  </li>
+  <li><strong>Syntax</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">).</span><span class="n">first_or_404</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>This will attempt to retrieve the first <code class="language-plaintext highlighter-rouge">User</code> with the username <code class="language-plaintext highlighter-rouge">'john_doe'</code>.</li>
+      <li>If no such user exists, it will raise a <code class="language-plaintext highlighter-rouge">404 Not Found</code> error automatically.</li>
+    </ul>
+  </li>
+  <li><strong>Use Case</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">first_or_404</code> is particularly useful in <strong>RESTful APIs</strong> when you need to retrieve a specific record and want to return a <code class="language-plaintext highlighter-rouge">404</code> response if it doesn’t exist.</li>
+    </ul>
+  </li>
+  <li><strong>Example</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+  
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///example.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+  
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+  
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;int:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="c1"># Retrieve user by ID, or return a 404 error if not found.
+</span>    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="n">first_or_404</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>In this example, if a user with the specified <code class="language-plaintext highlighter-rouge">user_id</code> does not exist, Flask will automatically return a <code class="language-plaintext highlighter-rouge">404</code> response with a default error message.</li>
+      <li>This eliminates the need for manual checking and error handling:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">}),</span> <span class="mi">404</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Custom Error Handling with <code class="language-plaintext highlighter-rouge">first_or_404</code></strong>:
+    <ul>
+      <li>While <code class="language-plaintext highlighter-rouge">first_or_404</code> provides a simple way to raise a <code class="language-plaintext highlighter-rouge">404</code>, you can customize the error response by catching the <code class="language-plaintext highlighter-rouge">404</code> using Flask’s <code class="language-plaintext highlighter-rouge">@app.errorhandler</code>:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">abort</span>
+    
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;int:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="n">first_or_404</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'User not found'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+    
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handle_404</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">404</span>
+</code></pre></div>        </div>
+      </li>
+      <li>In this example, if a user is not found, <code class="language-plaintext highlighter-rouge">first_or_404</code> will return a <code class="language-plaintext highlighter-rouge">404</code> response with the message <code class="language-plaintext highlighter-rouge">'User not found'</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="summary-of-first_or_404"><strong>Summary of <code class="language-plaintext highlighter-rouge">first_or_404</code>:</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Feature</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Purpose</strong></td>
+      <td>Retrieve a single record or automatically raise a <code class="language-plaintext highlighter-rouge">404 Not Found</code> error if no result is found.</td>
+    </tr>
+    <tr>
+      <td><strong>Use Case</strong></td>
+      <td>Useful in RESTful APIs for simplifying retrieval of a resource with automatic error handling.</td>
+    </tr>
+    <tr>
+      <td><strong>Syntax</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">User.query.filter_by(attribute=value).first_or_404()</code></td>
+    </tr>
+    <tr>
+      <td><strong>Custom Error</strong></td>
+      <td>You can provide a custom <code class="language-plaintext highlighter-rouge">description</code> for the error message or handle it with <code class="language-plaintext highlighter-rouge">@app.errorhandler</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="9-how-first_or_404-fits-into-error-handling"><strong>9. How <code class="language-plaintext highlighter-rouge">first_or_404</code> Fits into Error Handling:</strong></h3>
+
+<ul>
+  <li><strong>Advantages</strong>:
+    <ul>
+      <li>It makes the code cleaner by combining querying and error handling.</li>
+      <li>Reduces boilerplate code needed for checking if a resource exists.</li>
+      <li>Integrates seamlessly with Flask’s built-in error handling mechanisms.</li>
+    </ul>
+  </li>
+  <li><strong>Combining with <code class="language-plaintext highlighter-rouge">try-except</code></strong>:
+    <ul>
+      <li>Although <code class="language-plaintext highlighter-rouge">first_or_404</code> simplifies a lot of error handling, you can still use <code class="language-plaintext highlighter-rouge">try-except</code> blocks if you want to catch the <code class="language-plaintext highlighter-rouge">404</code> for additional custom logic:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">SQLAlchemyError</span>
+    
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;int:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">).</span><span class="n">first_or_404</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">500</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="final-notes-summary"><strong>Final Notes Summary:</strong></h3>
+
+<ol>
+  <li><strong>Queries</strong>:
+    <ul>
+      <li>Add, retrieve, update, and delete records.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">first_or_404</code> for simple retrievals with automatic <code class="language-plaintext highlighter-rouge">404</code> handling.</li>
+    </ul>
+  </li>
+  <li><strong>Error Handling</strong>:
+    <ul>
+      <li>Use <code class="language-plaintext highlighter-rouge">try-except</code> blocks for robust error handling.</li>
+      <li>Roll back transactions with <code class="language-plaintext highlighter-rouge">db.session.rollback()</code> to avoid invalid states.</li>
+      <li>Handle specific SQLAlchemy exceptions like <code class="language-plaintext highlighter-rouge">IntegrityError</code> and <code class="language-plaintext highlighter-rouge">OperationalError</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Custom Error Messages</strong>:
+    <ul>
+      <li>Use <code class="language-plaintext highlighter-rouge">@app.errorhandler</code> for global error handling and to customize error responses.</li>
+    </ul>
+  </li>
+  <li><strong>Example with <code class="language-plaintext highlighter-rouge">first_or_404</code></strong>:
+    <ul>
+      <li>Simplifies API development by reducing manual checks for resource existence.</li>
+      <li>Ensures cleaner and more readable code when working with resource retrieval.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>By understanding and using <code class="language-plaintext highlighter-rouge">first_or_404</code> along with other error handling practices, you can make your Flask-SQLAlchemy application more robust and user-friendly.</p>
+
+<p>With <strong>Flask-SQLAlchemy</strong>, queries are straightforward, but proper error handling is key to a robust application. Using <code class="language-plaintext highlighter-rouge">try-except</code> blocks, rolling back sessions, and providing clear feedback ensure that your app can gracefully handle issues that may arise during database operations.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

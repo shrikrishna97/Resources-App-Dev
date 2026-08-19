@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <title>CORS and Cookie </title>
+</head>
+<body>
+    <div id="app">
+        <h1>CORS and Cookie Example</h1>
+        <button @click="setCookie">Set Cookie</button>
+        <button @click="getCookie">Get Cookie</button>
+        <p>{{ message }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello, Vue!'
+            },
+            methods:{
+                async setCookie() {
+                    try {
+                        const res = await fetch('http://127.0.0.1:5000/set-cookie', {
+                            method: 'GET',
+                            credentials: 'include', // include cookies
+                        });
+                        const data = await res.json();
+                        this.message = data.message;
+                    } catch (error) {
+                        console.error('Error:', error);
+                        this.message = 'Error setting cookie!';
+                    }
+                },
+                async getCookie() {
+                    try {
+                        const res = await fetch('http://127.0.0.1:5000/get-cookie', {
+                            method: 'GET',
+                            credentials: 'include', // include cookies
+                        });
+                        const data = await res.json();
+                        this.message = `Cookie value: ${data.token}`;
+                    } catch (error) {
+                        console.error('Error:', error);
+                        this.message = 'Error getting cookie!';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

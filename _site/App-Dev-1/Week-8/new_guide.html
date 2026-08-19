@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/new_guide.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/new_guide.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/new_guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="understanding-scale-up-vs-scale-out">Understanding Scale Up vs Scale Out</h1>
+
+<p><em>Choosing the Right Strategy for System Growth</em></p>
+
+<hr />
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<p>As web applications grow in popularity and usage, they often hit performance bottlenecks. At this point, engineers must decide between two common strategies for scaling infrastructure: <strong>Scale Up</strong> and <strong>Scale Out</strong>. While both aim to improve system capacity and reliability, the choice depends on the nature of the workload, system constraints, and growth expectations.</p>
+
+<hr />
+
+<h2 id="2-what-is-scale-up">2. What is Scale Up?</h2>
+
+<p><strong>Scale Up (Vertical Scaling)</strong> means adding more power to a <strong>single machine</strong>.</p>
+
+<ul>
+  <li>More RAM</li>
+  <li>Faster CPUs</li>
+  <li>Larger disks</li>
+  <li>Upgraded network cards</li>
+</ul>
+
+<p>Think of it as giving your server a high-end gym membership and all the protein shakes it can consume. It’s still one server, just significantly stronger.</p>
+
+<h3 id="analogy">Analogy:</h3>
+
+<p>Imagine a delivery person using a scooter. When orders increase, they switch to a motorbike. Still one person making all deliveries — just faster.</p>
+
+<h3 id="pros">Pros:</h3>
+
+<ul>
+  <li>Simpler to manage (one machine, one environment)</li>
+  <li>No need for distributed coordination</li>
+  <li>Faster results for many use cases</li>
+</ul>
+
+<h3 id="cons">Cons:</h3>
+
+<ul>
+  <li>There’s always a hardware limit (you can’t scale up forever)</li>
+  <li>More expensive per performance unit at the high end</li>
+  <li>Single point of failure remains</li>
+</ul>
+
+<hr />
+
+<h2 id="3-what-is-scale-out">3. What is Scale Out?</h2>
+
+<p><strong>Scale Out (Horizontal Scaling)</strong> means adding <strong>more machines</strong>, each handling part of the load.</p>
+
+<ul>
+  <li>Instead of a single powerful server, use many average ones</li>
+  <li>Introduce load balancing to distribute requests</li>
+  <li>Data or traffic is split across instances</li>
+</ul>
+
+<h3 id="analogy-1">Analogy:</h3>
+
+<p>Back to the delivery example — instead of upgrading your scooter, you hire more delivery people. Each takes a few orders. You now have a team instead of one superhero.</p>
+
+<h3 id="pros-1">Pros:</h3>
+
+<ul>
+  <li>Easier to grow incrementally (just add more servers)</li>
+  <li>High availability and fault tolerance</li>
+  <li>Ideal for distributed and stateless applications</li>
+</ul>
+
+<h3 id="cons-1">Cons:</h3>
+
+<ul>
+  <li>More complexity (networking, data consistency, synchronization)</li>
+  <li>Load balancing setup required</li>
+  <li>Higher development and maintenance effort</li>
+</ul>
+
+<hr />
+
+<h2 id="4-choosing-the-right-strategy">4. Choosing the Right Strategy</h2>
+
+<h3 id="use-scale-up-when">Use <strong>Scale Up</strong> when:</h3>
+
+<ul>
+  <li>Your system has not maxed out its current resources</li>
+  <li>The application is simple and doesn’t need distribution</li>
+  <li>Upgrading hardware is cost-effective and quick</li>
+</ul>
+
+<h3 id="use-scale-out-when">Use <strong>Scale Out</strong> when:</h3>
+
+<ul>
+  <li>One machine can’t handle the load even when upgraded</li>
+  <li>You need redundancy and fault tolerance</li>
+  <li>The application design supports distribution (stateless or partitioned state)</li>
+</ul>
+
+<hr />
+
+<h2 id="5-a-light-hearted-illustration">5. A Light-hearted Illustration</h2>
+
+<p><strong>The Bakery Example</strong></p>
+
+<p>You run a bakery that serves 100 customers an hour.</p>
+
+<ul>
+  <li>
+    <p><strong>Scale Up</strong>: You buy a faster oven and learn to bake faster. Still just you. Efficient until you burn out or run out of space.</p>
+  </li>
+  <li>
+    <p><strong>Scale Out</strong>: You open two more branches and hire more bakers. Each handles part of the city. Coordination is harder, but now you can serve thousands.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="6-conclusion">6. Conclusion</h2>
+
+<p>Both scaling strategies serve important roles. Scaling <strong>up</strong> is often the first step — it’s cheaper and easier until physical limits are reached. Scaling <strong>out</strong> comes next, especially for high-traffic, high-availability systems.</p>
+
+<p>The key is to <strong>measure</strong> where the bottleneck lies — CPU, RAM, network, disk, or something else — and make decisions based on actual limits rather than assumptions.</p>
+
+<hr />
+
+<h1 id="understanding-server-side-vs-client-side-rendering">Understanding Server-Side vs Client-Side Rendering</h1>
+
+<p><strong>Why Jinja2 Server-Side Rendering Has a Key Advantage</strong></p>
+
+<hr />
+
+<h2 id="1-background">1. Background</h2>
+
+<p>In modern web applications, rendering HTML content for users can happen in two main places:</p>
+
+<ul>
+  <li><strong>Server-Side Rendering (SSR)</strong> – HTML is generated on the server (e.g., using Jinja2 in Flask), and sent as a complete page to the browser.</li>
+  <li><strong>Client-Side Rendering (CSR)</strong> – A basic HTML shell is loaded first, and content is populated later using JavaScript and data (typically JSON) fetched from APIs.</li>
+</ul>
+
+<p>Each method has its own strengths and trade-offs.</p>
+
+<hr />
+
+<h2 id="2-jinja2-a-server-side-rendering-engine">2. Jinja2: A Server-Side Rendering Engine</h2>
+
+<p><strong>Jinja2</strong> is a templating engine used in Python web frameworks like Flask. It generates complete HTML pages on the <strong>server</strong> before sending them to the client.</p>
+
+<h3 id="key-features">Key Features:</h3>
+
+<ul>
+  <li>Templates written in HTML + control logic (like <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">for</code>, etc.)</li>
+  <li>Data is injected into templates <strong>on the server</strong></li>
+  <li>User gets a <strong>fully-rendered page</strong> on first load</li>
+</ul>
+
+<hr />
+
+<h2 id="3-main-advantage-of-server-side-rendering-ssr">3. Main Advantage of Server-Side Rendering (SSR)</h2>
+
+<blockquote>
+  <p><strong>Faster initial page load and improved Search Engine Optimization (SEO)</strong></p>
+</blockquote>
+
+<h3 id="why">Why?</h3>
+
+<ul>
+  <li>The browser receives a fully-formed page immediately, so there’s no waiting for JavaScript to fetch data and fill in templates.</li>
+  <li>Since search engine bots primarily read HTML (and may not run JavaScript efficiently), server-rendered content is more likely to be indexed correctly.</li>
+  <li>This leads to <strong>better SEO visibility</strong>, especially for content-heavy or marketing-facing pages.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-comparison-with-client-side-rendering-csr">4. Comparison with Client-Side Rendering (CSR)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Server-Side Rendering (e.g., Jinja2)</th>
+      <th>Client-Side Rendering (e.g., JS + JSON)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First Page Load</td>
+      <td>Faster</td>
+      <td>Slower (needs extra round trips)</td>
+    </tr>
+    <tr>
+      <td>SEO Friendliness</td>
+      <td>High (content is ready in HTML)</td>
+      <td>Lower (unless prerendering is used)</td>
+    </tr>
+    <tr>
+      <td>Interactivity</td>
+      <td>Requires full-page reloads or AJAX</td>
+      <td>Dynamic updates without reloading</td>
+    </tr>
+    <tr>
+      <td>Server Load</td>
+      <td>Higher (renders full pages)</td>
+      <td>Lower (renders data only)</td>
+    </tr>
+    <tr>
+      <td>Complexity on Client</td>
+      <td>Low</td>
+      <td>High (JavaScript required for rendering)</td>
+    </tr>
+    <tr>
+      <td>Template Logic Location</td>
+      <td>Server</td>
+      <td>Client</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-common-misconceptions">5. Common Misconceptions</h2>
+
+<ul>
+  <li><strong>“SSR can’t do dynamic updates”</strong>: It <em>can</em>, but usually requires page reloads or AJAX-based interactions.</li>
+  <li><strong>“CSR is always better”</strong>: CSR shines in SPAs (Single Page Applications), but not always for content-focused pages.</li>
+  <li><strong>“SSR can’t be interactive”</strong>: Interactivity can still be added using JavaScript or htmx, just not for rendering templates.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-real-world-analogy">6. Real-World Analogy</h2>
+
+<p>Think of it like <strong>ordering food</strong>:</p>
+
+<ul>
+  <li><strong>SSR (Jinja2)</strong>: You’re handed a full plate of food right at the table — ready to eat.</li>
+  <li><strong>CSR (JS + JSON)</strong>: You get an empty plate and ingredients. The waiter brings recipes (templates), and you cook at the table using a portable stove (JavaScript). More flexible, but slower for first-time eaters.</li>
+</ul>
+
+<hr />
+
+<h2 id="7-final-takeaway">7. Final Takeaway</h2>
+
+<p>While both SSR and CSR have valid use cases, <strong>Jinja2’s server-side rendering is better suited when you want:</strong></p>
+
+<ul>
+  <li>Fast first-page loads</li>
+  <li>Search engine visibility</li>
+  <li>Simpler client-side code</li>
+</ul>
+
+<p>That’s why in many backend-driven web apps (like those built with Flask), <strong>server-side rendering remains a reliable and practical choice</strong>, especially for pages where performance and discoverability matter most.</p>
+
+<hr />
+
+<h2 id="document-two-ways-to-handle-javascript-output-methods">Document: Two Ways to Handle JavaScript Output Methods</h2>
+
+<p>This document contains two HTML examples showing how to use various JavaScript output methods in buttons. Both demonstrate:</p>
+
+<ul>
+  <li>alert</li>
+  <li>console.log</li>
+  <li>console.error</li>
+  <li>console.warn</li>
+  <li>document.write</li>
+  <li>prompt</li>
+  <li>confirm</li>
+  <li>innerHTML</li>
+  <li>console.table</li>
+</ul>
+
+<hr />
+
+<h3 id="version-a--using-inline-onclick-handlers">Version A – Using Inline <code class="language-plaintext highlighter-rouge">onclick</code> Handlers</h3>
+
+<p>This version writes JavaScript directly inside the <code class="language-plaintext highlighter-rouge">onclick</code> attribute of each button. It’s quick and beginner-friendly but not recommended for larger applications.</p>
+
+<h4 id="file-inline-output-demohtml">File: <code class="language-plaintext highlighter-rouge">inline-output-demo.html</code></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Inline JavaScript Output<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">button</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">8px</span> <span class="m">0</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nf">#output</span> <span class="p">{</span> <span class="nl">margin-top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#ccc</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Inline JavaScript Output<span class="nt">&lt;/h2&gt;</span>
+
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"alert('This is an alert')"</span><span class="nt">&gt;</span>alert()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"console.log('Console log message')"</span><span class="nt">&gt;</span>console.log()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"console.error('Error message')"</span><span class="nt">&gt;</span>console.error()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"console.warn('Warning message')"</span><span class="nt">&gt;</span>console.warn()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"document.write('This replaces the page')"</span><span class="nt">&gt;</span>document.write()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"
+    let name = prompt('Enter name');
+    if (name) document.getElementById('output').innerHTML = 'Name: ' + name;
+  "</span><span class="nt">&gt;</span>prompt()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"
+    let res = confirm('Are you sure?');
+    document.getElementById('output').innerHTML = 'Confirmed: ' + res;
+  "</span><span class="nt">&gt;</span>confirm()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"document.getElementById('output').innerHTML = 'Updated via innerHTML'"</span><span class="nt">&gt;</span>innerHTML<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"
+    let data = [{ id: 1, name: 'A' }, { id: 2, name: 'B' }];
+    console.table(data);
+    document.getElementById('output').innerHTML = 'Check console for table';
+  "</span><span class="nt">&gt;</span>console.table()<span class="nt">&lt;/button&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"output"</span><span class="nt">&gt;</span>Output Area<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="version-b--using-addeventlistener">Version B – Using <code class="language-plaintext highlighter-rouge">addEventListener</code></h3>
+
+<p>This version adds event listeners from JavaScript code, keeping HTML cleaner. It’s better for real projects where logic and structure are separated.</p>
+
+<h4 id="file-listener-output-demohtml">File: <code class="language-plaintext highlighter-rouge">listener-output-demo.html</code></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Event Listener JavaScript Output<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">button</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">8px</span> <span class="m">0</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nf">#output</span> <span class="p">{</span> <span class="nl">margin-top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#ccc</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>JavaScript Output with Event Listeners<span class="nt">&lt;/h2&gt;</span>
+
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnAlert"</span><span class="nt">&gt;</span>alert()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnLog"</span><span class="nt">&gt;</span>console.log()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnError"</span><span class="nt">&gt;</span>console.error()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnWarn"</span><span class="nt">&gt;</span>console.warn()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnWrite"</span><span class="nt">&gt;</span>document.write()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnPrompt"</span><span class="nt">&gt;</span>prompt()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnConfirm"</span><span class="nt">&gt;</span>confirm()<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnInnerHTML"</span><span class="nt">&gt;</span>innerHTML<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btnTable"</span><span class="nt">&gt;</span>console.table()<span class="nt">&lt;/button&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"output"</span><span class="nt">&gt;</span>Output Area<span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;script&gt;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnAlert</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">This is an alert</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnLog</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Console log message</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnError</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error message</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnWarn</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="dl">"</span><span class="s2">Warning message</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnWrite</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">This replaces the page</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnPrompt</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter name</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">output</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Name: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnConfirm</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">confirm</span><span class="p">(</span><span class="dl">"</span><span class="s2">Are you sure?</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">output</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Confirmed: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnInnerHTML</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">output</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Updated via innerHTML</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnTable</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">A</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">B</span><span class="dl">"</span> <span class="p">}];</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">output</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Check console for table</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="summary">Summary</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Style</th>
+      <th>Pros</th>
+      <th>Cons</th>
+      <th>When to Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Inline (<code class="language-plaintext highlighter-rouge">onclick</code>)</td>
+      <td>Simple, fast for small demos</td>
+      <td>Mixed logic and structure, not reusable</td>
+      <td>For beginner demos or quick tests</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">addEventListener</code></td>
+      <td>Clean separation, reusable functions</td>
+      <td>Slightly longer code</td>
+      <td>For real apps or modular projects</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="topic-responsibilities-of-browser-vs-flask-server">Topic: Responsibilities of Browser vs Flask Server</h2>
+
+<hr />
+
+<h2 id="section-1-what-the-browser-does-not-flask">Section 1: What the <strong>Browser</strong> Does (Not Flask)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Handled By</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Parsing HTML</strong></td>
+      <td>Browser</td>
+      <td>The browser reads HTML and builds a DOM (Document Object Model).</td>
+    </tr>
+    <tr>
+      <td><strong>Auto-fill Form Data</strong></td>
+      <td>Browser</td>
+      <td>Browser remembers previous inputs and fills forms for convenience.</td>
+    </tr>
+    <tr>
+      <td><strong>JavaScript Execution</strong></td>
+      <td>Browser</td>
+      <td>The browser has a built-in JS engine to run any script in <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> tags.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are all client-side tasks done <strong>after</strong> the server has responded.</p>
+
+<hr />
+
+<h2 id="section-2-what-the-flask-server-does">Section 2: What the <strong>Flask Server</strong> Does</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Handled By</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>URL Routing</strong></td>
+      <td>Flask</td>
+      <td>Flask defines what function runs when a specific URL is visited.</td>
+    </tr>
+    <tr>
+      <td><strong>Serving HTML/CSS/JS</strong></td>
+      <td>Flask</td>
+      <td>It sends static or dynamic files to the client.</td>
+    </tr>
+    <tr>
+      <td><strong>Backend Logic</strong></td>
+      <td>Flask</td>
+      <td>Handles database queries, user authentication, APIs, etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="section-3-what-is-html-parsing">Section 3: What is HTML Parsing?</h2>
+
+<p><strong>Parsing HTML</strong> is the process where the <strong>browser reads and interprets HTML code</strong> and converts it into a <strong>structured visual layout</strong> using the DOM (Document Object Model).</p>
+
+<h3 id="step-by-step-breakdown">Step-by-Step Breakdown:</h3>
+
+<ol>
+  <li>Browser receives raw HTML from server (e.g., Flask).</li>
+  <li>It <strong>parses the HTML</strong>: reads tags like <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>.</li>
+  <li>Builds a <strong>DOM tree</strong> – a structure of elements in memory.</li>
+  <li>Renders the final visual page from this DOM.</li>
+  <li>Applies CSS and executes JavaScript as needed.</li>
+</ol>
+
+<hr />
+
+<h3 id="example">Example:</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Hello, User!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is a paragraph.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Parsed DOM Tree (Simplified)</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>html
+ └── body
+      ├── h1 ("Hello, User!")
+      └── p ("This is a paragraph.")
+</code></pre></div></div>
+
+<p><strong>Rendered Output</strong>:</p>
+
+<blockquote>
+  <p>Hello, User!
+This is a paragraph.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="final-summary">Final Summary</h2>
+
+<ul>
+  <li>The <strong>browser</strong> handles things like parsing HTML, running JavaScript, and remembering user form inputs.</li>
+  <li>The <strong>Flask server</strong> is responsible for backend logic, URL routing, and sending the HTML.</li>
+  <li>Parsing HTML is a key browser-side process that turns static code into a rendered page.</li>
+</ul>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

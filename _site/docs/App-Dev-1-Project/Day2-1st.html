@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day2-1st.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day2-1st.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day2-1st.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="day-2-database-setup-models-and-user-authentication"><strong>Day 2: Database Setup, Models, and User Authentication</strong></h3>
+
+<hr />
+
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+
+<hr />
+
+<h3 id="1-flask-sqlalchemy-introduction-and-setup">1. <strong>Flask-SQLAlchemy: Introduction and Setup</strong></h3>
+
+<p><strong>Objective:</strong> Learn how to set up and use Flask-SQLAlchemy for handling SQLite database operations in a Flask web application.</p>
+
+<hr />
+
+<p><strong>What is SQLAlchemy?</strong></p>
+<ul>
+  <li><strong>SQLAlchemy</strong> is an Object Relational Mapper (ORM) that allows you to interact with a database using Python objects instead of raw SQL queries. It abstracts database operations, making it easier to manage and interact with databases.</li>
+  <li><strong>Flask-SQLAlchemy</strong> is an extension that integrates SQLAlchemy into Flask applications, simplifying database management by providing tools to work with SQLAlchemy seamlessly in a Flask environment.</li>
+</ul>
+
+<hr />
+
+<p><strong>Steps to Set Up Flask-SQLAlchemy:</strong></p>
+<ol>
+  <li><strong>Install Flask-SQLAlchemy via pip</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-sqlalchemy
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Flask App Configuration</strong>:
+Flask-SQLAlchemy needs to be configured to connect your Flask application with a database. In this example, we use <strong>SQLite</strong>, a lightweight relational database.</p>
+
+    <p>Here’s the basic configuration I used in the Python code:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Flask-SQLAlchemy Configuration
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>  <span class="c1"># SQLite database file
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># Disable modification tracking (to reduce overhead)
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'mysecretkey'</span>  <span class="c1"># Secret key for session management
+</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECURITY_PASSWORD_SALT'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'mysecretsalt'</span>  <span class="c1"># Salt for password hashing
+</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<p><strong>Explanation of the Configuration:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">SQLALCHEMY_DATABASE_URI</code></strong>:
+    <ul>
+      <li>This configuration setting tells Flask-SQLAlchemy where to find your database. In this case, <code class="language-plaintext highlighter-rouge">'sqlite:///site.db'</code> refers to an SQLite database stored in a file called <code class="language-plaintext highlighter-rouge">site.db</code> in your project directory. The <code class="language-plaintext highlighter-rouge">sqlite:///</code> prefix indicates you’re using an SQLite database.</li>
+      <li>If you wanted to use another type of database, like MySQL or PostgreSQL, you would change the URI accordingly (e.g., <code class="language-plaintext highlighter-rouge">'mysql://username:password@localhost/dbname'</code> for MySQL).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SQLALCHEMY_TRACK_MODIFICATIONS</code></strong>:
+    <ul>
+      <li>This setting is set to <code class="language-plaintext highlighter-rouge">False</code> to disable the modification tracking feature in SQLAlchemy. By default, SQLAlchemy tracks modifications to objects, which adds some overhead. We don’t need this feature in most cases, so it is turned off to improve performance.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SECRET_KEY</code></strong>:
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">SECRET_KEY</code> is used by Flask for cryptographic operations like signing cookies and sessions. It’s important for securing sessions and forms. You should replace <code class="language-plaintext highlighter-rouge">'mysecretkey'</code> with a more secure, random string in production.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SECURITY_PASSWORD_SALT</code></strong>:
+    <ul>
+      <li>This setting is used for password hashing. It’s the “salt” used by <strong>Flask-Security</strong> when hashing user passwords. Salts help make password hashes more secure by adding random data before the hash operation.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="2-database-models-defining-entities">2. <strong>Database Models: Defining Entities</strong></h3>
+
+<p><strong>Objective:</strong> Learn how to define models (representations of tables) in your SQLite database using SQLAlchemy.</p>
+
+<p><strong>Creating Models in SQLAlchemy:</strong>
+Models are Python classes that represent database tables. Each class corresponds to a table, and each attribute corresponds to a column in the table.</p>
+
+<hr />
+
+<p><strong>Example: Defining a User Model</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># unique identifier for each user
+</span>    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># user's username
+</span>    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># user's email
+</span>    <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">60</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># hashed password
+</span>    <span class="n">roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Role'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s">'user_roles'</span><span class="p">)</span>  <span class="c1"># many-to-many relationship with Role
+</span></code></pre></div></div>
+
+<p><strong>Explanation of Attributes:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">id</code></strong>: The primary key of the table. This uniquely identifies each user in the database.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">username</code></strong> and <strong><code class="language-plaintext highlighter-rouge">email</code></strong>: These columns are marked as <code class="language-plaintext highlighter-rouge">unique=True</code>, meaning no two users can have the same username or email. The <code class="language-plaintext highlighter-rouge">nullable=False</code> constraint makes these fields required.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">password</code></strong>: Stores the hashed password of the user. It’s marked as <code class="language-plaintext highlighter-rouge">nullable=False</code>, so every user must have a password.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">roles</code></strong>: This is a <strong>many-to-many</strong> relationship. A user can have multiple roles (like “Admin”, “Manager”, etc.), and each role can be assigned to multiple users.</li>
+</ul>
+
+<hr />
+
+<h3 id="3-user-authentication-setting-up-with-flask-security">3. <strong>User Authentication: Setting Up with Flask-Security</strong></h3>
+
+<p><strong>Objective:</strong> Learn how to handle user authentication securely using <strong>Flask-Security</strong>, which integrates user authentication, role management, password hashing, and more.</p>
+
+<hr />
+
+<h3 id="usermixin-and-rolemixin"><strong><code class="language-plaintext highlighter-rouge">UserMixin</code> and <code class="language-plaintext highlighter-rouge">RoleMixin</code>:</strong></h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">UserMixin</code></strong> and <strong><code class="language-plaintext highlighter-rouge">RoleMixin</code></strong> are classes provided by <strong>Flask-Security</strong> that provide the necessary methods for managing authentication and role-based access control.</li>
+</ul>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">UserMixin</code></strong>:
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">UserMixin</code> class gives the <code class="language-plaintext highlighter-rouge">User</code> model a set of methods that Flask-Security needs for user management. These include methods like <code class="language-plaintext highlighter-rouge">get_id()</code>, <code class="language-plaintext highlighter-rouge">is_authenticated()</code>, <code class="language-plaintext highlighter-rouge">is_active()</code>, <code class="language-plaintext highlighter-rouge">is_anonymous()</code>, and <code class="language-plaintext highlighter-rouge">set_password()</code>. These methods are used by <strong>Flask-Login</strong> (used internally by Flask-Security) to manage user sessions.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">60</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Role'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s">'user_roles'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">RoleMixin</code></strong>:
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">RoleMixin</code> class gives the <code class="language-plaintext highlighter-rouge">Role</code> model a set of methods for role management, including the ability to check whether a user has a certain role or permission.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Role</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">RoleMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="4-relationship-one-to-many-and-many-to-many">4. <strong>Relationship: One-to-Many and Many-to-Many</strong></h3>
+
+<p><strong>One-to-Many Relationship</strong>:</p>
+<ul>
+  <li>A <strong>One-to-Many</strong> relationship is used when one record in a table is associated with multiple records in another table. For instance, a <code class="language-plaintext highlighter-rouge">User</code> can have many <code class="language-plaintext highlighter-rouge">Posts</code>, but each <code class="language-plaintext highlighter-rouge">Post</code> belongs to one <code class="language-plaintext highlighter-rouge">User</code>.</li>
+</ul>
+
+<p><strong>Example</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">))</span>  <span class="c1"># Foreign key to User
+</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s">'posts'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In the above example, each <code class="language-plaintext highlighter-rouge">Post</code> is associated with one <code class="language-plaintext highlighter-rouge">User</code> (via <code class="language-plaintext highlighter-rouge">user_id</code>), and a <code class="language-plaintext highlighter-rouge">User</code> can have many <code class="language-plaintext highlighter-rouge">Posts</code>.</li>
+</ul>
+
+<hr />
+
+<p><strong>Many-to-Many Relationship</strong>:</p>
+<ul>
+  <li>A <strong>Many-to-Many</strong> relationship exists when each record in one table can be associated with multiple records in another table, and vice versa. In the case of <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Role</code>, each user can have many roles, and each role can be assigned to many users.</li>
+</ul>
+
+<p><strong>Example (Many-to-Many)</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Role'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s">'user_roles'</span><span class="p">)</span>  <span class="c1"># Many-to-many relationship
+</span>
+<span class="k">class</span> <span class="nc">Role</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">RoleMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">user_roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'user_roles'</span><span class="p">,</span>  <span class="c1"># Association table
+</span>                      <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">)),</span>
+                      <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'role_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'role.id'</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">user_roles</code></strong>: This is an <strong>association table</strong> that links <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Role</code>. It doesn’t have its own model; it simply holds the foreign keys that connect the <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Role</code> models.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">roles = db.relationship('Role', secondary='user_roles')</code></strong>: This establishes the many-to-many relationship from the <code class="language-plaintext highlighter-rouge">User</code> model. It tells SQLAlchemy that the <code class="language-plaintext highlighter-rouge">roles</code> attribute of a <code class="language-plaintext highlighter-rouge">User</code> should be connected to the <code class="language-plaintext highlighter-rouge">Role</code> model via the <code class="language-plaintext highlighter-rouge">user_roles</code> association table.</li>
+</ul>
+
+<hr />
+
+<h3 id="5-using-flask-security-for-user-authentication">5. <strong>Using Flask-Security for User Authentication</strong></h3>
+
+<p><strong>Objective:</strong> Learn how to handle user authentication securely using <strong>Flask-Security</strong>, which integrates user authentication, role management, password hashing, and more.</p>
+
+<p>Here’s the setup:</p>
+<ol>
+  <li><strong>Install Flask-Security</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask-security
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Set Up User Registration and Authentication</strong>:</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_security</span> <span class="kn">import</span> <span class="n">Security</span><span class="p">,</span> <span class="n">SQLAlchemyUser</span>
+
+<span class="n">Datastore</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">,</span> <span class="n">RoleMixin</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'mysecretkey'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SECURITY_PASSWORD_SALT'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'mysecretsalt'</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Define User and Role models
+</span><span class="k">class</span> <span class="nc">Role</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">RoleMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">60</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'Role'</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s">'user_roles'</span><span class="p">)</span>
+
+<span class="n">user_roles</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="s">'user_roles'</span><span class="p">,</span>
+                      <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">)),</span>
+                      <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="s">'role_id'</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'role.id'</span><span class="p">)))</span>
+
+<span class="c1"># Initialize user datastore
+</span><span class="n">user_datastore</span> <span class="o">=</span> <span class="n">SQLAlchemyUserDatastore</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">Role</span><span class="p">)</span>
+<span class="n">security</span> <span class="o">=</span> <span class="n">Security</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">user_datastore</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="key-concepts-to-remember">Key Concepts to Remember:</h3>
+<ul>
+  <li><strong>Flask-SQLAlchemy</strong> provides a simple and effective way to work with relational databases in Flask apps.</li>
+  <li><strong>Flask-Security</strong> handles user authentication, password hashing, and role management.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">UserMixin</code> and <code class="language-plaintext highlighter-rouge">RoleMixin</code></strong> make it easy to manage user sessions and roles.</li>
+  <li><strong>Many-to-Many and One-to-Many relationships</strong> define how models (tables) are related in your database, making it easy to structure your application’s data.</li>
+</ul>
+
+<hr />
+
+<p>This document provide a solid understanding of database models, relationships, and the configurations used in Flask-SQLAlchemy!</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

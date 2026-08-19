@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="security-guide---jwt--rbac">Security Guide - JWT &amp; RBAC</h1>
+
+<p>This guide explains Role-Based Access Control (RBAC) and JWT (JSON Web Tokens) - two key security concepts used in the Vehicle Parking application.</p>
+
+<hr />
+
+<h2 id="jwt-json-web-tokens---understanding-token-based-authentication">JWT (JSON Web Tokens) - Understanding Token-Based Authentication</h2>
+
+<h3 id="what-is-jwt">What is JWT?</h3>
+
+<p>JWT is a secure way to transmit information between frontend and backend without storing user credentials in a session.</p>
+
+<h3 id="how-traditional-sessions-work-old-way">How Traditional Sessions Work (Old Way)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User logs in
+   └─ Server creates a session (stored in memory/database)
+   └─ Server sends Session ID to browser
+
+2. User makes request
+   └─ Browser sends Session ID
+   └─ Server looks up session in database
+   └─ Server responds if valid
+
+Problem: Server must store and look up sessions for every request
+</code></pre></div></div>
+
+<h3 id="how-jwt-works-modern-way">How JWT Works (Modern Way)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User logs in
+   ├─ Server verifies credentials
+   ├─ Server creates a JWT token
+   ├─ Token contains: user_id, role, expiration
+   ├─ Token is SIGNED with secret key (verified, but not modified)
+   └─ Token sent to client
+
+2. User makes request
+   ├─ Browser sends JWT in Authorization header
+   ├─ Server verifies JWT signature
+   ├─ If valid, server processes request (NO database lookup needed)
+   ├─ If invalid/expired, server rejects request
+   └─ Server responds
+
+Benefit: Stateless - server doesn't store anything about the user
+</code></pre></div></div>
+
+<h3 id="jwt-structure">JWT Structure</h3>
+
+<p>A JWT has 3 parts separated by dots (<code class="language-plaintext highlighter-rouge">.</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMDAwMDAwMH0.signature
+
+Part 1: Header (eyJhbGc...)
+├─ Algorithm: HS256 (signature algorithm)
+└─ Type: JWT
+
+Part 2: Payload (eyJzdWI...)
+├─ sub: 1 (subject = user_id)
+├─ iat: 1700000000 (issued at)
+├─ exp: 1700003600 (expiration timestamp)
+└─ Other claims (custom data)
+
+Part 3: Signature (signature)
+└─ HMAC-SHA256(Header + Payload, SECRET_KEY)
+└─ Proves token hasn't been tampered with
+</code></pre></div></div>
+
+<h3 id="jwt-in-our-application">JWT in Our Application</h3>
+
+<p><strong>Sample JWT Payload:</strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">              </span><span class="err">//</span><span class="w"> </span><span class="err">User</span><span class="w"> </span><span class="err">ID</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1700000000</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">Issued</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">timestamp</span><span class="w">
+  </span><span class="nl">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1700003600</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">Expires</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">hour</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="implementation-in-your-app">Implementation in Your App</h3>
+
+<p><strong>Creating a Token (in app.py):</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">create_access_token</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/auth/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'username'</span><span class="p">]).</span><span class="n">first</span><span class="p">()</span>
+    
+    <span class="c1"># Create token with user_id
+</span>    <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+        <span class="s">"access_token"</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span>
+        <span class="s">"user"</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>Protecting Routes (in app.py):</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_jwt_extended</span> <span class="kn">import</span> <span class="n">jwt_required</span><span class="p">,</span> <span class="n">get_jwt_identity</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/auth/profile'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>  <span class="c1"># This decorator validates the JWT
+</span><span class="k">def</span> <span class="nf">get_profile</span><span class="p">():</span>
+    <span class="n">current_user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>Sending Token (in Vue):</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. After login, store token</span>
+<span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/auth/login</span><span class="dl">'</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">)</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">userToken</span><span class="dl">'</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">access_token</span><span class="p">)</span>
+
+<span class="c1">// 2. Include token in requests</span>
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">userToken</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/auth/profile</span><span class="dl">'</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="jwt-token-lifecycle">JWT Token Lifecycle</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Timeline:
+├─ 00:00 - User logs in
+│         ├─ Token created with expiration set to 01:00
+│         └─ Token sent to client
+│
+├─ 00:30 - User makes request
+│         ├─ Client sends token
+│         ├─ Server verifies signature and expiration
+│         ├─ Expiration is OK (01:00 &gt; 00:30)
+│         └─ Request allowed ✓
+│
+├─ 01:00 - Token expires (auto)
+│
+└─ 01:15 - User tries to use expired token
+          ├─ Client sends token
+          ├─ Server checks expiration
+          ├─ Expiration is NOT OK (01:00 &lt; 01:15)
+          └─ Request rejected with 401 ✗
+          └─ User redirected to login
+</code></pre></div></div>
+
+<h3 id="advantages-of-jwt">Advantages of JWT</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Advantage</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Stateless</strong></td>
+      <td>Server doesn’t store token info</td>
+    </tr>
+    <tr>
+      <td><strong>Scalable</strong></td>
+      <td>Works across multiple servers</td>
+    </tr>
+    <tr>
+      <td><strong>Secure</strong></td>
+      <td>Token can’t be modified without key</td>
+    </tr>
+    <tr>
+      <td><strong>Standards</strong></td>
+      <td>Works with third-party APIs</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile-friendly</strong></td>
+      <td>Easy to use in mobile apps</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="security-best-practices">Security Best Practices</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✓ DO:
+  - Store token in localStorage (or secure cookies)
+  - Include in Authorization header: "Bearer &lt;token&gt;"
+  - Verify token expiration server-side
+  - Use HTTPS in production
+  - Use strong SECRET_KEY
+  - Set reasonable expiration (1-24 hours)
+
+✗ DON'T:
+  - Put sensitive data in token (it's just base64 encoded, not encrypted)
+  - Use weak SECRET_KEY
+  - Store token in URL or query parameters
+  - Use HTTP in production
+  - Forget to use @jwt_required() on protected routes
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="rbac-role-based-access-control">RBAC (Role-Based Access Control)</h2>
+
+<h3 id="what-is-rbac">What is RBAC?</h3>
+
+<p>RBAC is a security approach where access to resources is restricted based on a user’s assigned role.</p>
+
+<h3 id="why-use-rbac">Why Use RBAC?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Without RBAC:
+- Every user can do everything
+- No distinction between admin and regular user
+- Anyone can delete parking lots or create unauthorized spots
+- Security nightmare!
+
+With RBAC:
+- Admin: Can manage everything
+- User: Can only make reservations and view data
+- Clear permissions structure
+</code></pre></div></div>
+
+<h3 id="roles-in-vehicle-parking-application">Roles in Vehicle Parking Application</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Admin (admin)
+├─ Full system access
+├─ Create parking lots
+├─ Create/delete parking spots
+├─ View all reservations
+├─ Manage users
+└─ View reports
+
+Regular User (user)
+├─ View parking lots
+├─ View available spots
+├─ Make reservations
+├─ View own reservations
+└─ Cannot create or delete parking data
+</code></pre></div></div>
+
+<h3 id="implementing-rbac">Implementing RBAC</h3>
+
+<p><strong>1. Store Role in User Model:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">password_hash</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s">'user'</span><span class="p">)</span>  <span class="c1"># 'admin' or 'user'
+</span>    
+    <span class="k">def</span> <span class="nf">has_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
+        <span class="s">"""Check if user has specific role"""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">role</span>
+</code></pre></div></div>
+
+<p><strong>2. Include Role in JWT:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/auth/login'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+    
+    <span class="c1"># Token includes user role
+</span>    <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span>
+        <span class="n">identity</span><span class="o">=</span><span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+        <span class="n">additional_claims</span><span class="o">=</span><span class="p">{</span><span class="s">'role'</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span><span class="p">}</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+        <span class="s">"access_token"</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span>
+        <span class="s">"user"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"id"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+            <span class="s">"username"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s">"role"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span>  <span class="c1"># Send role to frontend
+</span>        <span class="p">}</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>3. Direct Role Check in Protected Routes:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Only admin can access
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/admin/users'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_all_users</span><span class="p">():</span>
+    <span class="n">current_user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+
+    <span class="c1"># RBAC Check
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span> <span class="o">!=</span> <span class="s">'admin'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="s">"Insufficient permissions"</span><span class="p">}),</span> <span class="mi">403</span>
+
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="p">...</span> <span class="p">})</span>
+
+<span class="c1"># Only admin can create parking lot
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/parking-lots'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">create_parking_lot</span><span class="p">():</span>
+    <span class="n">current_user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    
+    <span class="c1"># RBAC Check
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span> <span class="o">!=</span> <span class="s">'admin'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="s">"Insufficient permissions"</span><span class="p">}),</span> <span class="mi">403</span>
+    
+    <span class="c1"># Create parking lot
+</span>    <span class="n">lot</span> <span class="o">=</span> <span class="n">ParkingLot</span><span class="p">(...)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">lot</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="p">...</span> <span class="p">})</span>
+
+<span class="c1"># Anyone logged in can view parking lots
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/parking-lots'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_parking_lots</span><span class="p">():</span>
+    <span class="n">lots</span> <span class="o">=</span> <span class="n">ParkingLot</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="rbac-access-matrix">RBAC Access Matrix</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 │ Admin │ User │
+──────────────────────────────────
+View Lots        │   ✓   │  ✓  │
+Create Lot       │   ✓   │  ✗  │
+Delete Lot       │   ✓   │  ✗  │
+Create Spot      │   ✓   │  ✗  │
+Delete Spot      │   ✓   │  ✗  │
+Make Reservation │   ✓   │  ✓  │
+View Own Res.    │   ✓   │  ✓  │
+Manage Users     │   ✓   │  ✗  │
+View Reports     │   ✓   │  ✗  │
+</code></pre></div></div>
+
+<h3 id="frontend-side-authorization-ui-based">Frontend-Side Authorization (UI Based)</h3>
+
+<p>You can also hide/show UI elements based on role:</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="c">&lt;!-- Show to everyone --&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"viewLots"</span><span class="nt">&gt;</span>View Lots<span class="nt">&lt;/button&gt;</span>
+    
+    <span class="c">&lt;!-- Show only to admin --&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">v-if=</span><span class="s">"user &amp;&amp; user.role === 'admin'"</span> <span class="err">@</span><span class="na">click=</span><span class="s">"createLot"</span><span class="nt">&gt;</span>
+      Create Lot
+    <span class="nt">&lt;/button&gt;</span>
+    
+    <span class="c">&lt;!-- Show only to admin --&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">v-if=</span><span class="s">"user &amp;&amp; user.role === 'admin'"</span> <span class="err">@</span><span class="na">click=</span><span class="s">"manageUsers"</span><span class="nt">&gt;</span>
+      Manage Users
+    <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">user</span><span class="dl">'</span><span class="p">))</span>
+
+<span class="c1">// Now you can use user.role directly in the template</span>
+<span class="c1">// Check if user exists and has admin role:</span>
+<span class="c1">// if (user &amp;&amp; user.role === 'admin') { ... }</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="important-note">Important Note</h3>
+
+<p><strong>Frontend authorization is NOT secure!</strong> Users can:</p>
+<ul>
+  <li>Modify localStorage</li>
+  <li>Edit JavaScript in devtools</li>
+  <li>Change role in local storage</li>
+</ul>
+
+<p><strong>Always validate on backend!</strong> Server-side RBAC is mandatory.</p>
+
+<hr />
+
+<h2 id="jwt--rbac-flow-combined">JWT + RBAC Flow Combined</h2>
+
+<h3 id="complete-authentication--authorization-flow">Complete Authentication &amp; Authorization Flow</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──────────────────────────────────────────────┐
+│ 1. USER REGISTRATION                         │
+├──────────────────────────────────────────────┤
+│ Frontend: POST /api/auth/register            │
+│ Backend: Create user with role='user'        │
+│                                              │
+│ 2. USER LOGIN                                │
+├──────────────────────────────────────────────┤
+│ Frontend: POST /api/auth/login               │
+│ Backend: Create JWT with user_id and role    │
+│ Frontend: Store token in localStorage        │
+│                                              │
+│ 3. PROTECTED API REQUEST                     │
+├──────────────────────────────────────────────┤
+│ Frontend: GET /api/parking-lots              │
+│ Backend: Verify JWT → Check RBAC → Respond   │
+│                                              │
+│ 4. TOKEN EXPIRATION                          │
+├──────────────────────────────────────────────┤
+│ After 1 hour: Token invalid                  │
+│ User redirected to login                     │
+└──────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<h3 id="code-example-admin-creates-parking-lot">Code Example: Admin Creates Parking Lot</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/parking-lots'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">jwt_required</span><span class="p">()</span>  <span class="c1"># ← JWT Validation
+</span><span class="k">def</span> <span class="nf">create_parking_lot</span><span class="p">():</span>
+    <span class="n">current_user_id</span> <span class="o">=</span> <span class="n">get_jwt_identity</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_user_id</span><span class="p">)</span>
+    
+    <span class="c1"># RBAC Check - only admin can create
+</span>  <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="n">user</span><span class="p">.</span><span class="n">role</span> <span class="o">!=</span> <span class="s">'admin'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"error"</span><span class="p">:</span> <span class="s">"Insufficient permissions"</span><span class="p">}),</span> <span class="mi">403</span>
+    
+    <span class="n">lot</span> <span class="o">=</span> <span class="n">ParkingLot</span><span class="p">(...)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">lot</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Parking lot created"</span><span class="p">,</span> <span class="s">"id"</span><span class="p">:</span> <span class="n">lot</span><span class="p">.</span><span class="nb">id</span><span class="p">}),</span> <span class="mi">201</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-debugging-issues">🔍 Debugging Issues</h2>
+
+<h3 id="token-is-missing-or-invalid-token">“Token is missing” or “Invalid token”</h3>
+<p>Check that Authorization header is sent: <code class="language-plaintext highlighter-rouge">Authorization: Bearer &lt;token&gt;</code></p>
+
+<h3 id="invalid-signature">“Invalid signature”</h3>
+<p>Ensure same SECRET_KEY used throughout app.py</p>
+
+<h3 id="insufficient-permissions-403">“Insufficient permissions” (403)</h3>
+<p>Check user role in database: <code class="language-plaintext highlighter-rouge">User.query.get(user_id).role</code></p>
+
+<h3 id="token-expired">Token expired</h3>
+<p>Default expiration is 1 hour (configurable in config.py)</p>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>JWT</strong></td>
+      <td>Authenticate (prove who you are)</td>
+    </tr>
+    <tr>
+      <td><strong>RBAC</strong></td>
+      <td>Authorize (prove what you can do)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authentication = "Who are you?" → JWT signature
+Authorization = "What can you do?" → RBAC role
+</code></pre></div></div>
+
+<hr />
+
+<p>This understanding will help you build secure applications!</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

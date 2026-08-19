@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-12/Cors_cookies.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-12/Cors_cookies.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-12/Cors_cookies.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h1 id="cors-and-cookies-with-vuejs-and-flask"><strong>CORS and Cookies with Vue.js and Flask</strong></h1>
+
+<hr />
+
+<h2 id="1-what-is-cors"><strong>1. What is CORS?</strong></h2>
+
+<ul>
+  <li><strong>CORS (Cross-Origin Resource Sharing)</strong> is a mechanism that allows a web application running at one origin (domain) to access resources from another origin.</li>
+  <li>
+    <p>By default, browsers enforce the <strong>Same-Origin Policy</strong>:</p>
+
+    <ul>
+      <li>A script loaded from <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> cannot make AJAX requests to <code class="language-plaintext highlighter-rouge">http://localhost:5000</code> unless the server explicitly allows it.</li>
+      <li>👉 The primary purpose of CORS is to control which domains can access resources on a server.
+It is not about encryption, compression, or authentication — those are handled by other mechanisms (HTTPS, gzip, sessions/JWT, etc.).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Example:</p>
+
+    <ul>
+      <li>Vue frontend runs at: <code class="language-plaintext highlighter-rouge">http://localhost:8080</code></li>
+      <li>Flask backend runs at: <code class="language-plaintext highlighter-rouge">http://localhost:5000</code></li>
+      <li>Without CORS enabled on Flask, the request will be <strong>blocked</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2-what-are-cookies"><strong>2. What are Cookies?</strong></h2>
+
+<ul>
+  <li>Cookies are small pieces of data stored in the client’s browser.</li>
+  <li>
+    <p>They can be used for:</p>
+
+    <ul>
+      <li><strong>Authentication</strong> (storing session IDs / JWT tokens)</li>
+      <li><strong>Preferences</strong> (dark mode, language, etc.)</li>
+      <li><strong>Tracking</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Important cookie flags:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">HttpOnly</code> → prevents JavaScript access.</li>
+      <li><code class="language-plaintext highlighter-rouge">Secure</code> → only sent over HTTPS.</li>
+      <li><code class="language-plaintext highlighter-rouge">SameSite</code>:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">"Lax"</code> → Sent for top-level navigation (safe for dev).</li>
+          <li><code class="language-plaintext highlighter-rouge">"Strict"</code> → Sent only if frontend and backend are same origin.</li>
+          <li>
+            <h2 id="none--always-sent-requires-securetrue"><code class="language-plaintext highlighter-rouge">"None"</code> → Always sent, requires <code class="language-plaintext highlighter-rouge">Secure=True</code>.</h2>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="-important-cookie-flags">🍪 <strong>Important Cookie Flags</strong></h1>
+
+<h3 id="1-httponly">1. <strong>HttpOnly</strong></h3>
+
+<ul>
+  <li><strong>Meaning</strong>: If set, JavaScript (<code class="language-plaintext highlighter-rouge">document.cookie</code>) <strong>cannot access</strong> the cookie.</li>
+  <li><strong>Why</strong>: Protects cookies (like session IDs or tokens) from <strong>XSS (Cross-Site Scripting)</strong> attacks.</li>
+  <li><strong>Use case</strong>: Always set <code class="language-plaintext highlighter-rouge">HttpOnly=True</code> for sensitive cookies like authentication/session tokens.</li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="2-secure">2. <strong>Secure</strong></h3>
+
+<ul>
+  <li><strong>Meaning</strong>: Cookie will only be sent over <strong>HTTPS</strong> connections.</li>
+  <li><strong>Why</strong>: Prevents exposure of cookies over insecure HTTP.</li>
+  <li><strong>Use case</strong>: In <strong>production</strong>, always set <code class="language-plaintext highlighter-rouge">Secure=True</code> for authentication cookies. In <strong>local development</strong>, you may temporarily use <code class="language-plaintext highlighter-rouge">False</code>.</li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-samesite">3. <strong>SameSite</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>Meaning</strong>: Controls whether the cookie can be sent with <strong>cross-site requests</strong> (important for CORS).</p>
+  </li>
+  <li>
+    <p><strong>Options</strong>:</p>
+
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">Lax</code> (default in modern browsers)</strong> → Cookie is sent for <em>same-site requests</em> and <strong>top-level navigations</strong> (like clicking a link), but <strong>not for cross-origin AJAX/fetch calls</strong>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">Strict</code></strong> → Cookie is <strong>only sent</strong> if request originates from the <em>same site</em>. Blocks all cross-site usage (very secure but restrictive).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">None</code></strong> → Cookie is sent <strong>in all cross-site requests</strong>, <strong>but only if <code class="language-plaintext highlighter-rouge">Secure=True</code></strong> (required by Chrome, Firefox, Edge).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Use case</strong>:</p>
+
+    <ul>
+      <li>If your frontend (<code class="language-plaintext highlighter-rouge">http://localhost:5173</code>) and backend (<code class="language-plaintext highlighter-rouge">http://localhost:5000</code>) are on different origins → you <strong>must use <code class="language-plaintext highlighter-rouge">SameSite=None</code> + Secure=True</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="n">samesite</span><span class="o">=</span><span class="s">"None"</span><span class="p">,</span> <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-domain">4. <strong>Domain</strong></h3>
+
+<ul>
+  <li><strong>Meaning</strong>: Defines which domain(s) can access the cookie.</li>
+  <li>If not set → defaults to the domain that set the cookie.</li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s">".example.com"</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>→ Will be accessible from <code class="language-plaintext highlighter-rouge">sub1.example.com</code>, <code class="language-plaintext highlighter-rouge">sub2.example.com</code>, etc.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="5-path">5. <strong>Path</strong></h3>
+
+<ul>
+  <li><strong>Meaning</strong>: Defines the URL path for which the cookie is valid.</li>
+  <li>Default → <code class="language-plaintext highlighter-rouge">/</code> (accessible everywhere in the site).</li>
+  <li>
+    <p>Example:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">"/admin"</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>→ Cookie will only be sent for requests starting with <code class="language-plaintext highlighter-rouge">/admin</code>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="example-recommended-for-auth-cookies">Example (Recommended for Auth Cookies)</h1>
+
+<p><strong>For cross-origin requests (different frontend &amp; backend domains):</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span>
+    <span class="s">"auth_token"</span><span class="p">,</span>
+    <span class="s">"abc123"</span><span class="p">,</span>
+    <span class="n">max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>           <span class="c1"># Expires in 1 hour (simpler than datetime)
+</span>    <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>          <span class="c1"># Protect from XSS
+</span>    <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>            <span class="c1"># Only send over HTTPS (production)
+</span>    <span class="n">samesite</span><span class="o">=</span><span class="s">"None"</span><span class="p">,</span>        <span class="c1"># Required for cross-origin cookies
+</span>    <span class="n">path</span><span class="o">=</span><span class="s">"/"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>For same-site requests (localhost dev, frontend &amp; backend on same origin):</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span>
+    <span class="s">"auth_token"</span><span class="p">,</span>
+    <span class="s">"abc123"</span><span class="p">,</span>
+    <span class="n">expires</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># Explicit expiry date
+</span>    <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>          <span class="c1"># Protect from XSS
+</span>    <span class="n">secure</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>           <span class="c1"># OK for local HTTP dev
+</span>    <span class="n">samesite</span><span class="o">=</span><span class="s">"Lax"</span><span class="p">,</span>         <span class="c1"># Safe for same-site requests
+</span>    <span class="n">path</span><span class="o">=</span><span class="s">"/"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Both <code class="language-plaintext highlighter-rouge">max_age</code> (relative seconds) and <code class="language-plaintext highlighter-rouge">expires</code> (absolute datetime) achieve cookie expiry. Pick whichever reads clearer to you.</p>
+
+<hr />
+
+<h1 id="debugging-tip">Debugging Tip</h1>
+
+<p>To <strong>check stored cookies</strong>:</p>
+
+<ol>
+  <li>Open <strong>DevTools → Application → Storage → Cookies</strong> in Chrome/Edge/Firefox.</li>
+  <li>
+    <p>Look for:</p>
+
+    <ul>
+      <li><strong>Name/Value</strong></li>
+      <li><strong>Domain</strong></li>
+      <li><strong>Path</strong></li>
+      <li><strong>HttpOnly</strong></li>
+      <li><strong>Secure</strong></li>
+      <li><strong>SameSite</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-flask-setup-backend-with-cors--cookies"><strong>3. Flask Setup (Backend with CORS + Cookies)</strong></h2>
+
+<h3 id="install-dependencies"><strong>Install dependencies</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-cors
+</code></pre></div></div>
+
+<h3 id="flask-app-corspy"><strong>Flask app (<code class="language-plaintext highlighter-rouge">cors.py</code>)</strong></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">make_response</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">from</span> <span class="nn">datatime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c1"># Enable CORS with credentials support
+</span><span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">supports_credentials</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+     <span class="n">origins</span><span class="o">=</span><span class="p">[</span><span class="s">"http://127.0.0.1:5500"</span><span class="p">,</span> <span class="s">"http://localhost:5500"</span><span class="p">])</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/set-cookie"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">set_cookie</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Cookie is set!"</span><span class="p">}))</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span>
+        <span class="s">"user_token"</span><span class="p">,</span>
+        <span class="s">"abc123"</span><span class="p">,</span>
+        <span class="c1"># max_age=10 # seconds
+</span>        <span class="n">expires</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># deletes in 1 minute
+</span>        <span class="n">httponly</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>    <span class="c1"># JS cannot read this cookie
+</span>        <span class="c1"># secure=False,     # True in production with HTTPS
+</span>        <span class="n">secure</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">samesite</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="c1"># samesite="Lax"    # Works locally for cross-site cookies
+</span>    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">resp</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/get-cookie"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_cookie</span><span class="p">():</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"user_token"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">token</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Cookie retrieved!"</span><span class="p">,</span> <span class="s">"token"</span><span class="p">:</span> <span class="n">token</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"No cookie found!"</span><span class="p">}),</span> <span class="mi">404</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/delete-cookie"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">delete_cookie</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">({</span><span class="s">"msg"</span><span class="p">:</span> <span class="s">"Cookie deleted"</span><span class="p">})</span>
+    <span class="n">resp</span><span class="p">.</span><span class="n">delete_cookie</span><span class="p">(</span><span class="s">"user_token"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resp</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="why-this-code">Why this code?</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CORS(... supports_credentials=True ...)</code> → allows cookies to be sent across origins.</li>
+  <li><code class="language-plaintext highlighter-rouge">set_cookie()</code> → backend sends a <code class="language-plaintext highlighter-rouge">Set-Cookie</code> header → browser stores the cookie locally.</li>
+  <li><code class="language-plaintext highlighter-rouge">get_cookie()</code> → backend reads cookies that the browser automatically attaches to the request.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-vuejs-setup-frontend"><strong>4. Vue.js Setup (Frontend)</strong></h2>
+
+<h3 id="vue-component-apphtml"><strong>Vue Component (<code class="language-plaintext highlighter-rouge">app.html</code>)</strong></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;title&gt;</span>CORS + Cookies Demo<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>CORS + Cookies Demo<span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"setCookie"</span><span class="nt">&gt;</span>Set Cookie<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"getCookie"</span><span class="nt">&gt;</span>Get Cookie<span class="nt">&lt;/button&gt;</span>
+      <span class="c">&lt;!-- Create a delete button ( task ) --&gt;</span>
+      <span class="nt">&lt;p&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+      <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+          <span class="k">async</span> <span class="nx">setCookie</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+              <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://127.0.0.1:5000/set-cookie</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
+                <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// include cookies</span>
+              <span class="p">});</span>
+              <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Error setting cookie!</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="k">async</span> <span class="nx">getCookie</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+              <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://127.0.0.1:5000/get-cookie</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
+              <span class="p">});</span>
+              <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> (Token: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Error retrieving cookie!</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="k">async</span> <span class="nx">deleteCookie</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+              <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://127.0.0.1:5000/delete-cookie</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
+                <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
+              <span class="p">});</span>
+              <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">msg</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Error deleting cookie!</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+      <span class="p">});</span>
+    <span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<h3 id="why-this-code-1">Why this code?</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">credentials: "include"</code> → ensures cookies are included in cross-origin requests.</li>
+  <li><code class="language-plaintext highlighter-rouge">fetch(...).json()</code> → parses the JSON response from Flask.</li>
+  <li>Buttons call <code class="language-plaintext highlighter-rouge">setCookie</code>, <code class="language-plaintext highlighter-rouge">getCookie</code>, and <code class="language-plaintext highlighter-rouge">deleteCookie</code> methods → triggers the API calls.</li>
+</ul>
+
+<p><strong>Server vs File (Critical for development):</strong></p>
+<ul>
+  <li><strong>Wrong:</strong> Double-click <code class="language-plaintext highlighter-rouge">app.html</code> or drag it into browser → opens as <code class="language-plaintext highlighter-rouge">file://</code> URL.
+    <ul>
+      <li>Cookies <strong>will NOT work</strong> (browser blocks them on file origin).</li>
+    </ul>
+  </li>
+  <li><strong>Correct:</strong> Use <strong>Live Server</strong> extension (right-click → “Open with Live Server”) → opens as <code class="language-plaintext highlighter-rouge">http://localhost:5500</code>.
+    <ul>
+      <li>Cookies <strong>will work</strong> (trusted HTTP origin).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This is the most common reason cookies fail in local dev. The code is correct; the origin was wrong.</p>
+
+<hr />
+<h2 id="5-where-cookies-are-stored"><strong>5. Where Cookies Are Stored</strong></h2>
+
+<ul>
+  <li>
+    <p>After clicking <strong>Set Cookie</strong>, Flask sends:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set-Cookie: user_token=abc123; HttpOnly; SameSite=Lax
+</code></pre></div>    </div>
+  </li>
+  <li>Browser stores this cookie under <strong>DevTools → Application → Cookies → <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></strong>.</li>
+  <li>
+    <p>On the next request to <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/get-cookie</code>, the browser <strong>automatically attaches</strong>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cookie: user_token=abc123
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>The frontend (Vue) does <strong>not manually send the cookie</strong> — the <strong>browser handles it automatically</strong> when <code class="language-plaintext highlighter-rouge">credentials: "include"</code> is set.</p>
+
+<hr />
+
+<h2 id="6-frontend-vs-backend-roles"><strong>6. Frontend vs Backend Roles</strong></h2>
+
+<ul>
+  <li>
+    <p><strong>Frontend (Vue):</strong></p>
+
+    <ul>
+      <li>Initiates requests (<code class="language-plaintext highlighter-rouge">fetch</code> with credentials).</li>
+      <li>Displays messages from backend.</li>
+      <li>Does <strong>not</strong> directly manage secure cookies.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Backend (Flask):</strong></p>
+
+    <ul>
+      <li>Controls cookie creation (<code class="language-plaintext highlighter-rouge">resp.set_cookie</code>).</li>
+      <li>Validates cookies on requests (<code class="language-plaintext highlighter-rouge">request.cookies.get</code>).</li>
+      <li>Decides whether a cookie is valid and what data to send back.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="7-how-it-works--flow"><strong>7. How It Works – Flow</strong></h2>
+
+<ol>
+  <li>User clicks <strong>Set Cookie</strong> → Vue calls Flask → Flask responds with <code class="language-plaintext highlighter-rouge">Set-Cookie</code>.</li>
+  <li>Browser stores <code class="language-plaintext highlighter-rouge">user_token</code> locally.</li>
+  <li>User clicks <strong>Get Cookie</strong> → Vue calls Flask with credentials → browser attaches <code class="language-plaintext highlighter-rouge">user_token</code> → Flask reads it and returns token.</li>
+</ol>
+
+<hr />
+
+<h2 id="8-key-notes"><strong>8. Key Notes</strong></h2>
+
+<ul>
+  <li><strong>CORS + Credentials Rule:</strong> When using <code class="language-plaintext highlighter-rouge">supports_credentials=True</code>, you <strong>must</strong> specify explicit origin(s) in CORS (e.g., <code class="language-plaintext highlighter-rouge">origins=["http://127.0.0.1:5500"]</code>). Wildcard origin (<code class="language-plaintext highlighter-rouge">*</code>) is <strong>rejected by browsers</strong> for credentialed requests.</li>
+  <li><strong>Development (same-site local setup):</strong> use <code class="language-plaintext highlighter-rouge">samesite="Lax"</code> and <code class="language-plaintext highlighter-rouge">secure=False</code> (HTTP is fine).</li>
+  <li><strong>Development (cross-origin or testing):</strong> use <code class="language-plaintext highlighter-rouge">samesite="None"</code>, <code class="language-plaintext highlighter-rouge">secure=False</code> locally only.</li>
+  <li><strong>Production:</strong> use <code class="language-plaintext highlighter-rouge">samesite="None"</code>, <code class="language-plaintext highlighter-rouge">secure=True</code> (HTTPS required for SameSite=None).</li>
+</ul>
+
+<hr />
+
+<h3 id="what-counts-as-a-different-origin"><strong>What Counts as a Different Origin?</strong></h3>
+<p>Browsers consider these <strong>different origins</strong> (cookies won’t send between them without CORS + SameSite=None):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Frontend</th>
+      <th>Backend</th>
+      <th>Same Origin?</th>
+      <th>Why?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5500</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5000</code></td>
+      <td>❌ No</td>
+      <td>Different port</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://127.0.0.1:5500</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000</code></td>
+      <td>❌ No</td>
+      <td>Different port</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5500</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://127.0.0.1:5500</code></td>
+      <td>❌ No</td>
+      <td>Different domain (localhost ≠ 127.0.0.1)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5500</code></td>
+      <td><code class="language-plaintext highlighter-rouge">https://localhost:5500</code></td>
+      <td>❌ No</td>
+      <td>Different protocol (HTTP ≠ HTTPS)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5500/app</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://localhost:5500/api</code></td>
+      <td>✅ Yes</td>
+      <td>Same protocol, domain, port (path doesn’t matter)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>✅ How to fix host mismatch:</strong> Use the same domain everywhere. Pick either <code class="language-plaintext highlighter-rouge">localhost</code> or <code class="language-plaintext highlighter-rouge">127.0.0.1</code> for both frontend and backend, then CORS + cookies will work.</p>
+
+<hr />
+
+<h2 id="-ways-to-auto-delete-cookies-extra">🔹 Ways to Auto-Delete Cookies (Extra)</h2>
+
+<ol>
+  <li>
+    <p><strong>Session Cookies (Default)</strong></p>
+
+    <ul>
+      <li>If you don’t set <code class="language-plaintext highlighter-rouge">expires</code> or <code class="language-plaintext highlighter-rouge">max_age</code>, the cookie will <strong>auto-delete when the browser is fully closed</strong>.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s">"auth_token"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>Auto-deletes when user closes the browser.</p>
+  </li>
+</ol>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Time-Limited Cookies (Max-Age / Expires)</strong></p>
+
+    <ul>
+      <li>Set an explicit lifetime (e.g., 10 seconds).</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span>
+    <span class="s">"auth_token"</span><span class="p">,</span>
+    <span class="s">"abc123"</span><span class="p">,</span>
+    <span class="n">max_age</span><span class="o">=</span><span class="mi">10</span>   <span class="c1"># seconds
+</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>Auto-deletes after 10 seconds (browser will drop it).</p>
+
+    <p>Or with <code class="language-plaintext highlighter-rouge">expires</code>:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="n">resp</span><span class="p">.</span><span class="n">set_cookie</span><span class="p">(</span>
+    <span class="s">"auth_token"</span><span class="p">,</span>
+    <span class="s">"abc123"</span><span class="p">,</span>
+    <span class="n">expires</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>Auto-deletes after 1 minute.</p>
+  </li>
+</ol>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Manual Delete (Server-Controlled)</strong></p>
+
+    <ul>
+      <li>If you want the user to log out immediately, you must explicitly call <code class="language-plaintext highlighter-rouge">delete_cookie</code>.</li>
+      <li>Auto-delete only works <strong>based on time or session</strong>, not on events like “logout”.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-important-notes">🔹 Important Notes</h2>
+
+<ul>
+  <li><strong>Session cookies</strong> vanish on browser close.</li>
+  <li><strong>Max-Age/Expires cookies</strong> vanish automatically after the set duration.</li>
+  <li>If you need “logout now” behavior → you still need to <strong>delete_cookie</strong>.</li>
+</ul>
+
+<hr />
+
+<p>👉 So yes, auto-deletion is possible, but only <strong>time-based</strong> or <strong>session-based</strong>.
+For <strong>instant removal</strong>, you’ll need explicit deletion code.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

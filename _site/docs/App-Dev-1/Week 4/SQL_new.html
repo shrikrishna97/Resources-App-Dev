@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/SQL_new.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/SQL_new.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/SQL_new.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="database-concepts">Database Concepts</h3>
+
+<ol>
+  <li><strong>Persistent Storage</strong>:
+    <ul>
+      <li>Refers to storing data in a way that persists beyond the runtime of a program.</li>
+      <li>Example: Gradebook, storing details like students’ names, IDs, and courses.</li>
+      <li><strong>Need for Persistence</strong>: Ensures that data is not lost when a server is restarted or a program ends.</li>
+    </ul>
+  </li>
+  <li><strong>Spreadsheets vs. Databases</strong>:
+    <ul>
+      <li><strong>Spreadsheets</strong>:
+        <ul>
+          <li>Organize data in rows and columns.</li>
+          <li>Good for small-scale data management.</li>
+          <li>Not suitable for complex relationships and large datasets.</li>
+          <li>Lookups and relationships are harder to manage.</li>
+        </ul>
+      </li>
+      <li><strong>Relational Databases (SQL)</strong>:
+        <ul>
+          <li>Store data in tables with rows (records) and columns (fields).</li>
+          <li>Efficient for complex queries using SQL (Structured Query Language).</li>
+          <li>Examples include MySQL, PostgreSQL, SQLite.</li>
+          <li>Concepts like <strong>primary keys</strong> (unique identifiers for records) and <strong>foreign keys</strong> (linking tables) manage relationships between data.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Data Relationships</strong>:
+    <ul>
+      <li><strong>One-to-One</strong>: A unique relationship between two entities (e.g., a student and a unique ID).</li>
+      <li><strong>One-to-Many</strong>: One entity can relate to multiple instances of another entity (e.g., one hostel with multiple students).</li>
+      <li><strong>Many-to-Many</strong>: Both entities can relate to multiple instances of each other (e.g., students and courses).</li>
+    </ul>
+  </li>
+  <li><strong>SQL Basics</strong>:
+    <ul>
+      <li><strong>SQL Queries</strong>: Used to interact with databases.</li>
+      <li>Common operations:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">SELECT</code>: Retrieve data.</li>
+          <li><code class="language-plaintext highlighter-rouge">INNER JOIN</code> and <code class="language-plaintext highlighter-rouge">OUTER JOIN</code>: Combine rows from multiple tables based on related columns.</li>
+        </ul>
+      </li>
+      <li><strong>INNER JOIN</strong>: Returns only the rows that have matching values in both tables. It is used when you want to retrieve data that exists in both tables being joined.
+        <ul>
+          <li>Example:
+            <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">Students</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Hostels</span><span class="p">.</span><span class="n">name</span> 
+<span class="k">FROM</span> <span class="n">Students</span> 
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Hostels</span> 
+<span class="k">ON</span> <span class="n">Students</span><span class="p">.</span><span class="n">hostelID</span> <span class="o">=</span> <span class="n">Hostels</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</code></pre></div>            </div>
+            <p>This query retrieves the names of students alongside their hostels where there is a match between <code class="language-plaintext highlighter-rouge">hostelID</code> in the <code class="language-plaintext highlighter-rouge">Students</code> table and <code class="language-plaintext highlighter-rouge">ID</code> in the <code class="language-plaintext highlighter-rouge">Hostels</code> table.</p>
+          </li>
+        </ul>
+      </li>
+      <li><strong>OUTER JOIN</strong>: Returns all rows when there is a match in either of the tables being joined. It comes in two variations:
+        <ul>
+          <li><strong>LEFT JOIN</strong> (or <strong>LEFT OUTER JOIN</strong>): Returns all records from the left table and matched records from the right table. Unmatched rows from the right table will have <code class="language-plaintext highlighter-rouge">NULL</code> values.</li>
+          <li><strong>RIGHT JOIN</strong> (or <strong>RIGHT OUTER JOIN</strong>): Returns all records from the right table and matched records from the left table. Unmatched rows from the left table will have <code class="language-plaintext highlighter-rouge">NULL</code> values.</li>
+          <li>Example of a <strong>LEFT JOIN</strong>:
+            <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">Students</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Hostels</span><span class="p">.</span><span class="n">name</span> 
+<span class="k">FROM</span> <span class="n">Students</span> 
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Hostels</span> 
+<span class="k">ON</span> <span class="n">Students</span><span class="p">.</span><span class="n">hostelID</span> <span class="o">=</span> <span class="n">Hostels</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</code></pre></div>            </div>
+            <p>This query retrieves all student names along with their hostel names. If a student doesn’t have a matching hostel, the <code class="language-plaintext highlighter-rouge">Hostels.name</code> field will be <code class="language-plaintext highlighter-rouge">NULL</code>.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>NoSQL Databases</strong>:
+    <ul>
+      <li>More flexible than relational databases, allowing for unstructured data.</li>
+      <li>Examples include <strong>MongoDB</strong> and <strong>CouchDB</strong>.</li>
+      <li>Suitable for dynamic schema or hierarchical data storage.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="flask-basics">Flask Basics</h3>
+
+<ol>
+  <li><strong>Introduction to Flask</strong>:
+    <ul>
+      <li>A micro web framework for Python, designed for simplicity.</li>
+      <li>Useful for building small to medium-sized web applications.</li>
+      <li>Requires minimal setup compared to larger frameworks like Django.</li>
+    </ul>
+  </li>
+  <li><strong>Core Concepts in Flask</strong>:
+    <ul>
+      <li><strong>Routes</strong>: Define URL endpoints and how they are handled.
+        <ul>
+          <li>Example:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/hello'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, World!"</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Templates</strong>: Allow dynamic HTML generation using Jinja2.
+        <ul>
+          <li>Example:
+            <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;h1&gt;</span>Hello, {{ name }}!<span class="nt">&lt;/h1&gt;</span>
+
+</code></pre></div>            </div>
+            <p>This dynamically displays a name passed from the Flask view.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Database Integration with Flask</strong>:
+    <ul>
+      <li><strong>Flask-SQLAlchemy</strong>: An ORM (Object Relational Mapper) for integrating SQL databases with Flask.
+        <ul>
+          <li>Simplifies interaction with databases by using Python classes instead of SQL commands.</li>
+          <li>Example:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+       
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li><strong>NoSQL with Flask</strong>: Libraries like PyMongo allow MongoDB integration with Flask.</li>
+    </ul>
+  </li>
+  <li><strong>Data Persistence in Flask</strong>:
+    <ul>
+      <li>Persistent storage allows data to survive across multiple sessions and server restarts.</li>
+      <li>Can be managed using databases or file-based storage like CSV or JSON for simpler applications.</li>
+    </ul>
+  </li>
+  <li><strong>RESTful APIs with Flask</strong>:
+    <ul>
+      <li>Flask is often used to create APIs for CRUD operations (Create, Read, Update, Delete).</li>
+      <li>Example of a simple API route for adding a user:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/add_user'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_user</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added successfully!"</span><span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="summary">Summary</h3>
+
+<ul>
+  <li><strong>Relational databases</strong> (SQL) are best for structured data with complex relationships.</li>
+  <li><strong>NoSQL databases</strong> are more flexible but can sacrifice strict data validation.</li>
+  <li><strong>INNER JOIN</strong> returns data where there is a match in both tables, while <strong>OUTER JOIN</strong> returns data even when there are no matches, filling gaps with <code class="language-plaintext highlighter-rouge">NULL</code>.</li>
+  <li><strong>Flask</strong> is a lightweight framework ideal for building web apps and APIs.</li>
+  <li>Integrating databases with Flask allows for dynamic web applications and persistent data storage.</li>
+</ul>
+
+<p>This comprehensive guide provides an overview of key database concepts, SQL queries, and using Flask for web development with a focus on handling dynamic content and persistent data.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

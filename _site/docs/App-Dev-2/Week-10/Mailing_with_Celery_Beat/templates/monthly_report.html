@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Report</title>
+</head>
+<body>
+    <h1>Monthly Report</h1>
+    <p>Here is the report of all the book requests for this month:</p>
+    {% for req in book_details %}
+    <h2> {{ req.username }}</h2>
+    <p><strong>Book Name:</strong> {{ req.book_name }}</p>
+    <p><strong>Status:</strong> {{ req.status }}</p>
+    {% endfor %}
+
+   
+</body>
+</html>

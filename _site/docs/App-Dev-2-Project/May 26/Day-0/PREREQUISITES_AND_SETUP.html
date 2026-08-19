@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="prerequisites--setup-guide---vehicle-parking-application">Prerequisites &amp; Setup Guide - Vehicle Parking Application</h1>
+
+<p>Welcome! This guide gets you from zero to running. It covers prerequisites, technology stack, setup, and testing.</p>
+
+<hr />
+
+<h2 id="what-you-need--why">What You Need &amp; Why</h2>
+
+<h3 id="prerequisites-check-these-first">Prerequisites (Check These First)</h3>
+
+<h4 id="1-python-38-backend-we-will-be-using-wsl-in-windows-for-backend">1. <strong>Python 3.8+</strong> (Backend) We will be using wsl in windows for backend</h4>
+<p><strong>Why?</strong> We use Flask (lightweight web framework), SQLAlchemy (database ORM), and JWT (authentication).</p>
+
+<p>Check if installed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">--version</span>   <span class="c"># or python3 --version</span>
+</code></pre></div></div>
+
+<p>Not installed? Download from <a href="https://python.org/">python.org</a></p>
+
+<h4 id="2-nodejs-16--npm-frontend-we-will-be-using-powershellcmd-in-windows-for-frontend">2. <strong>Node.js 16+ &amp; npm</strong> (Frontend) We will be using powershell/cmd in windows for frontend</h4>
+<p><strong>Why?</strong> We use Vue 3 (UI framework), Vite (fast bundler), and npm (package manager).</p>
+
+<p>Check if installed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">--version</span>     <span class="c"># Should be v16 or higher</span>
+npm <span class="nt">--version</span>      <span class="c"># Should be v7 or higher</span>
+</code></pre></div></div>
+
+<p>Not installed? Download from <a href="https://nodejs.org/">nodejs.org</a> (choose LTS)</p>
+
+<h4 id="3-git-version-control">3. <strong>Git</strong> (Version Control)</h4>
+<p><strong>Why?</strong> Version control and managing code changes.</p>
+
+<p>Check if installed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Not installed? Download from <a href="https://git-scm.com/downloads">git-scm.com</a></p>
+
+<p>Don’t know how to do github setup ? Watch this Github Adding Collaborator Video: <a href="https://youtu.be/fUY1MtqCoRU">Adding Github Collaborator using VSCode and WSL</a></p>
+
+<h3 id="verify-everything-is-ready">Verify Everything is Ready</h3>
+
+<p>Run this command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"=== Node.js ==="</span> <span class="o">&amp;&amp;</span> node <span class="nt">--version</span> <span class="o">&amp;&amp;</span> npm <span class="nt">--version</span>
+<span class="nb">echo</span> <span class="s2">"=== Python ==="</span> <span class="o">&amp;&amp;</span> python <span class="nt">--version</span>
+<span class="nb">echo</span> <span class="s2">"All prerequisites installed!"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="technology-stack---why-were-using-what">Technology Stack - Why We’re Using What</h2>
+
+<h3 id="backend-stack">Backend Stack</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Technology</th>
+      <th>Purpose</th>
+      <th>Why?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Flask</strong></td>
+      <td>Web framework</td>
+      <td>Lightweight, easy to learn, great for APIs</td>
+    </tr>
+    <tr>
+      <td><strong>SQLAlchemy</strong></td>
+      <td>Database ORM</td>
+      <td>Easy to define and manage database models</td>
+    </tr>
+    <tr>
+      <td><strong>SQLite</strong></td>
+      <td>Database</td>
+      <td>Simple file-based database, perfect for learning</td>
+    </tr>
+    <tr>
+      <td><strong>JWT (JSON Web Tokens)</strong></td>
+      <td>Authentication</td>
+      <td>Secure token-based auth, stateless, scalable</td>
+    </tr>
+    <tr>
+      <td><strong>RBAC</strong></td>
+      <td>Authorization</td>
+      <td>Role-based access control (Admin vs User)</td>
+    </tr>
+    <tr>
+      <td><strong>CORS</strong></td>
+      <td>Cross-origin</td>
+      <td>Allow frontend (different port) to call backend</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Backend Architecture:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Browser (5173)
+    ↓
+Frontend (Vue)
+    ↓ HTTP Requests
+    ↓
+Backend (Flask) on 5000
+    ↓
+SQLite Database (instance/database.db)
+</code></pre></div></div>
+
+<p><strong>Authentication Flow:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User registers → Password hashed → Stored in User table
+2. User logs in → Credentials verified → JWT token created
+3. Token sent to frontend → Stored in localStorage
+4. Requests include token in Authorization header
+5. Backend verifies token signature → Request processed
+</code></pre></div></div>
+
+<h3 id="frontend-stack">Frontend Stack</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Technology</th>
+      <th>Purpose</th>
+      <th>Why?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Vue 3</strong></td>
+      <td>UI Framework</td>
+      <td>Modern, reactive, easy component management</td>
+    </tr>
+    <tr>
+      <td><strong>Vite</strong></td>
+      <td>Build tool</td>
+      <td>10x faster than webpack, instant HMR (hot reload)</td>
+    </tr>
+    <tr>
+      <td><strong>Vue Router 4</strong></td>
+      <td>Routing</td>
+      <td>Multi-page navigation within single app</td>
+    </tr>
+    <tr>
+      <td><strong>Axios/fetch</strong></td>
+      <td>HTTP Client</td>
+      <td>Easy API requests with error handling</td>
+    </tr>
+    <tr>
+      <td><strong>CSS</strong></td>
+      <td>Styling</td>
+      <td>Modern CSS features, responsive design</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Frontend Architecture:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Landing Page
+    ↓
+Routes:
+├─ /admin → Admin Portal
+│  ├─ AdminLogin (authenticate)
+│  └─ Dashboard (tabs: lots, spots, users, reservations, analytics)
+│
+└─ /user → User Portal
+   ├─ UserLogin/Register
+   └─ Dashboard (tabs: my reservations, analytics)
+</code></pre></div></div>
+
+<p><strong>Component Structure:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Views (Pages):
+├─ LandingPage (portal selection)
+├─ AdminView (admin portal container)
+└─ UserView (user portal container)
+
+Components:
+├─ AdminLogin (authenticate)
+├─ AdminDashboard, AdminLots, AdminSpots, etc.
+├─ UserLogin (authenticate)
+├─ UserRegister (register)
+└─ UserDashboard, UserReservations, UserAnalytics
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="complete-setup-backend--frontend">Complete Setup (Backend + Frontend)</h2>
+
+<h3 id="step-1-backend-setup">Step 1: Backend Setup</h3>
+
+<p><strong>Windows:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create project directory</span>
+<span class="nb">mkdir </span>vehicle-parking-backend
+<span class="nb">cd </span>vehicle-parking-backend
+
+<span class="c"># Create virtual environment</span>
+python <span class="nt">-m</span> venv venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+</code></pre></div></div>
+
+<p><strong>macOS/Linux:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>vehicle-parking-backend
+<span class="nb">cd </span>vehicle-parking-backend
+python3 <span class="nt">-m</span> venv venv
+<span class="nb">source </span>venv/bin/activate
+</code></pre></div></div>
+
+<p><strong>Check:</strong> Terminal should show <code class="language-plaintext highlighter-rouge">(venv)</code> prefix</p>
+
+<p><strong>Install Dependencies:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create requirements.txt with these packages</span>
+pip <span class="nb">install </span>Flask Flask-SQLAlchemy Flask-JWT-Extended Flask-CORS
+</code></pre></div></div>
+
+<p><strong>Check:</strong> Verify packages installed</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip list | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"Flask|SQLAlchemy|JWT|CORS"</span>
+</code></pre></div></div>
+
+<p><strong>Create Files:</strong> (See BACKEND_SETUP.md for full code)</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">config.py</code> - Configuration settings</li>
+  <li><code class="language-plaintext highlighter-rouge">models.py</code> - Database models (User, ParkingLot, ParkingSpot, Reservation)</li>
+  <li><code class="language-plaintext highlighter-rouge">app.py</code> - Flask application with all routes</li>
+</ul>
+
+<p><strong>Start Backend Server:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py
+</code></pre></div></div>
+
+<p><strong>Expected output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING in app.py: * Running on http://localhost:5000
+* Debugger is active!
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-2-frontend-setup">Step 2: Frontend Setup</h3>
+
+<p><strong>Create Vue 3 + Vite Project:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest vehicle-parking-frontend 
+<span class="nb">cd </span>vehicle-parking-frontend
+</code></pre></div></div>
+
+<p>When prompted, choose:</p>
+<ul>
+  <li>Framework: <code class="language-plaintext highlighter-rouge">Vue</code></li>
+  <li>Variant: <code class="language-plaintext highlighter-rouge">Official Vue Starter</code></li>
+  <li>Features: include <code class="language-plaintext highlighter-rouge">Router (SPA development)</code></li>
+</ul>
+
+<p><strong>Install Dependencies:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install
+</span>npm <span class="nb">install </span>axios
+</code></pre></div></div>
+
+<p><strong>Check:</strong> Verify packages installed</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm list vue vue-router axios
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">npm ls vue-router</code> shows <code class="language-plaintext highlighter-rouge">(empty)</code>, run <code class="language-plaintext highlighter-rouge">npm install</code> first. If it still shows empty, install router manually:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>vue-router@4
+</code></pre></div></div>
+
+<p><strong>Project Structure (Optional):</strong></p>
+
+<p>If your scaffold already created <code class="language-plaintext highlighter-rouge">src/components</code>, <code class="language-plaintext highlighter-rouge">src/views</code>, <code class="language-plaintext highlighter-rouge">src/router</code>, and <code class="language-plaintext highlighter-rouge">src/assets</code>, skip manual folder creation.</p>
+
+<p>Only create missing folders/files as needed (see FRONTEND_SETUP.md for full code).</p>
+
+<p><strong>Frontend API URL (simple):</strong></p>
+
+<p>Use a direct backend URL in frontend code examples:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">http://localhost:5000/api</code></li>
+</ul>
+
+<p><strong>Start Frontend Server:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div></div>
+
+<p><strong>Expected output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VITE v5.x.x ready in xxx ms
+➜ Local: http://localhost:5173/
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="running-both-together">Running Both Together</h2>
+
+<p>Open <strong>2 separate terminals:</strong></p>
+
+<p><strong>Terminal 1 - Backend:</strong> ( wsl in windows is prefered for backend)</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>vehicle-parking-backend
+<span class="nb">source </span>venv/bin/activate    <span class="c"># macOS/Linux/wsl</span>
+<span class="c"># OR venv\Scripts\activate  # Windows</span>
+
+python app.py
+<span class="c"># Running on http://localhost:5000</span>
+</code></pre></div></div>
+
+<p><strong>Terminal 2 - Frontend:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>vehicle-parking-frontend
+npm run dev
+<span class="c"># Running on http://localhost:5173</span>
+</code></pre></div></div>
+
+<p>Open browser to <code class="language-plaintext highlighter-rouge">http://localhost:5173</code> - You should see the application!</p>
+
+<p>For API testing (curl / Thunder Client / Postman), use the testing section in <strong>BACKEND_SETUP.md</strong> after backend APIs are implemented.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ol>
+  <li>Run both servers together</li>
+  <li>Test all endpoints</li>
+  <li>Quick pre-read: <strong>SECURITY_GUIDE.md</strong> (JWT + RBAC basics only)</li>
+  <li>Read <strong>BACKEND_SETUP.md</strong> for detailed backend code explanation</li>
+  <li>Read <strong>FRONTEND_SETUP.md</strong> for detailed frontend code explanation</li>
+  <li>Revisit <strong>SECURITY_GUIDE.md</strong> for full security flow and debugging</li>
+</ol>
+
+<hr />
+
+<h2 id="quick-reference">Quick Reference</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>Where</th>
+      <th>Port</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Backend API</td>
+      <td>http://localhost:5000</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <td>Frontend App</td>
+      <td>http://localhost:5173</td>
+      <td>5173</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>instance/database.db</td>
+      <td>(file)</td>
+    </tr>
+    <tr>
+      <td>API Base URL</td>
+      <td>/api</td>
+      <td>(path)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="database-models">Database Models</h3>
+<ul>
+  <li><strong>User</strong> - username, email, password, role (admin/user)</li>
+  <li><strong>ParkingLot</strong> - name, location, city, total_spots</li>
+  <li><strong>ParkingSpot</strong> - spot_number, status (available/occupied/reserved)</li>
+  <li><strong>Reservation</strong> - user_id, parking_spot_id, vehicle_number, start_time, end_time</li>
+</ul>
+
+<h3 id="key-features">Key Features</h3>
+<ul>
+  <li>JWT-based authentication</li>
+  <li>Role-based access control (Admin/User)</li>
+  <li>Parking lot and spot management</li>
+  <li>Reservation system</li>
+  <li>Responsive UI</li>
+</ul>
+
+<hr />
+
+<p><strong>Ready? Start with these files in order:</strong></p>
+<ol>
+  <li>This file (Prerequisites &amp; Setup) ← You are here</li>
+  <li>SECURITY_GUIDE.md (Quick skim: JWT + RBAC basics)</li>
+  <li>BACKEND_SETUP.md (Backend implementation)</li>
+  <li>FRONTEND_SETUP.md (Frontend implementation)</li>
+</ol>
+
+<p>Let’s build the Vehicle Parking Application!</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

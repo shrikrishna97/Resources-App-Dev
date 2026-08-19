@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="quiz-1-revision-notes-javascript--vuejs">Quiz-1 Revision Notes (JavaScript &amp; Vue.js)</h1>
+
+<blockquote>
+  <p>These notes are for quick revision before Quiz-1. They focus on concepts, syntax, and how everything works together.</p>
+</blockquote>
+
+<hr />
+
+<h1 id="javascript">JavaScript</h1>
+
+<h2 id="1-typeof">1. <code class="language-plaintext highlighter-rouge">typeof</code></h2>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">active</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span><span class="p">);</span>   <span class="c1">// string</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">age</span><span class="p">);</span>    <span class="c1">// number</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">active</span><span class="p">);</span> <span class="c1">// boolean</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">typeof</code> returns the type of a value as a string like <code class="language-plaintext highlighter-rouge">"number"</code>, <code class="language-plaintext highlighter-rouge">"string"</code>, or <code class="language-plaintext highlighter-rouge">"boolean"</code>.
+It is useful for checking data types before performing operations or validations.</p>
+
+<h2 id="2-document">2. <code class="language-plaintext highlighter-rouge">document</code></h2>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"title"</span><span class="nt">&gt;</span>Welcome<span class="nt">&lt;/h2&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Quiz Revision</span><span class="dl">"</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">document</code> represents the full HTML page loaded in the browser.
+You use it to select elements, update content, and respond to user actions.</p>
+
+<h2 id="3-functions">3. Functions</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">Hello </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">Shri</span><span class="dl">"</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Functions can also be stored in variables.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A function is a reusable block of code that runs when it is called.
+Functions help organize logic, avoid repetition, and make code easier to test.</p>
+
+<h2 id="4-let-var-const">4. <code class="language-plaintext highlighter-rouge">let</code>, <code class="language-plaintext highlighter-rouge">var</code>, <code class="language-plaintext highlighter-rouge">const</code></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Scope</th>
+      <th>Redeclare</th>
+      <th>Reassign</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>var</td>
+      <td>Function</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>let</td>
+      <td>Block</td>
+      <td>✘</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>const</td>
+      <td>Block</td>
+      <td>✘</td>
+      <td>✘</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These keywords declare variables, but they differ in scope and mutability rules.
+<code class="language-plaintext highlighter-rouge">let</code> and <code class="language-plaintext highlighter-rouge">const</code> are block-scoped, while <code class="language-plaintext highlighter-rouge">var</code> is function-scoped and older.</p>
+
+<h2 id="5-foreach">5. <code class="language-plaintext highlighter-rouge">forEach()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">nums</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">forEach()</code> executes a callback once for each element in an array.
+It is best for side effects like printing or updating UI, not for creating new arrays.</p>
+
+<h2 id="6-map">6. <code class="language-plaintext highlighter-rouge">map()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">square</span><span class="o">=</span><span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span><span class="o">=&gt;</span><span class="nx">n</span><span class="o">*</span><span class="nx">n</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">square</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">map()</code> transforms each array element and returns a new array of the same length.
+Use it when you want to convert data from one form to another.</p>
+
+<h2 id="7-filter">7. <code class="language-plaintext highlighter-rouge">filter()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">result</span><span class="o">=</span><span class="nx">nums</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">n</span><span class="o">=&gt;</span><span class="nx">n</span><span class="o">&gt;=</span><span class="mi">30</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">filter()</code> returns a new array containing only elements that satisfy a condition.
+It is useful for search, selection, and removing unwanted items.</p>
+
+<h2 id="8-sort">8. <code class="language-plaintext highlighter-rouge">sort()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">nums</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">sort()</code> rearranges array elements based on a compare function.
+For numbers, use <code class="language-plaintext highlighter-rouge">(a, b) =&gt; a - b</code> to avoid default string-based sorting.</p>
+
+<h2 id="9-slice">9. <code class="language-plaintext highlighter-rouge">slice()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Output</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="s2">"B"</span><span class="p">,</span><span class="s2">"C"</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">slice(start, end)</code> returns a shallow copy of part of an array.
+It does not modify the original array, so it is safe for non-destructive operations.</p>
+
+<h2 id="10-length">10. <code class="language-plaintext highlighter-rouge">length</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">length</code> gives the number of elements in an array or characters in a string.
+It is commonly used for loops, validations, and empty checks.</p>
+
+<h2 id="11-settimeout">11. <code class="language-plaintext highlighter-rouge">setTimeout()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Executed after 2 seconds</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span><span class="mi">2000</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">setTimeout()</code> schedules a function to run once after a delay in milliseconds.
+It is used for delayed UI actions, simple async flow, or temporary waits.</p>
+
+<h2 id="12-callback-function">12. Callback Function</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Processing...</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">callback</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">process</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Done</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>A callback is a function passed as an argument to another function.
+It allows custom behavior to run after a task is completed.</p>
+
+<h2 id="13-event-listener">13. Event Listener</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn"</span><span class="nt">&gt;</span>Click<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btn</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Clicked</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>An event listener waits for browser events like click, input, or keypress.
+When the event happens, the attached callback function executes.</p>
+
+<h2 id="14-apply">14. <code class="language-plaintext highlighter-rouge">apply()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">greet</span><span class="p">(</span><span class="nx">city</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="o">+</span><span class="dl">"</span><span class="s2"> from </span><span class="dl">"</span><span class="o">+</span><span class="nx">city</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">user</span><span class="o">=</span><span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">};</span>
+
+<span class="nx">greet</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">user</span><span class="p">,[</span><span class="dl">"</span><span class="s2">Delhi</span><span class="dl">"</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">apply()</code> calls a function with a specific <code class="language-plaintext highlighter-rouge">this</code> value and arguments as an array.
+It is useful when argument values are already stored as a list.</p>
+
+<h2 id="15-bind">15. <code class="language-plaintext highlighter-rouge">bind()</code></h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">hello</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">user</span><span class="o">=</span><span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bob</span><span class="dl">"</span><span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">fn</span><span class="o">=</span><span class="nx">hello</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+
+<span class="nx">fn</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">bind()</code> creates a new function with <code class="language-plaintext highlighter-rouge">this</code> permanently set to a chosen object.
+It is commonly used when passing methods as callbacks to preserve context.</p>
+
+<h2 id="calling-javascript-functions">Calling JavaScript Functions</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sayHello</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">sayHello</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"sayHello()"</span><span class="nt">&gt;</span>
+Click
+<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>Functions can be called directly in code by writing their name with parentheses.
+They can also be triggered from HTML events like <code class="language-plaintext highlighter-rouge">onclick</code> in browser pages.</p>
+
+<hr />
+
+<h1 id="javascript-combined-example">JavaScript Combined Example</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"search"</span> <span class="na">placeholder=</span><span class="s">"Minimum Marks"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"show"</span><span class="nt">&gt;</span>Show Students<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"students"</span><span class="nt">&gt;&lt;/ul&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">const</span> <span class="nx">students</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span><span class="na">marks</span><span class="p">:</span><span class="mi">80</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bob</span><span class="dl">"</span><span class="p">,</span><span class="na">marks</span><span class="p">:</span><span class="mi">55</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">Charlie</span><span class="dl">"</span><span class="p">,</span><span class="na">marks</span><span class="p">:</span><span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="dl">"</span><span class="s2">David</span><span class="dl">"</span><span class="p">,</span><span class="na">marks</span><span class="p">:</span><span class="mi">45</span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="kd">function</span> <span class="nx">render</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="kd">const</span> <span class="nx">ul</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">students</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">ul</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="dl">""</span><span class="p">;</span>
+
+    <span class="nx">data</span>
+    <span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">b</span><span class="p">.</span><span class="nx">marks</span><span class="o">-</span><span class="nx">a</span><span class="p">.</span><span class="nx">marks</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">student</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">ul</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">+=</span><span class="s2">`&lt;li&gt;</span><span class="p">${</span><span class="nx">student</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nx">student</span><span class="p">.</span><span class="nx">marks</span><span class="p">}</span><span class="s2">&lt;/li&gt;`</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">show</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+
+    <span class="kd">let</span> <span class="nx">value</span><span class="o">=</span><span class="nb">Number</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">search</span><span class="dl">"</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+
+    <span class="kd">let</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">students</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">s</span><span class="o">=&gt;</span><span class="nx">s</span><span class="p">.</span><span class="nx">marks</span><span class="o">&gt;=</span><span class="nx">value</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span><span class="p">);</span>
+
+    <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">render</span><span class="p">(</span><span class="nx">filtered</span><span class="p">);</span>
+    <span class="p">},</span><span class="mi">500</span><span class="p">);</span>
+
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">done</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Finished rendering</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">execute</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+    <span class="nx">callback</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">execute</span><span class="p">(</span><span class="nx">done</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Concepts used:</strong> document, function, callback, addEventListener, filter, sort, forEach, typeof, setTimeout.</p>
+
+<hr />
+
+<h1 id="vuejs">Vue.js</h1>
+
+<p>Vue is a progressive JavaScript framework for building user interfaces.</p>
+
+<h2 id="component">Component</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">"</span><span class="s2">student-card</span><span class="dl">"</span><span class="p">,{</span>
+    <span class="na">props</span><span class="p">:[</span><span class="dl">"</span><span class="s2">student</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">template</span><span class="p">:</span><span class="s2">`&lt;h3&gt;&lt;/h3&gt;`</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>A component is a reusable, self-contained UI building block in Vue.
+It helps split large interfaces into manageable and maintainable pieces.</p>
+
+<h2 id="props">Props</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;student-card</span>
+    <span class="na">:student=</span><span class="s">"student"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/student-card&gt;</span>
+</code></pre></div></div>
+
+<p>Props are custom inputs used to pass data from parent to child components.
+They make child components dynamic while keeping data flow predictable.</p>
+
+<h2 id="emit">Emit</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="dl">"</span><span class="s2">delete</span><span class="dl">"</span><span class="p">,</span><span class="nx">id</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">$emit</code> lets a child component send an event message to its parent.
+This is the standard way for child-to-parent communication in Vue.</p>
+
+<h2 id="click--v-on"><code class="language-plaintext highlighter-rouge">@click</code> / <code class="language-plaintext highlighter-rouge">v-on</code></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increment"</span><span class="nt">&gt;</span>
+Add
+<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>Equivalent</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">v-on:click=</span><span class="s">"increment"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@click</code> is shorthand for <code class="language-plaintext highlighter-rouge">v-on:click</code> to listen for click events.
+It connects UI actions to methods so user interactions trigger logic.</p>
+
+<h2 id="v-for"><code class="language-plaintext highlighter-rouge">v-for</code></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span>
+<span class="na">v-for=</span><span class="s">"student in students"</span>
+<span class="na">:key=</span><span class="s">"student.id"</span><span class="nt">&gt;</span>
+
+
+
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">v-for</code> renders a list by repeating an element for each item in data.
+A unique <code class="language-plaintext highlighter-rouge">:key</code> should be provided for better rendering performance and stability.</p>
+
+<h2 id="v-show"><code class="language-plaintext highlighter-rouge">v-show</code></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">v-show=</span><span class="s">"loggedIn"</span><span class="nt">&gt;</span>
+Welcome
+<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">v-show</code> toggles element visibility using CSS without removing it from the DOM.
+It is efficient when visibility changes frequently.</p>
+
+<h2 id="v-bind"><code class="language-plaintext highlighter-rouge">v-bind</code></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">:src=</span><span class="s">"image"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">v-bind</code> dynamically binds HTML attributes to Vue data.
+Its shorthand <code class="language-plaintext highlighter-rouge">:</code> is widely used for props and attributes like <code class="language-plaintext highlighter-rouge">src</code> and <code class="language-plaintext highlighter-rouge">class</code>.</p>
+
+<h2 id="v-model"><code class="language-plaintext highlighter-rouge">v-model</code></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"username"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">v-model</code> creates two-way binding between form input and component state.
+When input changes, data updates automatically, and vice versa.</p>
+
+<h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">created</span><span class="p">(){}</span>
+
+<span class="nx">mounted</span><span class="p">(){}</span>
+
+<span class="nx">updated</span><span class="p">(){}</span>
+
+<span class="nx">beforeUnmount</span><span class="p">(){}</span>
+</code></pre></div></div>
+
+<p>Lifecycle hooks are methods that run at specific stages of a component’s life.
+They are used for setup, DOM-related work, reactive updates, and cleanup.</p>
+
+<ul>
+  <li>created → data ready</li>
+  <li>mounted → DOM ready</li>
+  <li>updated → reactive update</li>
+  <li>beforeUnmount → cleanup</li>
+</ul>
+
+<hr />
+
+<h1 id="vue-combined-example-notes-app">Vue Combined Example (Notes App)</h1>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue Notes<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>Notes<span class="nt">&lt;/h2&gt;</span>
+
+      <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"newNote"</span> <span class="na">placeholder=</span><span class="s">"Enter note"</span> <span class="nt">/&gt;</span>
+
+      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addNote"</span><span class="nt">&gt;</span>Add<span class="nt">&lt;/button&gt;</span>
+
+      <span class="nt">&lt;p</span> <span class="na">v-show=</span><span class="s">"notes.length===0"</span><span class="nt">&gt;</span>No Notes Available<span class="nt">&lt;/p&gt;</span>
+
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"(note,index) in notes"</span> <span class="na">:key=</span><span class="s">"index"</span><span class="nt">&gt;</span>
+          
+
+          <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"remove(index)"</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+      <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+        <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">{</span>
+            <span class="na">newNote</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Learn JS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Learn Vue</span><span class="dl">"</span><span class="p">],</span>
+          <span class="p">};</span>
+        <span class="p">},</span>
+
+        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nx">addNote</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newNote</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newNote</span><span class="p">);</span>
+
+              <span class="k">this</span><span class="p">.</span><span class="nx">newNote</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+
+          <span class="nx">remove</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+
+        <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Application Mounted</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+      <span class="p">});</span>
+
+    <span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Concepts used:</strong> <code class="language-plaintext highlighter-rouge">v-model</code>, <code class="language-plaintext highlighter-rouge">@click</code>, <code class="language-plaintext highlighter-rouge">v-show</code>, <code class="language-plaintext highlighter-rouge">v-for</code>, lifecycle hook.</p>
+
+<hr />
+
+<h1 id="component--props--emit-example">Component + Props + Emit Example</h1>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Child</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">props</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">],</span>
+
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;div&gt;
+        
+        &lt;button @click="$emit('remove')"&gt;
+            Delete
+        &lt;/button&gt;
+    &lt;/div&gt;
+            `</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span> <span class="nx">Child</span> <span class="p">},</span>
+
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">student</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">};</span>
+  <span class="p">},</span>
+
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">deleteStudent</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">student</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;head&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;title&gt;</span>Vue 2 Component Demo<span class="nt">&lt;/title&gt;</span>
+		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+	<span class="nt">&lt;/head&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;h2&gt;</span>Student Card<span class="nt">&lt;/h2&gt;</span>
+
+			<span class="nt">&lt;child</span> <span class="na">v-if=</span><span class="s">"student"</span> <span class="na">:name=</span><span class="s">"student"</span> <span class="err">@</span><span class="na">remove=</span><span class="s">"deleteStudent"</span><span class="nt">&gt;&lt;/child&gt;</span>
+			<span class="nt">&lt;p</span> <span class="na">v-else</span><span class="nt">&gt;</span>No student available<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./Component.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="quick-revision">Quick Revision</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>typeof</td>
+      <td>Find data type</td>
+    </tr>
+    <tr>
+      <td>document</td>
+      <td>Access HTML</td>
+    </tr>
+    <tr>
+      <td>function</td>
+      <td>Reusable code</td>
+    </tr>
+    <tr>
+      <td>forEach</td>
+      <td>Loop array</td>
+    </tr>
+    <tr>
+      <td>map</td>
+      <td>Transform array</td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td>Select data</td>
+    </tr>
+    <tr>
+      <td>sort</td>
+      <td>Arrange data</td>
+    </tr>
+    <tr>
+      <td>slice</td>
+      <td>Copy part of array</td>
+    </tr>
+    <tr>
+      <td>length</td>
+      <td>Count elements</td>
+    </tr>
+    <tr>
+      <td>callback</td>
+      <td>Function passed to function</td>
+    </tr>
+    <tr>
+      <td>setTimeout</td>
+      <td>Delay execution</td>
+    </tr>
+    <tr>
+      <td>Event Listener</td>
+      <td>Browser events</td>
+    </tr>
+    <tr>
+      <td>apply</td>
+      <td>Call function with custom this</td>
+    </tr>
+    <tr>
+      <td>bind</td>
+      <td>Permanently bind this</td>
+    </tr>
+    <tr>
+      <td>Component</td>
+      <td>Reusable UI</td>
+    </tr>
+    <tr>
+      <td>Props</td>
+      <td>Parent → Child</td>
+    </tr>
+    <tr>
+      <td>Emit</td>
+      <td>Child → Parent</td>
+    </tr>
+    <tr>
+      <td>v-for</td>
+      <td>Loop</td>
+    </tr>
+    <tr>
+      <td>v-show</td>
+      <td>Show/Hide</td>
+    </tr>
+    <tr>
+      <td>v-bind</td>
+      <td>Bind attributes</td>
+    </tr>
+    <tr>
+      <td>v-model</td>
+      <td>Two-way binding</td>
+    </tr>
+    <tr>
+      <td>@click</td>
+      <td>Click event</td>
+    </tr>
+    <tr>
+      <td>Lifecycle</td>
+      <td>Component stages</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="extra-resources">Extra Resources</h1>
+
+<p>JavaScript</p>
+<ul>
+  <li>https://developer.mozilla.org/docs/Web/JavaScript</li>
+  <li>https://javascript.info</li>
+</ul>
+
+<p>Vue</p>
+<ul>
+  <li>https://vuejs.org/guide/introduction.html</li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
