@@ -123,8 +123,8 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <div class="nav-breadcrumb">
 <a href="../">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
 </div>
-
-<script type="text/javascript">
+<div markdown="0">
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.term-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
@@ -136,3 +136,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+</div>

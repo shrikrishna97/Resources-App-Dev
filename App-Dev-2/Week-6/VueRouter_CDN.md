@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Basic Navigation and Introduction to Vue Router (Vue 2 CDN)
 
 > **Goal:** Learn how to navigate between pages in a Vue application using **Vue Router** and reusable **Vue Components**.

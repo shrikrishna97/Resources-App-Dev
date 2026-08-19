@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Quiz-1 Revision Notes (JavaScript & Vue.js)
 
 > These notes are for quick revision before Quiz-1. They focus on concepts, syntax, and how everything works together.
