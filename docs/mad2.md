@@ -47,11 +47,21 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 ---
 
-### Week 6 — JavaScript
+### Week 5 — Fetch API
+
+| Notes | Video |
+|-------|-------|
+| [Fetch API Tutorial](App-Dev-2/Week-5/fetchCall.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+
+---
+
+### Week 6 — JavaScript & Vue Router
 
 | Notes | Video |
 |-------|-------|
 | [Promises in JavaScript](App-Dev-2/Promise.md) | [Week 6 AQ/PQ and Open Session](https://www.youtube.com/watch?v=J7USjC6Bab4) |
+| [Vue Router & Form Validation Guide](App-Dev-2/Week-6/Vue-Router-Form-Validation-Guide.md) | |
+| [Vue Router CDN](App-Dev-2/Week-6/VueRouter_CDN.md) | |
 
 ---
 
@@ -110,6 +120,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Resource | Description |
 |----------|-------------|
+| [Quiz-1 Revision Notes (JS & Vue)](App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.md) | Quick revision for Quiz 1 |
 | [Quiz-2 Short Notes](App-Dev-2/Quiz-2%20Revision/short-notes.md) | Quick revision for Quiz 2 |
 | [End Semester Notes](App-Dev-2/ET%20Revision/end-sem-notes.md) | Complete end-term revision |
 | [Extra Resource MAD2](App-Dev-2/Extra%20Resource%20MAD2.pdf) | Additional resources *(PDF)* |

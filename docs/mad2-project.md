@@ -59,6 +59,33 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
+## May 2026 Project Session
+
+### Getting Started (May 26)
+
+| Resource | Description |
+|----------|-------------|
+| [Project Index](App-Dev-2-Project/May%2026/Day-0/INDEX.md) | Complete project overview & navigation |
+| [Prerequisites & Setup](App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.md) | What you need before starting |
+| [Backend Setup (Flask)](App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.md) | Flask API, database, Celery setup |
+| [Frontend Setup (Vue.js)](App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.md) | Vue.js project structure & components |
+| [Security Guide](App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.md) | Authentication, RBAC, & security best practices |
+| [Project Statement](App-Dev-2-Project/May%2026/Project%20statement%20MAD%20II%20-%20May%202025.pdf) | Official project requirements *(PDF)* |
+
+### Day-wise Implementation (May 26)
+
+| Day | Guide | Description |
+|-----|-------|-------------|
+| Day 0 | [Day 0 — Planning & Architecture](App-Dev-2-Project/May%2026/Day-0/Day%200.md) | Project setup & architecture |
+| Day 1 | [Day 1](App-Dev-2-Project/May%2026/Day-1/Day-1.md) | Initial backend implementation |
+| Day 2 | [Day 2](App-Dev-2-Project/May%2026/Day-2/Day-2.md) | Frontend setup & auth |
+| Day 3 | *(Code only — no separate guide)* | Backend & frontend continued |
+| Day 4 | [WSL Setup Guide](App-Dev-2-Project/May%2026/Day-4/WSL_SETUP_GUIDE.md) | WSL, Redis & Celery setup |
+| Day 5 | [Day 5 Content](App-Dev-2-Project/May%2026/Day-5/Content.md) | Celery tasks & email reports |
+| Day 6 | [Final Content Covered](App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.md) | Final session summary |
+
+---
+
 <div class="nav-breadcrumb">
 <a href="./">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
 </div>
