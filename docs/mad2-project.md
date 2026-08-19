@@ -55,11 +55,15 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <h3>Day-wise Implementation</h3>
 
 <table>
-<thead><tr><th>Day</th><th>Guide</th><th>Video</th></tr></thead>
+<thead><tr><th>Day</th><th>Guide</th><th>Codebase</th><th>Video</th></tr></thead>
 <tbody>
-<tr><td>Day 0</td><td><a href="../App-Dev-2-Project/Jan-26/Day0.html">Planning &amp; Architecture</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
-<tr><td>Day 5</td><td><a href="../App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
-<tr><td>Final</td><td><a href="../App-Dev-2-Project/Jan-26/Final-Day.html">Final Day</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 0</td><td><a href="../App-Dev-2-Project/Jan-26/Day0.html">Planning &amp; Architecture</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26">Jan-26 Root Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 1</td><td><em>(See Setup Guides)</em></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26/Day-1">Day-1 Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 2</td><td><em>(See Setup Guides)</em></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26/Day-2">Day-2 Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 3</td><td><em>(See Setup Guides)</em></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26/Day-3">Day-3 Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 4</td><td><a href="../App-Dev-2-Project/Jan-26/Day-4/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26/Day-4">Day-4 Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 5</td><td><a href="../App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26/Day-5">Day-5 Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Final</td><td><a href="../App-Dev-2-Project/Jan-26/Final-Day.html">Final Day Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/Jan-26">Jan-26 Final Code</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
 </tbody>
 </table>
 
@@ -93,15 +97,15 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <h3>Day-wise Implementation</h3>
 
 <table>
-<thead><tr><th>Day</th><th>Guide</th><th>Description</th></tr></thead>
+<thead><tr><th>Day</th><th>Guide</th><th>Codebase</th><th>Description</th></tr></thead>
 <tbody>
-<tr><td>Day 0</td><td><a href="../App-Dev-2-Project/May%2026/Day-0/Day%200.html">Day 0 — Planning &amp; Architecture</a></td><td>Project setup &amp; architecture</td></tr>
-<tr><td>Day 1</td><td><a href="../App-Dev-2-Project/May%2026/Day-1/Day-1.html">Day 1</a></td><td>Initial backend implementation</td></tr>
-<tr><td>Day 2</td><td><a href="../App-Dev-2-Project/May%2026/Day-2/Day-2.html">Day 2</a></td><td>Frontend setup &amp; auth</td></tr>
-<tr><td>Day 3</td><td><em>(Code only — no separate guide)</em></td><td>Backend &amp; frontend continued</td></tr>
-<tr><td>Day 4</td><td><a href="../App-Dev-2-Project/May%2026/Day-4/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td>WSL, Redis &amp; Celery setup</td></tr>
-<tr><td>Day 5</td><td><a href="../App-Dev-2-Project/May%2026/Day-5/Content.html">Day 5 Content</a></td><td>Celery tasks &amp; email reports</td></tr>
-<tr><td>Day 6</td><td><a href="../App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.html">Final Content Covered</a></td><td>Final session summary</td></tr>
+<tr><td>Day 0</td><td><a href="../App-Dev-2-Project/May%2026/Day-0/Day%200.html">Day 0 — Planning &amp; Architecture</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-0">Day-0 Code</a></td><td>Project setup &amp; architecture</td></tr>
+<tr><td>Day 1</td><td><a href="../App-Dev-2-Project/May%2026/Day-1/Day-1.html">Day 1 Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-1">Day-1 Code</a></td><td>Initial backend implementation</td></tr>
+<tr><td>Day 2</td><td><a href="../App-Dev-2-Project/May%2026/Day-2/Day-2.html">Day 2 Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-2">Day-2 Code</a></td><td>Frontend setup &amp; auth</td></tr>
+<tr><td>Day 3</td><td><em>(Code only — no separate guide)</em></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-3">Day-3 Code</a></td><td>Backend &amp; frontend continued</td></tr>
+<tr><td>Day 4</td><td><a href="../App-Dev-2-Project/May%2026/Day-4/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-4">Day-4 Code</a></td><td>WSL, Redis &amp; Celery setup</td></tr>
+<tr><td>Day 5</td><td><a href="../App-Dev-2-Project/May%2026/Day-5/Content.html">Day 5 Content</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-5">Day-5 Code</a></td><td>Celery tasks &amp; email reports</td></tr>
+<tr><td>Day 6</td><td><a href="../App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.html">Final Content Covered</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-6">Day-6 Code</a></td><td>Final session summary</td></tr>
 </tbody>
 </table>
 
