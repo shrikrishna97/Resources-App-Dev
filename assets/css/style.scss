@@ -145,11 +145,13 @@
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
   color: white !important;
-  text-decoration: none;
+  text-decoration: none !important;
   font-weight: 500;
   font-size: 0.9rem;
   transition: opacity 0.2s;
-  border-bottom: none;
+  border-bottom: none !important;
+  background-image: none !important;
+  border: none !important;
 }
 
 .course-card .btn:hover {
