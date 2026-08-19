@@ -20,33 +20,94 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
-## Getting Started
+## Select Your Term
 
-| Resource | Description |
-|----------|-------------|
-| [Project Index](App-Dev-2-Project/Jan-26/INDEX.md) | Complete project overview & navigation |
-| [Prerequisites & Setup](App-Dev-2-Project/Jan-26/PREREQUISITES_AND_SETUP.md) | What you need before starting |
-| [Project Statement](App-Dev-2-Project/Jan-26/Project%20statement%20MAD%20II%20-%20May%202025.pdf) | Official project requirements *(PDF)* |
+<div class="term-tabs" id="termTabs">
+  <button class="term-tab active" data-term="jan26">Jan 2026</button>
+  <button class="term-tab" data-term="may26">May 2026</button>
+</div>
 
----
+<!-- ==================== Jan 2026 Term ==================== -->
+<div class="term-content active" id="term-jan26">
 
-## Setup Guides
+<h3>Getting Started</h3>
 
-| Resource | Description |
-|----------|-------------|
-| [Backend Setup (Flask)](App-Dev-2-Project/Jan-26/BACKEND_SETUP.md) | Flask API, database, Celery setup |
-| [Frontend Setup (Vue.js)](App-Dev-2-Project/Jan-26/FRONTEND_SETUP.md) | Vue.js project structure & components |
-| [Security Guide](App-Dev-2-Project/Jan-26/SECURITY_GUIDE.md) | Authentication, RBAC, & security best practices |
+<table>
+<thead><tr><th>Resource</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><a href="App-Dev-2-Project/Jan-26/INDEX.md">Project Index</a></td><td>Complete project overview &amp; navigation</td></tr>
+<tr><td><a href="App-Dev-2-Project/Jan-26/PREREQUISITES_AND_SETUP.md">Prerequisites &amp; Setup</a></td><td>What you need before starting</td></tr>
+<tr><td><a href="App-Dev-2-Project/Jan-26/Project%20statement%20MAD%20II%20-%20May%202025.pdf">Project Statement</a></td><td>Official project requirements <em>(PDF)</em></td></tr>
+</tbody>
+</table>
 
----
+<h3>Setup Guides</h3>
 
-## Day-wise Implementation
+<table>
+<thead><tr><th>Resource</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><a href="App-Dev-2-Project/Jan-26/BACKEND_SETUP.md">Backend Setup (Flask)</a></td><td>Flask API, database, Celery setup</td></tr>
+<tr><td><a href="App-Dev-2-Project/Jan-26/FRONTEND_SETUP.md">Frontend Setup (Vue.js)</a></td><td>Vue.js project structure &amp; components</td></tr>
+<tr><td><a href="App-Dev-2-Project/Jan-26/SECURITY_GUIDE.md">Security Guide</a></td><td>Authentication, RBAC, &amp; security best practices</td></tr>
+</tbody>
+</table>
 
-| Day | Guide | Video |
-|-----|-------|-------|
-| Day 0 | [Planning & Architecture](App-Dev-2-Project/Jan-26/Day0.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
-| Day 5 | [WSL Setup Guide](App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
-| Final | [Final Day](App-Dev-2-Project/Jan-26/Final-Day.md) | [Project Sessions](https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI) |
+<h3>Day-wise Implementation</h3>
+
+<table>
+<thead><tr><th>Day</th><th>Guide</th><th>Video</th></tr></thead>
+<tbody>
+<tr><td>Day 0</td><td><a href="App-Dev-2-Project/Jan-26/Day0.md">Planning &amp; Architecture</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Day 5</td><td><a href="App-Dev-2-Project/Jan-26/Day-5/WSL_SETUP_GUIDE.md">WSL Setup Guide</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+<tr><td>Final</td><td><a href="App-Dev-2-Project/Jan-26/Final-Day.md">Final Day</a></td><td><a href="https://youtube.com/playlist?list=PLZVf4uJM87NqD3YknIXUMjwfC2okBHgMI">Project Sessions</a></td></tr>
+</tbody>
+</table>
+
+</div>
+
+<!-- ==================== May 2026 Term ==================== -->
+<div class="term-content" id="term-may26">
+
+<h3>Getting Started</h3>
+
+<table>
+<thead><tr><th>Resource</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><a href="App-Dev-2-Project/May%2026/Day-0/INDEX.md">Project Index</a></td><td>Complete project overview &amp; navigation</td></tr>
+<tr><td><a href="App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.md">Prerequisites &amp; Setup</a></td><td>What you need before starting</td></tr>
+<tr><td><a href="App-Dev-2-Project/May%2026/Project%20statement%20MAD%20II%20-%20May%202025.pdf">Project Statement</a></td><td>Official project requirements <em>(PDF)</em></td></tr>
+</tbody>
+</table>
+
+<h3>Setup Guides</h3>
+
+<table>
+<thead><tr><th>Resource</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><a href="App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.md">Backend Setup (Flask)</a></td><td>Flask API, database, Celery setup</td></tr>
+<tr><td><a href="App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.md">Frontend Setup (Vue.js)</a></td><td>Vue.js project structure &amp; components</td></tr>
+<tr><td><a href="App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.md">Security Guide</a></td><td>Authentication, RBAC, &amp; security best practices</td></tr>
+</tbody>
+</table>
+
+<h3>Day-wise Implementation</h3>
+
+<table>
+<thead><tr><th>Day</th><th>Guide</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>Day 0</td><td><a href="App-Dev-2-Project/May%2026/Day-0/Day%200.md">Day 0 — Planning &amp; Architecture</a></td><td>Project setup &amp; architecture</td></tr>
+<tr><td>Day 1</td><td><a href="App-Dev-2-Project/May%2026/Day-1/Day-1.md">Day 1</a></td><td>Initial backend implementation</td></tr>
+<tr><td>Day 2</td><td><a href="App-Dev-2-Project/May%2026/Day-2/Day-2.md">Day 2</a></td><td>Frontend setup &amp; auth</td></tr>
+<tr><td>Day 3</td><td><em>(Code only — no separate guide)</em></td><td>Backend &amp; frontend continued</td></tr>
+<tr><td>Day 4</td><td><a href="App-Dev-2-Project/May%2026/Day-4/WSL_SETUP_GUIDE.md">WSL Setup Guide</a></td><td>WSL, Redis &amp; Celery setup</td></tr>
+<tr><td>Day 5</td><td><a href="App-Dev-2-Project/May%2026/Day-5/Content.md">Day 5 Content</a></td><td>Celery tasks &amp; email reports</td></tr>
+<tr><td>Day 6</td><td><a href="App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.md">Final Content Covered</a></td><td>Final session summary</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<!-- ==================== Add new terms above this line ==================== -->
 
 ---
 
@@ -59,33 +120,20 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 
 ---
 
-## May 2026 Project Session
-
-### Getting Started (May 26)
-
-| Resource | Description |
-|----------|-------------|
-| [Project Index](App-Dev-2-Project/May%2026/Day-0/INDEX.md) | Complete project overview & navigation |
-| [Prerequisites & Setup](App-Dev-2-Project/May%2026/Day-0/PREREQUISITES_AND_SETUP.md) | What you need before starting |
-| [Backend Setup (Flask)](App-Dev-2-Project/May%2026/Day-0/BACKEND_SETUP.md) | Flask API, database, Celery setup |
-| [Frontend Setup (Vue.js)](App-Dev-2-Project/May%2026/Day-0/FRONTEND_SETUP.md) | Vue.js project structure & components |
-| [Security Guide](App-Dev-2-Project/May%2026/Day-0/SECURITY_GUIDE.md) | Authentication, RBAC, & security best practices |
-| [Project Statement](App-Dev-2-Project/May%2026/Project%20statement%20MAD%20II%20-%20May%202025.pdf) | Official project requirements *(PDF)* |
-
-### Day-wise Implementation (May 26)
-
-| Day | Guide | Description |
-|-----|-------|-------------|
-| Day 0 | [Day 0 — Planning & Architecture](App-Dev-2-Project/May%2026/Day-0/Day%200.md) | Project setup & architecture |
-| Day 1 | [Day 1](App-Dev-2-Project/May%2026/Day-1/Day-1.md) | Initial backend implementation |
-| Day 2 | [Day 2](App-Dev-2-Project/May%2026/Day-2/Day-2.md) | Frontend setup & auth |
-| Day 3 | *(Code only — no separate guide)* | Backend & frontend continued |
-| Day 4 | [WSL Setup Guide](App-Dev-2-Project/May%2026/Day-4/WSL_SETUP_GUIDE.md) | WSL, Redis & Celery setup |
-| Day 5 | [Day 5 Content](App-Dev-2-Project/May%2026/Day-5/Content.md) | Celery tasks & email reports |
-| Day 6 | [Final Content Covered](App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.md) | Final session summary |
-
----
-
 <div class="nav-breadcrumb">
 <a href="./">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
 </div>
+
+<script>
+// Term tab switching
+document.querySelectorAll('.term-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    // Deactivate all tabs and content
+    document.querySelectorAll('.term-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.term-content').forEach(function(c) { c.classList.remove('active'); });
+    // Activate clicked tab and corresponding content
+    tab.classList.add('active');
+    document.getElementById('term-' + tab.getAttribute('data-term')).classList.add('active');
+  });
+});
+</script>
