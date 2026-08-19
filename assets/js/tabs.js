@@ -5,7 +5,8 @@
     if (tabs.length === 0) return;
     
     tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
         tabs.forEach(function(t) { t.classList.remove('active'); });
         contents.forEach(function(c) { c.classList.remove('active'); });
         

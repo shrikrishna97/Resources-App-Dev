@@ -124,4 +124,3 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <a href="../">Home</a> <span>→</span> <a href="mad2">MAD-2</a> <span>→</span> <span>Project</span>
 </div>
 
-<script src="{{ '/assets/js/tabs.js' | relative_url }}"></script>
