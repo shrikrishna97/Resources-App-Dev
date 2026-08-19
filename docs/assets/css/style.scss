@@ -165,10 +165,10 @@
   border-bottom: none;
 }
 
-.btn-mad1 { background: var(--primary); }
-.btn-mad2 { background: var(--secondary); }
-.btn-project1 { background: #6b46c1; }
-.btn-project2 { background: #c05621; }
+.btn-mad1 { background: var(--primary) !important; }
+.btn-mad2 { background: var(--secondary) !important; }
+.btn-project1 { background: #6b46c1 !important; }
+.btn-project2 { background: #c05621 !important; }
 
 /* Navigation breadcrumb */
 .nav-breadcrumb {
