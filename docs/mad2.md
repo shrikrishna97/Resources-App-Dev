@@ -4,7 +4,7 @@ title: MAD-2 - App Development 2
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <span>MAD-2</span>
+<a href="../">Home</a> <span>→</span> <span>MAD-2</span>
 </div>
 
 # App Development 2 (MAD-2)
@@ -139,5 +139,5 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <span>MAD-2</span>
+<a href="../">Home</a> <span>→</span> <span>MAD-2</span>
 </div>

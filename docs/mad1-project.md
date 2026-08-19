@@ -4,7 +4,7 @@ title: MAD-1 Project
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
+<a href="../">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
 </div>
 
 # MAD-1 Project Resources
@@ -57,5 +57,5 @@ Step-by-step guides and plans to help you build your MAD-1 project.
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
+<a href="../">Home</a> <span>→</span> <a href="mad1">MAD-1</a> <span>→</span> <span>Project</span>
 </div>
