@@ -165,10 +165,10 @@
   border-bottom: none;
 }
 
-.btn-mad1 { background-color: var(--primary) !important; }
-.btn-mad2 { background-color: var(--secondary) !important; }
-.btn-project1 { background-color: #6b46c1 !important; }
-.btn-project2 { background-color: #c05621 !important; }
+.btn-mad1 { background: var(--primary) !important; }
+.btn-mad2 { background: var(--secondary) !important; }
+.btn-project1 { background: #6b46c1 !important; }
+.btn-project2 { background: #c05621 !important; }
 
 /* Navigation breadcrumb */
 .nav-breadcrumb {
@@ -237,10 +237,39 @@
   background: #1a202c;
   border-radius: 6px;
   padding: 1.25rem;
+  color: #e2e8f0;
+}
+
+.main-content pre code {
+  color: #e2e8f0;
 }
 
 .main-content code {
   font-size: 0.9em;
+}
+
+/* Syntax highlighting for dark code blocks (Rouge/Pygments) */
+.highlight, .main-content pre {
+  .k, .kd, .kn, .kp, .kr, .kt, .kc { color: #c792ea; } /* keywords: def, from, import, class, return */
+  .n, .nb { color: #e2e8f0; } /* names, builtins */
+  .nf, .nx { color: #82aaff; } /* function names */
+  .s, .s1, .s2, .sb, .sc, .sh { color: #c3e88d; } /* strings */
+  .c, .c1, .cm, .cp, .cs { color: #697098; } /* comments */
+  .mi, .mf, .mh, .mo, .il { color: #f78c6c; } /* numbers */
+  .o, .ow { color: #89ddff; } /* operators */
+  .p { color: #e2e8f0; } /* punctuation */
+  .na { color: #ffcb6b; } /* attribute names */
+  .nt { color: #ff5572; } /* HTML tags */
+  .nc { color: #ffcb6b; } /* class names */
+  .nn { color: #e2e8f0; } /* module names */
+  .ni { color: #89ddff; } /* entities */
+  .ne { color: #ff5572; } /* exceptions */
+  .bp { color: #89ddff; } /* builtins like self, True, False */
+  .gi { color: #c3e88d; } /* git inserted */
+  .gd { color: #ff5572; } /* git deleted */
+  .gh, .gu { color: #82aaff; } /* git headings */
+  .w { color: #e2e8f0; } /* whitespace */
+  .err { color: #ff5572; } /* errors */
 }
 
 /* Responsive */
