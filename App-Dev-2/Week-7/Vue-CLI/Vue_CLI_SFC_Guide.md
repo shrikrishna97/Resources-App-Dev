@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Single File Components (SFC) with Vite + Vue 3 - Complete Beginner's Guide
 
 A comprehensive guide to get started with Vite and Vue 3 Single File Components from scratch.

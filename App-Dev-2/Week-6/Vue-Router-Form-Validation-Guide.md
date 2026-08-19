@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Vue Router & Form Validation - Quick Guide
 
 ## 1. History Mode

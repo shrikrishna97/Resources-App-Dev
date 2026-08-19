@@ -4,7 +4,7 @@ title: MAD-1 - App Development 1
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <span>MAD-1</span>
+<a href="../">Home</a> <span>→</span> <span>MAD-1</span>
 </div>
 
 # App Development 1 (MAD-1)
@@ -124,5 +124,5 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 ---
 
 <div class="nav-breadcrumb">
-<a href="./">Home</a> <span>→</span> <span>MAD-1</span>
+<a href="../">Home</a> <span>→</span> <span>MAD-1</span>
 </div>

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 # Week 5: Fetch API and Data Communication Between Vue.js and Flask API
 
