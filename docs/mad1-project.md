@@ -24,9 +24,9 @@ Step-by-step guides and plans to help you build your MAD-1 project.
 
 | Resource | Description |
 |----------|-------------|
-| [7 Day Project Plan](App-Dev-1-Project/7_day_plan_for%20project.md) | Complete day-wise breakdown |
-| [10 Day Project Plan](App-Dev-1-Project/MAD1_project_10_day_plan.pdf) | Extended plan *(PDF)* |
-| [Project README](App-Dev-1-Project/readme.md) | Overview & instructions |
+| [7 Day Project Plan](../App-Dev-1-Project/7_day_plan_for%20project.md) | Complete day-wise breakdown |
+| [10 Day Project Plan](../App-Dev-1-Project/MAD1_project_10_day_plan.pdf) | Extended plan *(PDF)* |
+| [Project README](../App-Dev-1-Project/readme.md) | Overview & instructions |
 
 ---
 
@@ -36,15 +36,15 @@ Step-by-step guides and plans to help you build your MAD-1 project.
 
 | Guide | Description |
 |-------|-------------|
-| [Day 1 - Part 1](App-Dev-1-Project/Day1-1st.md) | Initial setup & structure |
-| [Day 1 - Part 2](App-Dev-1-Project/Day1-2nd.md) | Continuing implementation |
+| [Day 1 - Part 1](../App-Dev-1-Project/Day1-1st.md) | Initial setup & structure |
+| [Day 1 - Part 2](../App-Dev-1-Project/Day1-2nd.md) | Continuing implementation |
 
 ### Day 2
 
 | Guide | Description |
 |-------|-------------|
-| [Day 2 - Part 1](App-Dev-1-Project/Day2-1st.md) | Building features |
-| [Day 2 - Part 2](App-Dev-1-Project/Day2-2nd.md) | Completing features |
+| [Day 2 - Part 1](../App-Dev-1-Project/Day2-1st.md) | Building features |
+| [Day 2 - Part 2](../App-Dev-1-Project/Day2-2nd.md) | Completing features |
 
 ---
 

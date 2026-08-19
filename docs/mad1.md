@@ -26,7 +26,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Numericals (Latency, Bandwidth, RTT)](App-Dev-1/Week-1/Numericals.md) | [Week 1 Open Session](https://www.youtube.com/watch?v=mBX9TqtPkhI) |
+| [Numericals (Latency, Bandwidth, RTT)](../App-Dev-1/Week-1/Numericals.md) | [Week 1 Open Session](https://www.youtube.com/watch?v=mBX9TqtPkhI) |
 
 ---
 
@@ -34,8 +34,8 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [HTML Structure & Basics](App-Dev-1/week-2/Readme.md) | [Week 2 Open Session](https://www.youtube.com/watch?v=Zylkdw7X6Wo) |
-| [HTML Structure Guide](App-Dev-1/week-2/HTML%20Structure.md) | |
+| [HTML Structure & Basics](../App-Dev-1/week-2/Readme.md) | [Week 2 Open Session](https://www.youtube.com/watch?v=Zylkdw7X6Wo) |
+| [HTML Structure Guide](../App-Dev-1/week-2/HTML%20Structure.md) | |
 
 ---
 
@@ -43,11 +43,11 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Week 3 Overview](App-Dev-1/Week-3/readme.md) | [Week 3 Open Session](https://www.youtube.com/watch?v=2Q18PdAOzwg) |
-| [Open Session Notes](App-Dev-1/Week-3/OpenSession.md) | |
-| [String vs Jinja2](App-Dev-1/Week-3/StringVsJinja2.md) | |
-| [Extra Jinja](App-Dev-1/Week-3/extra_jinja.md) | |
-| [Help Guide](App-Dev-1/Week-3/help.md) | |
+| [Week 3 Overview](../App-Dev-1/Week-3/readme.md) | [Week 3 Open Session](https://www.youtube.com/watch?v=2Q18PdAOzwg) |
+| [Open Session Notes](../App-Dev-1/Week-3/OpenSession.md) | |
+| [String vs Jinja2](../App-Dev-1/Week-3/StringVsJinja2.md) | |
+| [Extra Jinja](../App-Dev-1/Week-3/extra_jinja.md) | |
+| [Help Guide](../App-Dev-1/Week-3/help.md) | |
 
 ---
 
@@ -55,13 +55,13 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Week 4 Overview](App-Dev-1/Week%204/readme.md) | [Week 4 Open Session](https://www.youtube.com/watch?v=k54WQ7XPuwA) |
-| [Flask Basics](App-Dev-1/Week%204/flask.md) | |
-| [Flask Part 2](App-Dev-1/Week%204/flask2.md) | |
-| [Flask + Jinja](App-Dev-1/Week%204/flask_jinja.md) | |
-| [Flask + Jinja Combined](App-Dev-1/Week%204/flask_jinja_combine.md) | |
-| [SQL Basics](App-Dev-1/Week%204/SQL.md) | |
-| [SQL (New)](App-Dev-1/Week%204/SQL_new.md) | |
+| [Week 4 Overview](../App-Dev-1/Week%204/readme.md) | [Week 4 Open Session](https://www.youtube.com/watch?v=k54WQ7XPuwA) |
+| [Flask Basics](../App-Dev-1/Week%204/flask.md) | |
+| [Flask Part 2](../App-Dev-1/Week%204/flask2.md) | |
+| [Flask + Jinja](../App-Dev-1/Week%204/flask_jinja.md) | |
+| [Flask + Jinja Combined](../App-Dev-1/Week%204/flask_jinja_combine.md) | |
+| [SQL Basics](../App-Dev-1/Week%204/SQL.md) | |
+| [SQL (New)](../App-Dev-1/Week%204/SQL_new.md) | |
 
 ---
 
@@ -69,10 +69,10 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Week 5 Overview](App-Dev-1/week-5/readme.md) | [Week 5 Open Session](https://www.youtube.com/watch?v=_kPGI-KergA) |
-| [SQLAlchemy Notes](App-Dev-1/week-5/SQLAlchemy_notes.md) | |
-| [cURL Basics](App-Dev-1/week-5/curl_basic.md) | |
-| [Review Weeks 1–4](App-Dev-1/week-5/review1-4.md) | |
+| [Week 5 Overview](../App-Dev-1/week-5/readme.md) | [Week 5 Open Session](https://www.youtube.com/watch?v=_kPGI-KergA) |
+| [SQLAlchemy Notes](../App-Dev-1/week-5/SQLAlchemy_notes.md) | |
+| [cURL Basics](../App-Dev-1/week-5/curl_basic.md) | |
+| [Review Weeks 1–4](../App-Dev-1/week-5/review1-4.md) | |
 
 ---
 
@@ -80,7 +80,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [API Notes](App-Dev-1/Week-6/API.md) | [Week 6 Open Session](https://www.youtube.com/watch?v=Z-qHKZb9DX4) |
+| [API Notes](../App-Dev-1/Week-6/API.md) | [Week 6 Open Session](https://www.youtube.com/watch?v=Z-qHKZb9DX4) |
 
 ---
 
@@ -88,10 +88,10 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Week 8 Overview](App-Dev-1/Week-8/readme.md) | [Week 8 Open Session](https://www.youtube.com/watch?v=K39ZlyL_C1U) |
-| [Practice Questions](App-Dev-1/Week-8/PQ.md) | |
-| [New Guide](App-Dev-1/Week-8/new_guide.md) | |
-| [Captcha Explanation](App-Dev-1/Week-8/Captcha/EXPLANATION.md) | |
+| [Week 8 Overview](../App-Dev-1/Week-8/readme.md) | [Week 8 Open Session](https://www.youtube.com/watch?v=K39ZlyL_C1U) |
+| [Practice Questions](../App-Dev-1/Week-8/PQ.md) | |
+| [New Guide](../App-Dev-1/Week-8/new_guide.md) | |
+| [Captcha Explanation](../App-Dev-1/Week-8/Captcha/EXPLANATION.md) | |
 
 ---
 
@@ -99,7 +99,7 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Python Testing](App-Dev-1/Week-10/Py_testing.md) | [Week 10 Open Session](https://www.youtube.com/watch?v=4fP0ZEkEpos) |
+| [Python Testing](../App-Dev-1/Week-10/Py_testing.md) | [Week 10 Open Session](https://www.youtube.com/watch?v=4fP0ZEkEpos) |
 
 ---
 
@@ -107,9 +107,9 @@ Weekly notes and resources for the MAD-1 course. Each week includes links to not
 
 | Resource | Description |
 |----------|-------------|
-| [Review Weeks 1–4](App-Dev-1/week-5/review1-4.md) | Revision notes for first half |
-| [Review Weeks 5–8](App-Dev-1/review5-8.md) | Revision notes for second half |
-| [Mock Quiz 1](App-Dev-1/week-5/Mock%20-%20Quiz%201_MAD1.pdf) | Practice quiz *(PDF)* |
+| [Review Weeks 1–4](../App-Dev-1/week-5/review1-4.md) | Revision notes for first half |
+| [Review Weeks 5–8](../App-Dev-1/review5-8.md) | Revision notes for second half |
+| [Mock Quiz 1](../App-Dev-1/week-5/Mock%20-%20Quiz%201_MAD1.pdf) | Practice quiz *(PDF)* |
 
 ---
 
