@@ -26,7 +26,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Open Session Notes](App-Dev-2/Week-1/Week-1-2_OS.md) | [Week 1 Open Session - Intro to JS](https://www.youtube.com/watch?v=qIgTiWMaTNs) |
+| [Open Session Notes](../App-Dev-2/Week-1/Week-1-2_OS.md) | [Week 1 Open Session - Intro to JS](https://www.youtube.com/watch?v=qIgTiWMaTNs) |
 
 ---
 
@@ -34,7 +34,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Open Session Notes](App-Dev-2/Week-2/Week-2-3_OS.md) | [Week 2 Open Session](https://www.youtube.com/watch?v=PiQU5g1r_zI) |
+| [Open Session Notes](../App-Dev-2/Week-2/Week-2-3_OS.md) | [Week 2 Open Session](https://www.youtube.com/watch?v=PiQU5g1r_zI) |
 
 ---
 
@@ -42,8 +42,8 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Vue Lifecycle Hooks](App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.md) | [Week 4 Open Session](https://www.youtube.com/watch?v=mUHUXciF7_A) |
-| [Vue Components & Hooks](App-Dev-2/Week-4/vueComponentsAndHooks.md) | |
+| [Vue Lifecycle Hooks](../App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.md) | [Week 4 Open Session](https://www.youtube.com/watch?v=mUHUXciF7_A) |
+| [Vue Components & Hooks](../App-Dev-2/Week-4/vueComponentsAndHooks.md) | |
 
 ---
 
@@ -51,7 +51,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Fetch API Tutorial](App-Dev-2/Week-5/fetchCall.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Fetch API Tutorial](../App-Dev-2/Week-5/fetchCall.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
 
 ---
 
@@ -59,9 +59,9 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Promises in JavaScript](App-Dev-2/Promise.md) | [Week 6 AQ/PQ and Open Session](https://www.youtube.com/watch?v=J7USjC6Bab4) |
-| [Vue Router & Form Validation Guide](App-Dev-2/Week-6/Vue-Router-Form-Validation-Guide.md) | |
-| [Vue Router CDN](App-Dev-2/Week-6/VueRouter_CDN.md) | |
+| [Promises in JavaScript](../App-Dev-2/Promise.md) | [Week 6 AQ/PQ and Open Session](https://www.youtube.com/watch?v=J7USjC6Bab4) |
+| [Vue Router & Form Validation Guide](../App-Dev-2/Week-6/Vue-Router-Form-Validation-Guide.md) | |
+| [Vue Router CDN](../App-Dev-2/Week-6/VueRouter_CDN.md) | |
 
 ---
 
@@ -69,8 +69,8 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Vue CLI & SFC Guide](App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.md) | [Week 7 Open Session](https://www.youtube.com/watch?v=uKmlkT9zySI) |
-| [Vuex State Management](App-Dev-2/Week-7/Vuex/Vuex.md) | |
+| [Vue CLI & SFC Guide](../App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.md) | [Week 7 Open Session](https://www.youtube.com/watch?v=uKmlkT9zySI) |
+| [Vuex State Management](../App-Dev-2/Week-7/Vuex/Vuex.md) | |
 
 ---
 
@@ -78,7 +78,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Flask JWT Extended Notes](App-Dev-2/Week-8/Flask_JWT_Extended_Notes.md) | [Week 8 Open Session](https://www.youtube.com/watch?v=UF-vjyMMCWM) |
+| [Flask JWT Extended Notes](../App-Dev-2/Week-8/Flask_JWT_Extended_Notes.md) | [Week 8 Open Session](https://www.youtube.com/watch?v=UF-vjyMMCWM) |
 
 ---
 
@@ -86,7 +86,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Async Tasks with Celery](App-Dev-2/Week-9/Async_Tasks_with_Celery.md) | [Week 9 AQ/PQ Session](https://www.youtube.com/watch?v=rKw6RQeFQzE) |
+| [Async Tasks with Celery](../App-Dev-2/Week-9/Async_Tasks_with_Celery.md) | [Week 9 AQ/PQ Session](https://www.youtube.com/watch?v=rKw6RQeFQzE) |
 
 ---
 
@@ -94,9 +94,9 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Introduction to Celery](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Introduction_to_Celery.md) | [Week 10 Open Session](https://www.youtube.com/watch?v=QBZSVfSaEpo) |
-| [Mailing with Celery Beat](App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.md) | |
-| [SSE with Redis](App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.md) | |
+| [Introduction to Celery](../App-Dev-2/Week-10/Mailing_with_Celery_Beat/Introduction_to_Celery.md) | [Week 10 Open Session](https://www.youtube.com/watch?v=QBZSVfSaEpo) |
+| [Mailing with Celery Beat](../App-Dev-2/Week-10/Mailing_with_Celery_Beat/Mailing_with_Celery_Beat.md) | |
+| [SSE with Redis](../App-Dev-2/Week-10/SSE_with_Redis/SSE_Notes.md) | |
 
 ---
 
@@ -104,7 +104,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [Flask Caching with Redis](App-Dev-2/Week-11/FlaskCaching_with_Redis.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [Flask Caching with Redis](../App-Dev-2/Week-11/FlaskCaching_with_Redis.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
 
 ---
 
@@ -112,7 +112,7 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Notes | Video |
 |-------|-------|
-| [CORS & Cookies](App-Dev-2/Week-12/Cors_cookies.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
+| [CORS & Cookies](../App-Dev-2/Week-12/Cors_cookies.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
 
 ---
 
@@ -120,11 +120,11 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 
 | Resource | Description |
 |----------|-------------|
-| [Quiz-1 Revision Notes (JS & Vue)](App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.md) | Quick revision for Quiz 1 |
-| [Quiz-2 Short Notes](App-Dev-2/Quiz-2%20Revision/short-notes.md) | Quick revision for Quiz 2 |
-| [End Semester Notes](App-Dev-2/ET%20Revision/end-sem-notes.md) | Complete end-term revision |
-| [Extra Resource MAD2](App-Dev-2/Extra%20Resource%20MAD2.pdf) | Additional resources *(PDF)* |
-| [Installation Guide MAD2](App-Dev-2/Installation_MAD2.pdf) | Setup instructions *(PDF)* |
+| [Quiz-1 Revision Notes (JS & Vue)](../App-Dev-2/Quiz-1%20Revision/Quiz-1_Revision_Notes_JS_Vue.md) | Quick revision for Quiz 1 |
+| [Quiz-2 Short Notes](../App-Dev-2/Quiz-2%20Revision/short-notes.md) | Quick revision for Quiz 2 |
+| [End Semester Notes](../App-Dev-2/ET%20Revision/end-sem-notes.md) | Complete end-term revision |
+| [Extra Resource MAD2](../App-Dev-2/Extra%20Resource%20MAD2.pdf) | Additional resources *(PDF)* |
+| [Installation Guide MAD2](../App-Dev-2/Installation_MAD2.pdf) | Setup instructions *(PDF)* |
 
 ---
 
