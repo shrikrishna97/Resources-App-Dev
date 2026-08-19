@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-5/fetchCall.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-5/fetchCall.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-5/fetchCall.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="week-5-fetch-api-and-data-communication-between-vuejs-and-flask-api">Week 5: Fetch API and Data Communication Between Vue.js and Flask API</h1>
+
+<h2 id="1-introduction-to-fetch-api">1. Introduction to Fetch API</h2>
+
+<p>Modern web applications usually have two separate parts:</p>
+
+<ol>
+  <li>
+    <p><strong>Frontend (Client Side)</strong></p>
+
+    <ul>
+      <li>Responsible for displaying UI and user interaction.</li>
+      <li>Example: Vue.js application running in the browser.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Backend (Server Side)</strong></p>
+
+    <ul>
+      <li>Responsible for business logic, database operations, authentication, etc.</li>
+      <li>Example: Flask API.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>The frontend and backend communicate using <strong>HTTP requests</strong>.</p>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Vue.js Frontend
+        |
+        | HTTP Request (GET /api/notes)
+        |
+        ↓
+Flask Backend API
+        |
+        | Fetch data from database
+        |
+        ↓
+JSON Response
+        |
+        ↓
+Vue.js displays notes
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="2-what-is-fetch-api">2. What is Fetch API?</h1>
+
+<p>The <strong>Fetch API</strong> is a JavaScript feature used to make HTTP requests from the browser.</p>
+
+<p>It allows frontend applications to:</p>
+
+<ul>
+  <li>Fetch data from backend APIs.</li>
+  <li>Send data to backend APIs.</li>
+  <li>Update existing data.</li>
+  <li>Delete data.</li>
+</ul>
+
+<p>The basic syntax:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="explanation">Explanation</h3>
+
+<p><code class="language-plaintext highlighter-rouge">fetch()</code> sends a request to the given URL.</p>
+
+<p>Example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:5000/api/notes</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The server sends a response.</p>
+
+<p>The response is converted into JSON:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Finally, we process the received data:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="3-http-methods-used-with-fetch-api">3. HTTP Methods Used with Fetch API</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Purpose</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>Retrieve data</td>
+      <td>Get all notes</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>Create new data</td>
+      <td>Add a new note</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>Update existing data</td>
+      <td>Edit a note</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>Remove data</td>
+      <td>Delete a note</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET     /api/notes
+POST    /api/notes
+PUT     /api/notes/1
+DELETE  /api/notes/1
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="4-why-do-we-need-fetch-api-in-vue">4. Why do we need Fetch API in Vue?</h1>
+
+<p>Vue manages the frontend UI.</p>
+
+<p>However, Vue does not directly access the database.</p>
+
+<p>The flow is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Database
+    ↑
+    |
+Flask API
+    ↑
+    |
+Fetch API
+    ↑
+    |
+Vue Component
+</code></pre></div></div>
+
+<p>Vue uses Fetch API to communicate with Flask.</p>
+
+<p>Example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/notes</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Vue receives the response:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"Learn Vue"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content"</span><span class="p">:</span><span class="s2">"Study Fetch API"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Then Vue displays this data dynamically.</p>
+
+<hr />
+
+<h1 id="5-creating-flask-backend-api">5. Creating Flask Backend API</h1>
+
+<h2 id="project-structure">Project Structure</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MAD2_Fetch_Demo
+|
+|-- app.py
+|
+|-- templates
+    |
+    |-- index.html
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="flask-api-code">Flask API Code</h2>
+
+<h3 id="apppy">app.py</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<span class="n">notes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Learn Flask"</span><span class="p">,</span>
+        <span class="s">"content"</span><span class="p">:</span> <span class="s">"Create REST APIs"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Learn Vue"</span><span class="p">,</span>
+        <span class="s">"content"</span><span class="p">:</span> <span class="s">"Use Vue CDN"</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/api/notes"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"GET"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_notes</span><span class="p">():</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+
+
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/api/notes"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"POST"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_note</span><span class="p">():</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+
+    <span class="n">new_note</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s">"title"</span><span class="p">],</span>
+        <span class="s">"content"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s">"content"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="n">notes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
+
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="testing-api">Testing API</h2>
+
+<p>Open browser:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:5000/api/notes
+</code></pre></div></div>
+
+<p>Response:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"Learn Flask"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content"</span><span class="p">:</span><span class="s2">"Create REST APIs"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"Learn Vue"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content"</span><span class="p">:</span><span class="s2">"Use Vue CDN"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h1 id="6-using-fetch-api-with-vue-cdn">6. Using Fetch API with Vue CDN</h1>
+
+<p>Now we create the frontend.</p>
+
+<h2 id="indexhtml">index.html</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Notes App<span class="nt">&lt;/title&gt;</span>
+    <span class="c">&lt;!-- Vue 2 CDN --&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="c">&lt;!-- Bootstrap CSS --&gt;</span>
+    <span class="nt">&lt;link</span> 
+        <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"</span>
+        <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span> <span class="na">class=</span><span class="s">"container mt-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>My Notes<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;div</span> 
+            <span class="na">v-for=</span><span class="s">"note in notes"</span> 
+            <span class="na">class=</span><span class="s">"card mt-3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;h5&gt;</span>
+                    
+                <span class="nt">&lt;/h5&gt;</span>
+                <span class="nt">&lt;p&gt;</span>
+                    
+                <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+            <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">notes</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">},</span>
+            <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">fetchNotes</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/notes</span><span class="dl">"</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+                    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">notes</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+                    <span class="p">});</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="na">mounted</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">fetchNotes</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="7-understanding-vue-fetch-code">7. Understanding Vue Fetch Code</h1>
+
+<h2 id="step-1-creating-data-variable">Step 1: Creating Data Variable</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span><span class="p">:{</span>
+    <span class="nl">notes</span><span class="p">:[]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Initially:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>notes = []
+</code></pre></div></div>
+
+<p>No data is available.</p>
+
+<hr />
+
+<h2 id="step-2-calling-api">Step 2: Calling API</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/notes</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Browser sends:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /api/notes
+</code></pre></div></div>
+
+<p>to Flask.</p>
+
+<hr />
+
+<h2 id="step-3-convert-response-to-json">Step 3: Convert Response to JSON</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Flask response:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"Learn Flask"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>is converted into JavaScript object.</p>
+
+<hr />
+
+<h2 id="step-4-store-data-in-vue">Step 4: Store Data in Vue</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">notes</span><span class="o">=</span><span class="nx">data</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Now:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">notes</span><span class="o">=</span><span class="p">[</span>
+ <span class="p">{</span>
+  <span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">:</span><span class="dl">"</span><span class="s2">Learn Flask</span><span class="dl">"</span>
+ <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Vue automatically updates the UI.</p>
+
+<hr />
+
+<h1 id="8-adding-data-using-post-request">8. Adding Data Using POST Request</h1>
+
+<p>Now let’s add a new note.</p>
+
+<h2 id="vue-method">Vue Method</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">addNote</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/notes</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span>
+        <span class="p">},</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+            <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Fetch API</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Learning API communication</span><span class="dl">"</span>
+        <span class="p">})</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="explanation-1">Explanation</h2>
+
+<h3 id="method">Method</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">method</span><span class="p">:</span><span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>means:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Create new resource
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="headers">Headers</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>tells Flask:</p>
+
+<p>“The request body contains JSON data.”</p>
+
+<hr />
+
+<h3 id="sending-data">Sending Data</h3>
+
+<p>JavaScript object:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="nl">title</span><span class="p">:</span><span class="dl">"</span><span class="s2">Fetch API</span><span class="dl">"</span><span class="p">,</span>
+<span class="nx">content</span><span class="p">:</span><span class="dl">"</span><span class="s2">Learning API communication</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>is converted to JSON:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>because HTTP requests send data as text.</p>
+
+<hr />
+
+<h1 id="9-complete-data-flow">9. Complete Data Flow</h1>
+
+<p>When the page loads:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Vue mounted()
+        |
+        |
+fetch("/api/notes")
+        |
+        |
+Flask GET API
+        |
+        |
+Return JSON
+        |
+        |
+this.notes=data
+        |
+        |
+Vue updates HTML
+</code></pre></div></div>
+
+<p>When adding a note:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User clicks Add
+        |
+        |
+Vue fetch POST request
+        |
+        |
+Flask receives JSON
+        |
+        |
+New note created
+        |
+        |
+Response returned
+        |
+        |
+Vue updates notes list
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="10-important-points-for-mad-2">10. Important Points for MAD-2</h1>
+
+<ul>
+  <li>Vue is responsible only for UI management.</li>
+  <li>Flask provides APIs for data operations.</li>
+  <li>Fetch API is the bridge between frontend and backend.</li>
+  <li>API responses are usually exchanged in JSON format.</li>
+  <li>Vue updates UI automatically when data variables change.</li>
+  <li>Do not directly connect Vue with the database.</li>
+  <li>All database operations should happen through Flask APIs.</li>
+</ul>
+
+<hr />
+
+<h1 id="summary">Summary</h1>
+
+<p>In this tutorial we learned:</p>
+
+<ol>
+  <li>What Fetch API is.</li>
+  <li>How frontend communicates with backend.</li>
+  <li>Creating Flask REST APIs.</li>
+  <li>Fetching data using Vue CDN.</li>
+  <li>Displaying API response dynamically.</li>
+  <li>Sending data using POST requests.</li>
+</ol>
+
+<p>The same concept is used in MAD-2 projects where Vue frontend communicates with Flask APIs for features like login, search, dashboard, reports, and CRUD operations.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Besides the built-in <strong>Fetch API</strong>, developers often use third-party HTTP client libraries such as <strong>Axios</strong>. Axios provides a simpler syntax for many use cases, automatically parses JSON responses, and offers features like request/response interceptors, timeout handling, and centralized error handling. In this course, we will primarily use the <strong>Fetch API</strong> because it is built into modern browsers and helps build a strong understanding of how client-server communication works. Students interested in learning more about these libraries can refer to the official documentation:</p>
+
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API?utm_source=chatgpt.com">MDN Web Docs – Fetch API</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch?utm_source=chatgpt.com">MDN – Using the Fetch API</a></li>
+    <li><a href="https://axios-http.com/?utm_source=chatgpt.com">Axios Documentation</a></li>
+  </ul>
+</blockquote>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

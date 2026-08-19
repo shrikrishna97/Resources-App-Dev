@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-4/vueComponentsAndHooks.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-4/vueComponentsAndHooks.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-4/vueComponentsAndHooks.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="understanding-vuejs-components-and-lifecycle-hooks-vue-2"><strong>Understanding Vue.js Components and Lifecycle Hooks (Vue 2)</strong></h1>
+
+<h2 id="1-what-is-a-vue-component">1. What is a Vue Component?</h2>
+
+<p>In Vue.js, a <strong>component</strong> is a <strong>reusable block of code</strong> that controls part of your web page.
+It has its own <strong>structure (HTML)</strong>, <strong>style (CSS)</strong>, and <strong>logic (JavaScript)</strong>.</p>
+
+<p>Think of components as <strong>building blocks</strong> — you build your web app by joining small reusable pieces.</p>
+
+<hr />
+
+<h3 id="without-components">Without Components</h3>
+
+<p>If you don’t use components, your code becomes repetitive and hard to maintain.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Welcome to My App<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;p&gt;</span>User Name: John<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>User Age: 25<span class="nt">&lt;/p&gt;</span>
+
+  <span class="nt">&lt;h2&gt;</span>Welcome to My App<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;p&gt;</span>User Name: Mary<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>User Age: 22<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Problem:</strong>
+Repeated markup and duplicated logic. Small changes require updates in many places.</p>
+
+<hr />
+
+<h3 id="with-components">With Components</h3>
+
+<p>We can define a reusable <code class="language-plaintext highlighter-rouge">user-card</code> component and use it multiple times.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;user-card</span> <span class="na">name=</span><span class="s">"John"</span> <span class="na">age=</span><span class="s">"25"</span><span class="nt">&gt;&lt;/user-card&gt;</span>
+  <span class="nt">&lt;user-card</span> <span class="na">name=</span><span class="s">"Mary"</span> <span class="na">age=</span><span class="s">"22"</span><span class="nt">&gt;&lt;/user-card&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// Define a reusable component</span>
+  <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">user-card</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="c1">// Props are like function parameters — they pass data from parent to child</span>
+    <span class="na">props</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">],</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">`
+      &lt;div class="user-card"&gt;
+        &lt;h2&gt;Welcome to My App&lt;/h2&gt;
+        &lt;p&gt;User Name: {{ name }}&lt;/p&gt;
+        &lt;p&gt;User Age: {{ age }}&lt;/p&gt;
+      &lt;/div&gt;
+    `</span>
+  <span class="p">});</span>
+
+  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Note:</strong>
+<code class="language-plaintext highlighter-rouge">{{ name }}</code> is Vue’s syntax (this is Vue interpolation) for showing data dynamically — it displays the value of <code class="language-plaintext highlighter-rouge">name</code> inside the HTML.</p>
+
+<hr />
+
+<h3 id="output">Output:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Welcome to My App
+User Name: John
+User Age: 25
+
+Welcome to My App
+User Name: Mary
+User Age: 22
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="why-components-are-useful">Why Components Are Useful</h3>
+
+<ul>
+  <li><strong>Reusable:</strong> Write once, use everywhere.</li>
+  <li><strong>Readable:</strong> Each component handles one part of the UI.</li>
+  <li><strong>Maintainable:</strong> Easy to change without breaking other parts.</li>
+  <li><strong>Collaborative:</strong> Multiple developers can work on different components.</li>
+</ul>
+
+<hr />
+
+<h3 id="try-it-yourself">Try It Yourself</h3>
+
+<p>Add another <code class="language-plaintext highlighter-rouge">&lt;user-card&gt;</code> with your own name and age.
+See how easily it appears without duplicating code.</p>
+
+<hr />
+
+<h3 id="11-data-in-components-object-vs-function">1.1 <code class="language-plaintext highlighter-rouge">data</code> in components: Object vs. Function</h3>
+
+<ul>
+  <li>For the <strong>root Vue instance</strong> (the one you create with <code class="language-plaintext highlighter-rouge">new Vue({...})</code>), <code class="language-plaintext highlighter-rouge">data</code> can be a plain object.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Hello World</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>For <strong>components</strong>, <code class="language-plaintext highlighter-rouge">data</code> <strong>must</strong> be a function that returns an object. This ensures <strong>each instance</strong> of the component gets its own independent copy of the state.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">counter</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">data</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;button @click="count++"&gt;Count: {{ count }}&lt;/button&gt;</span><span class="dl">'</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">data</code> were a shared object for components, multiple instances would share the same state, which causes bugs. By using a function, each component instance receives its own returned object.</p>
+
+<p><strong>Try it:</strong> Create two <code class="language-plaintext highlighter-rouge">&lt;counter&gt;</code> components and click buttons to confirm they maintain separate counts.</p>
+
+<hr />
+
+<h3 id="12-parent-and-child-components">1.2 Parent and Child Components</h3>
+
+<ul>
+  <li><strong>Parent</strong>: The Vue instance or component that uses a child component’s tag in its template.</li>
+  <li><strong>Child</strong>: The component defined separately that receives data via <code class="language-plaintext highlighter-rouge">props</code> and renders its template.</li>
+</ul>
+
+<p><strong>Child component (declares props):</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">child-comp</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">props</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;p&gt;Child says: {{ message }}&lt;/p&gt;</span><span class="dl">'</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p><strong>Parent (passes props):</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- static string prop --&gt;</span>
+  <span class="nt">&lt;child-comp</span> <span class="na">message=</span><span class="s">"Hello from Parent!"</span><span class="nt">&gt;&lt;/child-comp&gt;</span>
+  <span class="c">&lt;!-- dynamic prop bound to parent data --&gt;</span>
+  <span class="nt">&lt;child-comp</span> <span class="na">:message=</span><span class="s">"parentMsg"</span><span class="nt">&gt;&lt;/child-comp&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">parentMsg</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Dynamic Hello!</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Notes on communication:</strong></p>
+
+<ul>
+  <li>Data flows one-way: <strong>parent → child</strong> through props.</li>
+  <li>Children should not directly mutate props (Vue warns against this). If a child needs to change parent state, it should emit an event that the parent listens to (this is the usual pattern: child <code class="language-plaintext highlighter-rouge">this.$emit('some-event', payload)</code>; parent uses <code class="language-plaintext highlighter-rouge">v-on</code> / <code class="language-plaintext highlighter-rouge">@some-event</code> to catch it).</li>
+</ul>
+
+<p><strong>Try it:</strong> Add a third <code class="language-plaintext highlighter-rouge">&lt;child-comp&gt;</code> and change <code class="language-plaintext highlighter-rouge">parentMsg</code> in the root data; observe the child update.</p>
+
+<h3 id="121-child-to-parent-communication-using-events">1.2.1 Child-to-Parent Communication (Using Events)</h3>
+
+<p>Props allow <strong>data to flow from parent to child</strong>, but sometimes the <strong>child</strong> also needs to send a message back to the <strong>parent</strong> — for example, when a button is clicked inside the child.</p>
+
+<p>Since props are <strong>one-way</strong>, the child cannot directly modify parent data.
+Instead, it uses <strong>custom events</strong> to “emit” messages upward.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent-comp&gt;&lt;/parent-comp&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// Child component</span>
+  <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">child-button</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">`
+      &lt;button @click="notifyParent"&gt;Click Me (Child)&lt;/button&gt;
+    `</span><span class="p">,</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">notifyParent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// emit a custom event named 'child-clicked'</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">child-clicked</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Hello from Child!</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Parent component</span>
+  <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">parent-comp</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">`
+      &lt;div&gt;
+        &lt;h3&gt;Parent Component&lt;/h3&gt;
+        &lt;child-button @child-clicked="handleMessage"&gt;&lt;/child-button&gt;
+        &lt;p&gt;Message: {{ message }}&lt;/p&gt;
+      &lt;/div&gt;
+    `</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">''</span> <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">handleMessage</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span> <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span> <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Explanation:</strong></p>
+
+<ul>
+  <li>The child triggers an event with <code class="language-plaintext highlighter-rouge">this.$emit('child-clicked', 'message')</code>.</li>
+  <li>The parent listens for that event using <code class="language-plaintext highlighter-rouge">@child-clicked="handleMessage"</code>.</li>
+  <li>When the event occurs, the parent’s method <code class="language-plaintext highlighter-rouge">handleMessage</code> receives the message from the child.</li>
+</ul>
+
+<p><strong>In short:</strong></p>
+
+<ul>
+  <li><strong>Parent → Child:</strong> via <code class="language-plaintext highlighter-rouge">props</code></li>
+  <li><strong>Child → Parent:</strong> via <code class="language-plaintext highlighter-rouge">$emit</code> (custom events)</li>
+</ul>
+
+<p>This maintains a clear and predictable one-way data flow, ensuring components stay independent and easy to debug.</p>
+
+<hr />
+
+<h3 id="13-slots-content-distribution">1.3 Slots (Content distribution)</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">&lt;slot&gt;</code> is a placeholder inside a child component where parent-provided content will be injected.</p>
+
+<p><strong>Basic slot example:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">alert-box</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;div class="alert"&gt;
+      &lt;strong&gt;Notice:&lt;/strong&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;`</span>
+<span class="p">});</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span> <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;alert-box&gt;</span>
+    This is an important alert message.
+  <span class="nt">&lt;/alert-box&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Fallback/default slot content:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit-button</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;button type="submit"&gt;&lt;slot&gt;Submit&lt;/slot&gt;&lt;/button&gt;</span><span class="dl">'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;submit-button&gt;&lt;/submit-button&gt;</code> renders <code class="language-plaintext highlighter-rouge">&lt;button&gt;Submit&lt;/button&gt;</code> (fallback used).</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;submit-button&gt;Save&lt;/submit-button&gt;</code> renders <code class="language-plaintext highlighter-rouge">&lt;button&gt;Save&lt;/button&gt;</code> (parent content overrides fallback).</li>
+</ul>
+
+<p><strong>Named slots (simple example):</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">card-layout</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;div class="card"&gt;
+      &lt;header&gt;&lt;slot name="header"&gt;Default header&lt;/slot&gt;&lt;/header&gt;
+      &lt;main&gt;&lt;slot&gt;Default body&lt;/slot&gt;&lt;/main&gt;
+      &lt;footer&gt;&lt;slot name="footer"&gt;Default footer&lt;/slot&gt;&lt;/footer&gt;
+    &lt;/div&gt;`</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;card-layout&gt;</span>
+  <span class="nt">&lt;template</span> <span class="na">v-slot:header</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h4&gt;</span>Custom Header<span class="nt">&lt;/h4&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  <span class="nt">&lt;p&gt;</span>This is the body content (default slot).<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;template</span> <span class="na">v-slot:footer</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;small&gt;</span>Custom Footer<span class="nt">&lt;/small&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/card-layout&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Key points:</strong></p>
+<ul>
+  <li>
+    <p>Slot content is written in the parent and rendered inside the child’s template at the slot position.</p>
+  </li>
+  <li>
+    <p>Slot content has access to the parent’s scope.</p>
+  </li>
+  <li>
+    <p>Slots are often used to make layout or wrapper components flexible — for example, a modal, card, or alert box that displays custom inner content.</p>
+  </li>
+</ul>
+
+<p><strong>Try it:</strong> Change fallback texts and provide different content in the parent to observe how the slots render.</p>
+
+<hr />
+
+<h3 id="14-alternative-ways-to-define-components-vue-2-cdn">1.4 Alternative Ways to Define Components (Vue 2 CDN)</h3>
+
+<p><strong>Global registration with <code class="language-plaintext highlighter-rouge">Vue.component</code></strong> (already shown):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">my-component</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;p&gt;Global component&lt;/p&gt;</span><span class="dl">'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>Local registration using the <code class="language-plaintext highlighter-rouge">components</code> option:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">LocalChild</span> <span class="o">=</span> <span class="p">{</span> <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;p&gt;I am local&lt;/p&gt;</span><span class="dl">'</span> <span class="p">};</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">local-child</span><span class="dl">'</span><span class="p">:</span> <span class="nx">LocalChild</span> <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Local registration keeps the global namespace clean and scopes components to the specific parent.</p>
+
+<h2 id="2-vue-lifecycle-hooks">2. Vue Lifecycle Hooks</h2>
+
+<p>Every Vue component goes through a <strong>lifecycle</strong> — from creation to removal.
+Vue provides <strong>lifecycle hooks</strong>, which are special functions that run automatically at specific stages.</p>
+
+<hr />
+
+<h3 id="lifecycle-stages-overview">Lifecycle Stages Overview</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Hook</th>
+      <th>When It Runs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Creation</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">beforeCreate</code></td>
+      <td>Before data and events are set up</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">created</code></td>
+      <td>After data and methods are ready</td>
+    </tr>
+    <tr>
+      <td><strong>Mounting</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">beforeMount</code></td>
+      <td>Before template is added to the page</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">mounted</code></td>
+      <td>After template is on the page</td>
+    </tr>
+    <tr>
+      <td><strong>Updating</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">beforeUpdate</code></td>
+      <td>Before DOM updates after data change</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">updated</code></td>
+      <td>After DOM updates</td>
+    </tr>
+    <tr>
+      <td><strong>Destruction</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">beforeDestroy</code></td>
+      <td>Before component is destroyed</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">destroyed</code></td>
+      <td>After it’s removed from the DOM</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><img width="700" height="1400" alt="image" src="https://github.com/user-attachments/assets/dfda4523-5a43-4b39-838b-c85ef682a4a1" /></p>
+
+<hr />
+
+<h3 id="real-life-analogy">Real-Life Analogy</h3>
+
+<p>A Vue component’s lifecycle is similar to a plant’s life:</p>
+
+<ul>
+  <li><strong>beforeCreate:</strong> The seed exists but is not planted yet.</li>
+  <li><strong>created:</strong> The roots and data are ready.</li>
+  <li><strong>mounted:</strong> The plant appears in the soil (DOM/template).</li>
+  <li><strong>updated:</strong> The plant grows new leaves (data changes).</li>
+  <li><strong>destroyed:</strong> The plant is removed.</li>
+</ul>
+
+<hr />
+
+<h3 id="lifecycle-example-in-one-file">Lifecycle Example in One File</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;lifecycle-demo&gt;&lt;/lifecycle-demo&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">lifecycle-demo</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">`
+      &lt;div&gt;
+        &lt;h3&gt;Lifecycle Hook Demo&lt;/h3&gt;
+        &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+        &lt;button @click="increaseCount"&gt;Increase&lt;/button&gt;
+      &lt;/div&gt;
+    `</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">increaseCount</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeCreate: Data not yet available</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">created: Data and methods ready</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeMount</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeMount: Template not yet in DOM</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mounted: Template added to DOM</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeUpdate: DOM about to update</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">updated: DOM updated</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeDestroy: Component will be destroyed</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">destroyed: Component destroyed</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<p>Open your browser console and observe the messages printed in order.</p>
+
+<hr />
+
+<h3 id="try-it-yourself-1">Try It Yourself</h3>
+
+<ol>
+  <li>Click “Increase” and observe the <code class="language-plaintext highlighter-rouge">beforeUpdate</code> and <code class="language-plaintext highlighter-rouge">updated</code> hooks in the console.</li>
+  <li>
+    <p>To destroy the component manually, run these lines in the browser console:</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span> <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span> <span class="p">});</span>
+<span class="nx">vm</span><span class="p">.</span><span class="nx">$children</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">$destroy</span><span class="p">();</span>
+</code></pre></div>    </div>
+
+    <h2 id="in-vue-3--the-destroyed-hook-is-renamed-to-unmounted-but-in-vue-2-it-remains-destroyed">In vue 3 , the <code class="language-plaintext highlighter-rouge">destroyed</code> hook is renamed to <code class="language-plaintext highlighter-rouge">unmounted</code>, but in Vue 2 it remains <code class="language-plaintext highlighter-rouge">destroyed</code>.</h2>
+  </li>
+</ol>
+
+<h2 id="3-moving-component-logic-to-a-separate-js-file">3. Moving Component Logic to a Separate JS File</h2>
+
+<p>As your app grows, it is better to keep components in separate files for better organization and maintainability.
+Let’s move our lifecycle component to a new JavaScript file.</p>
+
+<hr />
+
+<h3 id="step-1--create-lifecycledemojs">Step 1 — Create <code class="language-plaintext highlighter-rouge">lifecycleDemo.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// lifecycleDemo.js</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">lifecycleDemo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;div&gt;
+      &lt;h3&gt;Lifecycle Hook Demo (External File)&lt;/h3&gt;
+      &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+      &lt;button @click="increaseCount"&gt;Increase&lt;/button&gt;
+    &lt;/div&gt;
+  `</span><span class="p">,</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">increaseCount</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeCreate (external): Data not yet available</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">created (external): Data and methods ready</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeMount (external): Template not yet mounted</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">mounted (external): Template added to DOM</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeUpdate (external): DOM about to change</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">updated (external): DOM has been updated</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeDestroy (external): Component will be destroyed</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">destroyed (external): Component destroyed</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-2--import-and-use-it-in-indexhtml">Step 2 — Import and Use It in <code class="language-plaintext highlighter-rouge">index.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;lifecycle-demo&gt;&lt;/lifecycle-demo&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- 'type="module"' enables import/export syntax --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span><span class="nt">&gt;</span>
+  <span class="k">import</span> <span class="p">{</span> <span class="nx">lifecycleDemo</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./lifecycleDemo.js</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">lifecycle-demo</span><span class="dl">'</span><span class="p">,</span> <span class="nx">lifecycleDemo</span><span class="p">);</span>
+
+  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">export</code> makes your component available for use in other files.</li>
+  <li><code class="language-plaintext highlighter-rouge">import</code> brings it into the current file.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-summary">4. Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Component</strong></td>
+      <td>A reusable Vue instance that manages one part of the UI</td>
+    </tr>
+    <tr>
+      <td><strong>Props</strong></td>
+      <td>Allow parent-to-child data sharing (one-way data flow) ;Children can send messages to parents by emitting events; props should not be mutated by children.</td>
+    </tr>
+    <tr>
+      <td><strong>Interpolation (<code class="language-plaintext highlighter-rouge">{{ }}</code>)</strong></td>
+      <td>Displays dynamic data inside templates</td>
+    </tr>
+    <tr>
+      <td><strong>Lifecycle Hooks</strong></td>
+      <td>Functions that run automatically during creation, update, and destruction</td>
+    </tr>
+    <tr>
+      <td><strong>Modularization (export/import)</strong></td>
+      <td>Keeps code organized and reusable across files</td>
+    </tr>
+    <tr>
+      <td><strong>data</strong></td>
+      <td>In the root Vue instance <code class="language-plaintext highlighter-rouge">data</code> can be an object; in component definitions <code class="language-plaintext highlighter-rouge">data</code> must be a function returning an object so each instance has independent state.</td>
+    </tr>
+    <tr>
+      <td><strong>slots</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;slot&gt;</code> allows parent-provided content to be injected into child templates; default and named slots help structure content insertion.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-what-happens-if-you-dont-use-components">5. What Happens If You Don’t Use Components</h2>
+
+<ul>
+  <li>Code duplication increases</li>
+  <li>Debugging becomes difficult</li>
+  <li>Hard to maintain or update</li>
+  <li>No clear separation between logic and UI</li>
+</ul>
+
+<hr />
+
+<h2 id="6-practice-exercises">6. Practice Exercises</h2>
+
+<ol>
+  <li>
+    <p><strong>Create Your Own Component:</strong>
+Create a <code class="language-plaintext highlighter-rouge">product-card</code> component that accepts <code class="language-plaintext highlighter-rouge">productName</code> and <code class="language-plaintext highlighter-rouge">price</code> as props.</p>
+  </li>
+  <li>
+    <p><strong>Add Lifecycle Hooks:</strong>
+Log messages when your component is created, updated, and destroyed.</p>
+  </li>
+  <li>
+    <p><strong>Experiment with Data:</strong>
+Add a button to update the price and observe which lifecycle hooks are triggered.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="7-final-takeaway">7. Final Takeaway</h2>
+
+<p>Vue components help you divide, reuse, and manage your web app efficiently.
+Lifecycle hooks help you understand what happens and when in the life of a component.
+Together, they make Vue a simple yet powerful framework for building dynamic applications.</p>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

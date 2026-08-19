@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/OpenSession.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/OpenSession.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week-3/OpenSession.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Open Session Week 3</p>
+
+<h2 id="f-strings-and-comments">f-strings and Comments</h2>
+
+<h3 id="1-using-f-strings-for-formatting">1. <strong>Using f-strings for Formatting</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="s">"Shiv"</span>
+<span class="n">place</span> <span class="o">=</span> <span class="s">"Chennai"</span>
+<span class="n">profession</span> <span class="o">=</span> <span class="s">"Data Analyst"</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"My name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">, I live in </span><span class="si">{</span><span class="n">place</span><span class="si">}</span><span class="s"> and I am </span><span class="si">{</span><span class="n">profession</span><span class="si">}</span><span class="s">."</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>
+    <p><strong>f-strings</strong>: This is a concise and efficient way of embedding variables directly inside a string. The syntax is <code class="language-plaintext highlighter-rouge">f"some text {variable}"</code>, where everything inside the curly braces (<code class="language-plaintext highlighter-rouge">{}</code>) is evaluated and inserted into the string.</p>
+  </li>
+  <li>In this case, three variables are defined:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name = "Shiv"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">place = "Chennai"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">profession = "Data Analyst"</code></li>
+    </ul>
+  </li>
+  <li>The <strong>formatted string</strong> <code class="language-plaintext highlighter-rouge">f"My name is {name}, I live in {place} and I am {profession}."</code> will insert the values of these variables in the corresponding positions inside the string. So, when you print it out, it will look like this:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Shiv, I live in Chennai and I am Data Analyst.
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-commented-code">2. <strong>Commented Code</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># text = "Today is sunday"
+# print(text)
+</span></code></pre></div></div>
+<ul>
+  <li>The lines are commented out using the <code class="language-plaintext highlighter-rouge">#</code> symbol, so they won’t be executed.</li>
+  <li>If uncommented, the code would create a string <code class="language-plaintext highlighter-rouge">text = "Today is sunday"</code> and print it. However, because it’s commented, it doesn’t affect the current output.</li>
+</ul>
+
+<h3 id="key-points">Key Points:</h3>
+<ul>
+  <li><strong>f-strings</strong>: These are a very handy way of inserting values into strings in Python, introduced in Python 3.6. They allow you to insert the value of any variable inside a string by using curly braces <code class="language-plaintext highlighter-rouge">{}</code>.</li>
+  <li><strong>Comments</strong>: Lines starting with <code class="language-plaintext highlighter-rouge">#</code> are ignored by the Python interpreter. They are useful for leaving notes or temporarily disabling code.</li>
+</ul>
+
+<h2 id="jinja2"><strong>Jinja2</strong></h2>
+
+<h3 id="1-defining-variables">1. <strong>Defining Variables</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># use `pip install jinja2` to install the jinja 
+</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Shiv"</span>
+<span class="n">place</span> <span class="o">=</span> <span class="s">"Chennai"</span>
+<span class="n">profession</span> <span class="o">=</span> <span class="s">"Data Analyst"</span>
+</code></pre></div></div>
+<ul>
+  <li>Three variables are created:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name</code> with the value <code class="language-plaintext highlighter-rouge">"Shiv"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">place</code> with the value <code class="language-plaintext highlighter-rouge">"Chennai"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">profession</code> with the value <code class="language-plaintext highlighter-rouge">"Data Analyst"</code>
+These will be used to fill in placeholders in the template.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-step-1-create-template-text-with-placeholders">2. <strong>Step 1: Create Template Text with Placeholders</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">temp</span> <span class="o">=</span> <span class="s">"My name is {{name}}, I live in {{place}} and I am a {{profession}}"</span>
+
+</code></pre></div></div>
+<ul>
+  <li>A <strong>template string</strong> is defined here. The double curly braces <code class="language-plaintext highlighter-rouge">{{ }}</code> are placeholders that will later be filled with the values of the corresponding variables.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">{{name}}</code> will be replaced with the value of the variable <code class="language-plaintext highlighter-rouge">name</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">{{place}}</code> will be replaced with the value of <code class="language-plaintext highlighter-rouge">place</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">{{profession}}</code> will be replaced with the value of <code class="language-plaintext highlighter-rouge">profession</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This step essentially creates the structure of the output you want.</p>
+
+<h3 id="3-step-2-convert-text-to-a-template">3. <strong>Step 2: Convert Text to a Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">made_temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Template(temp)</code></strong>: This converts the <code class="language-plaintext highlighter-rouge">temp</code> string into a Jinja2 <strong>template object</strong>. Now, this <code class="language-plaintext highlighter-rouge">made_temp</code> can be used to fill the placeholders with actual data.</li>
+</ul>
+
+<h3 id="4-step-3-render-the-template-with-data">4. <strong>Step 3: Render the Template with Data</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">output</span> <span class="o">=</span> <span class="n">made_temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">place</span><span class="o">=</span><span class="n">place</span><span class="p">,</span> <span class="n">profession</span><span class="o">=</span><span class="n">profession</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Rendering</strong>: The <code class="language-plaintext highlighter-rouge">.render()</code> method takes the template and substitutes the placeholders with the actual values.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name=name</code>: This passes the value of the <code class="language-plaintext highlighter-rouge">name</code> variable into the template’s <code class="language-plaintext highlighter-rouge">{{name}}</code> placeholder.</li>
+      <li><code class="language-plaintext highlighter-rouge">place=place</code>: This passes the value of <code class="language-plaintext highlighter-rouge">place</code> to <code class="language-plaintext highlighter-rouge">{{place}}</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">profession=profession</code>: This passes the value of <code class="language-plaintext highlighter-rouge">profession</code> to <code class="language-plaintext highlighter-rouge">{{profession}}</code>.</li>
+    </ul>
+  </li>
+  <li>The <strong>left-hand side</strong> (<code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">place</code>, <code class="language-plaintext highlighter-rouge">profession</code>) refers to the placeholders in the template, while the <strong>right-hand side</strong> refers to the actual data being passed.</li>
+</ul>
+
+<p>This will generate the following string:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My name is Shiv, I live in Chennai and I am a Data Analyst
+</code></pre></div></div>
+
+<h3 id="5-output-the-result">5. <strong>Output the Result</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>Finally, the <code class="language-plaintext highlighter-rouge">output</code> (which is the rendered string with the variable values inserted) is printed.</li>
+</ul>
+
+<h3 id="summary">Summary:</h3>
+<ul>
+  <li>A template with placeholders (<code class="language-plaintext highlighter-rouge">{{name}}</code>, <code class="language-plaintext highlighter-rouge">{{place}}</code>, and <code class="language-plaintext highlighter-rouge">{{profession}}</code>) is defined.</li>
+  <li>The <strong>Jinja2 <code class="language-plaintext highlighter-rouge">Template</code></strong> object is created from the string.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">.render()</code> method is used to pass the actual data (<code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">place</code>, <code class="language-plaintext highlighter-rouge">profession</code>) to the template.</li>
+  <li>The resulting string, with the placeholders replaced by their values, is printed out.</li>
+</ul>
+
+<p>This method allows you to dynamically generate text (in this case, HTML or simple strings) by inserting data at runtime.</p>
+
+<h2 id="jinja2-and-html">Jinja2 and HTML</h2>
+
+<h3 id="1-defining-variables-1">1. <strong>Defining Variables</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="s">"Divya"</span>
+<span class="n">place</span> <span class="o">=</span> <span class="s">"Delhi"</span>
+</code></pre></div></div>
+<ul>
+  <li>Two variables are created:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name</code> with the value <code class="language-plaintext highlighter-rouge">"Divya"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">place</code> with the value <code class="language-plaintext highlighter-rouge">"Delhi"</code>
+These variables will be used to fill in the placeholders inside the HTML template.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="2-step-1-creating-the-html-template-with-placeholders">2. <strong>Step 1: Creating the HTML Template with Placeholders</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">temp</span> <span class="o">=</span> <span class="s">"""
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+        &lt;head&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h2&gt;My name is {{name}}&lt;/h2&gt;
+            &lt;h2&gt;I live in {{place}}&lt;/h2&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+"""</span>
+
+</code></pre></div></div>
+<ul>
+  <li><strong>HTML Template</strong>: This is a simple HTML document stored as a string, and it includes two placeholders inside curly braces (<code class="language-plaintext highlighter-rouge">{{ }}</code>):
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">{{name}}</code>: This placeholder will later be filled with the value of the <code class="language-plaintext highlighter-rouge">name</code> variable.</li>
+      <li><code class="language-plaintext highlighter-rouge">{{place}}</code>: This placeholder will be filled with the value of the <code class="language-plaintext highlighter-rouge">place</code> variable.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This template forms a structure of a basic HTML page, with two headings displaying a person’s name and place of residence.</p>
+
+<hr />
+
+<h3 id="3-step-2-converting-text-to-a-jinja2-template">3. <strong>Step 2: Converting Text to a Jinja2 Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">made_temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Template(temp)</code></strong>: The <code class="language-plaintext highlighter-rouge">temp</code> string is converted into a Jinja2 <strong>template object</strong>. This prepares the template for dynamic content insertion (substituting placeholders with real values).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">made_temp</code> is the template object created from the <code class="language-plaintext highlighter-rouge">temp</code> string, which will be rendered with actual data in the next step.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-step-3-rendering-the-template-with-data">4. <strong>Step 3: Rendering the Template with Data</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">made_temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">place</span><span class="o">=</span><span class="n">place</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Rendering the template</strong>: The <code class="language-plaintext highlighter-rouge">.render()</code> method is used to pass data into the template, filling the placeholders with the corresponding values.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name=name</code>: This replaces <code class="language-plaintext highlighter-rouge">{{name}}</code> in the template with the value <code class="language-plaintext highlighter-rouge">"Divya"</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">place=place</code>: This replaces <code class="language-plaintext highlighter-rouge">{{place}}</code> in the template with the value <code class="language-plaintext highlighter-rouge">"Delhi"</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The final rendered HTML string will look like this:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>My name is Divya<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>I live in Delhi<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-printing-the-output">5. <strong>Printing the Output</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>This prints the rendered HTML content to the terminal, showing the final HTML structure with the inserted data.</li>
+</ul>
+
+<h3 id="summary-1">Summary:</h3>
+<ol>
+  <li><strong>Template Creation</strong>: You define a template (in this case, an HTML structure) with placeholders for the variables.</li>
+  <li><strong>Converting to a Template</strong>: The template string is converted into a Jinja2 <code class="language-plaintext highlighter-rouge">Template</code> object.</li>
+  <li><strong>Rendering</strong>: The <code class="language-plaintext highlighter-rouge">.render()</code> method substitutes the placeholders (<code class="language-plaintext highlighter-rouge">{{name}}</code>, <code class="language-plaintext highlighter-rouge">{{place}}</code>) with the actual data values (<code class="language-plaintext highlighter-rouge">"Divya"</code> and <code class="language-plaintext highlighter-rouge">"Delhi"</code>).</li>
+  <li><strong>Output</strong>: The final HTML with the substituted values is printed out.</li>
+</ol>
+
+<p>This technique is useful when you want to dynamically generate HTML or text-based content using data provided at runtime.</p>
+
+<h2 id="jinja2-and-for-loop">Jinja2 and for loop</h2>
+
+<h3 id="1-defining-a-list">1. <strong>Defining a List</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Programmer"</span><span class="p">,</span> <span class="s">"Analyst"</span><span class="p">,</span> <span class="s">"Scientist"</span><span class="p">]</span>
+</code></pre></div></div>
+<ul>
+  <li>A list named <code class="language-plaintext highlighter-rouge">data</code> is created with three elements: <code class="language-plaintext highlighter-rouge">"Programmer"</code>, <code class="language-plaintext highlighter-rouge">"Analyst"</code>, and <code class="language-plaintext highlighter-rouge">"Scientist"</code>. These are the values that will be inserted into the template in the upcoming steps.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-step-1-creating-the-template-with-a-for-loop">2. <strong>Step 1: Creating the Template with a For Loop</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">temp</span> <span class="o">=</span> <span class="s">"My data is: {%for i in Data %} {{i}} {% endfor %}"</span>
+
+</code></pre></div></div>
+<ul>
+  <li>This is a Jinja2 template string with a <strong>for loop</strong> that iterates over the variable <code class="language-plaintext highlighter-rouge">Data</code> (which will be passed during rendering).</li>
+  <li>The Jinja2 syntax:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">{%for i in Data %}</code>: This starts a loop that goes through each element of <code class="language-plaintext highlighter-rouge">Data</code>. The variable <code class="language-plaintext highlighter-rouge">i</code> represents each item during the iteration.</li>
+      <li><code class="language-plaintext highlighter-rouge">{{i}}</code>: This prints the current value of <code class="language-plaintext highlighter-rouge">i</code> (each item from the <code class="language-plaintext highlighter-rouge">Data</code> list).</li>
+      <li><code class="language-plaintext highlighter-rouge">{% endfor %}</code>: This ends the for loop.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>When rendered, this loop will iterate over the list <code class="language-plaintext highlighter-rouge">Data</code> and insert each value into the final output.</p>
+
+<hr />
+
+<h3 id="3-step-2-converting-the-string-into-a-jinja2-template">3. <strong>Step 2: Converting the String into a Jinja2 Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">made_temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Template(temp)</code></strong>: This converts the <code class="language-plaintext highlighter-rouge">temp</code> string into a <strong>Jinja2 template object</strong>. Now, the string can be rendered with dynamic data passed into it.</li>
+  <li><code class="language-plaintext highlighter-rouge">made_temp</code> holds the template object.</li>
+</ul>
+
+<hr />
+
+<h3 id="4-step-3-rendering-the-template-with-data-1">4. <strong>Step 3: Rendering the Template with Data</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">made_temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">Data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">.render()</code></strong>: This method is used to pass data into the template. In this case:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Data=data</code>: The list <code class="language-plaintext highlighter-rouge">data</code> (which contains <code class="language-plaintext highlighter-rouge">["Programmer", "Analyst", "Scientist"]</code>) is passed to the template as <code class="language-plaintext highlighter-rouge">Data</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The for loop inside the template will iterate over this list and print each value.</p>
+
+<p>When rendered, the result will be:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My data is: Programmer Analyst Scientist 
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-printing-the-output-1">5. <strong>Printing the Output</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>This will print the final rendered string to the console, which looks like:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My data is: Programmer Analyst Scientist 
+</code></pre></div>    </div>
+    <p>It displays each item from the list <code class="language-plaintext highlighter-rouge">data</code> on the same line, separated by spaces.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="summary-2">Summary:</h3>
+<ol>
+  <li><strong>Template Creation</strong>: A template string is created with a for loop to iterate over the list <code class="language-plaintext highlighter-rouge">Data</code>.</li>
+  <li><strong>Converting to a Template</strong>: The template string is converted into a Jinja2 template object.</li>
+  <li><strong>Rendering</strong>: The <code class="language-plaintext highlighter-rouge">.render()</code> method substitutes the list <code class="language-plaintext highlighter-rouge">data</code> for <code class="language-plaintext highlighter-rouge">Data</code> and loops over it, inserting each element into the final string.</li>
+  <li><strong>Output</strong>: The final rendered string (with the list elements inserted) is printed.</li>
+</ol>
+
+<p>This method allows you to dynamically generate strings by looping over data using Jinja2 templates.</p>
+
+<h2 id="jinja2-and-for-loop-with-if-condition">Jinja2 and for loop with if condition</h2>
+
+<h3 id="1-defining-the-list">1. <strong>Defining the List</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Programmer"</span><span class="p">,</span> <span class="s">"Analyst"</span><span class="p">,</span> <span class="s">"Scientist"</span><span class="p">]</span>
+</code></pre></div></div>
+<ul>
+  <li>You define a list named <code class="language-plaintext highlighter-rouge">data</code> containing three strings: <code class="language-plaintext highlighter-rouge">"Programmer"</code>, <code class="language-plaintext highlighter-rouge">"Analyst"</code>, and <code class="language-plaintext highlighter-rouge">"Scientist"</code>. This list will be passed into the template and checked for certain conditions later.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-creating-the-template">2. <strong>Creating the Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">temp</span> <span class="o">=</span> <span class="s">"""
+      {% for i in data %}
+         {% if "z" in i %}
+            {{i}}
+         {% endif %}
+         
+      {% endfor %}
+      No data found   
+      """</span>
+
+</code></pre></div></div>
+<ul>
+  <li>This is the <strong>Jinja2 template</strong> that you are going to render. It contains:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">{% for i in data %}</code>: A <strong>for loop</strong> that iterates over the list <code class="language-plaintext highlighter-rouge">data</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">{% if "z" in i %}</code>: Inside the loop, an <strong>if statement</strong> checks if the letter <code class="language-plaintext highlighter-rouge">"z"</code> exists in the current string (<code class="language-plaintext highlighter-rouge">i</code>). If <code class="language-plaintext highlighter-rouge">"z"</code> is found, it will print that string using <code class="language-plaintext highlighter-rouge">{{i}}</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">{% endif %}</code>: Closes the if statement.</li>
+      <li><code class="language-plaintext highlighter-rouge">{% endfor %}</code>: Closes the for loop.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>If no string in the list contains the letter <code class="language-plaintext highlighter-rouge">"z"</code>, the template will not print any of the list items. After the loop, the string <code class="language-plaintext highlighter-rouge">"No data found"</code> will always be printed.</p>
+
+<hr />
+
+<h3 id="3-converting-to-a-template-object">3. <strong>Converting to a Template Object</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">made_temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Template(temp)</code></strong>: This converts the <code class="language-plaintext highlighter-rouge">temp</code> string into a <strong>Jinja2 template object</strong>, which can now be rendered with actual data.</li>
+</ul>
+
+<hr />
+
+<h3 id="4-rendering-the-template">4. <strong>Rendering the Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">made_temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">.render(data=data)</code></strong>: The <code class="language-plaintext highlighter-rouge">.render()</code> method is used to pass the list <code class="language-plaintext highlighter-rouge">data</code> into the template under the name <code class="language-plaintext highlighter-rouge">data</code>. This allows the for loop to iterate over the list.
+    <ul>
+      <li>Since none of the strings <code class="language-plaintext highlighter-rouge">"Programmer"</code>, <code class="language-plaintext highlighter-rouge">"Analyst"</code>, or <code class="language-plaintext highlighter-rouge">"Scientist"</code> contain the letter <code class="language-plaintext highlighter-rouge">"z"</code>, the if condition <code class="language-plaintext highlighter-rouge">if "z" in i</code> will never be true.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Therefore, no strings from the list will be printed.</p>
+
+<hr />
+
+<h3 id="5-printing-the-output-2">5. <strong>Printing the Output</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>Since none of the strings in the list satisfy the condition (having a <code class="language-plaintext highlighter-rouge">"z"</code> in them), the output will be:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No data found
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="explanation-summary">Explanation Summary:</h3>
+<ol>
+  <li><strong>Template Creation</strong>: You define a template that loops over a list and checks whether each string contains the letter <code class="language-plaintext highlighter-rouge">"z"</code>. If it does, the string is printed.</li>
+  <li><strong>Converting to a Template Object</strong>: The template string is converted into a Jinja2 <code class="language-plaintext highlighter-rouge">Template</code> object.</li>
+  <li><strong>Rendering the Template</strong>: You render the template by passing the <code class="language-plaintext highlighter-rouge">data</code> list, but no strings match the condition (having a <code class="language-plaintext highlighter-rouge">"z"</code>).</li>
+  <li><strong>Output</strong>: Since no list items meet the condition, the final output will be <code class="language-plaintext highlighter-rouge">"No data found"</code>.</li>
+</ol>
+
+<p>This template structure is useful when you want to filter data dynamically based on certain conditions.</p>
+
+<h2 id="jinja2-and-for-loop-with-if--elif-and-else-condition">Jinja2 and for loop with if , elif and else condition</h2>
+
+<h3 id="1-defining-the-variable">1. <strong>Defining the Variable</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subject</span> <span class="o">=</span> <span class="s">"MAD 1"</span>
+</code></pre></div></div>
+<ul>
+  <li>A variable named <code class="language-plaintext highlighter-rouge">subject</code> is defined with the value <code class="language-plaintext highlighter-rouge">"MAD 1"</code>. This string will be used in the template to determine the output based on certain conditions.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-creating-the-template-1">2. <strong>Creating the Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">temp</span> <span class="o">=</span> <span class="s">"""
+      {% if "2" in sub %}
+        {{sub}}
+      {% else %}
+      Required subject not found
+      {% endif %}
+"""</span>
+
+</code></pre></div></div>
+<ul>
+  <li>This is a <strong>Jinja2 template</strong> string that contains a conditional statement:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">{% if "2" in sub %}</code>: This checks if the character <code class="language-plaintext highlighter-rouge">"2"</code> is present in the variable <code class="language-plaintext highlighter-rouge">sub</code> (which will later be assigned the value of <code class="language-plaintext highlighter-rouge">subject</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">{{sub}}</code>: If <code class="language-plaintext highlighter-rouge">"2"</code> is found in <code class="language-plaintext highlighter-rouge">sub</code>, this line will print the value of <code class="language-plaintext highlighter-rouge">sub</code> (which is <code class="language-plaintext highlighter-rouge">"MAD 1"</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">{% else %}</code>: If <code class="language-plaintext highlighter-rouge">"2"</code> is not found, the code inside this block will execute.</li>
+      <li><code class="language-plaintext highlighter-rouge">Required subject not found</code>: This string will be printed if <code class="language-plaintext highlighter-rouge">"2"</code> is not present in <code class="language-plaintext highlighter-rouge">sub</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">{% endif %}</code>: This ends the if-else block.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-converting-to-a-template-object-1">3. <strong>Converting to a Template Object</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">made_temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Template(temp)</code></strong>: This converts the <code class="language-plaintext highlighter-rouge">temp</code> string into a <strong>Jinja2 template object</strong> named <code class="language-plaintext highlighter-rouge">made_temp</code>, allowing for dynamic content rendering based on the conditions specified.</li>
+</ul>
+
+<hr />
+
+<h3 id="4-rendering-the-template-1">4. <strong>Rendering the Template</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">made_temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">sub</span><span class="o">=</span><span class="n">subject</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">.render(sub=subject)</code></strong>: This method is called on the template object to pass the <code class="language-plaintext highlighter-rouge">subject</code> variable to the template as <code class="language-plaintext highlighter-rouge">sub</code>.
+    <ul>
+      <li>Since the value of <code class="language-plaintext highlighter-rouge">subject</code> is <code class="language-plaintext highlighter-rouge">"MAD 1"</code>, the template checks if <code class="language-plaintext highlighter-rouge">"2"</code> is present in this string.</li>
+      <li>Since <code class="language-plaintext highlighter-rouge">"2"</code> is <strong>not</strong> in <code class="language-plaintext highlighter-rouge">"MAD 1"</code>, the condition will evaluate to <code class="language-plaintext highlighter-rouge">False</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="5-printing-the-output-3">5. <strong>Printing the Output</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>Because the condition is false, the output of the template will be:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Required subject not found
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="summary-3">Summary:</h3>
+<ol>
+  <li><strong>Template Creation</strong>: A Jinja2 template is defined that checks for the presence of the character <code class="language-plaintext highlighter-rouge">"2"</code> in the <code class="language-plaintext highlighter-rouge">sub</code> variable.</li>
+  <li><strong>Converting to a Template Object</strong>: The template string is converted into a Jinja2 <code class="language-plaintext highlighter-rouge">Template</code> object.</li>
+  <li><strong>Rendering</strong>: The template is rendered by passing the variable <code class="language-plaintext highlighter-rouge">subject</code> (with the value <code class="language-plaintext highlighter-rouge">"MAD 1"</code>) as <code class="language-plaintext highlighter-rouge">sub</code>.</li>
+  <li><strong>Output</strong>: Since <code class="language-plaintext highlighter-rouge">"2"</code> is not found in <code class="language-plaintext highlighter-rouge">"MAD 1"</code>, the output is <code class="language-plaintext highlighter-rouge">"Required subject not found"</code>.</li>
+</ol>
+
+<p>This example demonstrates how to use Jinja2 for conditional rendering based on the content of a variable.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

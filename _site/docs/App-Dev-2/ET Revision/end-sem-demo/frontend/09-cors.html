@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>09 – CORS Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<!--
+  Requires backend/09-cors.py running on http://127.0.0.1:5000
+  Serve this file from http://localhost:5173 (e.g. Vite dev server) so the
+  origin matches what the backend allows.
+  Open DevTools > Network > click a request > Response Headers to see
+  Access-Control-Allow-Origin on each response.
+-->
+<div id="app">
+  <h2>CORS Demo</h2>
+  <p>Open DevTools → Network → click a request → Response Headers</p>
+
+  <button @click="fetchFlaskCors">
+    GET /api/data — flask-cors (auto header)
+  </button>
+  <button @click="fetchMakeResponse">
+    GET /api/manual — make_response + header
+  </button>
+  <button @click="fetchInlineTuple">
+    GET /api/hello — inline return tuple
+  </button>
+
+  <pre>{{ out }}</pre>
+</div>
+
+<script>
+const BASE = 'http://127.0.0.1:5000';
+
+new Vue({
+  el: '#app',
+  data: { out: 'Click a button...' },
+  methods: {
+    async fetchFlaskCors() {
+      try {
+        const res = await axios.get(`${BASE}/api/data`);
+        this.out = JSON.stringify(res.data, null, 2);
+      } catch (e) { this.out = 'CORS Error: ' + e.message; }
+    },
+    async fetchMakeResponse() {
+      try {
+        const res = await axios.get(`${BASE}/api/manual`);
+        this.out = JSON.stringify(res.data, null, 2);
+      } catch (e) { this.out = 'CORS Error: ' + e.message; }
+    },
+    async fetchInlineTuple() {
+      try {
+        const res = await axios.get(`${BASE}/api/hello`);
+        this.out = JSON.stringify(res.data, null, 2);
+      } catch (e) { this.out = 'CORS Error: ' + e.message; }
+    },
+  },
+});
+</script>
+</body>
+</html>

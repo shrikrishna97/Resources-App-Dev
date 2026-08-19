@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-3/StringVsJinja2.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-3/StringVsJinja2.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-3/StringVsJinja2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>The main difference between <code class="language-plaintext highlighter-rouge">string.Template</code> from Python’s <code class="language-plaintext highlighter-rouge">string</code> module and <code class="language-plaintext highlighter-rouge">jinja2.Template</code> from the Jinja2 templating engine lies in their syntax and features.</p>
+
+<h3 id="step-1-creating-the-template">Step 1: Creating the Template</h3>
+
+<h4 id="stringtemplate"><code class="language-plaintext highlighter-rouge">string.Template</code>:</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Template</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="s">"Today is $today and tomorrow is $tomorrow."</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Syntax</strong>: In <code class="language-plaintext highlighter-rouge">string.Template</code>, placeholders are denoted by a dollar sign (<code class="language-plaintext highlighter-rouge">$</code>), followed by the variable name (e.g., <code class="language-plaintext highlighter-rouge">$today</code>, <code class="language-plaintext highlighter-rouge">$tomorrow</code>).</li>
+</ul>
+
+<h4 id="jinja2template"><code class="language-plaintext highlighter-rouge">jinja2.Template</code>:</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">Template</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="s">"Today is {{today}} and tomorrow is {{tomorrow}}."</span><span class="p">)</span>
+
+</code></pre></div></div>
+<ul>
+  <li><strong>Syntax</strong>: In Jinja2, placeholders are denoted by double curly braces (<code class="language-plaintext highlighter-rouge">{{}}</code>), surrounding the variable name (e.g., <code class="language-plaintext highlighter-rouge">{{today}}</code>, <code class="language-plaintext highlighter-rouge">{{tomorrow}}</code>).</li>
+</ul>
+
+<h3 id="step-2-rendering-the-template">Step 2: Rendering the Template</h3>
+
+<h4 id="stringtemplate-1"><code class="language-plaintext highlighter-rouge">string.Template</code>:</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="s">"Monday"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Rendering Method</strong>: The <code class="language-plaintext highlighter-rouge">substitute()</code> method replaces the placeholders with the provided values.</li>
+  <li><strong>Error Handling</strong>: If a value for a placeholder is not provided, it raises a <code class="language-plaintext highlighter-rouge">KeyError</code>.</li>
+</ul>
+
+<p>If you want to avoid an error when a variable is missing, you can use <code class="language-plaintext highlighter-rouge">safe_substitute()</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="n">safe_substitute</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="s">"Monday"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">safe_substitute()</code></strong>: This method substitutes provided values and leaves placeholders for missing ones, instead of raising an error.</li>
+</ul>
+
+<h4 id="jinja2template-1"><code class="language-plaintext highlighter-rouge">jinja2.Template</code>:</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">today</span><span class="o">=</span><span class="s">"Monday"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Rendering Method</strong>: Jinja2 uses the <code class="language-plaintext highlighter-rouge">render()</code> method to replace placeholders with provided values.</li>
+  <li><strong>Error Handling</strong>: If a variable is missing in Jinja2, it does <strong>not</strong> throw an error. Instead, it leaves the placeholder empty (i.e., it renders nothing for that variable).</li>
+</ul>
+
+<h3 id="summary-of-differences">Summary of Differences:</h3>
+<ol>
+  <li><strong>Syntax</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">string.Template</code>: <code class="language-plaintext highlighter-rouge">$variable</code></li>
+      <li><code class="language-plaintext highlighter-rouge">jinja2.Template</code>: <code class="language-plaintext highlighter-rouge">{{variable}}</code></li>
+    </ul>
+  </li>
+  <li><strong>Rendering</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">string.Template</code>: Uses <code class="language-plaintext highlighter-rouge">substitute()</code> or <code class="language-plaintext highlighter-rouge">safe_substitute()</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">jinja2.Template</code>: Uses <code class="language-plaintext highlighter-rouge">render()</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Error Handling</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">string.Template</code>:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">substitute()</code>: Throws a <code class="language-plaintext highlighter-rouge">KeyError</code> if any placeholder is missing.</li>
+          <li><code class="language-plaintext highlighter-rouge">safe_substitute()</code>: Leaves missing variables unchanged, without raising an error.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">jinja2.Template</code>: Leaves missing variables empty (blank) without throwing an error.</li>
+    </ul>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

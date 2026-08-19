@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-6/API.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-6/API.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-6/API.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="understanding-restful-apis-with-flask-restful">Understanding RESTful APIs with Flask-RESTful</h1>
+
+<p>RESTful APIs are essential for modern web development, allowing seamless communication between a client and a server. In Flask, we can create RESTful APIs efficiently using the <code class="language-plaintext highlighter-rouge">Flask-RESTful</code> extension.</p>
+
+<h2 id="1-what-is-an-api">1. What is an API?</h2>
+
+<p>An API (Application Programming Interface) is a set of rules that allows software applications to communicate with each other. APIs enable data exchange between systems and provide a standardized way for applications to interact.</p>
+
+<h2 id="2-why-use-an-api">2. Why Use an API?</h2>
+
+<ul>
+  <li><strong>Scalability</strong>: APIs enable applications to grow and integrate with multiple platforms.</li>
+  <li><strong>Efficiency</strong>: Reduces redundancy by allowing different systems to share functionality.</li>
+  <li><strong>Automation</strong>: Automates tasks and workflows between services.</li>
+  <li><strong>Security</strong>: Ensures controlled access to data using authentication mechanisms.</li>
+</ul>
+
+<h2 id="3-when-to-use-an-api">3. When to Use an API?</h2>
+
+<ul>
+  <li>When different applications need to communicate.</li>
+  <li>To expose data or services to external applications.</li>
+  <li>When developing microservices architecture.</li>
+</ul>
+
+<h2 id="4-how-apis-work">4. How APIs Work</h2>
+
+<p>A client sends a request to the server, and the server processes it and returns a response.
+APIs follow a request-response cycle:</p>
+<ul>
+  <li>A client sends a request to an API.</li>
+  <li>The API processes the request and interacts with the database if needed.</li>
+  <li>The API returns a response to the client.</li>
+</ul>
+
+<p>💡 <strong>Too Much used Analogy:</strong> Imagine ordering food at a restaurant. The waiter (API) takes your order (request), gives it to the kitchen (server), and brings back the food (response).</p>
+
+<h2 id="5-hierarchy-from-route-to-flask-restful-api">5. Hierarchy: From Route to Flask-RESTful API</h2>
+
+<p>Understanding the progression from a simple route to a full-fledged Flask-RESTful API is crucial for building scalable applications. Below is a structured hierarchy:</p>
+
+<ol>
+  <li>
+    <p><strong>Flask Route (</strong><strong>**</strong><code class="language-plaintext highlighter-rouge">@app.route</code><strong>**</strong><strong>)</strong>: The most basic way to create an API using Flask. It defines individual endpoints manually and maps them to functions.</p>
+
+    <ul>
+      <li>Example:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/hello'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"Hello, World!"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>API (Application Programming Interface)</strong>: A broader concept that refers to any defined mechanism allowing applications to interact. APIs serve data through structured endpoints.</p>
+  </li>
+  <li>
+    <p><strong>RESTful API</strong>: A <strong>RESTful API</strong> follows the principles of <strong>REST (Representational State Transfer)</strong> to enable efficient client-server communication. It follows standard HTTP methods:</p>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>HTTP Method</th>
+      <th>Operation</th>
+      <th>CRUD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>Retrieve data</td>
+      <td>Read</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>Create new data</td>
+      <td>Create</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>Update existing data</td>
+      <td>Update</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>Remove data</td>
+      <td>Delete</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>
+    <p><strong>Flask-RESTful API</strong>: A structured and scalable way to build RESTful APIs using the Flask-RESTful extension. It organizes endpoints using class-based resources, making it easier to manage complex APIs.</p>
+
+    <ul>
+      <li>Example:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span>
+
+<span class="k">class</span> <span class="nc">Hello</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span> <span class="c1">#remember class from flask_sqlalchemy it aslo takes db.Model similar to Resource here
+</span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello, World!"</span><span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>This hierarchy shows how API development progresses from a simple function-based approach to a more scalable, structured Flask-RESTful approach.</p>
+
+<h2 id="6-difference-between-flask-route-and-flask-restful">6. Difference Between Flask Route and Flask-RESTful</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Flask Route</th>
+      <th>Flask-RESTful</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>API Creation</td>
+      <td>Uses <code class="language-plaintext highlighter-rouge">@app.route</code> decorator</td>
+      <td>Uses <code class="language-plaintext highlighter-rouge">Resource</code> class and <code class="language-plaintext highlighter-rouge">add_resource</code> method</td>
+    </tr>
+    <tr>
+      <td>HTTP Methods</td>
+      <td>Needs explicit function definitions</td>
+      <td>Handles multiple HTTP methods using class methods</td>
+    </tr>
+    <tr>
+      <td>Code Organization</td>
+      <td>Less structured, function-based</td>
+      <td>More structured, class-based</td>
+    </tr>
+    <tr>
+      <td>Scalability</td>
+      <td>Can become complex with many routes</td>
+      <td>Easier to manage as API grows</td>
+    </tr>
+    <tr>
+      <td>Data Parsing</td>
+      <td>Uses <code class="language-plaintext highlighter-rouge">request.json</code> for input</td>
+      <td>Uses <code class="language-plaintext highlighter-rouge">reqparse.RequestParser</code> for structured input handling</td>
+    </tr>
+    <tr>
+      <td>Response Format</td>
+      <td>Uses <code class="language-plaintext highlighter-rouge">jsonify()</code> for response</td>
+      <td>Returns a dictionary, automatically converted to JSON</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="code-comparison-jinja2-vs-flask-restful">Code Comparison: Jinja2 vs Flask-RESTful</h3>
+
+<h4 id="using-jinja2-render_template">Using Jinja2 (<code class="language-plaintext highlighter-rouge">render_template</code>)</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="using-flask-restful">Using Flask-RESTful</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Home</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Welcome to the API"</span><span class="p">}</span>
+
+<span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Home</span><span class="p">,</span> <span class="s">'/'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="7-http-methods-and-implementation">7. HTTP Methods and Implementation</h2>
+
+<p>HTTP methods allow interaction with APIs. Below is a comparison of Flask route and Flask-RESTful for different HTTP methods.</p>
+
+<h3 id="flask-route-example">Flask Route Example</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">users</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="s">"User not found"</span><span class="p">))</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]})</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'PUT'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User updated"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]})</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'DELETE'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">delete_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User deleted"</span><span class="p">})</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="html-form-restriction-example">HTML Form Restriction Example</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/user/1"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">placeholder=</span><span class="s">"Enter Name"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>Note: HTML forms do not support <code class="language-plaintext highlighter-rouge">PUT</code> or <code class="language-plaintext highlighter-rouge">DELETE</code> methods.</p>
+
+<h3 id="flask-restful-with-database-example">Flask-RESTful with Database Example</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span><span class="p">,</span> <span class="n">reqparse</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///users.db'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">UserModel</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"id"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="s">"name"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'name'</span><span class="p">],</span> <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'email'</span><span class="p">])</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'email'</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User updated"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">}})</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User deleted"</span><span class="p">})</span>
+
+<span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="s">'/user/&lt;int:user_id&gt;'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="8-fetch-api-client-side-usage">8. Fetch API (Client-Side Usage)</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://127.0.0.1:5000/user/1</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="example-of-a-simple-rest-api">Example of a Simple REST API</h3>
+<p>To illustrate the REST concept, let’s create a simple API using Flask’s route decorator. This API will allow us to retrieve and create users.</p>
+
+<h3 id="install-flask-restful">Install Flask-RESTful</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-restful flask-sqlalchemy
+</code></pre></div></div>
+
+<h4 id="using-flask-route-with-jsonify">Using Flask Route with <code class="language-plaintext highlighter-rouge">jsonify</code>:</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span><span class="s">"1"</span><span class="p">:</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="s">"alice@example.com"</span><span class="p">}}</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="s">"User not found"</span><span class="p">))</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]})</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="another-way-to-create-apis-using-flask-with-response-object">Another Way to Create APIs: Using <code class="language-plaintext highlighter-rouge">Flask</code> with <code class="language-plaintext highlighter-rouge">Response</code> Object</h3>
+<p>Instead of using <code class="language-plaintext highlighter-rouge">jsonify</code>, we can directly use the <code class="language-plaintext highlighter-rouge">Response</code> object to create API responses:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span><span class="s">"1"</span><span class="p">:</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="s">"alice@example.com"</span><span class="p">}}</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">{</span><span class="s">"error"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">}))</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">'application/json'</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;string:user_id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">users</span><span class="p">[</span><span class="n">user_id</span><span class="p">]})</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">'application/json'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="9-conclusion">9. Conclusion</h2>
+<p>Flask-RESTful makes it easy to build structured, scalable REST APIs with Flask. It improves API management by enforcing REST principles and simplifying HTTP method handling. Using JSON for data exchange and YAML for documentation ensures standardization and ease of use.</p>
+
+<h1 id="extra">Extra</h1>
+
+<p>Breakdown of the code defines a <strong>Flask-RESTful API with SQLAlchemy</strong> for managing users.</p>
+
+<hr />
+
+<h3 id="1-imports-and-flask-app-initialization"><strong>1. Imports and Flask App Initialization</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span><span class="p">,</span> <span class="n">reqparse</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Flask</code>: The core Flask framework for building the web application.</li>
+  <li><code class="language-plaintext highlighter-rouge">request</code>: Used to handle incoming request data (e.g., JSON).</li>
+  <li><code class="language-plaintext highlighter-rouge">jsonify</code>: Converts Python dictionaries into JSON responses.</li>
+  <li><code class="language-plaintext highlighter-rouge">flask_restful.Resource</code>: A class-based approach to defining API endpoints.</li>
+  <li><code class="language-plaintext highlighter-rouge">flask_restful.Api</code>: Wraps the Flask app to support RESTful routes.</li>
+  <li><code class="language-plaintext highlighter-rouge">reqparse</code>: Helps validate and parse request arguments.</li>
+  <li><code class="language-plaintext highlighter-rouge">flask_sqlalchemy.SQLAlchemy</code>: SQLAlchemy ORM for database operations.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-flask-app-and-database-configuration"><strong>2. Flask App and Database Configuration</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///users.db'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+</code></pre></div></div>
+<ul>
+  <li>Creates a Flask app instance.</li>
+  <li>Configures the app to use an SQLite database (<code class="language-plaintext highlighter-rouge">users.db</code>).</li>
+  <li>Initializes SQLAlchemy (<code class="language-plaintext highlighter-rouge">db</code>) for ORM functionality.</li>
+  <li>Initializes Flask-RESTful API (<code class="language-plaintext highlighter-rouge">api</code>).</li>
+  <li>Creates a context with the app for database operations. and creates the database tables.</li>
+</ul>
+
+<hr />
+
+<h3 id="3-defining-the-usermodel-database-table"><strong>3. Defining the UserModel (Database Table)</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserModel</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UserModel</code>: Represents a <code class="language-plaintext highlighter-rouge">users</code> table in the database.</li>
+  <li><code class="language-plaintext highlighter-rouge">id</code>: An integer column that acts as the primary key.</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code>: A string column for storing the user’s name.</li>
+  <li><code class="language-plaintext highlighter-rouge">email</code>: A string column for storing the user’s email.</li>
+</ul>
+
+<hr />
+
+<h3 id="4-creating-the-user-resource"><strong>4. Creating the User Resource</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"id"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="s">"name"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">get(self, user_id)</code>: Fetches a user by ID.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserModel.query.get(user_id)</code>: Retrieves the user from the database.</li>
+  <li>If the user exists, returns their details as JSON.</li>
+  <li>If not found, returns a JSON message: <code class="language-plaintext highlighter-rouge">{"message": "User not found"}</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="5-handling-user-creation"><strong>5. Handling User Creation</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'name'</span><span class="p">],</span> <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">'email'</span><span class="p">])</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User added"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">post(self, user_id)</code>: Handles <code class="language-plaintext highlighter-rouge">POST</code> requests to add a new user.</li>
+  <li><code class="language-plaintext highlighter-rouge">request.get_json()</code>: Extracts JSON data from the request body.</li>
+  <li>Creates a new <code class="language-plaintext highlighter-rouge">UserModel</code> object and adds it to the database.</li>
+  <li>Commits changes using <code class="language-plaintext highlighter-rouge">db.session.commit()</code>.</li>
+  <li>Returns a success message.</li>
+</ul>
+
+<hr />
+
+<h3 id="6-updating-an-existing-user"><strong>6. Updating an Existing User</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'email'</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User updated"</span><span class="p">,</span> <span class="s">"data"</span><span class="p">:</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">"email"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">}})</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">put(self, user_id)</code>: Updates an existing user.</li>
+  <li>Fetches the user by <code class="language-plaintext highlighter-rouge">user_id</code>. If not found, returns a message.</li>
+  <li>Uses <code class="language-plaintext highlighter-rouge">data.get('key', default_value)</code> to update only provided fields.</li>
+  <li>Saves changes using <code class="language-plaintext highlighter-rouge">db.session.commit()</code>.</li>
+  <li>Returns the updated user details.</li>
+</ul>
+
+<hr />
+
+<h3 id="7-deleting-a-user"><strong>7. Deleting a User</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserModel</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">})</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User deleted"</span><span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">delete(self, user_id)</code>: Deletes a user.</li>
+  <li>Fetches the user by <code class="language-plaintext highlighter-rouge">user_id</code>. If not found, returns a message.</li>
+  <li>Deletes the user from the database using <code class="language-plaintext highlighter-rouge">db.session.delete(user)</code>.</li>
+  <li>Commits the deletion using <code class="language-plaintext highlighter-rouge">db.session.commit()</code>.</li>
+  <li>Returns a success message.</li>
+</ul>
+
+<hr />
+
+<h3 id="8-adding-resource-to-the-api"><strong>8. Adding Resource to the API</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="s">'/user/&lt;int:user_id&gt;'</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>Maps the <code class="language-plaintext highlighter-rouge">User</code> class to the <code class="language-plaintext highlighter-rouge">/user/&lt;user_id&gt;</code> route.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;int:user_id&gt;</code> ensures <code class="language-plaintext highlighter-rouge">user_id</code> is an integer.</li>
+</ul>
+
+<hr />
+
+<h3 id="9-running-the-application"><strong>9. Running the Application</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app.run(debug=True)</code>: Starts the Flask server in debug mode.</li>
+</ul>
+
+<hr />
+
+<h3 id="-summary-of-crud-operations"><strong>🔹 Summary of CRUD Operations</strong></h3>
+<p>| HTTP Method | Endpoint | Description |
+|————-|———-|————-|
+| <code class="language-plaintext highlighter-rouge">GET</code> | <code class="language-plaintext highlighter-rouge">/user/1</code> | Fetches user with ID <code class="language-plaintext highlighter-rouge">1</code>. |
+| <code class="language-plaintext highlighter-rouge">POST</code> | <code class="language-plaintext highlighter-rouge">/user/1</code> + JSON body | Creates a user with ID <code class="language-plaintext highlighter-rouge">1</code>. |
+| <code class="language-plaintext highlighter-rouge">PUT</code> | <code class="language-plaintext highlighter-rouge">/user/1</code> + JSON body | Updates user with ID <code class="language-plaintext highlighter-rouge">1</code>. |
+| <code class="language-plaintext highlighter-rouge">DELETE</code> | <code class="language-plaintext highlighter-rouge">/user/1</code> | Deletes user with ID <code class="language-plaintext highlighter-rouge">1</code>. |</p>
+
+<hr />
+
+<h3 id="-testing-with-thunder-client-or-postman"><strong>🔹 Testing with Thunder Client or Postman</strong></h3>
+<ol>
+  <li><strong>GET Request</strong>
+    <ul>
+      <li>URL: <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/user/1</code></li>
+      <li>Response:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>POST Request</strong>
+    <ul>
+      <li>URL: <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/user/1</code></li>
+      <li>Headers: <code class="language-plaintext highlighter-rouge">{ "Content-Type": "application/json" }</code></li>
+      <li>Body:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>Response:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User added"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>PUT Request</strong>
+    <ul>
+      <li>URL: <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/user/1</code></li>
+      <li>Headers: <code class="language-plaintext highlighter-rouge">{ "Content-Type": "application/json" }</code></li>
+      <li>Body:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>Response:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User updated"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>DELETE Request</strong>
+    <ul>
+      <li>URL: <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/user/1</code></li>
+      <li>Response:
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-key-takeaways"><strong>🔹 Key Takeaways</strong></h3>
+<p>✅ <strong>Flask-RESTful</strong> organizes APIs using class-based resources.<br />
+✅ <strong>SQLAlchemy</strong> provides ORM support for interacting with the database.<br />
+✅ <strong>GET, POST, PUT, DELETE</strong> enable full CRUD functionality.<br />
+✅ <strong>Thunder Client/Postman</strong> can be used to test API requests.<br />
+✅ <strong><code class="language-plaintext highlighter-rouge">db.create_all()</code></strong> ensures the database is created before running.</p>
+
+<h2 id="idempotency-in-http-verbs"><strong>Idempotency in HTTP Verbs</strong></h2>
+
+<p><strong>Idempotency</strong> means that making multiple identical requests has the same effect as making a single request. In other words, the outcome remains unchanged no matter how many times the request is sent.</p>
+
+<h4 id="idempotent-http-methods"><strong>Idempotent HTTP Methods</strong></h4>
+<p>These methods ensure that repeated requests <strong>do not</strong> change the server state after the first successful request.</p>
+
+<ol>
+  <li><strong>GET</strong>:
+    <ul>
+      <li>Retrieves data from the server.</li>
+      <li>Multiple GET requests return the same result without modifying data.</li>
+      <li>Example: Fetching user details (<code class="language-plaintext highlighter-rouge">GET /user/1</code>) multiple times does not alter the user.</li>
+    </ul>
+  </li>
+  <li><strong>PUT</strong>:
+    <ul>
+      <li>Updates or creates a resource at a specified location.</li>
+      <li>Sending the same <code class="language-plaintext highlighter-rouge">PUT</code> request repeatedly results in the same final state.</li>
+      <li>Example: <code class="language-plaintext highlighter-rouge">PUT /user/1</code> with <code class="language-plaintext highlighter-rouge">{ "name": "John" }</code> will always update user 1 to “John” regardless of how many times it is sent.</li>
+    </ul>
+  </li>
+  <li><strong>DELETE</strong>:
+    <ul>
+      <li>Removes a resource.</li>
+      <li>Multiple DELETE requests for the same resource will always result in the resource being removed or remain absent.</li>
+      <li>Example: <code class="language-plaintext highlighter-rouge">DELETE /user/1</code> ensures user 1 is deleted, and subsequent calls do nothing.</li>
+    </ul>
+  </li>
+  <li><strong>HEAD</strong>:
+    <ul>
+      <li>Similar to <code class="language-plaintext highlighter-rouge">GET</code>, but it only returns headers without the response body.</li>
+      <li>It does not modify any resources, so it is idempotent.</li>
+    </ul>
+  </li>
+  <li><strong>OPTIONS</strong>:
+    <ul>
+      <li>Used to describe the communication options available for a resource.</li>
+      <li>Making multiple requests does not change anything.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="non-idempotent-http-methods"><strong>Non-Idempotent HTTP Methods</strong></h4>
+<p>These methods <strong>do not guarantee</strong> the same outcome when called multiple times.</p>
+
+<ol>
+  <li><strong>POST</strong>:
+    <ul>
+      <li>Creates a new resource.</li>
+      <li>Sending multiple <code class="language-plaintext highlighter-rouge">POST</code> requests results in multiple resources being created.</li>
+      <li>Example: <code class="language-plaintext highlighter-rouge">POST /user</code> with <code class="language-plaintext highlighter-rouge">{ "name": "Alice" }</code> creates multiple user entries.</li>
+    </ul>
+  </li>
+  <li><strong>PATCH</strong>:
+    <ul>
+      <li>Partially updates a resource.</li>
+      <li>Multiple <code class="language-plaintext highlighter-rouge">PATCH</code> requests <strong>may</strong> lead to different states depending on how they are applied.</li>
+      <li>Example: Incrementing a counter in a <code class="language-plaintext highlighter-rouge">PATCH</code> request changes the state each time.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="key-takeaways"><strong>Key Takeaways</strong></h3>
+<ul>
+  <li><strong>Idempotent methods:</strong> <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, <code class="language-plaintext highlighter-rouge">HEAD</code>, <code class="language-plaintext highlighter-rouge">OPTIONS</code></li>
+  <li><strong>Non-idempotent methods:</strong> <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PATCH</code></li>
+  <li><strong>Idempotency helps prevent unintended side effects</strong> when requests are retried due to network failures.</li>
+</ul>
+
+<p>Here’s a <strong>Flask</strong> example demonstrating idempotency for <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, and <code class="language-plaintext highlighter-rouge">POST</code> using SQLite and SQLAlchemy.</p>
+
+<hr />
+
+<h3 id="scenario"><strong>Scenario:</strong></h3>
+<ul>
+  <li>We have an API for managing users (<code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">name</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">PUT /users/&lt;id&gt;</code> ensures <strong>idempotent updates</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">DELETE /users/&lt;id&gt;</code> ensures <strong>idempotent deletion</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">POST /users</code> demonstrates <strong>non-idempotent</strong> behavior.</li>
+</ul>
+
+<hr />
+
+<h3 id="flask-application-with-idempotency-handling"><strong>Flask Application with Idempotency Handling</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"SQLALCHEMY_DATABASE_URI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"sqlite:///users.db"</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">"SQLALCHEMY_TRACK_MODIFICATIONS"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># User model
+</span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Initialize database
+</span><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+
+<span class="c1"># ✅ IDEMPOTENT: PUT (Update or Create)
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/users/&lt;int:user_id&gt;"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"PUT"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user</span><span class="p">:</span>  <span class="c1"># If user exists, update it
+</span>        <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># If user doesn't exist, create it (still idempotent)
+</span>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"id"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="s">"name"</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="c1"># ✅ IDEMPOTENT: DELETE (Always results in resource absence)
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/users/&lt;int:user_id&gt;"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"DELETE"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">delete_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user</span><span class="p">:</span>  <span class="c1"># Delete if exists
+</span>        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User deleted"</span><span class="p">}),</span> <span class="mi">200</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># If already deleted, response remains same
+</span>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"User not found"</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="c1"># ❌ NON-IDEMPOTENT: POST (Creates new entry every time)
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/users"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"POST"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"id"</span><span class="p">:</span> <span class="n">new_user</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="s">"name"</span><span class="p">:</span> <span class="n">new_user</span><span class="p">.</span><span class="n">name</span><span class="p">}),</span> <span class="mi">201</span>
+
+<span class="c1"># Run the app
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="testing-the-api"><strong>Testing the API</strong></h3>
+<h4 id="1-put-request-idempotent"><strong>1. PUT Request (Idempotent)</strong></h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> PUT http://127.0.0.1:5000/users/1 <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-d</span> <span class="s1">'{"name": "Alice"}'</span>
+</code></pre></div></div>
+<ul>
+  <li>Running it multiple times <strong>does not create duplicate users</strong>, only updates user 1.</li>
+</ul>
+
+<h4 id="2-delete-request-idempotent"><strong>2. DELETE Request (Idempotent)</strong></h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> DELETE http://127.0.0.1:5000/users/1
+</code></pre></div></div>
+<ul>
+  <li>Running it multiple times ensures user 1 is <strong>deleted or already absent</strong>.</li>
+</ul>
+
+<h4 id="3-post-request-non-idempotent"><strong>3. POST Request (Non-Idempotent)</strong></h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST http://127.0.0.1:5000/users <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-d</span> <span class="s1">'{"name": "Bob"}'</span>
+</code></pre></div></div>
+<ul>
+  <li>Running it multiple times <strong>creates new users</strong> (e.g., Bob with different IDs).</li>
+</ul>
+
+<hr />
+
+<h3 id="key-takeaways-1"><strong>Key Takeaways</strong></h3>
+<p>✅ <code class="language-plaintext highlighter-rouge">PUT</code> is <strong>idempotent</strong> → No matter how many times you update user 1, the result remains the same.<br />
+✅ <code class="language-plaintext highlighter-rouge">DELETE</code> is <strong>idempotent</strong> → User 1 remains deleted regardless of retries.<br />
+❌ <code class="language-plaintext highlighter-rouge">POST</code> is <strong>not idempotent</strong> → Creates a <strong>new user every time</strong>.</p>
+
+<hr />
+
+<h3 id="json-vs-yaml"><strong>JSON vs YAML</strong></h3>
+<p>| Feature | JSON (JavaScript Object Notation) | YAML (YAML Ain’t Markup Language) |
+|———|———————————-|——————————–|
+| <strong>Format</strong> | Text-based, structured like JavaScript objects | Human-readable, uses indentation |
+| <strong>Data Types</strong> | Supports numbers, strings, lists, dictionaries (objects) | Supports all JSON types + complex types (e.g., multiline strings) |
+| <strong>Syntax</strong> | Uses <code class="language-plaintext highlighter-rouge">{}</code> for objects and <code class="language-plaintext highlighter-rouge">[]</code> for lists | Uses indentation instead of brackets |
+| <strong>Readability</strong> | Machine-friendly, compact | Human-friendly, clean format |
+| <strong>Usage</strong> | APIs, web services, databases | Config files (Docker, Kubernetes, Ansible) |
+| <strong>Example</strong> | <code class="language-plaintext highlighter-rouge">{"name": "Alice", "age": 30}</code> | <code class="language-plaintext highlighter-rouge">name: Alice\nage: 30</code> |</p>
+
+<p>📌 <strong>JSON is used for data exchange (APIs, web apps), whereas YAML is used for configuration files.</strong></p>
+
+<hr />
+
+<h3 id="jsondumps"><strong><code class="language-plaintext highlighter-rouge">json.dumps()</code></strong></h3>
+<p><code class="language-plaintext highlighter-rouge">json.dumps()</code> converts a Python dictionary into a JSON-formatted string.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="n">json_string</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>  <span class="c1"># Output: {"name": "Alice", "age": 30}
+</span></code></pre></div></div>
+
+<p>📌 <strong>Use case:</strong> Serializing Python objects for storage, logging, or API responses.</p>
+
+<hr />
+
+<h3 id="flaskresponse-in-flask"><strong><code class="language-plaintext highlighter-rouge">flask.Response</code> in Flask</strong></h3>
+<p><code class="language-plaintext highlighter-rouge">Response</code> is used to <strong>return HTTP responses</strong> with custom headers, content, and status codes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">custom_response</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello, Flask!"</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">"application/json"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Use case:</strong> When you need to manually control the HTTP response.</p>
+
+<hr />
+
+<h3 id="flask_restfulresource"><strong><code class="language-plaintext highlighter-rouge">flask_restful.Resource</code></strong></h3>
+<p>In <strong>Flask-RESTful</strong>, <code class="language-plaintext highlighter-rouge">Resource</code> is a class-based way to define REST API endpoints.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Api</span><span class="p">,</span> <span class="n">Resource</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello, Flask-RESTful!"</span><span class="p">}</span>
+
+<span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">HelloWorld</span><span class="p">,</span> <span class="s">"/"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Use case:</strong> <code class="language-plaintext highlighter-rouge">Resource</code> makes REST API development structured and reusable.</p>
+
+<hr />
+
+<h3 id="final-thoughts"><strong>Final Thoughts</strong></h3>
+<ul>
+  <li>✅ <strong>Use <code class="language-plaintext highlighter-rouge">json.dumps()</code></strong> when converting Python objects to JSON strings.</li>
+  <li>✅ <strong>Use <code class="language-plaintext highlighter-rouge">Response</code></strong> when customizing Flask API responses.</li>
+  <li>✅ <strong>Use <code class="language-plaintext highlighter-rouge">Resource</code> (Flask-RESTful)</strong> to create structured REST APIs.</li>
+  <li>✅ <strong>Use JSON for APIs</strong>, while <strong>YAML is better for configurations</strong>.</li>
+</ul>
+
+<hr />
+
+<h3 id="jsondump-vs-jsondumps"><strong><code class="language-plaintext highlighter-rouge">json.dump()</code> vs <code class="language-plaintext highlighter-rouge">json.dumps()</code></strong></h3>
+<p>Both functions <strong>convert Python objects to JSON format</strong>, but they differ in their output.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Purpose</th>
+      <th>Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">json.dumps()</code></td>
+      <td>Converts Python object to JSON <strong>string</strong></td>
+      <td>Returns a string</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">json.dump()</code></td>
+      <td>Writes JSON data <strong>to a file</strong></td>
+      <td>Saves directly to a file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example-jsondump"><strong>Example: <code class="language-plaintext highlighter-rouge">json.dump()</code></strong></h4>
+<p>Writes JSON data to a file.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"data.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>  <span class="c1"># Saves JSON directly to data.json
+</span></code></pre></div></div>
+
+<p>📌 <strong>Use case:</strong> Storing JSON data in files.</p>
+
+<hr />
+
+<h3 id="flaskjsonify"><strong><code class="language-plaintext highlighter-rouge">flask.jsonify()</code></strong></h3>
+<p><code class="language-plaintext highlighter-rouge">jsonify()</code> is a Flask helper function that <strong>automatically converts Python dictionaries into JSON responses</strong> and sets the correct <code class="language-plaintext highlighter-rouge">Content-Type</code> (<code class="language-plaintext highlighter-rouge">application/json</code>).</p>
+
+<h4 id="example-jsonify"><strong>Example: <code class="language-plaintext highlighter-rouge">jsonify()</code></strong></h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">json_response</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello, Flask!"</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Converts to JSON and sets Content-Type
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>🔹 <strong>Advantages over <code class="language-plaintext highlighter-rouge">json.dumps()</code> in Flask:</strong></p>
+<ol>
+  <li><strong>Automatically sets <code class="language-plaintext highlighter-rouge">Content-Type: application/json</code></strong></li>
+  <li><strong>Handles Unicode characters correctly</strong></li>
+  <li><strong>Handles lists and tuples properly</strong></li>
+</ol>
+
+<hr />
+
+<h3 id="jsonstringify-javascript"><strong><code class="language-plaintext highlighter-rouge">JSON.stringify()</code> (JavaScript)</strong></h3>
+<p><code class="language-plaintext highlighter-rouge">JSON.stringify()</code> is a JavaScript function that <strong>converts a JavaScript object into a JSON string</strong>.</p>
+
+<h4 id="example-jsonstringify"><strong>Example: <code class="language-plaintext highlighter-rouge">JSON.stringify()</code></strong></h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span>  <span class="c1">// Output: {"name":"Alice","age":30}</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Use case:</strong> Sending JSON data in AJAX requests or APIs.</p>
+
+<hr />
+
+<h3 id="summary"><strong>Summary</strong></h3>
+<p>| Function | Language | Purpose |
+|———-|———-|———|
+| <code class="language-plaintext highlighter-rouge">json.dumps()</code> | Python | Converts Python object to JSON string |
+| <code class="language-plaintext highlighter-rouge">json.dump()</code> | Python | Writes JSON data to a file |
+| <code class="language-plaintext highlighter-rouge">jsonify()</code> | Flask (Python) | Converts dictionary to JSON and sets <code class="language-plaintext highlighter-rouge">Content-Type</code> |
+| <code class="language-plaintext highlighter-rouge">JSON.stringify()</code> | JavaScript | Converts JavaScript object to JSON string |</p>
+
+<hr />
+
+<p>Sure! In <strong>Flask-RESTful</strong>, <code class="language-plaintext highlighter-rouge">marshal</code> and <code class="language-plaintext highlighter-rouge">marshal_with</code> are used for <strong>formatting</strong> API responses according to a specified structure. They help in ensuring that API responses follow a consistent format.</p>
+
+<hr />
+
+<h2 id="marshal-and-marshal_with-in-flask-restful"><strong><code class="language-plaintext highlighter-rouge">marshal</code> and <code class="language-plaintext highlighter-rouge">marshal_with</code> in Flask-RESTful</strong></h2>
+
+<h2 id="marshal"><code class="language-plaintext highlighter-rouge">marshal</code></h2>
+<ul>
+  <li>This is a <strong>function</strong> that manually formats data according to a given structure.</li>
+  <li>You must <strong>call it explicitly</strong> before returning a response.</li>
+</ul>
+
+<p><strong>Example:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">marshal</span><span class="p">,</span> <span class="n">fields</span>
+
+<span class="c1"># Define response structure
+</span><span class="n">resource_fields</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'id'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">String</span><span class="p">,</span>
+    <span class="s">'age'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">Integer</span>
+<span class="p">}</span>
+
+<span class="c1"># Sample data
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'extra_field'</span><span class="p">:</span> <span class="s">'Not needed'</span><span class="p">}</span>
+
+<span class="c1"># Use marshal to format data
+</span><span class="n">formatted_data</span> <span class="o">=</span> <span class="n">marshal</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">resource_fields</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">formatted_data</span><span class="p">)</span>  <span class="c1"># Output: {'id': 1, 'name': 'John', 'age': 30}
+</span></code></pre></div></div>
+<p><strong>Extra fields</strong> (<code class="language-plaintext highlighter-rouge">extra_field</code>) not mentioned in <code class="language-plaintext highlighter-rouge">resource_fields</code> are <strong>ignored</strong>.</p>
+
+<hr />
+
+<h2 id="-marshal_with">🔹 <code class="language-plaintext highlighter-rouge">marshal_with</code></h2>
+<ul>
+  <li>This is a <strong>decorator</strong> used inside resource methods like <code class="language-plaintext highlighter-rouge">get()</code>, <code class="language-plaintext highlighter-rouge">post()</code>, etc.</li>
+  <li>It <strong>automatically applies formatting</strong> to the return value of the function.</li>
+</ul>
+
+<p><strong>Example:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Api</span><span class="p">,</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">marshal_with</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Define response structure
+</span><span class="n">resource_fields</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'id'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">String</span><span class="p">,</span>
+    <span class="s">'age'</span><span class="p">:</span> <span class="n">fields</span><span class="p">.</span><span class="n">Integer</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="o">@</span><span class="n">marshal_with</span><span class="p">(</span><span class="n">resource_fields</span><span class="p">)</span>  <span class="c1"># Apply formatting automatically
+</span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s">'extra_field'</span><span class="p">:</span> <span class="s">'Ignored'</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">user_data</span>  <span class="c1"># No need to call marshal manually
+</span>
+<span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="s">'/user'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The response will automatically be:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="difference-between-marshal-and-marshal_with">Difference Between <code class="language-plaintext highlighter-rouge">marshal</code> and <code class="language-plaintext highlighter-rouge">marshal_with</code></h2>
+<p>| Feature           | <code class="language-plaintext highlighter-rouge">marshal</code> | <code class="language-plaintext highlighter-rouge">marshal_with</code> |
+|——————|————|—————|
+| Type            | Function | Decorator |
+| Usage          | Called manually | Used above a method |
+| When to Use | If you need to format multiple responses | If formatting is always required for a function’s return value |</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

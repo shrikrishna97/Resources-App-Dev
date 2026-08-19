@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo 11 - JWT Security</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 860px; margin: 24px auto; padding: 0 16px; }
+    button { padding: 8px 12px; margin-right: 8px; }
+    pre { background: #f5f5f5; padding: 12px; border-radius: 8px; overflow-x: auto; }
+    .warn { background: #fff3cd; border-left: 4px solid #f0ad4e; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Section 11 Demo: JWT Basics and Security Notes</h2>
+  <p>This is a client-side learning demo only (not real auth).</p>
+
+  <button id="issueBtn">Issue Fake JWT</button>
+  <button id="decodeBtn">Decode Payload</button>
+
+  <h4>Token</h4>
+  <pre id="tokenBox">(no token yet)</pre>
+
+  <h4>Decoded Payload</h4>
+  <pre id="payloadBox">(nothing decoded yet)</pre>
+
+  <div class="warn">
+    Never trust token payload on client alone. Real verification must happen on server with secret/public key.
+  </div>
+
+  <script>
+    function base64UrlEncode(obj) {
+      var json = JSON.stringify(obj);
+      return btoa(unescape(encodeURIComponent(json)))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/g, '');
+    }
+
+    function base64UrlDecode(part) {
+      var base64 = part.replace(/-/g, '+').replace(/_/g, '/');
+      while (base64.length % 4) base64 += '=';
+      return decodeURIComponent(escape(atob(base64)));
+    }
+
+    function issueFakeJwt() {
+      var header = { alg: 'HS256', typ: 'JWT' };
+      var payload = {
+        userId: 101,
+        role: 'student',
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 3600
+      };
+
+      var token = base64UrlEncode(header) + '.' + base64UrlEncode(payload) + '.fake-signature';
+      localStorage.setItem('demoToken', token);
+      document.getElementById('tokenBox').textContent = token;
+      document.getElementById('payloadBox').textContent = '(click Decode Payload)';
+      console.log('Stored token in localStorage for demo only.');
+    }
+
+    function decodePayload() {
+      var token = localStorage.getItem('demoToken');
+      if (!token) {
+        document.getElementById('payloadBox').textContent = 'No token found. Click Issue Fake JWT first.';
+        return;
+      }
+
+      var parts = token.split('.');
+      if (parts.length !== 3) {
+        document.getElementById('payloadBox').textContent = 'Invalid token format.';
+        return;
+      }
+
+      var payloadText = base64UrlDecode(parts[1]);
+      document.getElementById('payloadBox').textContent = payloadText;
+    }
+
+    document.getElementById('issueBtn').addEventListener('click', issueFakeJwt);
+    document.getElementById('decodeBtn').addEventListener('click', decodePayload);
+  </script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/7_day_plan_for%20project.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/7_day_plan_for%20project.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1-Project/7_day_plan_for%20project.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h3 id="day-1-introduction-to-flask-jinja2-htmlcss-and-setup"><strong>Day 1: Introduction to Flask, Jinja2, HTML/CSS, and Setup</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Introduction to Flask</strong>: Understanding Flask’s structure (app.py, templates, static).</li>
+  <li><strong>Setting up your Flask Environment</strong>: Install necessary dependencies and initialize your project.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>flask flask-sqlalchemy flask-wtf
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Jinja2 Templating Engine</strong>: Basic structure of a Flask app using Jinja2 templates to render dynamic content.</p>
+  </li>
+  <li><strong>HTML &amp; CSS Basics with Bootstrap</strong>: Learn how to structure HTML files and use Bootstrap for UI design.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Create Project Structure</strong>:
+    <ul>
+      <li><strong>app.py</strong>: Main entry point for the Flask app.</li>
+      <li><strong>models.py</strong>: Where database models will reside.</li>
+      <li><strong>templates/</strong>: Create <code class="language-plaintext highlighter-rouge">index.html</code> as a base template.</li>
+      <li><strong>static/</strong>: Store your CSS and JS files (use Bootstrap CDN for styling).</li>
+    </ul>
+
+    <p>Example app.py:</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+  
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+  
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Create a Simple HTML Template</strong> in <code class="language-plaintext highlighter-rouge">templates/index.html</code>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Flask App<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Welcome to Flask!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss the Flask structure, routing, and templates.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-2-database-setup-models-and-user-authentication"><strong>Day 2: Database Setup, Models, and User Authentication</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Flask-SQLAlchemy</strong>: Learn how to set up SQLAlchemy to handle SQLite database operations.</li>
+  <li><strong>Database Models</strong>: Create models for User, CrudOperation, and other required entities.</li>
+  <li><strong>User Authentication</strong>: Learn how to set up password hashing and user authentication.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Setting up the Database</strong>: In <code class="language-plaintext highlighter-rouge">app.py</code>, configure the SQLite database.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+  
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">db</span><span class="p">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Create Database Models</strong> in <code class="language-plaintext highlighter-rouge">models.py</code>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+  
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password_hash</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+  
+<span class="k">class</span> <span class="nc">CrudOperation</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">date_created</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Initialize Database</strong>: After defining your models, run the following commands in the terminal to create the database:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flask shell
+<span class="o">&gt;&gt;&gt;</span> from app import db
+<span class="o">&gt;&gt;&gt;</span> db.create_all<span class="o">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss models and the database initialization process.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-3-user-registration-login-and-role-based-access"><strong>Day 3: User Registration, Login, and Role-Based Access</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Flask Forms</strong>: Learn how to create forms using <code class="language-plaintext highlighter-rouge">Flask-WTF</code> to handle registration, login, etc.</li>
+  <li><strong>Role-based Views</strong>: Implement role-based authentication using Flask decorators.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Create User Registration Form</strong> in <code class="language-plaintext highlighter-rouge">forms.py</code>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask_wtf</span> <span class="kn">import</span> <span class="n">FlaskForm</span>
+<span class="kn">from</span> <span class="nn">wtforms</span> <span class="kn">import</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">PasswordField</span>
+<span class="kn">from</span> <span class="nn">wtforms.validators</span> <span class="kn">import</span> <span class="n">DataRequired</span><span class="p">,</span> <span class="n">Length</span>
+  
+<span class="k">class</span> <span class="nc">RegistrationForm</span><span class="p">(</span><span class="n">FlaskForm</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s">'Username'</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">DataRequired</span><span class="p">(),</span> <span class="n">Length</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">120</span><span class="p">)])</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">PasswordField</span><span class="p">(</span><span class="s">'Password'</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">DataRequired</span><span class="p">()])</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Create Views for Registration and Login</strong> in <code class="language-plaintext highlighter-rouge">app.py</code>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">generate_password_hash</span><span class="p">,</span> <span class="n">check_password_hash</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">forms</span> <span class="kn">import</span> <span class="n">RegistrationForm</span>
+  
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/register"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">RegistrationForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="p">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">hashed_password</span> <span class="o">=</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="n">form</span><span class="p">.</span><span class="n">password</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">form</span><span class="p">.</span><span class="n">username</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">password_hash</span><span class="o">=</span><span class="n">hashed_password</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"customer"</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'login'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'register.html'</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Create Login Functionality</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/login"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="c1"># Logic for login with password check
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss user registration flow, form validation, and how to secure passwords.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-4-admin-role---dashboard-and-crud-operations"><strong>Day 4: Admin Role - Dashboard and CRUD Operations</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Admin Role CRUD</strong>: Learn how to manage users via an Admin dashboard.</li>
+  <li><strong>Creating CRUD Operations</strong>: Admin can create, update, and delete data.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Admin Dashboard</strong> (app.py):
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/admin/dashboard"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">admin_dashboard</span><span class="p">():</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'admin_dashboard.html'</span><span class="p">,</span> <span class="n">users</span><span class="o">=</span><span class="n">users</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Admin CRUD for Users</strong> (app.py):
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/admin/update_user/&lt;int:user_id&gt;"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">RegistrationForm</span><span class="p">()</span>  <span class="c1"># Reuse registration form for updates
+</span>    <span class="k">if</span> <span class="n">form</span><span class="p">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">form</span><span class="p">.</span><span class="n">username</span><span class="p">.</span><span class="n">data</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'admin_dashboard'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'update_user.html'</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss Admin Dashboard functionalities and how to handle CRUD operations for users.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-5-manager-role---dashboard-and-crud-operations"><strong>Day 5: Manager Role - Dashboard and CRUD Operations</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Manager Role CRUD</strong>: Learn how managers can interact with operations data.</li>
+  <li><strong>Managing Interconnected Data</strong>: How to work with multiple related tables.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Manager Dashboard and CRUD</strong> (app.py):
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/manager/dashboard"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">manager_dashboard</span><span class="p">():</span>
+    <span class="n">operations</span> <span class="o">=</span> <span class="n">CrudOperation</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'manager_dashboard.html'</span><span class="p">,</span> <span class="n">operations</span><span class="o">=</span><span class="n">operations</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Manager Create/Update Operations</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/manager/create_operation"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">create_operation</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">CreateOperationForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="p">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">operation</span> <span class="o">=</span> <span class="n">CrudOperation</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">form</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'manager_dashboard'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'create_operation.html'</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss the role and CRUD operations from the manager’s perspective.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-6-customer-role---profile-and-operations"><strong>Day 6: Customer Role - Profile and Operations</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Customer Role</strong>: Profile page functionality and CRUD operations from the customer’s perspective.</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Customer Profile Page</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/customer/profile"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">customer_profile</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">current_user</span><span class="p">.</span><span class="nb">id</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'customer_profile.html'</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Customer CRUD Operations</strong></li>
+</ul>
+
+<p>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/customer/create_operation"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+  <span class="k">def</span> <span class="nf">customer_create_operation</span><span class="p">():</span>
+      <span class="n">form</span> <span class="o">=</span> <span class="n">CreateOperationForm</span><span class="p">()</span>
+      <span class="k">if</span> <span class="n">form</span><span class="p">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+          <span class="n">operation</span> <span class="o">=</span> <span class="n">CrudOperation</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">form</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+          <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span>
+          <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+          <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'customer_profile'</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'create_operation_customer.html'</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+<ul>
+  <li>Discuss how the customer interacts with their profile and manages operations.</li>
+</ul>
+
+<hr />
+
+<h3 id="day-7-finalizing-testing-and-deployment"><strong>Day 7: Finalizing, Testing, and Deployment</strong></h3>
+<p><strong>Theory (10 AM - 12:30 PM)</strong></p>
+<ul>
+  <li><strong>Testing and Debugging</strong>: Best practices for debugging Flask apps.</li>
+  <li><strong>Problem Statement Discussion</strong>: Have a discussion over problem statement.</li>
+  <li><strong>Deployment</strong>: Deploying your Flask app.[Not Core]</li>
+</ul>
+
+<p><strong>Lunch Break (12:30 PM - 2:00 PM)</strong></p>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+<ul>
+  <li><strong>Testing CRUD Functionality</strong>: Ensure that all roles are functioning correctly.</li>
+  <li><strong>[Extra] Deploying</strong>: Guide on pushing your project.</li>
+</ul>
+
+<hr />
+
+<p>By following this approach with <strong>full code examples</strong> and <strong>detailed explanations</strong>, you’ll have a more structured learning experience that will help you get comfortable with Flask and the project requirements.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/mat/mat.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/mat/mat.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/Week%204/mat/mat.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>To use Matplotlib with Python Flask to create a histogram, follow the steps below. This guide assumes you have a basic understanding of Flask and that <code class="language-plaintext highlighter-rouge">matplotlib</code> is installed. If it’s not, you can install it with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>matplotlib
+</code></pre></div></div>
+
+<h3 id="step-by-step-guide">Step-by-Step Guide:</h3>
+
+<h4 id="step-1-set-up-your-flask-app">Step 1: Set up your Flask app</h4>
+
+<p>Create a basic Flask app structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/my_flask_app
+|-- app.py
+|-- templates
+|   |-- index.html
+</code></pre></div></div>
+
+<h4 id="step-2-create-apppy">Step 2: Create <code class="language-plaintext highlighter-rouge">app.py</code></h4>
+
+<p>Here is the code for <code class="language-plaintext highlighter-rouge">app.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">'POST'</span><span class="p">:</span>
+        <span class="c1"># Get the form data (e.g., a list of numbers to plot)
+</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'data'</span><span class="p">)</span>
+        
+        <span class="c1"># Convert the input data (comma-separated numbers) into a list of floats
+</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)]</span>
+        
+        <span class="c1"># Create the histogram
+</span>        <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Histogram'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Values'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Frequency'</span><span class="p">)</span>
+        
+        <span class="c1"># Save the plot to a BytesIO object and return it as a response
+</span>        <span class="n">img</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'png'</span><span class="p">)</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">'image/png'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This code sets up a Flask app with a route at <code class="language-plaintext highlighter-rouge">/</code> that can handle <code class="language-plaintext highlighter-rouge">GET</code> and <code class="language-plaintext highlighter-rouge">POST</code> requests. When the form is submitted, the histogram is generated based on the input data and returned as a PNG image.</p>
+
+<h4 id="step-3-create-indexhtml">Step 3: Create <code class="language-plaintext highlighter-rouge">index.html</code></h4>
+
+<p>In the <code class="language-plaintext highlighter-rouge">templates</code> folder, create an <code class="language-plaintext highlighter-rouge">index.html</code> file:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Histogram with Matplotlib<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Upload Data for Histogram<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"data"</span><span class="nt">&gt;</span>Enter numbers (comma-separated):<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"data"</span> <span class="na">name=</span><span class="s">"data"</span> <span class="na">required</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Generate Histogram<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+    {% if request.method == 'POST' %}
+        <span class="nt">&lt;h2&gt;</span>Histogram:<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"{{ url_for('index') }}"</span> <span class="na">alt=</span><span class="s">"Histogram"</span><span class="nt">&gt;</span>
+    {% endif %}
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p>This HTML form allows users to input a comma-separated list of numbers and submit it to generate the histogram.</p>
+
+<h4 id="step-4-run-the-flask-app">Step 4: Run the Flask App</h4>
+
+<p>In the terminal, navigate to your project folder and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py
+</code></pre></div></div>
+
+<p>Visit <code class="language-plaintext highlighter-rouge">http://127.0.0.1:5000/</code> in your web browser. Input a list of numbers (e.g., <code class="language-plaintext highlighter-rouge">1, 2, 2, 3, 4, 4, 4, 5</code>) and submit the form. A histogram will be generated based on the data.</p>
+
+<h3 id="explanation">Explanation:</h3>
+
+<ol>
+  <li><strong>Data Input</strong>: The user inputs a list of numbers through the form in <code class="language-plaintext highlighter-rouge">index.html</code>.</li>
+  <li><strong>Data Processing</strong>: The form data is received in the <code class="language-plaintext highlighter-rouge">POST</code> request, converted into a list of floats, and used to create a histogram.</li>
+  <li><strong>Matplotlib Plotting</strong>: A histogram is created using <code class="language-plaintext highlighter-rouge">matplotlib.pyplot</code> and saved into a <code class="language-plaintext highlighter-rouge">BytesIO</code> object.</li>
+  <li><strong>Return Image</strong>: The generated histogram image is returned as a PNG file using Flask’s <code class="language-plaintext highlighter-rouge">send_file()</code> function, which is then displayed on the webpage.</li>
+</ol>
+
+<p>refer to this link: <a href="https://tedboy.github.io/flask/generated/flask.send_file.html#:~:text=send_file-,flask.,efficient%20method%20available%20and%20configured.">flask function </a></p>
+
+<p>This example gives a simple interface for generating histograms using Matplotlib in a Flask application. You can adjust the number of bins, labels, and other <code class="language-plaintext highlighter-rouge">matplotlib</code> configurations as needed.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

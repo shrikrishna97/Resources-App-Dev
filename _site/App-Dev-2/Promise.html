@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Promise.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Promise.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Promise.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>In JavaScript, <strong>Promises</strong> are used to handle asynchronous operations, allowing you to work with values that might not yet be available, but will be resolved in the future. A promise can be in one of three states:</p>
+
+<ul>
+  <li><strong>Pending</strong>: The initial state; the promise is neither resolved nor rejected.</li>
+  <li><strong>Resolved</strong>: The operation was successful, and the promise has a value.</li>
+  <li><strong>Rejected</strong>: The operation failed, and the promise has a reason (error).</li>
+</ul>
+
+<p>A promise is created using the <code class="language-plaintext highlighter-rouge">new Promise()</code> constructor, where you provide an executor function that takes two arguments: <code class="language-plaintext highlighter-rouge">resolve</code> and <code class="language-plaintext highlighter-rouge">reject</code>.</p>
+
+<h3 id="example-of-a-promise">Example of a Promise:</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">success</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">// Simulating a success or failure condition</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Operation successful!</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// Resolve the promise with a value</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="dl">"</span><span class="s2">Something went wrong!</span><span class="dl">"</span><span class="p">);</span>  <span class="c1">// Reject the promise with an error message</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="key-methods-for-handling-promises">Key Methods for Handling Promises</h3>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">then()</code></strong>: The <code class="language-plaintext highlighter-rouge">then()</code> method is used to define what should happen when the promise is resolved (success). It accepts two callbacks:
+    <ul>
+      <li>The first callback is called when the promise is resolved (success case).</li>
+      <li>The second callback (optional) is called when the promise is rejected (error case).</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myPromise</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>  <span class="c1">// Handles the resolved value</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>  <span class="c1">// Handles any errors from rejection</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">catch()</code></strong>: The <code class="language-plaintext highlighter-rouge">catch()</code> method is used to handle errors. It acts like the second argument in the <code class="language-plaintext highlighter-rouge">then()</code> method, but is a cleaner and more explicit way to handle promise rejections.</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myPromise</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>  <span class="c1">// Handle promise rejection</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">finally()</code></strong>: The <code class="language-plaintext highlighter-rouge">finally()</code> method is used to specify code that should run after the promise is settled (whether it is resolved or rejected). It doesn’t receive any arguments, and it’s often used for clean-up actions.</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myPromise</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Promise settled (either resolved or rejected).</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="full-example">Full Example:</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">success</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>  <span class="c1">// Simulating failure</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error occurred.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">myPromise</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>  <span class="c1">// This will not be executed since the promise is rejected</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>  <span class="c1">// This will handle the rejection</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Promise is settled (done).</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="summary">Summary:</h3>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">resolve(value)</code></strong>: Marks the promise as fulfilled, passing the <code class="language-plaintext highlighter-rouge">value</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">reject(error)</code></strong>: Marks the promise as failed, passing the <code class="language-plaintext highlighter-rouge">error</code> or failure reason.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">then()</code></strong>: Runs a callback when the promise is resolved.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">catch()</code></strong>: Handles promise rejections (errors).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">finally()</code></strong>: Executes code after the promise is resolved or rejected, often for cleanup.</li>
+</ul>
+
+<p>Promises allow you to write asynchronous code in a more readable and manageable way, chaining operations and handling errors more easily.</p>
+
+<p><img src="https://github.com/user-attachments/assets/118fa3c9-5df2-4a5e-8074-1d29c5d509e1" alt="Question on Promise from IITM BS Degree" /></p>
+
+<h3 id="now-code-breakdown-for-the-question">Now, code Breakdown for the question:</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">pass</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">5</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">5</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">error</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// This is used to resolve the promise with value 5.</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">pass</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// This should reject the promise with value 8.</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="flow-of-the-promise-chain">Flow of the Promise Chain:</h3>
+
+<h4 id="1-the-promise-constructor">1. The Promise Constructor:</h4>
+<ul>
+  <li><strong>The promise is rejected</strong>, because <code class="language-plaintext highlighter-rouge">5 === "5"</code> evaluates to <code class="language-plaintext highlighter-rouge">false</code>, and it calls <code class="language-plaintext highlighter-rouge">error(8)</code>, which rejects the promise with the value <code class="language-plaintext highlighter-rouge">8</code>.</li>
+</ul>
+
+<h4 id="2-first-then">2. First <code class="language-plaintext highlighter-rouge">.then()</code>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 4</span><span class="dl">"</span><span class="p">,</span> <span class="nx">d</span><span class="p">);</span> <span class="c1">// This won't be called because the promise was rejected.</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span> <span class="c1">// This won't be executed.</span>
+    <span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// This won't be executed either.</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li>The first <code class="language-plaintext highlighter-rouge">.then()</code> block doesn’t run because the promise was rejected, so it immediately moves to the rejection handler in the next <code class="language-plaintext highlighter-rouge">.then()</code>.</li>
+</ul>
+
+<h4 id="3-second-then-rejection-handler">3. Second <code class="language-plaintext highlighter-rouge">.then()</code> (Rejection Handler):</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+    <span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 2</span><span class="dl">"</span><span class="p">,</span> <span class="nx">d</span><span class="p">);</span> <span class="c1">// This doesn't run, as the promise was rejected</span>
+        <span class="k">return</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 5</span><span class="dl">"</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="c1">// Logs "Checkpoint 5 undefined", since `d` is the rejection value (a number, not an error object)</span>
+        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">message</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// This will be NaN because d.message is undefined.</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>In this second <code class="language-plaintext highlighter-rouge">.then()</code>, the <strong>second function</strong> is used because the promise was rejected.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">d</code> here is the rejection value (<code class="language-plaintext highlighter-rouge">8</code>)</strong>, not an error object.</li>
+  <li>Since <code class="language-plaintext highlighter-rouge">8</code> is a number, it doesn’t have a <code class="language-plaintext highlighter-rouge">message</code> property, so <code class="language-plaintext highlighter-rouge">d.message</code> is <code class="language-plaintext highlighter-rouge">undefined</code>.</li>
+  <li>Therefore:
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">console.log("Checkpoint 5", d.message)</code> logs “Checkpoint 5 undefined”</strong>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">return d.message * 2</code></strong> results in <strong><code class="language-plaintext highlighter-rouge">undefined * 2</code></strong>, which gives <strong><code class="language-plaintext highlighter-rouge">NaN</code></strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="4-catch">4. <code class="language-plaintext highlighter-rouge">.catch()</code>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 3</span><span class="dl">"</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="c1">// This won't run because the error is handled by the second `then()`.</span>
+    <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li>Since the error was already handled in the rejection handler (<code class="language-plaintext highlighter-rouge">.then()</code>), this <code class="language-plaintext highlighter-rouge">.catch()</code> block <strong>does not run</strong>.</li>
+</ul>
+
+<h4 id="5-finally">5. <code class="language-plaintext highlighter-rouge">.finally()</code>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="k">finally</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 1</span><span class="dl">"</span><span class="p">,</span> <span class="nx">d</span><span class="p">);</span> <span class="c1">// Logs "Checkpoint 1 undefined" because `d` is `undefined` here.</span>
+    <span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Returns NaN because `undefined * 5` is NaN.</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">.finally()</code> block is always executed regardless of whether the promise is resolved or rejected.</li>
+  <li>However, in this case, <strong><code class="language-plaintext highlighter-rouge">d</code> is <code class="language-plaintext highlighter-rouge">undefined</code></strong> because the value from the previous rejection handler was <code class="language-plaintext highlighter-rouge">undefined</code> (since <code class="language-plaintext highlighter-rouge">d.message * 2</code> returned <code class="language-plaintext highlighter-rouge">NaN</code>).</li>
+  <li>Therefore:
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">console.log("Checkpoint 1", d)</code></strong> logs <strong>“Checkpoint 1 undefined”</strong>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">return d * 5</code></strong> results in <strong><code class="language-plaintext highlighter-rouge">NaN</code></strong> because <code class="language-plaintext highlighter-rouge">undefined * 5</code> is <code class="language-plaintext highlighter-rouge">NaN</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="6-final-then">6. Final <code class="language-plaintext highlighter-rouge">.then()</code>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Checkpoint 6</span><span class="dl">"</span><span class="p">,</span> <span class="nx">d</span><span class="p">);</span> <span class="c1">// Logs "Checkpoint 6 NaN".</span>
+    <span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Returns NaN.</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<ul>
+  <li>The final <code class="language-plaintext highlighter-rouge">.then()</code> receives the value returned from the <code class="language-plaintext highlighter-rouge">.finally()</code> block, which is <code class="language-plaintext highlighter-rouge">NaN</code>.</li>
+  <li>Therefore:
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">console.log("Checkpoint 6", d)</code></strong> logs <strong>“Checkpoint 6 NaN”</strong>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">d * 5</code></strong> results in <strong><code class="language-plaintext highlighter-rouge">NaN</code></strong>, and that’s returned.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="final-output">Final Output:</h3>
+<ul>
+  <li><strong>“Checkpoint 5 undefined”</strong> — because the rejection handler received <code class="language-plaintext highlighter-rouge">8</code> (a number) and tried to access <code class="language-plaintext highlighter-rouge">d.message</code>, which is <code class="language-plaintext highlighter-rouge">undefined</code>.</li>
+  <li><strong>“Checkpoint 1 undefined”</strong> — because <code class="language-plaintext highlighter-rouge">.finally()</code> received <code class="language-plaintext highlighter-rouge">undefined</code>.</li>
+  <li><strong>“Checkpoint 6 NaN”</strong> — because <code class="language-plaintext highlighter-rouge">.finally()</code> returned <code class="language-plaintext highlighter-rouge">NaN</code>, which is passed into the final <code class="language-plaintext highlighter-rouge">.then()</code>.</li>
+</ul>
+
+<h3 id="conclusion">Conclusion:</h3>
+<ul>
+  <li><strong>The promise is rejected</strong> (not resolved) because <code class="language-plaintext highlighter-rouge">5 === "5"</code> evaluates to <code class="language-plaintext highlighter-rouge">false</code>, and <code class="language-plaintext highlighter-rouge">pass(8)</code> is called in the constructor.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">.then()</code> block for resolution is skipped, and the error is caught by the rejection handler in the second <code class="language-plaintext highlighter-rouge">.then()</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">.catch()</code> block is ignored because the rejection is already handled.</li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

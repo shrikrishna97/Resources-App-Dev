@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-2/Week-2-3_OS.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-2/Week-2-3_OS.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-2/Week-2/Week-2-3_OS.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>Prepared Based on: MAD 2 JavaScript week-3 Open Session</p>
+
+<p>Target Audience: Beginners with Python background and Javascript basic understanding</p>
+
+<p>Prepared by: Shri Krishna </p>
+
+<p>Last term live session for reference: <a href="https://www.youtube.com/live/QYQWZhItGjQ">Mad-2 week-3 open session</a></p>
+
+<p>May term live session taken based on this doc: <a href="https://www.youtube.com/live/5B1ri5JOii4">Mad-2 week-3 open session</a></p>
+
+<hr />
+
+<h1 id="javascript-callback-functions-and-timers">JavaScript Callback Functions and Timers</h1>
+
+<p><strong>Callback functions</strong> are fundamental in JavaScript. A <em>callback</em> is simply a function passed as an argument into another function, so that it can be “called back” (invoked) later. In other words, the receiving function can execute the callback at the appropriate time to complete some task. Callbacks can run <strong>synchronously</strong> (immediately) or <strong>asynchronously</strong> (later, after some operation completes).</p>
+
+<p>For example, many array methods like <code class="language-plaintext highlighter-rouge">forEach</code> and <code class="language-plaintext highlighter-rouge">map</code> accept callbacks, and asynchronous APIs like <code class="language-plaintext highlighter-rouge">setTimeout()</code> or <code class="language-plaintext highlighter-rouge">fetch().then()</code> use callbacks when operations finish.</p>
+
+<ul>
+  <li><strong>Use cases:</strong> You use callbacks whenever one function needs to execute another after finishing work. For instance, passing a function to handle a server response, to run code after a click event, or to process each element in an array.</li>
+  <li>
+    <p><strong>Example (plain JS):</strong></p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello, </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">!</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">callback</span><span class="p">();</span>  <span class="c1">// invoke the callback function</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">sayGoodbye</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Goodbye!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Pass sayGoodbye as a callback to greet:</span>
+<span class="nx">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> <span class="nx">sayGoodbye</span><span class="p">);</span>
+
+<span class="c1">// Output:</span>
+<span class="c1">// Hello, Alice!</span>
+<span class="c1">// Goodbye!</span>
+</code></pre></div>    </div>
+
+    <p>Here, <code class="language-plaintext highlighter-rouge">sayGoodbye</code> is the callback passed into <code class="language-plaintext highlighter-rouge">greet</code>. When <code class="language-plaintext highlighter-rouge">greet</code> finishes its work, it invokes the callback.</p>
+  </li>
+</ul>
+
+<h2 id="settimeout"><code class="language-plaintext highlighter-rouge">setTimeout</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">setTimeout()</code> function schedules a one-time callback after a specified delay (in milliseconds). Its basic behavior is: <em>“set a timer, and when it expires, run the given function”</em>.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">setTimeout(fn, 1000)</code> will call <code class="language-plaintext highlighter-rouge">fn</code> after ~1000ms. Because it’s asynchronous, code after <code class="language-plaintext highlighter-rouge">setTimeout</code> continues running immediately – it does <strong>not</strong> pause the script. The function returns a timer ID (a number) which can be used to cancel the timeout before it fires.</p>
+
+<ul>
+  <li><strong>Syntax:</strong> <code class="language-plaintext highlighter-rouge">let timeoutId = setTimeout(callback, delay, [arg1, arg2, ...]);</code></li>
+  <li>
+    <p><strong>Key points:</strong></p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">callback</code> is the function to run after the delay.</li>
+      <li><code class="language-plaintext highlighter-rouge">delay</code> is in milliseconds (1000ms = 1 second).</li>
+      <li>The returned ID (e.g. <code class="language-plaintext highlighter-rouge">timeoutId</code>) uniquely identifies this timer and can be passed to <code class="language-plaintext highlighter-rouge">clearTimeout()</code> to cancel it.</li>
+    </ul>
+  </li>
+  <li><strong>Use cases:</strong> Delay execution of code (e.g. show a message after a pause, schedule a timeout on a network request, animate something after a wait). You cannot use <code class="language-plaintext highlighter-rouge">setTimeout</code> to synchronously pause code; it always runs the callback later.</li>
+  <li>
+    <p><strong>Example (plain JS):</strong></p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sayHello</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello after 1 second!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">sayHello</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="c1">// If needed, we could cancel with clearTimeout(timerId).</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Vue.js example:</strong> In a Vue component you might use <code class="language-plaintext highlighter-rouge">setTimeout</code> to update state after a delay. For example:</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Waiting...</span><span class="dl">"</span><span class="p">,</span> <span class="na">visible</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">timeoutId</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Show message after 2 seconds</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello from Vue!</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Always clear timers when the component is destroyed</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+
+    <p>In this Vue snippet, we schedule a change 2 seconds after mounting and store the ID (<code class="language-plaintext highlighter-rouge">timeoutId</code>). In the <code class="language-plaintext highlighter-rouge">beforeUnmount</code> hook we clear it so it won’t fire if the component is removed.</p>
+  </li>
+</ul>
+
+<h2 id="setinterval"><code class="language-plaintext highlighter-rouge">setInterval</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">setInterval()</code> function repeatedly runs a callback at fixed time intervals. You pass it a function and a delay, and it will call that function every <em>delay</em> milliseconds until you stop it. Like <code class="language-plaintext highlighter-rouge">setTimeout</code>, it returns an interval ID that you can later use to clear the interval.</p>
+
+<ul>
+  <li><strong>Syntax:</strong> <code class="language-plaintext highlighter-rouge">let intervalId = setInterval(callback, delay, [arg1, arg2, ...]);</code></li>
+  <li><strong>Behavior:</strong> Unlike <code class="language-plaintext highlighter-rouge">setTimeout</code> (once), <code class="language-plaintext highlighter-rouge">setInterval</code> keeps invoking the callback over and over. The first invocation happens after the initial delay, and then repeatedly after each delay.</li>
+  <li><strong>Use cases:</strong> Perfect for tasks that need repeating work – e.g. updating a timer or clock every second, polling a server periodically, animating a sequence (like a slideshow or blinking text), checking for conditions continuously, etc.</li>
+  <li>
+    <p><strong>Example (plain JS):</strong></p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">intervalId</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Count is now </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">intervalId</span><span class="p">);</span>  <span class="c1">// stop after 5 iterations</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+    <p>This code logs the count every second and stops after reaching 5.</p>
+  </li>
+  <li>
+    <p><strong>Vue.js example:</strong> In Vue you might update component state every second (e.g. a timer). It’s important to clear the interval on destroy. For example:</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">seconds</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">intervalId</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Increase seconds every second</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">seconds</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+
+    <p>Here <code class="language-plaintext highlighter-rouge">seconds</code> increments each second. By saving the ID and clearing it in <code class="language-plaintext highlighter-rouge">beforeUnmount</code>, we ensure the interval doesn’t keep running after the component is removed.</p>
+  </li>
+</ul>
+
+<h2 id="cleartimeout"><code class="language-plaintext highlighter-rouge">clearTimeout</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">clearTimeout()</code> function stops a timeout scheduled by <code class="language-plaintext highlighter-rouge">setTimeout()</code>. You pass it the timer ID that <code class="language-plaintext highlighter-rouge">setTimeout</code> returned. If that timeout hasn’t fired yet, it gets cancelled and will never execute its callback. If you pass an invalid or already-cleared ID, <code class="language-plaintext highlighter-rouge">clearTimeout</code> does nothing.</p>
+
+<ul>
+  <li><strong>Syntax:</strong> <code class="language-plaintext highlighter-rouge">clearTimeout(timeoutId);</code></li>
+  <li><strong>Use case:</strong> Cancel a pending delayed action.</li>
+</ul>
+
+<p>For example, if a user takes an action that makes the delayed callback irrelevant, you can call <code class="language-plaintext highlighter-rouge">clearTimeout</code> to prevent it from running.</p>
+
+<ul>
+  <li>
+    <p><strong>Example:</strong></p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">This won't run because we clear the timeout.</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+
+<span class="c1">// Cancel the timeout before it fires:</span>
+<span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timerId</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="clearinterval"><code class="language-plaintext highlighter-rouge">clearInterval</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">clearInterval()</code> function stops a repeating action created by <code class="language-plaintext highlighter-rouge">setInterval()</code>. You give it the interval ID returned by <code class="language-plaintext highlighter-rouge">setInterval</code>, and it will cancel further executions of that callback. Like <code class="language-plaintext highlighter-rouge">clearTimeout</code>, if you pass an invalid ID it simply does nothing.</p>
+
+<ul>
+  <li><strong>Syntax:</strong> <code class="language-plaintext highlighter-rouge">clearInterval(intervalId);</code></li>
+  <li><strong>Use case:</strong> Stop a repeated task when it is no longer needed. For instance, halt a clock update when leaving a page, or stop an animation when the user navigates away.</li>
+  <li>
+    <p><strong>Example:</strong></p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">intervalId</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">This will run every second until cleared</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="c1">// After 5 seconds, stop the interval:</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">intervalId</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Interval stopped</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="best-practices-and-common-patterns">Best Practices and Common Patterns</h2>
+
+<ul>
+  <li><strong>Asynchronous Nature:</strong> Remember that <code class="language-plaintext highlighter-rouge">setTimeout</code> and <code class="language-plaintext highlighter-rouge">setInterval</code> <strong>do not pause</strong> the script. They schedule callbacks that run later, allowing other code to run immediately. For example, multiple timeouts may complete out of order if their delays differ.</li>
+  <li><strong>Storing IDs:</strong> Always save the IDs returned by <code class="language-plaintext highlighter-rouge">setTimeout</code>/<code class="language-plaintext highlighter-rouge">setInterval</code> if you may need to cancel them. In modern Vue.js (3.x), use the <code class="language-plaintext highlighter-rouge">onUnmounted</code> (or <code class="language-plaintext highlighter-rouge">beforeUnmount</code>) lifecycle hook to clear any active timers. This avoids “zombie” timers that fire after a component is gone.</li>
+  <li><strong>Timing in Vue:</strong> As shown above, a Vue component often sets timers in <code class="language-plaintext highlighter-rouge">mounted()</code> and clears them in <code class="language-plaintext highlighter-rouge">beforeUnmount()</code>. Neglecting to clear timers can lead to unexpected behavior or memory leaks (the timers will keep running even after the component is destroyed).</li>
+  <li>
+    <p><strong>Practical scenarios:</strong></p>
+
+    <ul>
+      <li><strong>Callbacks:</strong> Used for event handling (e.g. <code class="language-plaintext highlighter-rouge">button.addEventListener("click", callback)</code>), array iteration (<code class="language-plaintext highlighter-rouge">arr.forEach(callback)</code>), network requests (<code class="language-plaintext highlighter-rouge">fetch(url).then(response =&gt; { ... })</code>), and more.</li>
+      <li><strong>setTimeout:</strong> Delay showing a notification, auto-hiding alerts, debouncing rapid actions (e.g. delaying a search query), scheduling retries.</li>
+      <li><strong>setInterval:</strong> Building a clock/timer UI, refreshing data periodically (polling), running animations (like cycling through images), checking conditions on a schedule.</li>
+      <li><strong>clearTimeout/clearInterval:</strong> Often used for “cancel” buttons, cleanup on navigation away, or stopping animations after a certain time.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each of these functions is part of standard Web APIs and works in browsers (and Node.js provides similar global functions). They are essential for controlling timing and flow in JavaScript, especially when working with asynchronous operations.</p>
+
+<h1 id="synchronous-vs-asynchronous-programming-in-javascript">Synchronous vs Asynchronous Programming in JavaScript</h1>
+
+<p><strong>Synchronous</strong> code runs one step at a time, in order. Each operation must finish before the next one starts. In other words, the program “steps through” each line sequentially, waiting on each to complete.  For example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Step 1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Step 2</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Step 3</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// Output: Step 1, then Step 2, then Step 3 (in order)</span>
+</code></pre></div></div>
+
+<p>In this code, each <code class="language-plaintext highlighter-rouge">console.log</code> waits for the previous one to finish before running. This sequential flow is simple and predictable, but if one step takes a long time (like loading a large file), it blocks everything else from running.</p>
+
+<p><strong>Asynchronous</strong> code, by contrast, allows tasks to be started and then run independently.  In asynchronous execution, you can initiate a long-running task and <em>then</em> move on to other work before that task finishes. The long task runs “in the background,” and when it’s done your code is notified (often via a callback). This non-blocking behavior keeps applications responsive. For example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hi</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Geek</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">End</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// Output: Hi, then End, then (after 2 seconds) Geek</span>
+</code></pre></div></div>
+
+<p>In the above code, “Hi” and “End” are logged immediately, <strong>before</strong> the delayed “Geek” message. That’s because <code class="language-plaintext highlighter-rouge">setTimeout</code> is asynchronous: it hands off the callback to the browser’s timer system and immediately continues to the next lines. Only after 2000 ms does the callback run. This shows how asynchronous functions like <code class="language-plaintext highlighter-rouge">setTimeout</code> don’t block the main flow.</p>
+
+<h2 id="real-world-analogies">Real-World Analogies</h2>
+
+<ul>
+  <li><strong>Waiting in Line (Synchronous):</strong> Imagine standing in a coffee shop line. You must wait for all the people ahead of you to order and receive their drinks before it’s your turn. The whole line is blocked by each order. This is like synchronous code: each task waits its turn.</li>
+  <li><strong>Dining with Friends (Asynchronous):</strong> Now picture sitting at a restaurant. After you place your food order, you don’t sit silently at the table waiting – you chat, sip a drink, or play a game while the kitchen prepares your meal. When the food is ready, the server brings it to you. This is like asynchronous code: you start a task (the meal) and then do other things until it’s done.</li>
+  <li><strong>Cooking a Meal:</strong> Cooking can be synchronous or asynchronous. A synchronous approach is boiling water, <strong>waiting</strong> for it to boil, then cooking pasta, then chopping vegetables, all one after another. An asynchronous approach is boiling water <strong>and at the same time</strong> chopping vegetables or making sauce. While the water heats (a long task), you’re busy with other prep. You’re not standing around doing nothing – just like async code lets other work happen during delays.</li>
+</ul>
+
+<p>These analogies illustrate how synchronous tasks block the flow (one at a time), whereas asynchronous tasks can overlap and improve efficiency.</p>
+
+<h2 id="synchronous-vs-asynchronous-key-points">Synchronous vs Asynchronous: Key Points</h2>
+
+<ul>
+  <li><strong>Sequential vs Concurrent:</strong> In synchronous programming, tasks run one after another. In asynchronous programming, tasks can begin and then proceed in the “background” while the main code continues.</li>
+  <li><strong>Blocking vs Non-Blocking:</strong> Synchronous functions <em>block</em> the main thread until they finish. Asynchronous functions (like timers or I/O) are <em>non-blocking</em>, so they hand off work and let your code keep running.</li>
+  <li><strong>Event Loop:</strong> JavaScript uses an event loop under the hood. When you call something like <code class="language-plaintext highlighter-rouge">setTimeout</code>, the callback is processed by the browser’s Web APIs and placed in a queue. The main thread doesn’t wait; when it’s free, the event loop pulls the callback from the queue and executes it.</li>
+</ul>
+
+<h2 id="code-examples">Code Examples</h2>
+
+<p><strong>Synchronous example:</strong> Each line runs one after another:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// Output: A, then B, then C (in order)</span>
+</code></pre></div></div>
+
+<p><strong>Asynchronous example with <code class="language-plaintext highlighter-rouge">setTimeout</code>:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Start</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Inside timeout</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Finish</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// Output: Start, then Finish, then (after ~1 second) Inside timeout</span>
+</code></pre></div></div>
+
+<p>Here, “Finish” appears before “Inside timeout” even though the <code class="language-plaintext highlighter-rouge">setTimeout</code> call comes before it. That’s because the timer callback is deferred.</p>
+
+<p><strong>Using Callbacks:</strong> A <em>callback</em> is just a function you pass to another function to run later. For example, with <code class="language-plaintext highlighter-rouge">setTimeout</code> we give a callback to execute after a delay. Callbacks let you specify what to do when an async operation finishes. For instance:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Before fetch</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Data fetched!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">After fetch</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// Output: Before fetch, After fetch, then (after 2s) Data fetched!</span>
+</code></pre></div></div>
+
+<p>This shows that the code after <code class="language-plaintext highlighter-rouge">setTimeout</code> runs immediately; only later does the callback run, thanks to the event loop.</p>
+
+<h2 id="asynchronous-features-settimeout-setinterval-and-callbacks">Asynchronous Features: <code class="language-plaintext highlighter-rouge">setTimeout</code>, <code class="language-plaintext highlighter-rouge">setInterval</code>, and Callbacks</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">setTimeout(callback, delay)</code>:</strong> Schedules <code class="language-plaintext highlighter-rouge">callback</code> to run once after <code class="language-plaintext highlighter-rouge">delay</code> milliseconds. It does <strong>not</strong> pause your code. Your script keeps running; when the timer finishes, the callback is invoked.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">setInterval(callback, interval)</code>:</strong> Schedules <code class="language-plaintext highlighter-rouge">callback</code> to run repeatedly every <code class="language-plaintext highlighter-rouge">interval</code> ms. Like <code class="language-plaintext highlighter-rouge">setTimeout</code>, it doesn’t block; it just sets up a recurring task that the event loop will execute. For example, <code class="language-plaintext highlighter-rouge">setInterval(() =&gt; console.log("Tick"), 1000);</code> will log “Tick” every second, while your main code continues immediately after calling it.</li>
+  <li><strong>Callbacks:</strong> A callback is a function passed into another function (for example, to <code class="language-plaintext highlighter-rouge">setTimeout</code> or an event handler) and expected to run later. In asynchronous code, callbacks execute after the current code finishes and when the event loop calls them. This is different from a normal function call, which runs immediately and blocks until it returns.</li>
+</ul>
+
+<p>Because of these async features, code can be <strong>non-sequential</strong>. You might see the end of a function run before a callback or timer fires. This is normal: JavaScript is single-threaded but uses its event loop to handle async tasks without stopping the main thread.</p>
+
+<p><strong>In summary:</strong> Synchronous JavaScript does things in order, blocking each step (like a single queue). Asynchronous JavaScript starts tasks that run in the background and continues with other work, which keeps apps responsive. Timers (<code class="language-plaintext highlighter-rouge">setTimeout</code>, <code class="language-plaintext highlighter-rouge">setInterval</code>) and callbacks are core to this – they let you schedule code to run later without freezing the current flow.</p>
+
+<p><strong>Sources:</strong> Authoritative JavaScript docs and tutorials.</p>
+
+<h1 id="vuejs-examples-and-setup">Vue.js Examples and Setup</h1>
+
+<p>Below is an HTML example for <strong>Vue 2</strong> and <strong>Vue 3</strong> that implements the given component (showing “Waiting…” and then “Hello from Vue!” after 2 seconds).  The examples use a CDN script so you can simply open the HTML file in a browser to run it.  We then discuss the differences between Vue 2 vs Vue 3 (including renamed lifecycle hooks and API changes) and the various ways to run Vue (CDN, CLI, or Vite).</p>
+
+<h2 id="vue2-example-with-cdn">Vue 2 Example (with CDN)</h2>
+
+<p>In Vue 2, you include the Vue 2.x script via a <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> tag, and then create a Vue instance with <code class="language-plaintext highlighter-rouge">new Vue(...)</code>.  For example:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- index.html for Vue 2 --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Only show the message when visible is true --&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"visible"</span><span class="nt">&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Include Vue 2 from CDN --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="c1">// Create a new Vue 2 instance</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Waiting...</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">visible</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">timeoutId</span><span class="p">:</span> <span class="kc">null</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// After 2 seconds, show the message</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello from Vue!</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Clear timer when component is destroyed</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>We use <code class="language-plaintext highlighter-rouge">&lt;script src="...vue@2.7.16/dist/vue.js"&gt;&lt;/script&gt;</code> to load Vue 2 (latest 2.x) from a CDN.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">new Vue({ el: '#app', data: {...}, mounted(), beforeDestroy() })</code> creates the Vue 2 instance (using the <em>Options API</em>). Note the lifecycle hook is called <code class="language-plaintext highlighter-rouge">beforeDestroy</code> in Vue 2.</li>
+  <li>Simply open this HTML file in a browser. No build step is needed when using a CDN script.</li>
+</ul>
+
+<h2 id="vue3-example-with-cdn">Vue 3 Example (with CDN)</h2>
+
+<p>In Vue 3, the API has changed: you use <code class="language-plaintext highlighter-rouge">Vue.createApp()</code> instead of <code class="language-plaintext highlighter-rouge">new Vue</code>, and the destroy hooks were renamed.  Here is the equivalent example in Vue 3:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- index.html for Vue 3 --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"visible"</span><span class="nt">&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Include Vue 3 from CDN --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/vue@3/dist/vue.global.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="c1">// Use the global Vue object to create the app</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">;</span>
+<span class="nx">createApp</span><span class="p">({</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Waiting...</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">visible</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">timeoutId</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// After 2 seconds, show the message</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello from Vue!</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">beforeUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Clear timer when component is unmounted</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timeoutId</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">&lt;script src="https://unpkg.com/vue@3/dist/vue.global.js"&gt;&lt;/script&gt;</code> loads Vue 3’s global build from a CDN.</li>
+  <li>We call <code class="language-plaintext highlighter-rouge">const { createApp } = Vue; createApp({...}).mount('#app')</code> (Vue 3’s new app-mount API).  The <code class="language-plaintext highlighter-rouge">beforeUnmount</code> hook replaces <code class="language-plaintext highlighter-rouge">beforeDestroy</code> in Vue 3.</li>
+  <li>As with Vue 2, this HTML can be opened directly in a browser with no build step.  (Note: using <code class="language-plaintext highlighter-rouge">vue.global.js</code> exposes Vue on the global <code class="language-plaintext highlighter-rouge">Vue</code> object.)</li>
+</ul>
+
+<h2 id="key-differences-vue2-vs-vue3">Key Differences (Vue 2 vs Vue 3)</h2>
+
+<ul>
+  <li><strong>Lifecycle Hooks Renamed:</strong> In Vue 3 the destroy hooks were renamed – <code class="language-plaintext highlighter-rouge">beforeDestroy</code> → <code class="language-plaintext highlighter-rouge">beforeUnmount</code>, <code class="language-plaintext highlighter-rouge">destroyed</code> → <code class="language-plaintext highlighter-rouge">unmounted</code>. In our example we use <code class="language-plaintext highlighter-rouge">beforeUnmount</code> for Vue 3 and <code class="language-plaintext highlighter-rouge">beforeDestroy</code> for Vue 2.</li>
+  <li><strong>App Creation:</strong> Vue 2 uses <code class="language-plaintext highlighter-rouge">new Vue({ ... })</code> (or <code class="language-plaintext highlighter-rouge">new Vue().$mount('#app')</code>), whereas Vue 3 uses <code class="language-plaintext highlighter-rouge">createApp({...}).mount('#app')</code>.  The migration guide notes that the global API now uses an application instance in Vue 3.</li>
+  <li><strong>Mount Behavior:</strong> In Vue 2, mounting replaces the target element. In Vue 3, the app’s DOM is appended inside the mount element (Vue 3 wraps the content but does not remove the element).</li>
+  <li><strong>Composition API:</strong> Vue 3 introduced the <strong>Composition API</strong> (using <code class="language-plaintext highlighter-rouge">setup()</code> and <code class="language-plaintext highlighter-rouge">ref()</code> etc.) alongside the Options API.  This offers more flexible code organization and better TypeScript support. (Our example still uses the Options API for simplicity.)</li>
+  <li><strong>Performance &amp; Size:</strong> Vue 3 has a rewritten reactivity system and supports better tree-shaking, resulting in faster rendering and smaller bundles.  Many sources note Vue 3 is generally faster and has new features (Teleport, Suspense, multiple root elements) not in Vue 2.</li>
+  <li><strong>Tooling:</strong> The official docs now recommend using <strong>Vite</strong> (via <code class="language-plaintext highlighter-rouge">npm create vue@latest</code>) for new projects, since Vue CLI is in maintenance mode. Vue 2 projects commonly used Vue CLI (Webpack-based) or simple CDN inclusion.</li>
+</ul>
+
+<h2 id="running-vue-cdn-vs-cli-vs-vite">Running Vue: CDN vs CLI vs Vite</h2>
+
+<ul>
+  <li><strong>CDN (script tag):</strong>  Simply include Vue via <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> as above.  This is the easiest way to try Vue or add it to an existing site without a build process. There’s no compilation step – your code runs directly in the browser. However, you cannot use <code class="language-plaintext highlighter-rouge">.vue</code> single-file components or advanced features that require a build. (You also load the entire Vue library at runtime.)</li>
+  <li><strong>Vue CLI (Legacy Tool):</strong>  The official Vue CLI (webpack-based) scaffolds full projects with hot-reload and bundling. In a Vue CLI project, you typically run <code class="language-plaintext highlighter-rouge">npm run serve</code> (or <code class="language-plaintext highlighter-rouge">yarn serve</code>) to start a dev server. Vue CLI handles compiling <code class="language-plaintext highlighter-rouge">.vue</code> files, modern JS, CSS preprocessors, etc., and outputs optimized builds. Note that as of Vue 3, the Vue team recommends using Vite instead of Vue CLI for new projects.</li>
+  <li><strong>Vite (Recommended):</strong>  Vite is a modern build tool that provides an extremely fast dev server and HMR for Vue projects.  To start a new Vue 3 app with Vite, you can run <code class="language-plaintext highlighter-rouge">npm create vue@latest</code> and follow prompts. Then install and run <code class="language-plaintext highlighter-rouge">npm run dev</code> in the project folder. Vite will bundle your Vue files and assets, but unlike CDN mode, it allows using single-file components, modern syntax, and build optimizations (tree-shaking, minification, etc.). The Vue docs note that for new projects, Vite (via <code class="language-plaintext highlighter-rouge">create-vue</code>) is the best choice.</li>
+  <li><strong>Summary:</strong>  Using a CDN is great for simple demos or adding Vue to a server-rendered page. For larger or production apps, you’d use a build setup: Vue CLI or Vite. Build tools automatically bundle and optimize your code (compiling <code class="language-plaintext highlighter-rouge">.vue</code> components, handling dependencies, etc.). The end result is still HTML/JS/CSS, but build tools improve developer experience and performance. In short: CDN = quick prototyping (no build); CLI/Vite = full app development with tooling.</li>
+</ul>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/PQ.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/PQ.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-8/PQ.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h5 id="q1-a-server-has-a-16-core-cpu-64-gb-ram-and-1-gbps-network-connection-it-can-run-a-python-flask-application-that-can-generate-500-html-pages-per-second-each-page-also-has-a-1-mb-image-that-needs-to-be-downloaded-by-the-client-what-will-be-the-maximum-number-of-requests-per-second-that-the-server-can-handle">Q1. A server has a 16-core CPU, 64 GB RAM and 1 Gbps network connection. It can run a Python Flask application that can generate 500 HTML pages per second. Each page also has a 1 MB image that needs to be downloaded by the client. What will be the maximum number of requests per second that the server can handle?</h5>
+
+<hr />
+<h5 id="solution">Solution:</h5>
+
+<p>To find the maximum number of requests per second the server can handle, we need to evaluate the constraints imposed by the CPU, memory, and network bandwidth. Given the details:</p>
+
+<ol>
+  <li><strong>Server Specifications</strong>:
+    <ul>
+      <li><strong>CPU</strong>: 16-core</li>
+      <li><strong>RAM</strong>: 64 GB (not likely to be a bottleneck in this scenario)</li>
+      <li><strong>Network</strong>: 1 Gbps connection</li>
+    </ul>
+  </li>
+  <li><strong>Application Performance</strong>:
+    <ul>
+      <li>Can generate <strong>500 HTML pages per second</strong>.</li>
+      <li>Each page includes a <strong>1 MB image</strong> that the client downloads.</li>
+    </ul>
+  </li>
+</ol>
+
+<h6 id="step-by-step-analysis">Step-by-step Analysis:</h6>
+
+<ol>
+  <li><strong>CPU Capacity</strong>:
+    <ul>
+      <li>The CPU can handle generating <strong>500 HTML pages per second</strong>, so CPU is not the bottleneck in this calculation.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Method 1: Direct Conversion to MBps</strong>:</p>
+
+    <ul>
+      <li><strong>Network Bandwidth</strong>:
+        <pre><code class="language-math">1 \text{ Gbps} = \frac{1 \times 10^9 \text{ bits per second}}{8 \text{ bits per byte}} = 125 \text{ MBps}
+</code></pre>
+      </li>
+      <li><strong>Network Requirement per Request</strong>:
+        <pre><code class="language-math">\frac{125 \text{ MBps}}{1 \text{ MB/request}} = 125 \text{ requests per second}
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Method 2: Using Mbps and Mb</strong>:</p>
+
+    <ul>
+      <li><strong>Network Bandwidth</strong>:
+        <pre><code class="language-math">1 \text{ Gbps} = 1000 \text{ Mbps}
+</code></pre>
+      </li>
+      <li><strong>Network Requirement per Request</strong>:
+        <ul>
+          <li>Each request includes a 1 MB image, which is equal to <strong>8 Mb</strong> (megabits).
+            <pre><code class="language-math">\frac{1000 \text{ Mbps}}{8 \text{ Mb/request}} = 125 \text{ requests per second}
+</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h6 id="conclusion">Conclusion:</h6>
+<p>Both methods show that the <strong>maximum number of requests per second</strong> that the server can handle, based on the network constraint, is <strong>125</strong> requests per second. This is because the network bandwidth limits the number of 1 MB images that can be transferred per second, even though the CPU can generate more HTML pages.</p>
+
+<hr />
+
+<h5 id="q2-asynchronous-updates-refer-to">Q2. Asynchronous updates refer to:</h5>
+<ol>
+  <li>loading part of a page in the background.</li>
+  <li>operating without a system clock.</li>
+  <li>using asynchronous circuit design for the processor in the data center.</li>
+  <li>having separate files for HTML, CSS and JavaScript</li>
+</ol>
+
+<h5 id="answer">Answer:</h5>
+
+<p>The correct answer is:</p>
+
+<p><strong>1. loading part of a page in the background.</strong></p>
+
+<h6 id="explanation">Explanation:</h6>
+<p>Asynchronous updates typically refer to web technologies like <strong>AJAX (Asynchronous JavaScript and XML)</strong>, where parts of a web page can be updated without reloading the whole page. This allows for a smoother user experience by loading data in the background and displaying it when ready.</p>
+
+<p>learn more: <a href="https://www.w3schools.com/xml/ajax_intro.asp">AJAX W3School</a></p>
+
+<p>The other options are unrelated:</p>
+<ul>
+  <li><strong>2. operating without a system clock</strong> refers to asynchronous circuit design but not related to web page updates.</li>
+  <li><strong>3. using asynchronous circuit design for the processor in the data center</strong> relates to hardware design, not web updates.</li>
+  <li><strong>4. having separate files for HTML, CSS and JavaScript</strong> is a common practice in web development but does not relate to asynchronous updates.</li>
+</ul>
+
+<h5 id="one-example-of-asynchronous-updates">One example of asynchronous updates:</h5>
+
+<p>Here’s a simple example of how asynchronous updates can be implemented using <strong>AJAX</strong> in a web application to load data in the background without reloading the entire page:</p>
+
+<p><strong>HTML, JavaScript and XML code</strong>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Asynchronous Update Example<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Asynchronous Data Load<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"loadData()"</span><span class="nt">&gt;</span>Load Data<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"dataContainer"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">https://jsonplaceholder.typicode.com/posts/1</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">dataContainer</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">};</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h6 id="explanation-1">Explanation:</h6>
+<ul>
+  <li><strong>Button</strong>: The <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> element triggers the <code class="language-plaintext highlighter-rouge">loadData()</code> function when clicked.</li>
+  <li><strong>AJAX Request</strong>: The <code class="language-plaintext highlighter-rouge">XMLHttpRequest</code> object is used to send an HTTP GET request to a placeholder API (<code class="language-plaintext highlighter-rouge">https://jsonplaceholder.typicode.com/posts/1</code>).</li>
+  <li><strong>Asynchronous Loading</strong>: The data is fetched asynchronously and displayed inside the <code class="language-plaintext highlighter-rouge">dataContainer</code> <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> when the request is successful.</li>
+</ul>
+
+<p><strong>Output</strong>:
+When the button is clicked, the browser fetches the data in the background and displays it without reloading the page.</p>
+
+<h5 id="what-is-xmlhttprequest-">What is XMLHttpRequest ?</h5>
+
+<p><strong><code class="language-plaintext highlighter-rouge">XMLHttpRequest</code> (XHR)</strong> is an API in web development that allows a client (usually a web browser) to interact with a server and exchange data asynchronously. It is primarily used for making HTTP or HTTPS requests to a server without refreshing the entire web page. This is key for creating a dynamic user experience, as it enables parts of a web page to be updated without a full page reload.</p>
+
+<h6 id="key-features-of-xmlhttprequest">Key Features of <code class="language-plaintext highlighter-rouge">XMLHttpRequest</code>:</h6>
+<ul>
+  <li><strong>Asynchronous Communication</strong>: XHR allows data to be sent or retrieved in the background, so the user can continue interacting with the web page without interruption.</li>
+  <li><strong>Flexible Data Formats</strong>: You can send and receive data in various formats, including <strong>text</strong>, <strong>XML</strong>, <strong>JSON</strong>, and <strong>HTML</strong>.</li>
+  <li><strong>HTTP Methods</strong>: It supports HTTP methods such as <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, etc.</li>
+</ul>
+
+<h6 id="basic-workflow">Basic Workflow:</h6>
+<ol>
+  <li><strong>Create an instance</strong> of <code class="language-plaintext highlighter-rouge">XMLHttpRequest</code>.</li>
+  <li><strong>Initialize a request</strong> using <code class="language-plaintext highlighter-rouge">open()</code> method, specifying the HTTP method and URL.</li>
+  <li><strong>Set up a callback function</strong> to handle the response when the request completes.</li>
+  <li><strong>Send the request</strong> using the <code class="language-plaintext highlighter-rouge">send()</code> method.</li>
+  <li><strong>Process the response</strong> when the <code class="language-plaintext highlighter-rouge">onreadystatechange</code> or <code class="language-plaintext highlighter-rouge">onload</code> event fires.</li>
+</ol>
+
+<h6 id="example-code">Example Code:</h6>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a new XMLHttpRequest object</span>
+<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+
+<span class="c1">// Configure it: GET-request for the URL /data</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">/data</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">// Set up a function to handle the response</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Successful response; process the data</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Send the request</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h6 id="explanation-of-readystate">Explanation of <code class="language-plaintext highlighter-rouge">readyState</code>:</h6>
+<ul>
+  <li><strong>0</strong>: <code class="language-plaintext highlighter-rouge">UNSENT</code> – The request has not been initialized.</li>
+  <li><strong>1</strong>: <code class="language-plaintext highlighter-rouge">OPENED</code> – The <code class="language-plaintext highlighter-rouge">open()</code> method has been called.</li>
+  <li><strong>2</strong>: <code class="language-plaintext highlighter-rouge">HEADERS_RECEIVED</code> – The request has been sent, and the headers and status are available.</li>
+  <li><strong>3</strong>: <code class="language-plaintext highlighter-rouge">LOADING</code> – The response body is being received.</li>
+  <li><strong>4</strong>: <code class="language-plaintext highlighter-rouge">DONE</code> – The operation is complete.</li>
+</ul>
+
+<h6 id="common-uses">Common Uses:</h6>
+<ul>
+  <li>Loading new data for a section of a web page (e.g., updating user comments, loading search results).</li>
+  <li>Sending form data to a server without reloading the page.</li>
+  <li>Implementing auto-refresh features or polling data from a server.</li>
+</ul>
+
+<p><strong>Note</strong>: Modern web development often uses <code class="language-plaintext highlighter-rouge">Fetch API</code> or libraries like <strong>Axios</strong> for making HTTP requests, as they provide a more concise and powerful syntax compared to <code class="language-plaintext highlighter-rouge">XMLHttpRequest</code>.</p>
+
+<hr />
+
+<h5 id="q3-dom-in-the-context-of-the-web-refers-to">Q3. DOM in the context of the web refers to:</h5>
+
+<p>document object model</p>
+
+<p>document oriented meetings</p>
+
+<p>data object mechanism</p>
+
+<p>driver optional mode</p>
+
+<h5 id="answer-1">Answer:</h5>
+
+<p>In the context of the web, <strong>DOM</strong> refers to the <strong>Document Object Model</strong>.</p>
+
+<p>It is a programming interface for web documents, representing the structure of the document as a tree of nodes, where each node corresponds to a part of the document (such as an element or attribute). This allows programming languages like JavaScript to interact with and manipulate the structure, style, and content of web pages.</p>
+
+<hr />
+
+<p>The <strong>Document Object Model (DOM)</strong> is a structured representation of a web page or document. Below are its key components:</p>
+
+<h6 id="1-tree">1. <strong>Tree</strong></h6>
+<ul>
+  <li>The DOM is structured as a <strong>tree</strong> of nodes. This hierarchical structure represents the page’s content. The tree starts with a single <strong>root node</strong> and branches out to various other nodes, each representing elements, text, or attributes in the document.</li>
+  <li>At the top of this tree is the <strong>document node</strong>, which represents the entire HTML or XML document.</li>
+  <li><strong>Example</strong>:<br />
+The HTML:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Hello World!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+    <p>The DOM tree structure:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Document
+  ├── html
+  │    └── body
+  │         └── div (id="container")
+  │              └── p (Text: "Hello World!")
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h6 id="2-node">2. <strong>Node</strong></h6>
+<ul>
+  <li>A <strong>node</strong> is a single point in the DOM tree. There are different types of nodes, such as:
+    <ul>
+      <li><strong>Element nodes</strong>: Represent HTML or XML elements (e.g., <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code>).</li>
+      <li><strong>Text nodes</strong>: Represent the text within elements (e.g., the text inside a <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> tag).</li>
+      <li><strong>Attribute nodes</strong>: Represent the attributes of elements (e.g., <code class="language-plaintext highlighter-rouge">class</code>, <code class="language-plaintext highlighter-rouge">id</code> in HTML).</li>
+      <li><strong>Comment nodes</strong>: Represent comments within the document (e.g., <code class="language-plaintext highlighter-rouge">&lt;!-- This is a comment --&gt;</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Example</strong>:<br />
+For the HTML:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>Hello World!<span class="nt">&lt;/p&gt;</span>
+</code></pre></div>    </div>
+    <p>The <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> tag is an <strong>element node</strong> and the text <code class="language-plaintext highlighter-rouge">"Hello World!"</code> inside the <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> tag is a <strong>text node</strong>.</p>
+  </li>
+</ul>
+
+<h6 id="3-element">3. <strong>Element</strong></h6>
+<ul>
+  <li><strong>Element nodes</strong> are the building blocks of an HTML document, representing the HTML tags such as <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;span&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code>, etc.</li>
+  <li>Elements can contain other elements, text, or both. These are the actual content holders and can have attributes associated with them (like <code class="language-plaintext highlighter-rouge">class</code>, <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">style</code>, etc.).</li>
+  <li><strong>Example</strong>:<br />
+In this HTML:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box"</span><span class="nt">&gt;</span>This is a box.<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>    </div>
+    <p>The <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> is an <strong>element node</strong>, and it has a <code class="language-plaintext highlighter-rouge">class</code> attribute. The <code class="language-plaintext highlighter-rouge">div</code> element can also contain text inside it (“This is a box.”).</p>
+  </li>
+</ul>
+
+<h6 id="4-attribute">4. <strong>Attribute</strong></h6>
+<ul>
+  <li><strong>Attributes</strong> provide additional information about an element. They are usually name-value pairs. For example, in <code class="language-plaintext highlighter-rouge">&lt;img src="image.jpg" alt="An image"&gt;</code>, <code class="language-plaintext highlighter-rouge">src</code> and <code class="language-plaintext highlighter-rouge">alt</code> are attributes of the <code class="language-plaintext highlighter-rouge">img</code> element.</li>
+  <li>In the DOM, attributes are considered as <strong>attribute nodes</strong> associated with their corresponding element nodes.</li>
+  <li><strong>Example</strong>:<br />
+In the HTML:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"image.jpg"</span> <span class="na">alt=</span><span class="s">"A beautiful image"</span> <span class="nt">/&gt;</span>
+</code></pre></div>    </div>
+    <p>The <code class="language-plaintext highlighter-rouge">src</code> and <code class="language-plaintext highlighter-rouge">alt</code> are <strong>attribute nodes</strong> of the <code class="language-plaintext highlighter-rouge">img</code> element. The <code class="language-plaintext highlighter-rouge">src</code> attribute specifies the image file, and the <code class="language-plaintext highlighter-rouge">alt</code> attribute provides alternative text.</p>
+  </li>
+</ul>
+
+<h6 id="5-text">5. <strong>Text</strong></h6>
+<ul>
+  <li><strong>Text nodes</strong> contain the actual text inside an element. For example, in <code class="language-plaintext highlighter-rouge">&lt;p&gt;Hello, world!&lt;/p&gt;</code>, the text node would be “Hello, world!”.</li>
+  <li>Text nodes cannot contain HTML tags; they are simply the raw content within an element.</li>
+  <li><strong>Example</strong>:<br />
+In this HTML:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Welcome to my website<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div>    </div>
+    <p>The <strong>text node</strong> is <code class="language-plaintext highlighter-rouge">"Welcome to my website"</code>, which is inside the <code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code> element.</p>
+  </li>
+</ul>
+
+<h6 id="6-event">6. <strong>Event</strong></h6>
+<ul>
+  <li><strong>Events</strong> in the DOM are actions or occurrences that happen in the browser, often as a result of user interactions, such as clicks, key presses, mouse movements, etc.</li>
+  <li>Events are handled by event listeners, which are functions that are invoked when a specific event occurs. For example, <code class="language-plaintext highlighter-rouge">click</code>, <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">mouseover</code>, etc.</li>
+  <li>Events can be used to trigger actions on the page, like showing a popup, changing content, or submitting a form.</li>
+  <li><strong>Example</strong> (Click Event):
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"myButton"</span><span class="nt">&gt;</span>Click Me!<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">myButton</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Button clicked!</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+    <p>When the button is clicked, an event listener triggers the function, showing the alert “Button clicked!”.</p>
+  </li>
+</ul>
+
+<h6 id="7-document">7. <strong>Document</strong></h6>
+<ul>
+  <li>The <strong>document node</strong> represents the entire web page or document in the DOM. It’s the entry point to access any part of the page via JavaScript.</li>
+  <li>It is the parent of all other nodes and serves as the root node from which everything else can be accessed. The <code class="language-plaintext highlighter-rouge">document</code> object in JavaScript allows you to query and modify the content of the page.</li>
+  <li><strong>Example</strong>:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">title</span><span class="p">);</span>  <span class="c1">// Prints the title of the current HTML document</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>   <span class="c1">// Prints the &lt;body&gt; element</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h6 id="8-parent-child-and-sibling-nodes">8. <strong>Parent, Child, and Sibling Nodes</strong></h6>
+<ul>
+  <li><strong>Parent node</strong>: A node that contains other nodes. For example, in <code class="language-plaintext highlighter-rouge">&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;</code>, the <code class="language-plaintext highlighter-rouge">div</code> is the parent node of the <code class="language-plaintext highlighter-rouge">p</code> node.</li>
+  <li><strong>Child nodes</strong>: Nodes that are contained within another node. The <code class="language-plaintext highlighter-rouge">p</code> node in the example above is a child of the <code class="language-plaintext highlighter-rouge">div</code> node.</li>
+  <li><strong>Sibling nodes</strong>: Nodes that share the same parent. For example, if there were another <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> inside the <code class="language-plaintext highlighter-rouge">div</code>, both <code class="language-plaintext highlighter-rouge">p</code> nodes would be siblings.</li>
+  <li><strong>Example</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;p&gt;</span>First Paragraph<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Second Paragraph<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">div</code> is the <strong>parent node</strong> of the two <code class="language-plaintext highlighter-rouge">p</code> elements.</li>
+      <li>The two <code class="language-plaintext highlighter-rouge">p</code> elements are <strong>child nodes</strong> of the <code class="language-plaintext highlighter-rouge">div</code>.</li>
+      <li>The two <code class="language-plaintext highlighter-rouge">p</code> elements are <strong>siblings</strong> to each other.</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="9-document-fragment">9. <strong>Document Fragment</strong></h6>
+<ul>
+  <li>A <strong>document fragment</strong> is a lightweight, in-memory tree of nodes that can be used to build up content without affecting the main DOM until it’s ready. This is useful for batch updates to the DOM as it reduces reflow and repainting costs.</li>
+  <li><strong>Example</strong>:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">fragment</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">This is a new div element!</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">fragment</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">fragment</span><span class="p">);</span>  <span class="c1">// Adds the div to the body</span>
+</code></pre></div>    </div>
+    <p>In this example, a new <code class="language-plaintext highlighter-rouge">div</code> element is added to a document fragment first, and then the fragment is appended to the body in one operation. This prevents multiple reflows and repaints.</p>
+  </li>
+</ul>
+
+<h6 id="10-dom-manipulation">10. <strong>DOM Manipulation</strong></h6>
+<ul>
+  <li>DOM manipulation refers to the process of dynamically changing the content and structure of a web page by interacting with the DOM nodes using JavaScript methods like <code class="language-plaintext highlighter-rouge">createElement()</code>, <code class="language-plaintext highlighter-rouge">appendChild()</code>, <code class="language-plaintext highlighter-rouge">removeChild()</code>, <code class="language-plaintext highlighter-rouge">setAttribute()</code>, etc.</li>
+  <li><strong>Example</strong>:
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"demo"</span><span class="nt">&gt;</span>Hello World<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">demo</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello JavaScript</span><span class="dl">'</span><span class="p">;</span>  <span class="c1">// Modify text content</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+    <p>The text inside the <code class="language-plaintext highlighter-rouge">div</code> is changed from “Hello World” to “Hello JavaScript” using JavaScript to manipulate the DOM.</p>
+  </li>
+</ul>
+
+<p>More information can be found in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">MDN Web Docs</a>.</p>
+
+<hr />
+
+<p>These components together form the DOM’s core structure, enabling the web page to be programmatically accessed, modified, and interacted with by developers.</p>
+
+<hr />
+
+<h5 id="q4-using-javascript-for-updating-the-dom-will-generally">Q4. Using JavaScript for updating the DOM will generally</h5>
+
+<p>increase load on the server.</p>
+
+<p>increase load on the client.</p>
+
+<p>increase load on the network.</p>
+
+<p>decrease load on the client</p>
+
+<h5 id="answer-2">Answer:</h5>
+<p>The correct answer is:</p>
+
+<p><strong>increase load on the client.</strong></p>
+
+<p>Using JavaScript to update the DOM typically happens in the user’s browser (the client side), so it increases the load on the client rather than the server or the network. The server and network are generally not affected by these DOM manipulations, unless new data is being fetched from the server using AJAX or similar methods.</p>
+
+<hr />
+
+<h5 id="q5-dom-updates-can-be-used-to">Q5. DOM updates can be used to</h5>
+
+<p>add text to the page.</p>
+
+<p>remove text from the page.</p>
+
+<p>add new entries to the database.</p>
+
+<p>all of the above</p>
+
+<h5 id="answer-3">Answer:</h5>
+
+<p>The correct answer is:</p>
+
+<p><strong>add text to the page.</strong></p>
+
+<p><strong>remove text from the page.</strong></p>
+
+<p>DOM updates can be used to add or remove text on the page (through manipulating elements and text nodes). However, DOM updates <strong>cannot</strong> directly interact with the database. To add new entries to a database, a server-side operation (such as an API request) is needed in addition to DOM manipulation. Therefore, “all of the above” is not the correct answer.</p>
+
+<hr />
+
+<h5 id="q6-which-of-the-following-is-most-secure">Q6. Which of the following is most secure?</h5>
+
+<p>static HTML web page</p>
+
+<p>PHP script on server</p>
+
+<p>JS with native mode access</p>
+
+<p>JS with only basic API access</p>
+
+<h5 id="answer-4">Answer:</h5>
+
+<p>The most secure option is:</p>
+
+<p><strong>static HTML web page</strong></p>
+
+<h6 id="explanation-2">Explanation:</h6>
+<ul>
+  <li>
+    <p><strong>Static HTML web page</strong>: This is the most secure option because it is a simple, non-interactive page that does not rely on dynamic content generation or user input processing. It doesn’t include server-side or client-side scripting that could introduce vulnerabilities.</p>
+  </li>
+  <li>
+    <p><strong>PHP script on server</strong>: While PHP scripts on the server can be secure if written properly, they can also be vulnerable to issues like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF) if not properly handled.</p>
+  </li>
+  <li>
+    <p><strong>JS with native mode access</strong>: JavaScript with native mode access typically refers to JavaScript interacting directly with the browser’s system, which can expose the system to more security risks, such as potential exploits through browser vulnerabilities.</p>
+  </li>
+  <li>
+    <p><strong>JS with only basic API access</strong>: JavaScript with limited API access (such as working with the DOM and web APIs) is generally more secure than native mode access, but it still opens up security concerns, like XSS, if not handled properly.</p>
+  </li>
+</ul>
+
+<p>Thus, <strong>static HTML</strong> is the most secure since it does not include the complexities and potential vulnerabilities associated with dynamic scripting languages like PHP or JavaScript.</p>
+
+<hr />
+
+<h5 id="q7-proper-use-of-the-constraint-validation-api-can-reduce-the-load-on________">Q7. Proper use of the constraint validation API can reduce the load on________.</h5>
+
+<p>client</p>
+
+<p>server</p>
+
+<p>network</p>
+
+<p>all of the above</p>
+
+<h5 id="answer-5">Answer:</h5>
+<p>The <strong>proper use of the constraint validation API</strong> can reduce the load on both the <strong>server</strong> and the <strong>network</strong>.</p>
+
+<p>Here’s why:</p>
+
+<ul>
+  <li>
+    <p><strong>Server</strong>: By validating form inputs on the client side, the <strong>constraint validation API</strong> prevents invalid data from being sent to the server. This reduces unnecessary server-side processing because invalid submissions can be caught before they even reach the server.</p>
+  </li>
+  <li>
+    <p><strong>Network</strong>: Since invalid form submissions are blocked on the client side, there will be fewer requests made to the server. This reduces the network load by preventing unnecessary data transmission of invalid requests.</p>
+  </li>
+</ul>
+
+<p>So, the correct answer is:
+<strong>Server and network</strong>.</p>
+
+<p>In addition to the <strong>Constraint Validation API</strong> (which is commonly used for form input validation), HTML5 provides other APIs and built-in mechanisms for validation:</p>
+
+<ol>
+  <li><strong>Constraint Validation API</strong>
+    <ul>
+      <li>This API helps in validating form inputs against constraints like <code class="language-plaintext highlighter-rouge">required</code>, <code class="language-plaintext highlighter-rouge">min</code>, <code class="language-plaintext highlighter-rouge">max</code>, <code class="language-plaintext highlighter-rouge">pattern</code>, and more.</li>
+      <li>It’s automatically used by the browser when the user tries to submit a form with invalid data.</li>
+      <li><strong>Example</strong>:
+ ```html</li>
+    </ul>
+    <form>
+   <input type="email" required="" />
+   <input type="submit" />
+ </form>
+    <p>```</p>
+  </li>
+  <li><strong>FormData API</strong>
+    <ul>
+      <li>The <strong>FormData API</strong> allows you to programmatically create and manipulate form data, and you can use it to validate form data before sending it to the server via AJAX requests.</li>
+      <li>This can be combined with custom JavaScript validation for more complex or custom form checks.</li>
+      <li><strong>Example</strong>:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">let</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nx">formData</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">)</span> <span class="o">!==</span> <span class="dl">''</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// custom validation</span>
+ <span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Custom Validation with JavaScript</strong>
+    <ul>
+      <li>JavaScript allows you to implement custom validation logic beyond the built-in HTML5 form attributes. You can use JavaScript to create more sophisticated validation patterns or dynamic checks.</li>
+      <li>This is often used in conjunction with the <strong>Constraint Validation API</strong> to enhance the user experience and provide more detailed feedback.</li>
+      <li><strong>Example</strong>:
+ ```javascript
+ const form = document.querySelector(‘form’);
+ form.addEventListener(‘submit’, function(event) {
+   if (!emailValid()) {
+event.preventDefault();  // Prevent form submission
+alert(“Please enter a valid email.”);
+   }
+ });</li>
+    </ul>
+
+    <p>function emailValid() {
+   const email = document.querySelector(‘input[type=”email”]’).value;
+   return /\S+@\S+.\S+/.test(email);  // Simple regex for email validation
+ }
+ ```</p>
+  </li>
+  <li><strong>Pattern Validation (HTML5 <code class="language-plaintext highlighter-rouge">pattern</code> attribute)</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">pattern</code> attribute in HTML5 allows you to specify a regular expression for validating form input fields.</li>
+      <li>This is especially useful for fields that require specific formats, such as phone numbers or zip codes.</li>
+      <li><strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">pattern=</span><span class="s">"[A-Za-z]{3,}"</span> <span class="na">title=</span><span class="s">"Three or more letters"</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HTML5 Input Types for Validation</strong>
+    <ul>
+      <li>HTML5 introduced a variety of new input types, which automatically handle some common validation cases:</li>
+    </ul>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">type="email"</code></strong>: Ensures the input is a valid email address format.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">type="url"</code></strong>: Validates that the input is a valid URL.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">type="number"</code></strong>: Ensures the input is a number, and can optionally be constrained with <code class="language-plaintext highlighter-rouge">min</code> and <code class="language-plaintext highlighter-rouge">max</code> attributes.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">type="tel"</code></strong>: Allows phone number input and can be combined with custom validation using the <code class="language-plaintext highlighter-rouge">pattern</code> attribute.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">type="date"</code>, <code class="language-plaintext highlighter-rouge">type="time"</code>, <code class="language-plaintext highlighter-rouge">type="range"</code></strong>: These input types allow users to input specific types of data that can be validated by the browser.
+        - <strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">required</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">pattern=</span><span class="s">"https?://.*"</span> <span class="na">title=</span><span class="s">"URL must start with http:// or https://"</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HTML5 <code class="language-plaintext highlighter-rouge">required</code> Attribute</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">required</code> attribute ensures that a form field must be filled out before the form is submitted.</li>
+      <li><strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">required</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HTML5 <code class="language-plaintext highlighter-rouge">min</code> and <code class="language-plaintext highlighter-rouge">max</code> Attributes (for numeric fields)</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">min</code> and <code class="language-plaintext highlighter-rouge">max</code> attributes can be used with input types like <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">range</code>, and <code class="language-plaintext highlighter-rouge">date</code> to specify the minimum and maximum allowable values.</li>
+      <li><strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">min=</span><span class="s">"18"</span> <span class="na">max=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HTML5 <code class="language-plaintext highlighter-rouge">maxlength</code> and <code class="language-plaintext highlighter-rouge">minlength</code> Attributes</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">maxlength</code> and <code class="language-plaintext highlighter-rouge">minlength</code> attributes allow you to specify the minimum and maximum number of characters for text input fields.</li>
+      <li><strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">maxlength=</span><span class="s">"10"</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HTML5 <code class="language-plaintext highlighter-rouge">step</code> Attribute</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">step</code> attribute allows for setting step increments for numeric inputs or date/time fields.</li>
+      <li><strong>Example</strong>:
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">min=</span><span class="s">"0"</span> <span class="na">max=</span><span class="s">"100"</span> <span class="na">step=</span><span class="s">"5"</span><span class="nt">&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Summary of Common HTML5 Validation Methods:</p>
+<ol>
+  <li><strong>Constraint Validation API</strong>: Built-in client-side validation.</li>
+  <li><strong>FormData API</strong>: Allows programmatic manipulation and validation of form data.</li>
+  <li><strong>Pattern Validation</strong>: Using regular expressions with the <code class="language-plaintext highlighter-rouge">pattern</code> attribute.</li>
+  <li><strong>Input Types</strong>: Various input types like <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">url</code>, <code class="language-plaintext highlighter-rouge">number</code>, etc., come with built-in validation.</li>
+  <li><strong>Attributes</strong>: <code class="language-plaintext highlighter-rouge">required</code>, <code class="language-plaintext highlighter-rouge">min</code>, <code class="language-plaintext highlighter-rouge">max</code>, <code class="language-plaintext highlighter-rouge">maxlength</code>, <code class="language-plaintext highlighter-rouge">minlength</code>, etc., allow for specifying validation rules directly in HTML.</li>
+</ol>
+
+<p>Together, these methods provide a comprehensive set of tools for form validation in HTML5, ensuring that data entered by users meets the specified requirements before submission.</p>
+
+<h5 id="q8a-python-flask-application-is-given-below">Q8.A Python flask application is given below.</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span> 
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> 
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span> 
+    <span class="k">return</span> <span class="s">"&lt;P&gt; Hello World &lt;/p&gt;"</span> 
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span> 
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> 
+
+</code></pre></div></div>
+<p>Which of the following options is true?</p>
+<ol>
+  <li>It is an example of static web page being used.</li>
+  <li>It is an example of dynamic web page being used.</li>
+  <li>The browser will not render any output as a webpage.</li>
+  <li>None of the above</li>
+</ol>
+
+<h5 id="answer-6">Answer:</h5>
+<p>The correct answer is:</p>
+
+<p><strong>2. It is an example of a dynamic web page being used.</strong></p>
+
+<p>Explanation:</p>
+<ul>
+  <li>The given Flask application sets up a web server that handles HTTP requests and returns a response dynamically generated by the Python code.</li>
+  <li>When the route <code class="language-plaintext highlighter-rouge">"/"</code> is accessed, the <code class="language-plaintext highlighter-rouge">hello()</code> function returns the HTML content <code class="language-plaintext highlighter-rouge">"&lt;P&gt; Hello World &lt;/p&gt;"</code>, which is rendered in the browser.</li>
+  <li>This is considered <strong>dynamic</strong> because the content is served by a Python web application running on a server, as opposed to a static HTML file directly served by a web server.</li>
+</ul>
+
+<p>Why the other options are incorrect:</p>
+<ol>
+  <li><strong>It is an example of a static web page being used</strong>: Incorrect. A static web page is served directly as an HTML file without any server-side code execution.</li>
+  <li><strong>The browser will not render any output as a webpage</strong>: Incorrect. The browser will render the output as a webpage displaying “Hello World”.</li>
+  <li><strong>None of the above</strong>: Incorrect. Option 2 is the correct answer.</li>
+</ol>
+
+<p>Example for static pages:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span><span class="n">render_template</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> 
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span> 
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"hello.html"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span> 
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> 
+
+</code></pre></div></div>
+
+<h5 id="q9-which-of-the-following-statements-isare-true-in-the-context-of-dom-updates">Q9. Which of the following statements is/are true in the context of ‘DOM’ updates?</h5>
+
+<p>Generating a page completely through DOM updates is good for the accessibility of the page.</p>
+
+<p>Generating a page completely through DOM updates will make the page almost inaccessible.</p>
+
+<p>HTML is generated on client side and it cannot be done by browsers with limitations.</p>
+
+<p>All of the above.</p>
+
+<h5 id="answer-7">Answer:</h5>
+
+<p>The statement that is most accurate in the context of ‘DOM’ updates is:</p>
+
+<p><strong>Generating a page completely through DOM updates will make the page almost inaccessible.</strong></p>
+
+<h5 id="explanation-3">Explanation:</h5>
+<ul>
+  <li><strong>Generating a page completely through DOM updates will make the page almost inaccessible</strong>:
+    <ul>
+      <li>This can be true if the page relies heavily on JavaScript for rendering content. In such cases, users with JavaScript disabled or using older browsers may not be able to view or interact with the page properly, leading to accessibility issues.</li>
+      <li>Additionally, this could affect screen readers and other assistive technologies that rely on pre-rendered HTML for better accessibility.</li>
+    </ul>
+  </li>
+  <li><strong>HTML is generated on the client side and it cannot be done by browsers with limitations</strong>:
+    <ul>
+      <li>This statement is partially correct. Client-side rendering (using JavaScript to generate the page content dynamically) may not be fully supported or perform well in older browsers or browsers with limited capabilities. Users with restricted environments may face difficulties when JavaScript-based content is required to render the page.</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="why-the-other-statements-are-incorrect">Why the Other Statements Are Incorrect:</h5>
+<ul>
+  <li><strong>Generating a page completely through DOM updates is good for the accessibility of the page</strong>:
+    <ul>
+      <li>This is generally <strong>false</strong>. While modern JavaScript frameworks and libraries can improve accessibility if used correctly, generating the page purely through DOM updates can create challenges for users relying on assistive technologies.</li>
+    </ul>
+  </li>
+  <li><strong>All of the above</strong>:
+    <ul>
+      <li>This option is incorrect because not all statements provided are true.</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="conclusion-1">Conclusion:</h5>
+<p>The best choices are:</p>
+<ul>
+  <li><strong>“Generating a page completely through DOM updates will make the page almost inaccessible.”</strong></li>
+  <li><strong>“HTML is generated on client side and it cannot be done by browsers with limitations.”</strong></li>
+</ul>
+
+<p>Both statements highlight the potential challenges of client-side rendering and dynamic content for accessibility and browser compatibility.</p>
+
+<hr />
+
+<h5 id="q10which-of-the-following-isare-true-for-the-web-browsers">Q10.Which of the following is/are true for the web browsers?</h5>
+<p>Javascript is the only language that can be made available on web browsers.</p>
+
+<p>Web browsers usually have JS engines to run Javascript.</p>
+
+<p>It is quite possible to build some other browser that supports languages other than Javascript.</p>
+
+<p>None of the above.</p>
+
+<h5 id="answer-8">Answer:</h5>
+<p>The accepted answers are:</p>
+
+<ol>
+  <li><strong>Web browsers usually have JS engines to run Javascript.</strong>
+    <ul>
+      <li>This statement is true because modern web browsers come with built-in JavaScript engines (e.g., V8 in Chrome, SpiderMonkey in Firefox, JavaScriptCore in Safari) to interpret and execute JavaScript code efficiently.</li>
+    </ul>
+  </li>
+  <li><strong>It is quite possible to build some other browser that supports languages other than Javascript.</strong>
+    <ul>
+      <li>This is also true. While JavaScript is the dominant language for client-side web development, it is technically possible to create a custom web browser or modify an existing one to support other languages, such as WebAssembly (which is already widely supported), or even custom plugins for different scripting languages. However, JavaScript remains the standard for web development.</li>
+    </ul>
+  </li>
+</ol>
+
+<h5 id="explanation-4">Explanation:</h5>
+<ul>
+  <li><strong>“JavaScript is the only language that can be made available on web browsers”</strong> is <strong>false</strong> because web browsers can also support WebAssembly (Wasm), which allows code written in other languages (such as C, C++, and Rust) to run in the browser alongside JavaScript.</li>
+</ul>
+
+<hr />
+
+<h5 id="q12-which-of-the-following-statements-regarding-wasm-isare-true">Q12. Which of the following statements regarding WASM is/are true?</h5>
+
+<p>WASM is a compiled form of Javascript.</p>
+
+<p>WASM is an instruction set that is supported on many browsers.</p>
+
+<p>It is not limited to JS and can be generated from other languages also.</p>
+
+<p>All of the above</p>
+
+<h5 id="answer-9">Answer:</h5>
+<p>The accepted answers are:</p>
+
+<ol>
+  <li><strong>WASM is an instruction set that is supported on many browsers.</strong>
+    <ul>
+      <li>This is true. WebAssembly (WASM) is a low-level, binary instruction format designed to run efficiently in web browsers. It is supported by all major modern browsers, enabling high-performance execution of code.</li>
+    </ul>
+  </li>
+  <li><strong>It is not limited to JS and can be generated from other languages also.</strong>
+    <ul>
+      <li>This is also true. WASM is not tied to JavaScript; it can be compiled from various programming languages, such as C, C++, Rust, Go, and many others, making it versatile for web and non-web applications.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Explanation:</p>
+<ul>
+  <li><strong>“WASM is a compiled form of JavaScript”</strong> is <strong>false</strong>. WASM is not a compiled form of JavaScript. Instead, it is an independent bytecode format that can be generated from languages other than JavaScript. It can work alongside JavaScript but is not derived from it.</li>
+</ul>
+
+<p>Conclusion:
+The correct statements are:</p>
+<ul>
+  <li><strong>“WASM is an instruction set that is supported on many browsers.”</strong></li>
+  <li><strong>“It is not limited to JS and can be generated from other languages also.”</strong></li>
+</ul>
+
+<hr />
+<h5 id="what-is-wsgi-">What is WSGI ?</h5>
+
+<p><strong>WSGI (Web Server Gateway Interface)</strong> is a specification that defines how web servers communicate with web applications in the Python programming language. It acts as an interface between web servers and Python-based web applications or frameworks, facilitating a standard and consistent way to serve web content.</p>
+
+<p>Key Points About WSGI:</p>
+<ol>
+  <li>
+    <p><strong>Purpose</strong>: WSGI was created to standardize the way Python web applications and web servers interact. Before WSGI, Python web frameworks and servers often had compatibility issues because each framework had its own method of communication.</p>
+  </li>
+  <li>
+    <p><strong>Specification</strong>: It is not a library or a framework but a specification defined in <a href="https://www.python.org/dev/peps/pep-0333/">PEP 333</a> and later updated in <a href="https://www.python.org/dev/peps/pep-3333/">PEP 3333</a> to support Python 3.</p>
+  </li>
+  <li><strong>Components</strong>:
+    <ul>
+      <li><strong>Web Server</strong>: Receives HTTP requests and forwards them to the application via WSGI.</li>
+      <li><strong>WSGI Application</strong>: Processes the request and returns a response back to the server.</li>
+      <li><strong>WSGI Middleware</strong>: Optional layers that sit between the server and application, adding functionality such as request handling, authentication, or data compression.</li>
+    </ul>
+  </li>
+  <li><strong>How It Works</strong>:
+    <ul>
+      <li>The web server passes an environment dictionary and a callback function (start_response) to the WSGI application.</li>
+      <li>The application processes the request using the environment information and returns an iterable that contains the response body.</li>
+      <li>The <code class="language-plaintext highlighter-rouge">start_response</code> function is used by the application to send HTTP status and headers back to the server.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Example of a Simple WSGI Application:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">simple_app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="c1"># Status and response headers
+</span>    <span class="n">status</span> <span class="o">=</span> <span class="s">'200 OK'</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'Content-type'</span><span class="p">,</span> <span class="s">'text/plain'</span><span class="p">)]</span>
+    <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+    
+    <span class="c1"># Response body
+</span>    <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s">"Hello, WSGI World!"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Why WSGI Is Important:</p>
+<ul>
+  <li><strong>Framework Compatibility</strong>: It allows various Python web frameworks (e.g., Flask, Django, Pyramid) to work with multiple web servers (e.g., Gunicorn, uWSGI, Apache with mod_wsgi).</li>
+  <li><strong>Flexibility</strong>: Enables developers to use middleware to handle common web application tasks like authentication, session management, and data compression.</li>
+  <li><strong>Scalability</strong>: WSGI allows for better handling of concurrent requests compared to basic Python server modules.</li>
+</ul>
+
+<p>Common WSGI Servers:</p>
+<ul>
+  <li><strong>Gunicorn</strong>: A popular and efficient WSGI server used in production environments.</li>
+  <li><strong>uWSGI</strong>: Another powerful server with more extensive features and configurability.</li>
+  <li><strong>mod_wsgi</strong>: An Apache module for running WSGI applications.</li>
+</ul>
+
+<hr />
+
+<h3 id="difference-between-synchronous-and-asynchronous-updates-in-frontend"><strong>Difference Between Synchronous and Asynchronous Updates in Frontend</strong></h3>
+
+<p>In frontend development, <strong>synchronous updates</strong> and <strong>asynchronous updates</strong> define how the browser handles UI changes and communication with the backend.</p>
+
+<hr />
+
+<h3 id="1-synchronous-updates"><strong>1. Synchronous Updates</strong></h3>
+<ul>
+  <li>The browser <strong>waits</strong> for an operation to complete before moving to the next step.</li>
+  <li>The UI <strong>freezes</strong> until the update is done.</li>
+  <li>This can make the application <strong>slow and unresponsive</strong> if the operation takes time.</li>
+</ul>
+
+<h4 id="example-synchronous"><strong>Example (Synchronous)</strong></h4>
+<p>💡 Imagine you’re ordering food at a restaurant:</p>
+<ol>
+  <li>You <strong>place an order</strong> at the counter.</li>
+  <li>You <strong>stand there waiting</strong> until the food is ready.</li>
+  <li>Once the food is ready, you take it and leave.</li>
+</ol>
+
+<p>👉 In <strong>frontend terms</strong>, this means when you click a button, the whole page <strong>freezes</strong> until the request is completed.</p>
+
+<h4 id="code-example-synchronous"><strong>Code Example (Synchronous)</strong></h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://example.com/data</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// This blocks execution</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Data fetched!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">This message waits until data is fetched!</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+<p>👎 <strong>Issue:</strong> The browser <strong>waits</strong> for <code class="language-plaintext highlighter-rouge">fetch()</code> to complete before printing <code class="language-plaintext highlighter-rouge">"This message waits until data is fetched!"</code>. This can <strong>freeze the UI</strong>.</p>
+
+<hr />
+
+<h3 id="2-asynchronous-updates"><strong>2. Asynchronous Updates</strong></h3>
+<ul>
+  <li>The browser <strong>doesn’t wait</strong> for the operation to finish.</li>
+  <li>The UI <strong>remains responsive</strong> while the update happens in the background.</li>
+  <li>The page updates automatically when data arrives.</li>
+</ul>
+
+<h4 id="example-asynchronous"><strong>Example (Asynchronous)</strong></h4>
+<p>💡 Imagine you’re ordering food at a restaurant with a <strong>buzzer</strong>:</p>
+<ol>
+  <li>You <strong>place an order</strong> and get a <strong>buzzer</strong>.</li>
+  <li>You <strong>sit and relax</strong> while waiting.</li>
+  <li>When the food is ready, the <strong>buzzer rings</strong>, and you go to pick up your food.</li>
+</ol>
+
+<p>👉 In <strong>frontend terms</strong>, you can click a button, continue using the page, and get a notification when data arrives.</p>
+
+<h4 id="code-example-asynchronous"><strong>Code Example (Asynchronous)</strong></h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://example.com/data</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// Fetch happens in background</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Data fetched!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">This message appears immediately!</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+<p>👍 <strong>Advantage:</strong> The <code class="language-plaintext highlighter-rouge">"This message appears immediately!"</code> is printed <strong>before</strong> data is fetched, meaning the UI <strong>stays responsive</strong>.</p>
+
+<hr />
+
+<h3 id="key-differences"><strong>Key Differences</strong></h3>
+<p>| Feature | Synchronous | Asynchronous |
+|———|————|————–|
+| <strong>Execution</strong> | One step at a time (blocking) | Multiple tasks at once (non-blocking) |
+| <strong>UI Freezing?</strong> | Yes, if an operation is slow | No, UI remains responsive |
+| <strong>Example</strong> | Waiting in line at a restaurant | Ordering food and waiting for a buzzer |
+| <strong>Best Used For</strong> | Small, quick tasks | Network requests, animations, background updates |</p>
+
+<p><strong>Conclusion:</strong><br />
+Asynchronous updates make web apps <strong>faster and more user-friendly</strong>, especially when dealing with <strong>API calls or background tasks</strong>.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

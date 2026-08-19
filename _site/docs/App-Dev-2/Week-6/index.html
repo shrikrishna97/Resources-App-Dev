@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        
+
+        <h1>{{ message }}</h1>
+        <button @click="goBack"> go back </button>
+        
+        <!-- <router-view name=""></router-view> -->
+        <router-view></router-view>
+    </div>
+    <script type="module" src="./script.js"></script>
+</body>
+</html>

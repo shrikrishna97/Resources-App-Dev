@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-10/Py_testing.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-10/Py_testing.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/App-Dev-1/Week-10/Py_testing.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <hr />
+
+<h3 id="session-objective"><strong>Session Objective</strong></h3>
+
+<p>To explore the essential features of Pytest in Python including fixtures, markers, parameterization, and organizing reusable code using <code class="language-plaintext highlighter-rouge">conftest.py</code>. By the end, students will understand how to write clear and maintainable tests using idiomatic Pytest practices.</p>
+
+<hr />
+
+<h4 id="introduction-to-pytest"><strong>Introduction to Pytest</strong></h4>
+
+<ul>
+  <li>Pytest is a testing framework that makes it easy to write simple and scalable test code.</li>
+  <li>Install: <code class="language-plaintext highlighter-rouge">pip install pytest</code></li>
+  <li>Test file format: <code class="language-plaintext highlighter-rouge">test_*.py</code> or <code class="language-plaintext highlighter-rouge">*_test.py</code></li>
+  <li>Test function naming: must start with <code class="language-plaintext highlighter-rouge">test_</code></li>
+</ul>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p>Run using: <code class="language-plaintext highlighter-rouge">pytest file.py</code></p>
+
+<hr />
+
+<h4 id="fixtures"><strong>Fixtures</strong></h4>
+
+<p>Fixtures are functions that run before (and sometimes after) tests. They help set up test context.</p>
+
+<p><strong>Analogy:</strong> Think of a fixture like a butler who sets your table before every meal (test).</p>
+
+<p><strong>Basic Fixture:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">sample_list</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">test_sum</span><span class="p">(</span><span class="n">sample_list</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sample_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
+</code></pre></div></div>
+<p>Run using: <code class="language-plaintext highlighter-rouge">pytest file.py</code></p>
+
+<p><strong>Scope:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">function</code> (default): New fixture for each test.</li>
+  <li><code class="language-plaintext highlighter-rouge">module</code>, <code class="language-plaintext highlighter-rouge">class</code>, <code class="language-plaintext highlighter-rouge">session</code>: Controls how often the fixture is run.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s">"module"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">connect_db</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Connecting once for module"</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="s">"db_connection"</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Disconnecting after module"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="parameterization"><strong>Parameterization</strong></h4>
+
+<p>Allows you to run the same test with different inputs.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s">"a,b,result"</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_addition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">==</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p><strong>Analogy:</strong> Like giving a quiz to multiple students with the same question but different answers.</p>
+
+<hr />
+
+<h4 id="skipping--expected-failures"><strong>Skipping &amp; Expected Failures</strong></h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">skip</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s">"Work in progress"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_login</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="bp">False</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">xfail</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s">"Bug #101"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_feature</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<p><strong>Usage:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@pytest.mark.skip</code>: Skip a test</li>
+  <li><code class="language-plaintext highlighter-rouge">@pytest.mark.xfail</code>: Expect it to fail (without breaking suite)</li>
+</ul>
+
+<hr />
+
+<h4 id="grouping-with-markers--filtering"><strong>Grouping with Markers &amp; Filtering</strong></h4>
+
+<p>Markers allow grouping tests and selectively running them.</p>
+
+<p><strong>Custom Marker:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">slow</span>
+<span class="k">def</span> <span class="nf">test_large_data</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<p>Run only slow tests: <code class="language-plaintext highlighter-rouge">pytest -m slow</code></p>
+
+<p>You can also use keyword filters:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest <span class="nt">-k</span> <span class="s2">"addition"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="shared-fixtures-with-conftestpy"><strong>Shared Fixtures with conftest.py</strong></h4>
+
+<p><strong>Why?</strong> To avoid duplicating fixtures across test files.</p>
+
+<p><strong>Analogy:</strong> Like placing shared utensils in a kitchen drawer (<code class="language-plaintext highlighter-rouge">conftest.py</code>) instead of repeating them at every table.</p>
+
+<p><strong>Structure:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project/
+├── tests/
+│   ├── test_math.py
+│   ├── test_string.py
+│   └── conftest.py
+</code></pre></div></div>
+
+<p><strong>conftest.py:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">fruit_basket</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">,</span> <span class="s">"cherry"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>test_math.py:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_banana_in_basket</span><span class="p">(</span><span class="n">fruit_basket</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="s">"banana"</span> <span class="ow">in</span> <span class="n">fruit_basket</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Pytest automatically looks for fixtures in <code class="language-plaintext highlighter-rouge">conftest.py</code></li>
+  <li>No need to import <code class="language-plaintext highlighter-rouge">fruit_basket</code> manually</li>
+</ul>
+
+<hr />
+
+<h3 id="post-session-practice-resources"><strong>Post-Session Practice Resources</strong></h3>
+
+<ul>
+  <li><a href="https://docs.pytest.org">https://docs.pytest.org</a></li>
+  <li><a href="https://www.tutorialspoint.com/pytest/index.htm">https://www.tutorialspoint.com/pytest/index.htm</a></li>
+  <li><a href="https://realpython.com/pytest-python-testing/">https://realpython.com/pytest-python-testing/</a></li>
+</ul>
+
+<hr />
+
+<h3 id="unit-testing-in-flask-using-pytest"><strong>Unit Testing in Flask Using Pytest</strong></h3>
+
+<p>Unit testing is a core practice in Flask application development, allowing you to validate individual parts (units) of your application to ensure they behave as expected. <code class="language-plaintext highlighter-rouge">pytest</code> is a popular Python testing framework that works seamlessly with Flask.</p>
+
+<hr />
+
+<h3 id="1-setting-up-the-project">1. <strong>Setting Up the Project</strong></h3>
+
+<p>Make sure you have Flask and pytest installed:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>Flask pytest
+</code></pre></div></div>
+
+<p><strong>Project Structure:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>myapp/
+├── app.py
+├── test_app.py
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-minimal-flask-app-to-test">2. <strong>Minimal Flask App to Test</strong></h3>
+
+<h4 id="apppy">app.py</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'Hello, World!'</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/about'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">about</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">'This is the about page.'</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/greet/&lt;name&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s">'Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">!'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-writing-tests-with-pytest">3. <strong>Writing Tests with Pytest</strong></h3>
+
+<h4 id="test_apppy">test_app.py</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">client</span><span class="p">():</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'TESTING'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">test_client</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">client</span>
+
+<span class="k">def</span> <span class="nf">test_index</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="k">assert</span> <span class="sa">b</span><span class="s">'Hello, World!'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">test_about</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/about'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="k">assert</span> <span class="sa">b</span><span class="s">'This is the about page.'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">test_greet</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/greet/Alice'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="k">assert</span> <span class="sa">b</span><span class="s">'Hello, Alice!'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">data</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-key-concepts-explained-with-code">4. <strong>Key Concepts Explained with Code</strong></h3>
+
+<h4 id="using-test_-prefix">Using <code class="language-plaintext highlighter-rouge">test_</code> Prefix</h4>
+
+<ul>
+  <li>All test functions must start with <code class="language-plaintext highlighter-rouge">test_</code> for pytest to detect them.</li>
+</ul>
+
+<h4 id="using-fixtures">Using Fixtures</h4>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">client()</code> fixture provides a fresh Flask test client for every test, which simulates browser-like behavior.</li>
+</ul>
+
+<h4 id="testing-routes">Testing Routes</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">client.get('/some-url')</code> simulates a GET request.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">assert</code> to check status codes and response content.</li>
+</ul>
+
+<h4 id="byte-strings">Byte Strings</h4>
+
+<ul>
+  <li>Flask’s <code class="language-plaintext highlighter-rouge">response.data</code> is in bytes, so compare using <code class="language-plaintext highlighter-rouge">b'Text'</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="5-running-the-tests">5. <strong>Running the Tests</strong></h3>
+
+<p>Navigate to the directory containing <code class="language-plaintext highlighter-rouge">test_app.py</code> and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest
+</code></pre></div></div>
+
+<p>You’ll see output like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>================== test session starts ==================
+collected 3 items
+
+test_app.py ...                                        [100%]
+
+=================== 3 passed in 0.20s ===================
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-tips">6. <strong>Tips</strong></h3>
+
+<ul>
+  <li>Group related tests in classes using <code class="language-plaintext highlighter-rouge">class TestViews:</code> or <code class="language-plaintext highlighter-rouge">class TestAuth:</code></li>
+  <li>Use separate files like <code class="language-plaintext highlighter-rouge">test_models.py</code>, <code class="language-plaintext highlighter-rouge">test_forms.py</code>, etc. for modularity.</li>
+  <li>Use temporary databases and mock data for more complex tests.</li>
+</ul>
+
+<hr />
+
+<h3 id="summary">Summary</h3>
+
+<ul>
+  <li>Minimal setup: Flask + Pytest</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">test_</code> prefix for all test functions</li>
+  <li>Simulate requests using <code class="language-plaintext highlighter-rouge">client.get()</code> / <code class="language-plaintext highlighter-rouge">client.post()</code></li>
+  <li>Validate response with <code class="language-plaintext highlighter-rouge">assert</code></li>
+</ul>
+
+<hr />
+
+<h3 id="bonus-reference-table-testing-types-and-focus-areas"><strong>Bonus Reference Table: Testing Types and Focus Areas</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Test Type</strong></th>
+      <th><strong>Focus Area</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Unit Testing</td>
+      <td>Smallest logical units (functions/methods)</td>
+    </tr>
+    <tr>
+      <td>Integration Testing</td>
+      <td>Multiple components/modules working together</td>
+    </tr>
+    <tr>
+      <td>System Testing</td>
+      <td>Whole app in full environment including server</td>
+    </tr>
+    <tr>
+      <td>System Testing Automation</td>
+      <td>Simulated end-user browser-based interaction</td>
+    </tr>
+    <tr>
+      <td>User Acceptance Testing</td>
+      <td>Real-world verification by actual users before release</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

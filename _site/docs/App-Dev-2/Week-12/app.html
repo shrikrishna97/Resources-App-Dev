@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <title>CORS + Cookies Demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>CORS + Cookies Demo</h1>
+      <button @click="setCookie">Set Cookie</button>
+      <button @click="getCookie">Get Cookie</button>
+      <p>{{ message }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          message: "hi",
+        },
+        methods: {
+          async setCookie() {
+            try {
+              const res = await fetch("http://127.0.0.1:5000/set-cookie", {
+                method: "GET",
+                credentials: "include", // include cookies
+              });
+              const data = await res.json();
+              this.message = data.message;
+            } catch {
+              this.message = "Error setting cookie!";
+            }
+          },
+          async getCookie() {
+            try {
+              const res = await fetch("http://127.0.0.1:5000/get-cookie", {
+                credentials: "include",
+              });
+              const data = await res.json();
+              this.message = data.message + " (Token: " + data.token + ")";
+            } catch {
+              this.message = "Error retrieving cookie!";
+            }
+          },
+          async deleteCookie() {
+            try {
+              const res = await fetch("http://127.0.0.1:5000/delete-cookie", {
+                method: "GET",
+                credentials: "include",
+              });
+              const data = await res.json();
+              this.message = data.msg;
+            } catch {
+              this.message = "Error deleting cookie!";
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

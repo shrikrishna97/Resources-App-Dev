@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/notes.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/notes.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1/week-5/Rev1Q1May24/notes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="revision-notes-quiz-1">Revision Notes Quiz-1</h1>
+
+<h4 id="1-size--characters--bits-required-to-store-each-character">1. <strong>Size = characters × bits required to store each character</strong></h4>
+<h4 id="2-ascii-7-bit-old">2. <strong>ASCII (7-bit old)</strong></h4>
+<ul>
+  <li><strong>7-bit ASCII</strong> example: The character <code class="language-plaintext highlighter-rouge">'A'</code> is represented by <strong>65</strong> in decimal (binary: <code class="language-plaintext highlighter-rouge">1000001</code>).
+    <h4 id="3-ascii-8-bit-new">3. <strong>ASCII (8-bit new)</strong></h4>
+  </li>
+</ul>
+
+<h4 id="4-ucs-8-bits">4. <strong>UCS (8 bits)</strong></h4>
+
+<h4 id="5-ucs-2-2-bytes-ie-16-bits">5. <strong>UCS-2 (2 bytes, i.e., 16 bits)</strong></h4>
+
+<h4 id="6-ucs-4-4-bytes">6. <strong>UCS-4 (4 bytes)</strong></h4>
+
+<h4 id="7-utf-8-8-bits">7. <strong>UTF-8 (8 bits)</strong></h4>
+
+<h4 id="8-bandwidth--no-of-requests--size-of-request">8. <strong>Bandwidth = no of requests × size of request</strong></h4>
+<h4 id="9-unit-balancing">9. <strong>Unit Balancing:</strong></h4>
+<ul>
+  <li><strong>Mbps to MBps</strong> conversion:
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kd">let</span> <span class="nx">Mbps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// Megabits per second</span>
+   <span class="kd">let</span> <span class="nx">timeInSeconds</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+   <span class="kd">let</span> <span class="nx">totalDataInMegabits</span> <span class="o">=</span> <span class="nx">Mbps</span> <span class="o">*</span> <span class="nx">timeInSeconds</span><span class="p">;</span> <span class="c1">// Total data in Mb</span>
+   <span class="kd">let</span> <span class="nx">totalDataInMegabytes</span> <span class="o">=</span> <span class="nx">totalDataInMegabits</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>  <span class="c1">// Convert to MB</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Total data transferred: </span><span class="p">${</span><span class="nx">totalDataInMegabytes</span><span class="p">}</span><span class="s2"> MB`</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Speed = distance / time</strong>:
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kd">let</span> <span class="nx">distance</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// meters</span>
+   <span class="kd">let</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// seconds</span>
+   <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="nx">distance</span> <span class="o">/</span> <span class="nx">time</span><span class="p">;</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Speed: </span><span class="p">${</span><span class="nx">speed</span><span class="p">}</span><span class="s2"> m/s`</span><span class="p">);</span>  <span class="c1">// Output: 10 m/s</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="10-styling">10. <strong>Styling:</strong></h4>
+<ul>
+  <li><strong>Inline CSS:</strong>
+   ```html</li>
+</ul>
+<p style="color: red;">This is red text</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   - **Internal CSS:**
+   ```html
+   &lt;style&gt;
+     p { color: blue; }
+   &lt;/style&gt;
+   &lt;p&gt;This is blue text&lt;/p&gt;
+</code></pre></div></div>
+
+<ul>
+  <li><strong>External CSS:</strong> (Linking to an external stylesheet)
+   ```html</li>
+</ul>
+<link rel="stylesheet" href="styles.css" />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#### 11. **Selectors:**
+   - **ID selector:**
+   ```html
+   &lt;style&gt;
+     #myDiv { color: red; }
+   &lt;/style&gt;
+   &lt;div id="myDiv"&gt;This is red text&lt;/div&gt;
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Class selector:</strong>
+   ```html</li>
+</ul>
+<style>
+     .myClass { color: green; }
+   </style>
+
+<div class="myClass">This is green text</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#### 12. **String:**
+   - **Substitute:**
+   ```python
+   from string import Template
+   t = Template('Hello, $name!')
+   print(t.substitute(name='Ravi'))  # Output: Hello, Ravi!
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Safe substitute</strong> (to avoid errors with missing variables):
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">safe_substitute</span><span class="p">())</span>  <span class="c1"># Output: Hello, $name!
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="13-jinja-template-rendering">13. <strong>Jinja (Template Rendering):</strong></h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">Template</span>
+   <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="s">'Hello {{ name }}!'</span><span class="p">)</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">template</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'Ravi'</span><span class="p">))</span>  <span class="c1"># Output: Hello Ravi!
+</span>
+</code></pre></div></div>
+
+<h4 id="14-display">14. <strong>Display:</strong></h4>
+<ul>
+  <li><strong>Inline:</strong>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"background-color: yellow;"</span><span class="nt">&gt;</span>Text 1<span class="nt">&lt;/span&gt;</span>
+   <span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"background-color: green;"</span><span class="nt">&gt;</span>Text 2<span class="nt">&lt;/span&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Block:</strong>
+   ```html</li>
+</ul>
+<div style="background-color: yellow;">Block 1</div>
+<div style="background-color: green;">Block 2</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   - **Inline-block:**
+   ```html
+   &lt;div style="display: inline-block; background-color: yellow;"&gt;Block 1&lt;/div&gt;
+   &lt;div style="display: inline-block; background-color: green;"&gt;Block 2&lt;/div&gt;
+</code></pre></div></div>
+
+<h4 id="15-mvc-model-view-controller">15. <strong>MVC (Model-View-Controller):</strong></h4>
+<ul>
+  <li><strong>Model</strong> (Handles data, typically interacting with a database):
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">class</span> <span class="nc">UserModel</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>View</strong> (Renders data to the user):
+   ```html</li>
+</ul>
+
+<p>User Name: {{ user.name }}</p>
+<p>User Age: {{ user.age }}</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   - **Controller** (Handles logic and interacts with the model):
+   ```python
+   def get_user():
+       user = UserModel('Ravi', 25)
+       return render_template('user_view.html', user=user)
+</code></pre></div></div>
+
+<h4 id="16-response">16. <strong>Response:</strong></h4>
+<ul>
+  <li><strong>Response header and body using <code class="language-plaintext highlighter-rouge">curl</code>:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-I</span> https://www.google.com  <span class="c"># Fetches only the headers</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>GET request (retrieves header and body):</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl https://jsonplaceholder.typicode.com/posts/1
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="17-gethead">17. <strong>GET/HEAD:</strong></h4>
+<ul>
+  <li><strong>GET request example:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-X</span> GET https://api.example.com/data
+</code></pre></div>    </div>
+  </li>
+  <li><strong>HEAD request (fetches header without body):</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-I</span> https://api.example.com/data
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="18-curl--x-method-url-sending-request">18. <strong>curl -X (method) URL (sending request)</strong></h4>
+<ul>
+  <li><strong>Example POST request with data:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-X</span> POST https://api.example.com/users <span class="nt">-d</span> <span class="s1">'{"name":"Ravi"}'</span> <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="19-python--m-httpserver">19. <strong>python -m http.server</strong></h4>
+<ul>
+  <li><strong>Start a simple HTTP server to serve files:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   python <span class="nt">-m</span> http.server 8000
+</code></pre></div>    </div>
+  </li>
+  <li>After running this command, visit <code class="language-plaintext highlighter-rouge">http://localhost:8000</code> in your browser to view the served files.</li>
+</ul>
+
+<h4 id="20-http-status-codes">20. <strong>HTTP Status Codes:</strong></h4>
+<ul>
+  <li><strong>Common Status Codes:</strong></li>
+  <li><strong>200 OK</strong></li>
+  <li><strong>400 Bad Request</strong></li>
+  <li><strong>404 Not Found</strong></li>
+  <li><strong>1xx informational response</strong> – the request was received, continuing process</li>
+  <li><strong>2xx successful</strong> – the request was successfully received, understood, and
+accepted</li>
+  <li><strong>3xx redirection</strong> – further action needs to be taken in order to complete the
+request</li>
+  <li><strong>4xx client error</strong> – the request contains bad syntax or cannot be fulfilled</li>
+  <li><strong>5xx server error</strong> – the server failed to fulfil an apparently valid request</li>
+</ul>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP Status Codes</a></p>
+
+<p><strong>SQL Extra resource:</strong> https://subenduonlinedegre.github.io/DBMS-WIKI/</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-7/Vue-CLI/Vue_CLI_SFC_Guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="single-file-components-sfc-with-vite--vue-3---complete-beginners-guide">Single File Components (SFC) with Vite + Vue 3 - Complete Beginner’s Guide</h1>
+
+<p>A comprehensive guide to get started with Vite and Vue 3 Single File Components from scratch.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Vue CLI is no longer maintained. This guide uses <strong>Vite</strong> - the modern, faster build tool recommended for Vue projects.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>About Vue 2:</strong> Vite only scaffolds <strong>Vue 3</strong> projects. Vue 2 is not available as an option. Since Vue 3 is the current version and Vue 2 reached End of Life (Dec 2023), we use Vue 3.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#what-is-vite">What is Vite?</a></li>
+  <li><a href="#vue-cli-vs-vite">Vue CLI vs Vite</a></li>
+  <li><a href="#what-are-single-file-components">What are Single File Components?</a></li>
+  <li><a href="#prerequisites-installation">Prerequisites Installation</a></li>
+  <li><a href="#creating-your-first-project">Creating Your First Project</a></li>
+  <li><a href="#understanding-project-structure">Understanding Project Structure</a></li>
+  <li><a href="#understanding-key-javascript-concepts">Understanding Key JavaScript Concepts</a></li>
+  <li><a href="#single-file-component-anatomy">Single File Component Anatomy</a>
+    <ul>
+      <li><a href="#understanding-script-setup">Understanding <code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code></a></li>
+      <li><a href="#understanding-scoped-in-style">Understanding <code class="language-plaintext highlighter-rouge">scoped</code> in <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#example-project-book-library-manager">Example Project: Book Library Manager</a></li>
+  <li><a href="#common-issues--troubleshooting">Common Issues &amp; Troubleshooting</a></li>
+  <li><a href="#useful-commands-reference">Useful Commands Reference</a></li>
+  <li><a href="#vue-router">Vue Router</a></li>
+</ol>
+
+<hr />
+
+<h2 id="what-is-vite">What is Vite?</h2>
+
+<p><strong>Vite</strong> (French word for “fast”, pronounced <code class="language-plaintext highlighter-rouge">/vit/</code>) is the next-generation build tool for modern web projects. It provides:</p>
+
+<ul>
+  <li>Instant server start (no bundling during development)</li>
+  <li>Lightning-fast Hot Module Replacement (HMR)</li>
+  <li>Optimized production builds using Rollup</li>
+  <li>Native ES modules support</li>
+  <li>Much faster than Vue CLI/Webpack</li>
+</ul>
+
+<hr />
+
+<h2 id="vue-cli-vs-vite">Vue CLI vs Vite</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Vue CLI (Old)</th>
+      <th>Vite (Modern)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Status</td>
+      <td>⚠️ No longer maintained</td>
+      <td>✅ Actively maintained</td>
+    </tr>
+    <tr>
+      <td>Dev Server Start</td>
+      <td>Slow (bundles everything)</td>
+      <td>Instant (no bundling)</td>
+    </tr>
+    <tr>
+      <td>Hot Reload</td>
+      <td>Slower</td>
+      <td>Near-instant</td>
+    </tr>
+    <tr>
+      <td>Build Tool</td>
+      <td>Webpack</td>
+      <td>Rollup (optimized)</td>
+    </tr>
+    <tr>
+      <td>Configuration</td>
+      <td>Complex</td>
+      <td>Simple</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Why use Vite?</strong> Vue CLI is deprecated. Vite is the official recommendation from the Vue team.</p>
+
+<hr />
+
+<h2 id="what-are-single-file-components">What are Single File Components?</h2>
+
+<p><strong>Single File Components (SFC)</strong> are <code class="language-plaintext highlighter-rouge">.vue</code> files that contain three sections:</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- HTML structure --&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="c1">// JavaScript logic</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span><span class="nt">&gt;</span>
+<span class="c">/* CSS styling */</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Benefits:</strong></p>
+<ul>
+  <li>All component code in one file</li>
+  <li>Scoped CSS (styles apply only to that component)</li>
+  <li>Better organization and maintainability</li>
+  <li>Syntax highlighting and IDE support</li>
+</ul>
+
+<hr />
+
+<h2 id="prerequisites-installation">Prerequisites Installation</h2>
+
+<h3 id="step-1-install-nodejs-and-npm">Step 1: Install Node.js and npm</h3>
+
+<p>Node.js includes npm (Node Package Manager). You need Node.js version <strong>16.x or higher</strong>.</p>
+
+<hr />
+
+<h3 id="for-windows-users">For Windows Users</h3>
+
+<p><strong>Option A: Direct Download (Recommended for Beginners)</strong></p>
+
+<ol>
+  <li>Go to <a href="https://nodejs.org">https://nodejs.org</a></li>
+  <li>Download the <strong>LTS</strong> (Long Term Support) version</li>
+  <li>Run the installer (.msi file)</li>
+  <li>Click “Next” through all steps (keep defaults)</li>
+  <li>Check “Automatically install necessary tools” if prompted</li>
+  <li>Click “Install” and wait for completion</li>
+</ol>
+
+<p><strong>Option B: Using Chocolatey (Package Manager)</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># First install Chocolatey (run PowerShell as Administrator)</span><span class="w">
+</span><span class="n">Set-ExecutionPolicy</span><span class="w"> </span><span class="nx">Bypass</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">Process</span><span class="w"> </span><span class="nt">-Force</span><span class="p">;</span><span class="w"> </span><span class="p">[</span><span class="n">System.Net.ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">System.Net.ServicePointManager</span><span class="p">]::</span><span class="n">SecurityProtocol</span><span class="w"> </span><span class="o">-bor</span><span class="w"> </span><span class="nx">3072</span><span class="p">;</span><span class="w"> </span><span class="n">iex</span><span class="w"> </span><span class="p">((</span><span class="n">New-Object</span><span class="w"> </span><span class="nx">System.Net.WebClient</span><span class="p">)</span><span class="o">.</span><span class="nf">DownloadString</span><span class="p">(</span><span class="s1">'https://community.chocolatey.org/install.ps1'</span><span class="p">))</span><span class="w">
+
+</span><span class="c"># Then install Node.js</span><span class="w">
+</span><span class="n">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">nodejs-lts</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Option C: Using winget (Windows 11)</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">winget</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">OpenJS.NodeJS.LTS</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="for-macos-users">For macOS Users</h3>
+
+<p><strong>Option A: Direct Download</strong></p>
+
+<ol>
+  <li>Go to <a href="https://nodejs.org">https://nodejs.org</a></li>
+  <li>Download the <strong>LTS</strong> version for macOS</li>
+  <li>Run the .pkg installer</li>
+  <li>Follow installation prompts</li>
+</ol>
+
+<p><strong>Option B: Using Homebrew (Recommended)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Homebrew first (if not installed)</span>
+/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># Install Node.js</span>
+brew <span class="nb">install </span>node
+</code></pre></div></div>
+
+<p><strong>Option C: Using nvm (Node Version Manager)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install nvm</span>
+curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+<span class="c"># Restart terminal, then install Node</span>
+nvm <span class="nb">install</span> <span class="nt">--lts</span>
+nvm use <span class="nt">--lts</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="for-linux-users-ubuntudebian">For Linux Users (Ubuntu/Debian)</h3>
+
+<p><strong>Option A: Using apt (Default repositories - may be older version)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>nodejs npm
+</code></pre></div></div>
+
+<p><strong>Option B: Using NodeSource (Recommended - Latest LTS)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Download and run NodeSource setup script</span>
+curl <span class="nt">-fsSL</span> https://deb.nodesource.com/setup_lts.x | <span class="nb">sudo</span> <span class="nt">-E</span> bash -
+
+<span class="c"># Install Node.js</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nodejs
+</code></pre></div></div>
+
+<p><strong>Option C: Using nvm (Most Flexible)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install nvm</span>
+curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+<span class="c"># Close and reopen terminal, then:</span>
+nvm <span class="nb">install</span> <span class="nt">--lts</span>
+nvm use <span class="nt">--lts</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-2-verify-installation">Step 2: Verify Installation</h3>
+
+<p>Open a <strong>new terminal/command prompt</strong> and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">--version</span>
+<span class="c"># Should show something like: v20.x.x</span>
+
+npm <span class="nt">--version</span>
+<span class="c"># Should show something like: 10.x.x</span>
+</code></pre></div></div>
+
+<p>If you see version numbers, you’re ready to proceed!</p>
+
+<hr />
+
+<h2 id="creating-your-first-project-vite--vue-3">Creating Your First Project (Vite + Vue 3)</h2>
+
+<p>Unlike Vue CLI, Vite doesn’t need global installation. You create projects directly with npm.</p>
+
+<h3 id="step-1-create-project-with-vite">Step 1: Create Project with Vite</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest my-vue-app
+</code></pre></div></div>
+
+<p><strong>Interactive prompts will appear:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>◇  Select a framework:
+│  Vue
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>◇  Select a variant:
+│  Official Vue Starter ↗    ← Select this (recommended!)
+</code></pre></div></div>
+
+<p>This launches <code class="language-plaintext highlighter-rouge">create-vue</code> which gives you more options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>◇  Use TypeScript?
+│  No
+
+◇  Select features to include in your project:
+│  ◻ Router (SPA development)      ← Select if you need routing
+│  ◻ Pinia (state management)
+│  ◻ Vitest (unit testing)
+│  ◻ End-to-End Testing
+│  ◻ Linter (error prevention)     ← Recommended
+│  ◻ Prettier (code formatting)    ← Recommended
+
+◇  Select experimental features:
+│  none
+
+◇  Skip all example code and start with a blank Vue project?
+│  No
+</code></pre></div></div>
+
+<p><strong>Recommended selections for beginners:</strong></p>
+<ul>
+  <li>✅ Router (if building multi-page app)</li>
+  <li>✅ Linter (helps catch errors)</li>
+  <li>✅ Prettier (auto-formats code)</li>
+</ul>
+
+<h3 id="step-2-navigate-and-install">Step 2: Navigate and Install</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>my-vue-app
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="step-3-format-and-run">Step 3: Format and Run</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run format    <span class="c"># Format code with Prettier (if selected)</span>
+npm run dev       <span class="c"># Start development server</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  VITE v5.x.x  ready in 300 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.1.5:5173/
+  ➜  press h + enter to show help
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">http://localhost:5173</code> in your browser!</p>
+
+<p><strong>To stop the server:</strong> Press <code class="language-plaintext highlighter-rouge">Ctrl + C</code></p>
+
+<hr />
+
+<h2 id="quick-reference-all-commands">Quick Reference: All Commands</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create project with Router, Linter, Prettier</span>
+npm create vite@latest my-vue-app
+<span class="c"># Select: Vue → Official Vue Starter</span>
+<span class="c"># Select features: Router, Linter, Prettier</span>
+
+<span class="nb">cd </span>my-vue-app
+npm <span class="nb">install
+</span>npm run format
+npm run dev
+</code></pre></div></div>
+
+<p><strong>Alternative (minimal setup without Router):</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest my-vue-app
+<span class="c"># Select: Vue → JavaScript</span>
+
+<span class="nb">cd </span>my-vue-app
+npm <span class="nb">install
+</span>npm run dev
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="understanding-project-structure-official-vue-starter">Understanding Project Structure (Official Vue Starter)</h2>
+
+<p>When you select <strong>Router, ESLint, Prettier</strong> during setup:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-vue-app/
+├── node_modules/        # Dependencies (don't touch)
+├── public/              # Static assets (favicon.ico)
+├── index.html           # Entry HTML (at root, not in public/)
+├── vite.config.js       # Vite configuration
+├── package.json         # Project dependencies &amp; scripts
+├── jsconfig.json        # JavaScript project config
+├── eslint.config.js     # ESLint configuration
+├── .prettierrc.json     # Prettier configuration
+└── src/
+    ├── assets/          # CSS files, images, logo.svg
+    ├── components/      # Reusable Vue components
+    │   ├── HelloWorld.vue
+    │   └── icons/       # Icon components
+    ├── router/          # Vue Router configuration
+    │   └── index.js     # Route definitions
+    ├── views/           # Page components (routed)
+    │   ├── HomeView.vue
+    │   └── AboutView.vue
+    ├── App.vue          # Root component
+    └── main.js          # Entry point
+</code></pre></div></div>
+
+<p><strong>Key Points:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">router/</code> folder contains route configurations</li>
+  <li><code class="language-plaintext highlighter-rouge">views/</code> folder contains page-level components</li>
+  <li><code class="language-plaintext highlighter-rouge">components/</code> folder for reusable components</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code> is at project root (not in <code class="language-plaintext highlighter-rouge">public/</code>)</li>
+</ul>
+
+<h3 id="key-files-explained">Key Files Explained</h3>
+
+<p><strong><code class="language-plaintext highlighter-rouge">vite.config.js</code></strong> - Vite configuration:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vite</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">vue</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@vitejs/plugin-vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">vue</span><span class="p">()]</span>  <span class="c1">// Enable Vue 3 SFC support</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">index.html</code></strong> - Entry HTML file:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Vue 3 + Vite App<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="c">&lt;!-- Note: type="module" is required for Vite --&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"/src/main.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main.js</code></strong> - The entry point that mounts Vue with Router:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>   <span class="c1">// Import router from router/index.js</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>      <span class="c1">// Create Vue application instance</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>                 <span class="c1">// Register Router plugin</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>               <span class="c1">// Mount to DOM element with id="app"</span>
+</code></pre></div></div>
+
+<p><strong>Without Router (minimal setup):</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+
+<span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">).</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/App.vue</code></strong> - The root component that holds all other components.</p>
+
+<hr />
+
+<h2 id="understanding-key-javascript-concepts">Understanding Key JavaScript Concepts</h2>
+
+<p>Before diving deeper, let’s understand some important JavaScript/ES6 concepts used in Vue:</p>
+
+<h3 id="import-statement"><code class="language-plaintext highlighter-rouge">import</code> Statement</h3>
+
+<p><code class="language-plaintext highlighter-rouge">import</code> is used to bring code from other files into your current file.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import a named export (Vue 3 style)</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="c1">// Import the default export and name it "App"</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+
+<span class="c1">// Import from a folder (looks for index.js inside)</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="c1">// Import specific named exports</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+</code></pre></div></div>
+
+<p><strong>Path types:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">'vue'</code> - From node_modules (installed package)</li>
+  <li><code class="language-plaintext highlighter-rouge">'./App.vue'</code> - Relative path (same folder)</li>
+  <li><code class="language-plaintext highlighter-rouge">'../views/Home.vue'</code> - Go up one folder, then into views</li>
+</ul>
+
+<hr />
+
+<h3 id="export-default"><code class="language-plaintext highlighter-rouge">export default</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">export default</code> makes something available to other files. Each file can have <strong>only one</strong> default export.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In StudentCard.vue</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">StudentCard</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Now another file can import it:</span>
+<span class="k">import</span> <span class="nx">StudentCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/StudentCard.vue</span><span class="dl">'</span>
+</code></pre></div></div>
+
+<p><strong>Why use it?</strong></p>
+<ul>
+  <li>Allows modular code (split into multiple files)</li>
+  <li>Each component lives in its own .vue file</li>
+  <li>Easy to reuse components across projects</li>
+</ul>
+
+<hr />
+
+<h3 id="appuse-vue-3"><code class="language-plaintext highlighter-rouge">app.use()</code> (Vue 3)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">app.use()</code> installs a Vue plugin. Plugins add global functionality.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="c1">// Install plugins</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="c1">// Now you can use &lt;router-view&gt; and &lt;router-link&gt; in templates</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Vue 2 vs Vue 3:</strong></p>
+  <ul>
+    <li>Vue 2: <code class="language-plaintext highlighter-rouge">Vue.use(VueRouter)</code></li>
+    <li>Vue 3: <code class="language-plaintext highlighter-rouge">app.use(router)</code></li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h3 id="router-history-mode-vue-3">Router History Mode (Vue 3)</h3>
+
+<p>The router history mode controls how URLs look:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>URL Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">createWebHashHistory()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://example.com/#/about</code></td>
+      <td>Uses hash (#) - works everywhere, no server config</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">createWebHistory()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">http://example.com/about</code></td>
+      <td>Clean URLs - needs server configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
+  <span class="na">history</span><span class="p">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>  <span class="c1">// Clean URLs without #</span>
+  <span class="nx">routes</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">createWebHistory()</code> requires server setup in production to redirect all routes to <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+
+<hr />
+
+<h3 id="createapp-and-mount-vue-3"><code class="language-plaintext highlighter-rouge">createApp()</code> and <code class="language-plaintext highlighter-rouge">.mount()</code> (Vue 3)</h3>
+
+<p>Vue 3 uses a simpler mounting syntax:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+
+<span class="c1">// Create and mount in one line</span>
+<span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">).</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="c1">// Or with router/plugins:</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>  <span class="c1">// Attach to &lt;div id="app"&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Vue 2 vs Vue 3:</strong></p>
+  <ul>
+    <li>Vue 2: <code class="language-plaintext highlighter-rouge">new Vue({ render: h =&gt; h(App) }).$mount('#app')</code></li>
+    <li>Vue 3: <code class="language-plaintext highlighter-rouge">createApp(App).mount('#app')</code></li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h3 id="lazy-loading-with---import">Lazy Loading with <code class="language-plaintext highlighter-rouge">() =&gt; import()</code></h3>
+
+<p>Loads a component only when needed (improves initial load time):</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">HomeView</span>  <span class="c1">// Loaded immediately</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span>
+    <span class="c1">// Lazy loaded - only downloads when user visits /about</span>
+    <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">../views/AboutView.vue</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="single-file-component-anatomy">Single File Component Anatomy</h2>
+
+<p>Every <code class="language-plaintext highlighter-rouge">.vue</code> file has three optional sections:</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- Required: HTML template --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"my-component"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"handleClick"</span><span class="nt">&gt;</span>Click Me<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="c1">// Optional: JavaScript logic</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">MyComponent</span><span class="dl">'</span><span class="p">,</span>
+  
+  <span class="c1">// Component data (reactive state)</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Hello Vue!</span><span class="dl">'</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// Methods (functions)</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Button clicked!</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// Computed properties</span>
+  <span class="na">computed</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// Lifecycle hooks</span>
+  <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Component mounted!</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="c">/* Optional: CSS styles */</span>
+<span class="c">/* "scoped" means styles only apply to this component */</span>
+
+<span class="nc">.my-component</span> <span class="p">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#42b983</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="important-rules">Important Rules</h3>
+
+<ol>
+  <li><strong>Vue 3: Multiple root elements allowed</strong> (unlike Vue 2)
+    <div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Vue 3: Multiple roots OK! --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Title<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- Also fine: single root --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Title<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">data</code> must be a function</strong> (not an object):
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CORRECT</span>
+<span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">count</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// WRONG</span>
+<span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
+  <span class="na">count</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Use <code class="language-plaintext highlighter-rouge">scoped</code> for component-specific styles</strong>:
+    <div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="c">/* Only affects this component */</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="understanding-script-setup">Understanding <code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code></h3>
+
+<p>Vue 3 introduced <code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code> as a simpler way to write components. It’s <strong>compile-time syntactic sugar</strong> that makes code shorter and cleaner.</p>
+
+<p><strong>Regular <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> (Options API):</strong></p>
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">count</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>With <code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code> (Composition API):</strong></p>
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kd">function</span> <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Key Differences:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th><code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> (Options API)</th>
+      <th><code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Syntax</td>
+      <td><code class="language-plaintext highlighter-rouge">export default { ... }</code></td>
+      <td>Just write code directly</td>
+    </tr>
+    <tr>
+      <td>Variables</td>
+      <td>Inside <code class="language-plaintext highlighter-rouge">data()</code> return</td>
+      <td>Top-level <code class="language-plaintext highlighter-rouge">const</code> with <code class="language-plaintext highlighter-rouge">ref()</code></td>
+    </tr>
+    <tr>
+      <td>Methods</td>
+      <td>Inside <code class="language-plaintext highlighter-rouge">methods: { ... }</code></td>
+      <td>Regular functions</td>
+    </tr>
+    <tr>
+      <td>Access data</td>
+      <td><code class="language-plaintext highlighter-rouge">this.count</code></td>
+      <td><code class="language-plaintext highlighter-rouge">count.value</code></td>
+    </tr>
+    <tr>
+      <td>Imports</td>
+      <td>Must register in <code class="language-plaintext highlighter-rouge">components: {}</code></td>
+      <td>Auto-registered</td>
+    </tr>
+    <tr>
+      <td>Code length</td>
+      <td>More boilerplate</td>
+      <td>Shorter, cleaner</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>When to use which:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> (Options API)</strong>: Easier for beginners, familiar structure</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code></strong>: Less code, better performance, preferred for new projects</li>
+</ul>
+
+<p><strong>Example with imports:</strong></p>
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- With &lt;script setup&gt;, imported components are auto-registered --&gt;</span>
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">BookCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BookCard.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([])</span>  <span class="c1">// No need to register BookCard in components: {}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;BookCard</span> <span class="na">v-for=</span><span class="s">"book in books"</span> <span class="na">:key=</span><span class="s">"book.id"</span> <span class="na">:book=</span><span class="s">"book"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> This guide uses Options API (<code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>) for clarity. Both styles work in Vue 3.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="understanding-scoped-in-style">Understanding <code class="language-plaintext highlighter-rouge">scoped</code> in <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code></h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">scoped</code> attribute makes CSS styles <strong>apply only to the current component</strong>. Without it, styles would be global and could affect other components.</p>
+
+<p><strong>How it works:</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- MyButton.vue --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn"</span><span class="nt">&gt;</span>Click Me<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nc">.btn</span> <span class="p">{</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Vue compiles this to:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">data-v-7ba5bd90</span><span class="nt">&gt;</span>Click Me<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;style&gt;</span>
+<span class="nc">.btn</span><span class="o">[</span><span class="nt">data-v-7ba5bd90</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<p><strong>What Vue does:</strong></p>
+<ol>
+  <li>Adds a unique attribute (<code class="language-plaintext highlighter-rouge">data-v-xxxx</code>) to all elements in the component</li>
+  <li>Adds the same attribute to CSS selectors</li>
+  <li>This ensures styles only match elements in THIS component</li>
+</ol>
+
+<p><strong>Comparison:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Style Type</th>
+      <th>Scope</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;style&gt;</code></td>
+      <td>Global (entire app)</td>
+      <td>Base styles, resets</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;style scoped&gt;</code></td>
+      <td>Component only</td>
+      <td>Component-specific styles</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example showing the difference:</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- ComponentA.vue --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text"</span><span class="nt">&gt;</span>I am Component A<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nc">.text</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span>  <span class="c">/* Only affects ComponentA */</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- ComponentB.vue --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text"</span><span class="nt">&gt;</span>I am Component B<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nc">.text</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span> <span class="p">}</span>  <span class="c">/* Only affects ComponentB */</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Both components use <code class="language-plaintext highlighter-rouge">.text</code> class but have different colors - no conflict!</p>
+
+<p><strong>Best Practice:</strong> Always use <code class="language-plaintext highlighter-rouge">&lt;style scoped&gt;</code> unless you intentionally want global styles.</p>
+
+<hr />
+
+<h2 id="example-project-book-library-manager">Example Project: Book Library Manager</h2>
+
+<p>Let’s build a simple Book Library application to understand SFCs. <strong>Focus is on Vue concepts, not styling.</strong></p>
+
+<h3 id="step-1-create-the-project">Step 1: Create the Project</h3>
+
+<p>Follow the Vite + Vue 3 setup from earlier, naming your project <code class="language-plaintext highlighter-rouge">book-library</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest book-library
+<span class="c"># Select: Vue → JavaScript</span>
+<span class="nb">cd </span>book-library
+npm <span class="nb">install
+</span>npm run dev
+</code></pre></div></div>
+
+<h3 id="step-2-replace-srcappvue">Step 2: Replace <code class="language-plaintext highlighter-rouge">src/App.vue</code></h3>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Book Library<span class="nt">&lt;/h1&gt;</span>
+    
+    <span class="c">&lt;!-- Search Input --&gt;</span>
+    <span class="nt">&lt;input</span> 
+      <span class="na">v-model=</span><span class="s">"searchQuery"</span> 
+      <span class="na">placeholder=</span><span class="s">"Search books..."</span> 
+    <span class="nt">/&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addBook"</span><span class="nt">&gt;</span>Add Book<span class="nt">&lt;/button&gt;</span>
+    
+    <span class="c">&lt;!-- Book Count --&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Total Books: <span class="nt">&lt;/p&gt;</span>
+
+    <span class="c">&lt;!-- Book List --&gt;</span>
+    <span class="nt">&lt;BookCard</span> 
+      <span class="na">v-for=</span><span class="s">"book in filteredBooks"</span> 
+      <span class="na">:key=</span><span class="s">"book.id"</span>
+      <span class="na">:book=</span><span class="s">"book"</span>
+      <span class="err">@</span><span class="na">delete=</span><span class="s">"deleteBook"</span>
+      <span class="err">@</span><span class="na">toggle-read=</span><span class="s">"toggleRead"</span>
+    <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"filteredBooks.length === 0"</span><span class="nt">&gt;</span>No books found.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="c1">// Import the BookCard component</span>
+<span class="k">import</span> <span class="nx">BookCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BookCard.vue</span><span class="dl">'</span>
+
+<span class="c1">// Export this component so main.js can use it</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="c1">// Component name (useful for debugging)</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">App</span><span class="dl">'</span><span class="p">,</span>
+  
+  <span class="c1">// Register child components</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">BookCard</span>
+  <span class="p">},</span>
+
+  <span class="c1">// Reactive data - changes trigger re-render</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">searchQuery</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+      <span class="na">nextId</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="na">books</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">The Alchemist</span><span class="dl">'</span><span class="p">,</span> <span class="na">author</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Paulo Coelho</span><span class="dl">'</span><span class="p">,</span> <span class="na">isRead</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Atomic Habits</span><span class="dl">'</span><span class="p">,</span> <span class="na">author</span><span class="p">:</span> <span class="dl">'</span><span class="s1">James Clear</span><span class="dl">'</span><span class="p">,</span> <span class="na">isRead</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Deep Work</span><span class="dl">'</span><span class="p">,</span> <span class="na">author</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Cal Newport</span><span class="dl">'</span><span class="p">,</span> <span class="na">isRead</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="c1">// Computed properties - auto-update when dependencies change</span>
+  <span class="na">computed</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// Filter books based on search</span>
+    <span class="nx">filteredBooks</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">searchQuery</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">books</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> 
+        <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">||</span>
+        <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">},</span>
+    
+    <span class="c1">// Count total books</span>
+    <span class="nx">totalBooks</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">books</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="c1">// Methods - functions called from template</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">addBook</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">'</span><span class="s1">Enter book title:</span><span class="dl">'</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">title</span><span class="p">)</span> <span class="k">return</span>
+      
+      <span class="kd">const</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">'</span><span class="s1">Enter author name:</span><span class="dl">'</span><span class="p">)</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">Unknown</span><span class="dl">'</span>
+      
+      <span class="c1">// Push new book to array (Vue detects this)</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">books</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+        <span class="na">id</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">nextId</span><span class="o">++</span><span class="p">,</span>
+        <span class="na">title</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span>
+        <span class="na">author</span><span class="p">:</span> <span class="nx">author</span><span class="p">,</span>
+        <span class="na">isRead</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">})</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Called when child emits 'delete' event</span>
+    <span class="nx">deleteBook</span><span class="p">(</span><span class="nx">bookId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">books</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">books</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">bookId</span><span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Called when child emits 'toggle-read' event</span>
+    <span class="nx">toggleRead</span><span class="p">(</span><span class="nx">bookId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">book</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">books</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">bookId</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">book</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">book</span><span class="p">.</span><span class="nx">isRead</span> <span class="o">=</span> <span class="o">!</span><span class="nx">book</span><span class="p">.</span><span class="nx">isRead</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Code Explanation:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">import BookCard from...</code></td>
+      <td>Brings BookCard component into this file</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">export default { }</code></td>
+      <td>Makes this component available to other files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">name: 'App'</code></td>
+      <td>Component name (shown in Vue DevTools)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components: { BookCard }</code></td>
+      <td>Registers BookCard so we can use <code class="language-plaintext highlighter-rouge">&lt;BookCard /&gt;</code> in template</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">data()</code></td>
+      <td>Returns reactive state - Vue watches these for changes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">computed</code></td>
+      <td>Cached values that auto-update when dependencies change</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">methods</code></td>
+      <td>Functions you can call from template or other methods</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="step-3-create-bookcard-component">Step 3: Create BookCard Component</h3>
+
+<p><strong>Create <code class="language-plaintext highlighter-rouge">src/components/BookCard.vue</code>:</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"border: 1px solid #ccc; padding: 15px; margin: 10px 0;"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Book Title --&gt;</span>
+    <span class="nt">&lt;h3&gt;&lt;/h3&gt;</span>
+    <span class="nt">&lt;p&gt;</span>by <span class="nt">&lt;/p&gt;</span>
+    
+    <span class="c">&lt;!-- Read Status --&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      Status: 
+      <span class="nt">&lt;strong</span> <span class="na">:style=</span><span class="s">"</span>{ color: book.isRead ? 'green' : 'red' }"&gt;
+        
+      <span class="nt">&lt;/strong&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+    
+    <span class="c">&lt;!-- Action Buttons --&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"$emit('toggle-read', book.id)"</span><span class="nt">&gt;</span>
+      
+    <span class="nt">&lt;/button&gt;</span>
+    
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"$emit('delete', book.id)"</span><span class="nt">&gt;</span>
+      Delete
+    <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="c1">// Component name (shown in Vue DevTools)</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">BookCard</span><span class="dl">'</span><span class="p">,</span>
+  
+  <span class="c1">// Props: Data received from parent component</span>
+  <span class="c1">// Parent uses :book="bookObject" to pass data</span>
+  <span class="na">props</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">book</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">type</span><span class="p">:</span> <span class="nb">Object</span><span class="p">,</span>      <span class="c1">// Expected data type</span>
+      <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>     <span class="c1">// Must be provided</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// Vue 3 best practice: declare emitted events</span>
+  <span class="na">emits</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">toggle-read</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">delete</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Code Explanation:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">props: { book: {...} }</code></td>
+      <td>Declares what data this component expects from parent</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">:book="book"</code></td>
+      <td>Parent passes data using v-bind (<code class="language-plaintext highlighter-rouge">:</code> is shorthand)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@click="$emit('delete', book.id)"</code></td>
+      <td>Sends ‘delete’ event to parent with book.id</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@delete="deleteBook"</code></td>
+      <td>Parent listens and calls deleteBook method</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">:style="{ color: ... }"</code></td>
+      <td>Dynamic inline style based on condition</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="step-4-run-the-application">Step 4: Run the Application</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div></div>
+
+<p>Open <code class="language-plaintext highlighter-rouge">http://localhost:5173</code> to see your Book Library!</p>
+
+<hr />
+
+<h2 id="parent-child-communication-summary">Parent-Child Communication Summary</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────────────┐
+│                     PARENT (App.vue)                        │
+│                                                             │
+│  data: { books: [...] }                                    │
+│  methods: { deleteBook(id) { ... } }                      │
+│                                                             │
+│  &lt;BookCard                                                 │
+│    :book="book"           ──────────► PROPS (data down)   │
+│    @delete="deleteBook"   ◄────────── EVENTS (data up)    │
+│  /&gt;                                                        │
+└─────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   CHILD (BookCard.vue)                     │
+│                                                             │
+│  props: { book: Object }                                   │
+│                                                             │
+│  &lt;button @click="$emit('delete', book.id)"&gt;               │
+│    Delete                                                  │
+│  &lt;/button&gt;                                                 │
+└─────────────────────────────────────────────────────────────┘
+</code></pre></div></div>
+
+<p><strong>Key Points:</strong></p>
+<ul>
+  <li><strong>Props</strong> = Data flows DOWN (parent → child)</li>
+  <li><strong>Events ($emit)</strong> = Data flows UP (child → parent)</li>
+  <li>Child cannot modify props directly (read-only)</li>
+</ul>
+
+<hr />
+
+<h2 id="common-issues--troubleshooting">Common Issues &amp; Troubleshooting</h2>
+
+<h3 id="issue-1-npm-command-not-found-or-npm-is-not-recognized">Issue 1: “npm: command not found” or “‘npm’ is not recognized”</h3>
+
+<p><strong>Cause:</strong> Node.js not installed or PATH not set.</p>
+
+<p><strong>Solutions:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if Node.js is installed</span>
+node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>If not found:</p>
+<ol>
+  <li>Download from https://nodejs.org</li>
+  <li>Run installer with default options</li>
+  <li><strong>Windows:</strong> Close and reopen terminal, or restart computer</li>
+  <li><strong>Mac/Linux:</strong> Run <code class="language-plaintext highlighter-rouge">source ~/.bashrc</code> or <code class="language-plaintext highlighter-rouge">source ~/.zshrc</code></li>
+</ol>
+
+<hr />
+
+<h3 id="issue-2-npm-err-eacces-permission-denied">Issue 2: “npm ERR! EACCES permission denied”</h3>
+
+<p><strong>Linux/Mac Solution:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Option 1: Fix npm permissions</span>
+<span class="nb">mkdir</span> ~/.npm-global
+npm config <span class="nb">set </span>prefix <span class="s1">'~/.npm-global'</span>
+<span class="nb">echo</span> <span class="s1">'export PATH=~/.npm-global/bin:$PATH'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+
+<span class="c"># Option 2: Use sudo (not recommended for global installs)</span>
+<span class="nb">sudo </span>npm <span class="nb">install </span>package-name
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-3-module-not-found-error-cant-resolve">Issue 3: “Module not found: Error: Can’t resolve…”</h3>
+
+<p><strong>Cause:</strong> Missing import or incorrect path.</p>
+
+<p><strong>Solution:</strong></p>
+<ul>
+  <li>Check import path is correct</li>
+  <li>Ensure file extension for .vue files</li>
+  <li>Check component is registered:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">MyComponent</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/MyComponent.vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">MyComponent</span>  <span class="c1">// Must register!</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-4-port-8080-already-in-use">Issue 4: Port 8080 Already in Use</h3>
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Use a different port (Vite will auto-select another, or specify)</span>
+npm run dev <span class="nt">--</span> <span class="nt">--port</span> 3000
+</code></pre></div></div>
+
+<p>Or change in <code class="language-plaintext highlighter-rouge">vite.config.js</code>:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">vue2</span><span class="p">()],</span>
+  <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">3000</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-5-enospc-system-limit-for-number-of-file-watchers-reached">Issue 5: “ENOSPC: System limit for number of file watchers reached”</h3>
+
+<p><strong>Linux Solution:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>fs.inotify.max_user_watches<span class="o">=</span>524288 | <span class="nb">sudo tee</span> <span class="nt">-a</span> /etc/sysctl.conf
+<span class="nb">sudo </span>sysctl <span class="nt">-p</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-6-node-version-too-old">Issue 6: Node Version Too Old</h3>
+
+<p><strong>Check version:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p><strong>Update Node:</strong></p>
+<ul>
+  <li>Windows: Download new installer from nodejs.org</li>
+  <li>Mac: <code class="language-plaintext highlighter-rouge">brew upgrade node</code></li>
+  <li>Linux with nvm: <code class="language-plaintext highlighter-rouge">nvm install --lts</code></li>
+</ul>
+
+<hr />
+
+<h3 id="issue-7-error-cannot-find-module-vue">Issue 7: “Error: Cannot find module ‘vue’”</h3>
+
+<p><strong>Solution:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Delete node_modules and reinstall</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> node_modules
+<span class="nb">rm </span>package-lock.json
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><strong>Windows:</strong></p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Remove-Item</span><span class="w"> </span><span class="nt">-Recurse</span><span class="w"> </span><span class="nt">-Force</span><span class="w"> </span><span class="nx">node_modules</span><span class="w">
+</span><span class="n">Remove-Item</span><span class="w"> </span><span class="nx">package-lock.json</span><span class="w">
+</span><span class="n">npm</span><span class="w"> </span><span class="nx">install</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-8-eslint-errors-blocking-build">Issue 8: ESLint Errors Blocking Build</h3>
+
+<p><strong>Note:</strong> Vite doesn’t include ESLint by default. If you add ESLint and get:</p>
+
+<p><strong>Common error:</strong> <code class="language-plaintext highlighter-rouge">Component name should always be multi-word</code></p>
+
+<p><strong>Fix the warning properly:</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Use multi-word names</span>
+<span class="nx">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">AppHeader</span><span class="dl">'</span>  <span class="c1">// Good</span>
+<span class="nx">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Header</span><span class="dl">'</span>     <span class="c1">// Bad (single word)</span>
+</code></pre></div></div>
+
+<p>Or add to <code class="language-plaintext highlighter-rouge">.eslintrc.js</code>:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rules</span><span class="p">:</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">vue/multi-word-component-names</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">off</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="issue-9-hot-reload-not-working">Issue 9: Hot Reload Not Working</h3>
+
+<p><strong>Solutions:</strong></p>
+<ol>
+  <li>Save the file (Ctrl+S)</li>
+  <li>Clear browser cache (Ctrl+Shift+R)</li>
+  <li>Restart dev server (Ctrl+C, then <code class="language-plaintext highlighter-rouge">npm run dev</code>)</li>
+  <li>Check file is inside <code class="language-plaintext highlighter-rouge">src/</code> folder</li>
+  <li>Make sure <code class="language-plaintext highlighter-rouge">vite.config.js</code> has the Vue plugin configured</li>
+</ol>
+
+<hr />
+
+<h3 id="issue-10-digital-envelope-routinesunsupported-webpack-only">Issue 10: “digital envelope routines::unsupported” (Webpack only)</h3>
+
+<p><strong>Note:</strong> This issue is specific to Webpack (Vue CLI). Vite uses esbuild and doesn’t have this problem!</p>
+
+<p>If you’re migrating from Vue CLI and see this:</p>
+<ul>
+  <li>Just switch to Vite (this guide) - problem solved!</li>
+</ul>
+
+<hr />
+
+<h2 id="useful-commands-reference">Useful Commands Reference</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run dev</code></td>
+      <td>Start Vite development server</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run build</code></td>
+      <td>Build for production</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run preview</code></td>
+      <td>Preview production build locally</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run format</code></td>
+      <td>Format code with Prettier (if installed)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm run lint</code></td>
+      <td>Check code with ESLint (if installed)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">npm install package-name</code></td>
+      <td>Install a dependency</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="vue-router">Vue Router</h2>
+
+<p>Vue Router lets you create multi-page applications with client-side routing.</p>
+
+<h3 id="option-1-select-router-during-project-creation-recommended">Option 1: Select Router During Project Creation (Recommended!)</h3>
+
+<p>When running <code class="language-plaintext highlighter-rouge">npm create vite@latest</code>, select:</p>
+<ul>
+  <li><strong>Vue</strong> → <strong>Official Vue Starter</strong></li>
+  <li>Check <strong>Router (SPA development)</strong></li>
+</ul>
+
+<p>This automatically creates:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/router/index.js</code> - Router configuration</li>
+  <li><code class="language-plaintext highlighter-rouge">src/views/HomeView.vue</code> - Home page</li>
+  <li><code class="language-plaintext highlighter-rouge">src/views/AboutView.vue</code> - About page</li>
+  <li>Updated <code class="language-plaintext highlighter-rouge">main.js</code> with router</li>
+  <li>Updated <code class="language-plaintext highlighter-rouge">App.vue</code> with <code class="language-plaintext highlighter-rouge">&lt;RouterView&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;RouterLink&gt;</code></li>
+</ul>
+
+<p><strong>You’re done!</strong> Router is ready to use.</p>
+
+<hr />
+
+<h3 id="option-2-add-router-manually-if-not-selected-during-setup">Option 2: Add Router Manually (if not selected during setup)</h3>
+
+<p>If you didn’t select Router during project creation:</p>
+
+<h4 id="step-1-install-vue-router">Step 1: Install Vue Router</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>vue-router@4
+</code></pre></div></div>
+
+<h4 id="step-2-create-views">Step 2: Create Views</h4>
+
+<p>Create <code class="language-plaintext highlighter-rouge">src/views/HomeView.vue</code>:</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Home Page<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Welcome to the home page!<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">HomeView</span><span class="dl">'</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">src/views/AboutView.vue</code>:</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>About Page<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is the about page.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">AboutView</span><span class="dl">'</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h4 id="step-3-create-router-configuration">Step 3: Create Router Configuration</h4>
+
+<p>Create <code class="language-plaintext highlighter-rouge">src/router/index.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">HomeView</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../views/HomeView.vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> 
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> 
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">home</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">HomeView</span> 
+  <span class="p">},</span>
+  <span class="p">{</span> 
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span> 
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">about</span><span class="dl">'</span><span class="p">,</span>
+    <span class="c1">// Lazy loading - loads only when user visits /about</span>
+    <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">../views/AboutView.vue</span><span class="dl">'</span><span class="p">)</span> 
+  <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
+  <span class="na">history</span><span class="p">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>
+  <span class="nx">routes</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<h4 id="step-4-update-srcmainjs">Step 4: Update <code class="language-plaintext highlighter-rouge">src/main.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="step-5-update-srcappvue">Step 5: Update <code class="language-plaintext highlighter-rouge">src/App.vue</code></h4>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;nav&gt;</span>
+      <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/RouterLink&gt;</span>
+      <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/RouterLink&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+
+  <span class="nt">&lt;RouterView</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">RouterLink</span><span class="p">,</span> <span class="nx">RouterView</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h4 id="step-6-run-and-test">Step 6: Run and Test</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div></div>
+
+<p>Click the navigation links - the page content changes without full reload!</p>
+
+<hr />
+
+<h3 id="router-concepts-summary">Router Concepts Summary</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;RouterLink to="/"&gt;</code></td>
+      <td>Creates navigation links (no page reload)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;RouterView /&gt;</code></td>
+      <td>Placeholder where matched component renders</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">app.use(router)</code></td>
+      <td>Installs the router plugin</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">createWebHistory()</code></td>
+      <td>Clean URLs (<code class="language-plaintext highlighter-rouge">/about</code> instead of <code class="language-plaintext highlighter-rouge">/#/about</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">() =&gt; import(...)</code></td>
+      <td>Lazy loading - component loads only when needed</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="vs-code-extensions-for-vue">VS Code Extensions for Vue</h2>
+
+<p>Install these for better development experience:</p>
+
+<ol>
+  <li><strong>Vue - Official (Volar)</strong> - Vue 3 language support (essential!)</li>
+  <li><strong>ESLint</strong> - Code linting (included if you selected Linter)</li>
+  <li><strong>Prettier</strong> - Code formatting (included if you selected Prettier)</li>
+  <li><strong>Path Intellisense</strong> - Autocomplete file paths</li>
+</ol>
+
+<hr />
+
+<h2 id="project-commands-quick-reference">Project Commands Quick Reference</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create project with Router, Linter, Prettier (Recommended)</span>
+npm create vite@latest my-app
+<span class="c"># Select: Vue → Official Vue Starter</span>
+<span class="c"># Select features: Router, Linter, Prettier</span>
+<span class="nb">cd </span>my-app
+npm <span class="nb">install
+</span>npm run format
+npm run dev
+
+<span class="c"># Build for production</span>
+npm run build
+
+<span class="c"># Preview production build</span>
+npm run preview
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<ol>
+  <li><strong>Install Node.js</strong> (includes npm) from nodejs.org</li>
+  <li><strong>Create project</strong> with <code class="language-plaintext highlighter-rouge">npm create vite@latest</code>
+    <ul>
+      <li>Select <strong>Vue</strong> → <strong>Official Vue Starter</strong></li>
+      <li>Select features: <strong>Router</strong>, <strong>Linter</strong>, <strong>Prettier</strong></li>
+    </ul>
+  </li>
+  <li><strong>Run</strong> <code class="language-plaintext highlighter-rouge">npm install</code> then <code class="language-plaintext highlighter-rouge">npm run dev</code></li>
+  <li><strong>Single File Components</strong> have three sections: <code class="language-plaintext highlighter-rouge">&lt;template&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;style scoped&gt;</code></li>
+  <li><strong>Vue 3 allows multiple root elements</strong> in templates</li>
+  <li><strong>Components communicate</strong> via props (parent → child) and events (child → parent)</li>
+</ol>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

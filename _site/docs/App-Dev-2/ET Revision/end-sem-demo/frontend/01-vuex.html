@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>01 – Vuex Store</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3/dist/vuex.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>Count: {{ $store.state.count }}</p>
+  <p>Double: {{ $store.getters.doubleCount }}</p>
+  <button @click="$store.commit('INCREMENT')">+1 (mutation)</button>
+  <button @click="$store.dispatch('delayedIncrement')">+1 after 1s (action)</button>
+  <hr>
+  <p>Users: {{ $store.state.users.join(', ') || 'None loaded' }}</p>
+  <button @click="$store.dispatch('loadUsers')">Load Users (async action)</button>
+</div>
+
+<script>
+const store = new Vuex.Store({
+  state: {
+    count: 0,
+    users: []
+  },
+
+  getters: {
+    // Like a computed property — auto-recalculates when state changes
+    doubleCount: state => state.count * 2
+  },
+
+  mutations: {
+    // Direct state change — MUST be synchronous
+    INCREMENT(state) {
+      state.count++;
+    },
+    SET_USERS(state, users) {
+      state.users = users;
+    }
+  },
+
+  actions: {
+    // Can be async — calls commit to change state
+    delayedIncrement({ commit }) {
+      setTimeout(() => {
+        commit('INCREMENT');
+      }, 1000);
+    },
+
+    loadUsers({ commit }) {
+      // Simulating an API call
+      Promise.resolve(['Alice', 'Bob', 'Carol']).then(data => {
+        commit('SET_USERS', data);
+      });
+    }
+  }
+});
+
+new Vue({
+  el: '#app',
+  store
+});
+</script>
+</body>
+</html>

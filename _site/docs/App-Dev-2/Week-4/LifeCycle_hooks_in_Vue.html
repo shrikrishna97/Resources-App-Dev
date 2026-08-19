@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-2/Week-4/LifeCycle_hooks_in_Vue.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h3 id="vuejs-lifecycle-hooks---complete-explanation-"><strong>Vue.js Lifecycle Hooks - Complete Explanation</strong> 🚀</h3>
+
+<p>In Vue.js, lifecycle hooks are special methods that let you <strong>execute code at different stages</strong> of a Vue instance’s life. Here’s an overview of all major lifecycle hooks:</p>
+
+<hr />
+
+<h2 id="1️⃣-creation-phase-instance-is-created"><strong>1️⃣ Creation Phase (Instance is Created)</strong></h2>
+<h3 id="1-beforecreate"><strong>1. <code class="language-plaintext highlighter-rouge">beforeCreate()</code></strong></h3>
+<ul>
+  <li>Called <strong>before</strong> Vue initializes <code class="language-plaintext highlighter-rouge">data()</code>, <code class="language-plaintext highlighter-rouge">computed</code>, or <code class="language-plaintext highlighter-rouge">methods</code>.</li>
+  <li>You <strong>cannot</strong> access <code class="language-plaintext highlighter-rouge">this.data</code> or <code class="language-plaintext highlighter-rouge">this.methods</code> yet.</li>
+  <li><strong>Use Case:</strong> Logging or setting up non-reactive properties.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Before Create: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// Undefined</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-created"><strong>2. <code class="language-plaintext highlighter-rouge">created()</code></strong></h3>
+<ul>
+  <li>Called <strong>after</strong> Vue initializes <code class="language-plaintext highlighter-rouge">data()</code>, <code class="language-plaintext highlighter-rouge">computed</code>, and <code class="language-plaintext highlighter-rouge">methods</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">this.message</code> is now <strong>accessible</strong>.</li>
+  <li><strong>Use Case:</strong> Fetching data from APIs, initializing variables.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Created: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// Now accessible</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-mounting-phase-dom-is-rendered"><strong>2️⃣ Mounting Phase (DOM is Rendered)</strong></h2>
+<h3 id="3-beforemount"><strong>3. <code class="language-plaintext highlighter-rouge">beforeMount()</code></strong></h3>
+<ul>
+  <li>Called <strong>before</strong> Vue inserts the component into the DOM.</li>
+  <li>The template is compiled, but nothing is visible on the screen yet.</li>
+  <li><strong>Use Case:</strong> Modifying the template <strong>before</strong> rendering.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Before Mount: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-mounted-most-used"><strong>4. <code class="language-plaintext highlighter-rouge">mounted()</code> (Most Used)</strong></h3>
+<ul>
+  <li>Called <strong>after</strong> Vue inserts the component into the DOM.</li>
+  <li><strong>Use Case:</strong>
+    <ul>
+      <li>Fetching data from APIs.</li>
+      <li>Running animations.</li>
+      <li>Setting up event listeners.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Mounted: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✅ <strong>Example:</strong> Fetching data in <code class="language-plaintext highlighter-rouge">mounted()</code></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.example.com/data</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3️⃣-updating-phase-reactivity-in-action"><strong>3️⃣ Updating Phase (Reactivity in Action)</strong></h2>
+<h3 id="5-beforeupdate"><strong>5. <code class="language-plaintext highlighter-rouge">beforeUpdate()</code></strong></h3>
+<ul>
+  <li>Called <strong>before</strong> the DOM is updated when data changes.</li>
+  <li><strong>Use Case:</strong> Perform an action <strong>before re-rendering</strong>.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Before Update: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-updated"><strong>6. <code class="language-plaintext highlighter-rouge">updated()</code></strong></h3>
+<ul>
+  <li>Called <strong>after</strong> Vue updates the DOM.</li>
+  <li><strong>Use Case:</strong>
+    <ul>
+      <li>Run a function <strong>after reactivity changes the DOM</strong>.</li>
+      <li>Fetch <strong>new</strong> data based on user input.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Updated: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4️⃣-destruction-phase-instance-is-destroyed"><strong>4️⃣ Destruction Phase (Instance is Destroyed)</strong></h2>
+<h3 id="7-beforedestroy"><strong>7. <code class="language-plaintext highlighter-rouge">beforeDestroy()</code></strong></h3>
+<ul>
+  <li>Called <strong>before</strong> Vue destroys the component.</li>
+  <li><strong>Use Case:</strong>
+    <ul>
+      <li>Clean up timers.</li>
+      <li>Remove event listeners.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Before Destroy: Cleaning up...</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="8-destroyed"><strong>8. <code class="language-plaintext highlighter-rouge">destroyed()</code></strong></h3>
+<ul>
+  <li>Called <strong>after</strong> Vue removes the component from the DOM.</li>
+  <li><strong>Use Case:</strong> Debugging <strong>after destruction</strong>.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Component Destroyed.</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-vuejs-lifecycle-hook-order-execution-sequence"><strong>🎯 Vue.js Lifecycle Hook Order (Execution Sequence)</strong></h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. beforeCreate()
+2. created()
+3. beforeMount()
+4. mounted()
+5. beforeUpdate()  (Only if data changes)
+6. updated()       (Only if data changes)
+7. beforeDestroy()
+8. destroyed()
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-full-example"><strong>📌 Full Example</strong></h2>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue Lifecycle Hooks<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"changeMessage"</span><span class="nt">&gt;</span>Change Message<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
+        <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello Vue.js</span><span class="dl">"</span>
+            <span class="p">};</span>
+        <span class="p">},</span>
+        <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">1. Before Create: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// undefined</span>
+        <span class="p">},</span>
+        <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">2. Created: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// "Hello Vue.js"</span>
+        <span class="p">},</span>
+        <span class="nx">beforeMount</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">3. Before Mount: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">4. Mounted: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">5. Before Update: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">6. Updated: </span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">7. Before Destroy: Cleaning up...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">8. Destroyed: Component removed.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nx">changeMessage</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">Hello Vue.js</span><span class="dl">"</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">Vue Lifecycle</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Hello Vue.js</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-key-takeaways"><strong>🎯 Key Takeaways</strong></h2>
+<ul>
+  <li><strong>beforeCreate() → created()</strong>: Vue initializes data &amp; methods.</li>
+  <li><strong>beforeMount() → mounted()</strong>: Vue inserts the template into the DOM.</li>
+  <li><strong>beforeUpdate() → updated()</strong>: Vue updates the DOM when data changes.</li>
+  <li><strong>beforeDestroy() → destroyed()</strong>: Vue removes the component from the DOM.</li>
+</ul>
+
+<h2 id="-vuejs-lifecycle-hooks---deep-explanation-with-real-world-example--diagrams"><strong>🎯 Vue.js Lifecycle Hooks - Deep Explanation with Real-World Example &amp; Diagrams</strong></h2>
+
+<p>Vue.js lifecycle hooks allow you to execute code <strong>at different stages</strong> of a component’s life. Let’s go step by step, using <strong>real-world examples</strong> and a <strong>diagram</strong> to visualize everything.</p>
+
+<hr />
+
+<h2 id="-1-lifecycle-diagram-execution-flow"><strong>📌 1. Lifecycle Diagram (Execution Flow)</strong></h2>
+<p>Here’s how Vue lifecycle hooks execute in order:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Creation Phase:
+1. beforeCreate()   →  Data &amp; methods not available yet
+2. created()        →  Data &amp; methods initialized
+
+Mounting Phase:
+3. beforeMount()    →  Virtual DOM compiled
+4. mounted()        →  DOM elements inserted
+
+Updating Phase:
+5. beforeUpdate()   →  Called before data changes in the DOM
+6. updated()        →  Called after DOM updates
+
+Destroy Phase:
+7. beforeDestroy()  →  Cleanup before removal
+8. destroyed()      →  Component completely removed
+</code></pre></div></div>
+
+<h3 id="-lifecycle-diagram"><strong>🔹 Lifecycle Diagram</strong></h3>
+<p>This diagram shows how lifecycle hooks interact with the component:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               Vue Instance
+                 ⬇
+    +-------------------------+
+    |  beforeCreate()         |  🔹 Data &amp; methods not available
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  created()              |  🔹 Data &amp; methods available
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  beforeMount()          |  🔹 Template compiled
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  mounted()              |  🔹 DOM is ready
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  beforeUpdate()         |  🔹 Called before re-render
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  updated()              |  🔹 DOM updated
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  beforeDestroy()        |  🔹 Cleanup before removal
+    +-------------------------+
+                 ⬇
+    +-------------------------+
+    |  destroyed()            |  🔹 Component removed
+    +-------------------------+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-2-real-world-example"><strong>📌 2. Real-World Example</strong></h2>
+<p>Imagine you’re building an <strong>e-commerce product page</strong>. You need to:<br />
+✔ <strong>Fetch product details</strong> from an API when the page loads.<br />
+✔ <strong>Show a loading spinner</strong> before the data loads.<br />
+✔ <strong>Listen for cart updates</strong> when the user adds/removes products.<br />
+✔ <strong>Remove event listeners</strong> when leaving the page.</p>
+
+<p>Here’s how we apply lifecycle hooks:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue Lifecycle Example<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>{{ product.name }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>{{ product.description }}<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Price:<span class="nt">&lt;/strong&gt;</span> ${{ product.price }}<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addToCart"</span><span class="nt">&gt;</span>Add to Cart<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"loading"</span><span class="nt">&gt;</span>Loading product...<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="na">product</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="na">loading</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">1️⃣ beforeCreate: Data not initialized</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">2️⃣ created: Fetching product...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">product</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Smartphone</span><span class="dl">"</span><span class="p">,</span>
+                <span class="na">description</span><span class="p">:</span> <span class="dl">"</span><span class="s2">A high-end smartphone with an amazing camera.</span><span class="dl">"</span><span class="p">,</span>
+                <span class="na">price</span><span class="p">:</span> <span class="mi">999</span>
+            <span class="p">};</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">loading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">✅ Product fetched</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeMount</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">3️⃣ beforeMount: Template is compiled but not inserted into DOM.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">4️⃣ mounted: Component is now in the DOM.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">resize</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">5️⃣ beforeUpdate: Data is changing...</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">6️⃣ updated: DOM updated with new data.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">7️⃣ beforeDestroy: Cleaning up event listeners...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">resize</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">8️⃣ destroyed: Component removed.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">addToCart</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">📦 Product added to cart!</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">handleResize</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">📏 Window resized!</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-3-understanding-execution-with-logs"><strong>📌 3. Understanding Execution with Logs</strong></h2>
+<p>When you open the <strong>browser console</strong>, this is what you’ll see:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1️⃣ beforeCreate: Data not initialized
+2️⃣ created: Fetching product...
+3️⃣ beforeMount: Template is compiled but not inserted into DOM.
+4️⃣ mounted: Component is now in the DOM.
+✅ Product fetched
+</code></pre></div></div>
+<p>When you <strong>add a product to the cart</strong>, the message appears:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>📦 Product added to cart!
+</code></pre></div></div>
+<p>When you <strong>close the page</strong>, Vue cleans up event listeners:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7️⃣ beforeDestroy: Cleaning up event listeners...
+8️⃣ destroyed: Component removed.
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-4-summary-of-lifecycle-hooks"><strong>📌 4. Summary of Lifecycle Hooks</strong></h2>
+<p>| Hook              | When it Runs                           | Common Use Case |
+|——————|———————————-|—————-|
+| <code class="language-plaintext highlighter-rouge">beforeCreate()</code> | Before Vue initializes data | Logging, non-reactive setup |
+| <code class="language-plaintext highlighter-rouge">created()</code> | After Vue initializes data | Fetch API, set up variables |
+| <code class="language-plaintext highlighter-rouge">beforeMount()</code> | Before inserting component in DOM | Modify template before rendering |
+| <code class="language-plaintext highlighter-rouge">mounted()</code> | After inserting component in DOM | Fetch API, event listeners |
+| <code class="language-plaintext highlighter-rouge">beforeUpdate()</code> | Before Vue updates the DOM | Debugging before changes |
+| <code class="language-plaintext highlighter-rouge">updated()</code> | After Vue updates the DOM | Work after reactivity updates |
+| <code class="language-plaintext highlighter-rouge">beforeDestroy()</code> | Before Vue removes component | Cleanup timers, event listeners |
+| <code class="language-plaintext highlighter-rouge">destroyed()</code> | After Vue removes component | Final cleanup, debugging |</p>
+
+<hr />
+
+<h2 id="-5-when-to-use-lifecycle-hooks"><strong>📌 5. When to Use Lifecycle Hooks</strong></h2>
+<p>| Scenario | Best Lifecycle Hook |
+|———-|——————|
+| Fetch data from API | <code class="language-plaintext highlighter-rouge">created()</code> or <code class="language-plaintext highlighter-rouge">mounted()</code> |
+| Modify DOM directly | <code class="language-plaintext highlighter-rouge">mounted()</code> |
+| Listen for user events | <code class="language-plaintext highlighter-rouge">mounted()</code> |
+| Cleanup event listeners | <code class="language-plaintext highlighter-rouge">beforeDestroy()</code> |
+| Debug changes before update | <code class="language-plaintext highlighter-rouge">beforeUpdate()</code> |
+| Debug after reactivity change | <code class="language-plaintext highlighter-rouge">updated()</code> |</p>
+
+<hr />
+
+<h2 id="-conclusion"><strong>💡 Conclusion</strong></h2>
+<ul>
+  <li>Lifecycle hooks <strong>control different stages</strong> of a Vue component.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">created()</code></strong> is great for fetching data.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">mounted()</code></strong> is perfect for event listeners &amp; DOM updates.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">beforeDestroy()</code></strong> helps clean up unnecessary processes.</li>
+  <li><strong>Vue’s reactivity system</strong> updates the DOM efficiently.</li>
+</ul>
+
+<hr />
+
+<p>Awesome! Let’s reinforce your understanding with a <strong>quick quiz</strong> and then dive into a <strong>real-world Vue app example</strong> using lifecycle hooks. 🚀</p>
+
+<hr />
+
+<h2 id="-quick-vue-lifecycle-quiz"><strong>🎯 Quick Vue Lifecycle Quiz</strong></h2>
+<p>Test yourself with these 5 multiple-choice questions!</p>
+
+<h3 id="q1-which-lifecycle-hook-is-best-for-fetching-data-from-an-api"><strong>Q1: Which lifecycle hook is best for fetching data from an API?</strong></h3>
+<ul>
+  <li>A) <code class="language-plaintext highlighter-rouge">beforeCreate</code></li>
+  <li>B) <code class="language-plaintext highlighter-rouge">created</code></li>
+  <li>C) <code class="language-plaintext highlighter-rouge">mounted</code></li>
+  <li>D) <code class="language-plaintext highlighter-rouge">beforeDestroy</code></li>
+</ul>
+
+<p>👉 <strong>Answer:</strong> <code class="language-plaintext highlighter-rouge">created</code> (B) ✅<br />
+(<em>Data is available, but the DOM isn’t yet mounted. API calls here ensure smooth rendering!</em>)</p>
+
+<hr />
+
+<h3 id="q2-which-hook-runs-when-the-component-is-fully-inserted-into-the-dom"><strong>Q2: Which hook runs when the component is fully inserted into the DOM?</strong></h3>
+<ul>
+  <li>A) <code class="language-plaintext highlighter-rouge">created</code></li>
+  <li>B) <code class="language-plaintext highlighter-rouge">mounted</code></li>
+  <li>C) <code class="language-plaintext highlighter-rouge">beforeUpdate</code></li>
+  <li>D) <code class="language-plaintext highlighter-rouge">destroyed</code></li>
+</ul>
+
+<p>👉 <strong>Answer:</strong> <code class="language-plaintext highlighter-rouge">mounted</code> (B) ✅<br />
+(<em>This is the best place to set up event listeners, access the DOM, or integrate with third-party libraries!</em>)</p>
+
+<hr />
+
+<h3 id="q3-when-should-you-remove-event-listeners-like-windowaddeventlistener"><strong>Q3: When should you remove event listeners like <code class="language-plaintext highlighter-rouge">window.addEventListener()</code>?</strong></h3>
+<ul>
+  <li>A) <code class="language-plaintext highlighter-rouge">beforeCreate</code></li>
+  <li>B) <code class="language-plaintext highlighter-rouge">updated</code></li>
+  <li>C) <code class="language-plaintext highlighter-rouge">beforeDestroy</code></li>
+  <li>D) <code class="language-plaintext highlighter-rouge">mounted</code></li>
+</ul>
+
+<p>👉 <strong>Answer:</strong> <code class="language-plaintext highlighter-rouge">beforeDestroy</code> (C) ✅<br />
+(<em>Ensures clean memory usage &amp; prevents errors when switching components!</em>)</p>
+
+<hr />
+
+<h3 id="q4-what-does-beforeupdate-do"><strong>Q4: What does <code class="language-plaintext highlighter-rouge">beforeUpdate</code> do?</strong></h3>
+<ul>
+  <li>A) Runs before data changes in Vue</li>
+  <li>B) Runs after DOM updates</li>
+  <li>C) Runs when the component is removed</li>
+  <li>D) Runs before the component is created</li>
+</ul>
+
+<p>👉 <strong>Answer:</strong> <code class="language-plaintext highlighter-rouge">beforeUpdate</code> (A) ✅<br />
+(<em>Great for debugging before Vue updates the DOM!</em>)</p>
+
+<hr />
+
+<h3 id="q5-if-a-vue-component-is-removed-from-the-page-which-hook-runs-last"><strong>Q5: If a Vue component is removed from the page, which hook runs last?</strong></h3>
+<ul>
+  <li>A) <code class="language-plaintext highlighter-rouge">beforeDestroy</code></li>
+  <li>B) <code class="language-plaintext highlighter-rouge">destroyed</code></li>
+  <li>C) <code class="language-plaintext highlighter-rouge">beforeCreate</code></li>
+  <li>D) <code class="language-plaintext highlighter-rouge">beforeMount</code></li>
+</ul>
+
+<p>👉 <strong>Answer:</strong> <code class="language-plaintext highlighter-rouge">destroyed</code> (B) ✅<br />
+(<em>At this point, Vue has removed everything! You can perform any final cleanup here.</em>)</p>
+
+<hr />
+
+<h2 id="-real-world-example-vue-todo-app-with-lifecycle-hooks"><strong>🔥 Real-World Example: Vue Todo App with Lifecycle Hooks</strong></h2>
+<p>Let’s build a <strong>Vue Todo App</strong> that:
+✔ Fetches initial tasks from local storage.<br />
+✔ Auto-saves tasks when updated.<br />
+✔ Cleans up event listeners before closing.</p>
+
+<h3 id="code"><strong>Code:</strong></h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue Todo App<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Todo List<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"newTask"</span> <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"addTask"</span> <span class="na">placeholder=</span><span class="s">"Add a task"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addTask"</span><span class="nt">&gt;</span>Add<span class="nt">&lt;/button&gt;</span>
+    
+    <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"(task, index) in tasks"</span> <span class="na">:key=</span><span class="s">"index"</span><span class="nt">&gt;</span>
+            {{ task }}
+            <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"removeTask(index)"</span><span class="nt">&gt;</span>❌<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="na">newTask</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="na">tasks</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">1️⃣ beforeCreate: No tasks yet.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">2️⃣ created: Loading tasks...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">savedTasks</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">tasks</span><span class="dl">"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">savedTasks</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">savedTasks</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">3️⃣ mounted: Todo app is ready.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeunload</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">saveTasks</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeUpdate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">4️⃣ beforeUpdate: Task list is changing...</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">updated</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">5️⃣ updated: Task list updated!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">6️⃣ beforeDestroy: Cleaning up...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeunload</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">saveTasks</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">7️⃣ destroyed: App removed.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">addTask</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newTask</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newTask</span><span class="p">.</span><span class="nx">trim</span><span class="p">());</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">newTask</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">removeTask</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">saveTasks</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">tasks</span><span class="dl">"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">));</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">📝 Tasks saved to local storage.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-key-takeaways-from-this-todo-app"><strong>📌 Key Takeaways from This Todo App</strong></h2>
+<p>1️⃣ <strong>Data Persistence</strong> – Saves tasks using <code class="language-plaintext highlighter-rouge">localStorage</code>.<br />
+2️⃣ <strong>Auto-Saving</strong> – Calls <code class="language-plaintext highlighter-rouge">saveTasks()</code> before closing the page.<br />
+3️⃣ <strong>Memory Cleanup</strong> – Removes event listeners in <code class="language-plaintext highlighter-rouge">beforeDestroy()</code>.</p>
+
+<hr />
+
+<p>Sure! A <strong>Student Planner App</strong> is a <strong>useful</strong> alternative to a <strong>Todo App</strong>. It helps students manage <strong>assignments, deadlines, class schedules, and reminders.</strong></p>
+
+<h3 id="-lets-update-our-previous-example-with-a-vuejs-student-planner-app">🔥 <strong>Let’s update our previous example</strong> with a <strong>Vue.js Student Planner App!</strong></h3>
+
+<hr />
+
+<h1 id="-vue-student-planner-app">🎯 <strong>Vue Student Planner App</strong></h1>
+<h3 id="-features">✅ <strong>Features</strong>:</h3>
+<p>✔ Add <strong>assignments</strong> with deadlines.<br />
+✔ <strong>Sort</strong> assignments by due date.<br />
+✔ <strong>Persist</strong> data using <code class="language-plaintext highlighter-rouge">localStorage</code>.<br />
+✔ Show <strong>upcoming deadlines in red</strong>.<br />
+✔ <strong>Remove</strong> completed assignments.</p>
+
+<hr />
+
+<h2 id="-code"><strong>📌 Code:</strong></h2>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue Student Planner<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.deadline-soon</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>📚 Student Planner<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"newTask"</span> <span class="na">placeholder=</span><span class="s">"Enter assignment"</span> <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"addTask"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"date"</span> <span class="na">v-model=</span><span class="s">"newDeadline"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addTask"</span><span class="nt">&gt;</span>Add<span class="nt">&lt;/button&gt;</span>
+
+    <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"(task, index) in sortedTasks"</span> <span class="na">:key=</span><span class="s">"index"</span><span class="nt">&gt;</span>
+            {{ task.name }} - 
+            <span class="nt">&lt;span</span> <span class="na">:class=</span><span class="s">"{ 'deadline-soon': isDeadlineSoon(task.deadline) }"</span><span class="nt">&gt;</span>
+                Due: {{ task.deadline }}
+            <span class="nt">&lt;/span&gt;</span>
+            <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"removeTask(index)"</span><span class="nt">&gt;</span>❌<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="na">el</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#app</span><span class="dl">"</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="na">newTask</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="na">newDeadline</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="na">tasks</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">beforeCreate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">1️⃣ beforeCreate: No assignments loaded yet.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">2️⃣ created: Loading assignments...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">savedTasks</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">tasks</span><span class="dl">"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">savedTasks</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">savedTasks</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">3️⃣ mounted: Planner is ready.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeunload</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">saveTasks</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">beforeDestroy</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">6️⃣ beforeDestroy: Cleaning up...</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">beforeunload</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">saveTasks</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">addTask</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newTask</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">newDeadline</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">newTask</span><span class="p">.</span><span class="nx">trim</span><span class="p">(),</span> <span class="na">deadline</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">newDeadline</span> <span class="p">});</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">newTask</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">newDeadline</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">removeTask</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">saveTasks</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">tasks</span><span class="dl">"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">));</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">📝 Assignments saved.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">isDeadlineSoon</span><span class="p">(</span><span class="nx">deadline</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="kd">const</span> <span class="nx">dueDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">deadline</span><span class="p">);</span>
+            <span class="kd">const</span> <span class="nx">diffTime</span> <span class="o">=</span> <span class="nx">dueDate</span> <span class="o">-</span> <span class="nx">today</span><span class="p">;</span>
+            <span class="kd">const</span> <span class="nx">diffDays</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">diffTime</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">));</span>
+            <span class="k">return</span> <span class="nx">diffDays</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Highlight tasks due in 2 days</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">computed</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">sortedTasks</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">deadline</span><span class="p">)</span> <span class="o">-</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">deadline</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-key-features-of-this-app">🔥 <strong>Key Features of This App</strong></h2>
+<p>📅 <strong>Assignments</strong> – Add assignments with due dates.<br />
+⚠ <strong>Deadline Alerts</strong> – Upcoming deadlines (within 2 days) turn red.<br />
+📊 <strong>Sorting</strong> – Tasks auto-sort by due date.<br />
+💾 <strong>Persistence</strong> – Tasks saved in <code class="language-plaintext highlighter-rouge">localStorage</code>.<br />
+🛠 <strong>Cleanup</strong> – Event listeners removed in <code class="language-plaintext highlighter-rouge">beforeDestroy()</code>.</p>
+
+<hr />
+
+<h2 id="-whats-next"><strong>🚀 What’s Next?</strong></h2>
+<p>Create :</p>
+<ul>
+  <li><strong>More student productivity tools</strong> (like a GPA Calculator)!</li>
+  <li><strong>Vue 3 with Composition API</strong> version!</li>
+  <li><strong>Enhancements</strong> (like notifications)!</li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

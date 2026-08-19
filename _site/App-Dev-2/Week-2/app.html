@@ -1,0 +1,31 @@
+<!-- index.html for Vue 2 -->
+<div id="app">
+  <!-- Only show the message when visible is true -->
+  <p v-if="visible">{{ message }}</p>
+</div>
+
+<!-- Include Vue 2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+<script>
+
+// Create a new Vue 2 instance
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Waiting...',
+    visible: false,
+    timeoutId: null
+  },
+  mounted() {
+    // After 2 seconds, show the message
+    this.timeoutId = setTimeout(() => {
+      this.visible = true;
+      this.message = 'Hello from Vue!';
+    }, 2000);
+  },
+  beforeDestroy() {
+    // Clear timer when component is destroyed
+    clearTimeout(this.timeoutId);
+  }
+});
+</script>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>App Development Resources | A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="App Development Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<meta name="twitter:description" property="og:description" content="A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)" />
+<link rel="canonical" href="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day1-2nd.html" />
+<meta property="og:url" content="https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day1-2nd.html" />
+<meta property="og:site_name" content="App Development Resources" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="App Development Resources" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive collection of resources for App Development courses (MAD-1 &amp; MAD-2)","headline":"App Development Resources","url":"https://shrikrishna97.github.io/Resources-App-Dev/docs/App-Dev-1-Project/Day1-2nd.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Resources-App-Dev/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Resources-App-Dev/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">App Development Resources</h1>
+      <h2 class="project-tagline">A comprehensive collection of resources for App Development courses (MAD-1 & MAD-2)</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h3 id="day-1-introduction-to-flask-jinja2-htmlcss-and-setup"><strong>Day 1: Introduction to Flask, Jinja2, HTML/CSS, and Setup</strong></h3>
+
+<p><strong>Coding (2 PM - 4 PM)</strong></p>
+
+<ul>
+  <li>
+    <p><strong>Create Project Structure</strong>:</p>
+
+    <ul>
+      <li><strong>app.py</strong>: Main entry point for the Flask app.</li>
+      <li><strong>models.py</strong>: Where database models will reside.</li>
+      <li><strong>templates/</strong>: Create <code class="language-plaintext highlighter-rouge">index.html</code> as a base template.</li>
+      <li><strong>static/</strong>: Store your CSS and JS files (use Bootstrap CDN for styling).</li>
+    </ul>
+
+    <p><strong>Explanation of Code and Structure</strong></p>
+
+    <p><strong>app.py</strong>:</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>  <span class="c1"># Importing Flask and render_template to create the app and render templates
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c1"># Creating the Flask app instance
+</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>  <span class="c1"># Route decorator that maps the function to the root URL ('/')
+</span><span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">'Home Page'</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s">'John Doe'</span><span class="p">)</span>  <span class="c1"># Rendering the template and passing data
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>  <span class="c1"># Ensures code runs only when executed directly
+</span>    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># Runs the app in debug mode for easier development
+</span></code></pre></div>    </div>
+
+    <p><strong>Explanation</strong>:</p>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">from flask import Flask, render_template</code></strong>: Imports the necessary modules to create the Flask app and render HTML templates.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">app = Flask(__name__)</code></strong>: Initializes the Flask app, with <code class="language-plaintext highlighter-rouge">__name__</code> indicating the root path.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">@app.route('/')</code></strong>: Specifies the route for the homepage.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">return render_template('index.html', title='Home Page', username='John Doe')</code></strong>: Calls <code class="language-plaintext highlighter-rouge">render_template()</code> to load <code class="language-plaintext highlighter-rouge">index.html</code> from the <code class="language-plaintext highlighter-rouge">templates/</code> folder and passes <code class="language-plaintext highlighter-rouge">title</code> and <code class="language-plaintext highlighter-rouge">username</code> to be used in the template.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">if __name__ == "__main__"</code></strong>: Ensures the script runs as the main program.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">app.run(debug=True)</code></strong>: Starts the Flask development server with debug mode enabled.</li>
+    </ul>
+
+    <p><strong>Why the <code class="language-plaintext highlighter-rouge">templates</code> Folder?</strong></p>
+    <ul>
+      <li>Flask expects to find HTML templates in a directory named <code class="language-plaintext highlighter-rouge">templates</code> by default. This is where you should place all the HTML files that need to be rendered by <code class="language-plaintext highlighter-rouge">render_template()</code>.</li>
+      <li>The connection is established when <code class="language-plaintext highlighter-rouge">render_template('index.html')</code> is called, prompting Flask to look for <code class="language-plaintext highlighter-rouge">index.html</code> in the <code class="language-plaintext highlighter-rouge">templates/</code> folder.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Create a Simple HTML Template</strong> in <code class="language-plaintext highlighter-rouge">templates/index.html</code>:</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>{{ title }}<span class="nt">&lt;/title&gt;</span>  <span class="c">&lt;!-- Dynamic title passed from app.py --&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Welcome, {{ username }}!<span class="nt">&lt;/h1&gt;</span>  <span class="c">&lt;!-- Dynamic username passed from app.py --&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div>    </div>
+
+    <p><strong>Explanation of <code class="language-plaintext highlighter-rouge">index.html</code></strong>:</p>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">{{ title }}</code></strong> and <strong><code class="language-plaintext highlighter-rouge">{{ username }}</code></strong> are Jinja2 placeholders. Flask replaces them with the values passed from <code class="language-plaintext highlighter-rouge">app.py</code>.</li>
+      <li>This template is stored in the <code class="language-plaintext highlighter-rouge">templates/</code> directory and rendered when the <code class="language-plaintext highlighter-rouge">home()</code> function in <code class="language-plaintext highlighter-rouge">app.py</code> is called.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Here’s why we used Bootstrap over traditional CSS and information on how to get and use CDN links:</p>
+
+<h3 id="why-use-bootstrap-instead-of-traditional-css">Why Use Bootstrap Instead of Traditional CSS?</h3>
+<p>Bootstrap is a popular CSS framework that provides pre-designed components and a responsive grid system. Here are the key reasons for using Bootstrap in this context:</p>
+
+<ul>
+  <li><strong>Ease of Use</strong>: Bootstrap offers a collection of ready-to-use styles and components, such as navigation bars, buttons, and modals, that reduce the amount of custom CSS you need to write.</li>
+  <li><strong>Consistency</strong>: It ensures a consistent design across different parts of your application and across different projects.</li>
+  <li><strong>Responsiveness</strong>: Bootstrap’s grid system allows you to build responsive web pages that adapt seamlessly to various screen sizes without writing extensive CSS.</li>
+  <li><strong>Community Support</strong>: Being widely used, Bootstrap has excellent documentation and community support, which is helpful for learners.</li>
+</ul>
+
+<h3 id="what-is-a-cdn">What is a CDN?</h3>
+<p>CDN stands for <strong>Content Delivery Network</strong>. It is a system of distributed servers that deliver web content, like CSS or JavaScript libraries, based on the user’s geographic location. The main benefits include:</p>
+
+<ul>
+  <li><strong>Faster Load Times</strong>: CDNs store content in multiple locations worldwide, so users can download assets from the nearest server, leading to quicker load times.</li>
+  <li><strong>Reduced Server Load</strong>: Your server doesn’t need to handle the load of serving static files, as CDNs take care of that.</li>
+  <li><strong>Automatic Updates</strong>: When using the latest version of a library via a CDN, updates are managed by the service.</li>
+</ul>
+
+<h3 id="how-to-get-a-cdn-link-for-bootstrap">How to Get a CDN Link for Bootstrap?</h3>
+<ol>
+  <li><strong>Visit the Bootstrap website</strong>: Go to <a href="https://getbootstrap.com/">getbootstrap.com</a>.</li>
+  <li><strong>Navigate to the “Get Started” section</strong>: Copy the CSS and JavaScript links provided for quick integration.</li>
+  <li><strong>Insert the CDN link in your HTML <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code></strong>: This allows your page to pull Bootstrap directly from the web.</li>
+</ol>
+
+<h3 id="example-of-including-bootstrap-via-a-cdn">Example of Including Bootstrap via a CDN:</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>This link loads the Bootstrap CSS directly from a CDN, so you don’t need to download and host it locally.</p>
+
+<h3 id="what-is-jinja2">What is Jinja2?</h3>
+<p>Jinja2 is a template engine used in Flask for rendering dynamic web pages. It allows you to embed Python-like expressions in HTML, making it easier to generate complex HTML structures.</p>
+
+<h3 id="why-use-jinja2">Why Use Jinja2?</h3>
+<p>Jinja2 has several advantages over other template engines:</p>
+
+<ul>
+  <li><strong>Dynamic Content</strong>: Jinja2 allows you to insert Python expressions into HTML templates, making it easy to generate dynamic content.</li>
+  <li><strong>Template Inheritance</strong>: It supports template inheritance, allowing you to reuse common sections of HTML across multiple templates.</li>
+  <li><strong>Extensibility</strong>: Jinja2 is extensible, making it easy to add custom filters, macros, and functions to your templates.</li>
+</ul>
+
+<h3 id="how-to-use-jinja2-in-flask">How to Use Jinja2 in Flask?</h3>
+<ol>
+  <li><strong>Import Jinja2</strong>: Import the <code class="language-plaintext highlighter-rouge">render_template</code> function from the <code class="language-plaintext highlighter-rouge">flask</code> module.</li>
+  <li><strong>Render Templates</strong>: Call <code class="language-plaintext highlighter-rouge">render_template()</code> to load and render templates.</li>
+  <li><strong>Pass Data</strong>: Pass data to the template using keyword arguments.</li>
+  <li><strong>Template Variables</strong>: Jinja2 allows you to use variables in your templates. You can access the data passed from <code class="language-plaintext highlighter-rouge">app.py</code> using the <code class="language-plaintext highlighter-rouge">{{ }}</code> syntax.</li>
+</ol>
+
+<p><strong>Prep/Doubt Clearing (4 PM - 5 PM)</strong></p>
+
+<ul>
+  <li>Discuss the Flask structure, routing, and templates or problem statements discussion.</li>
+  <li>If any doubts, clear them.</li>
+</ul>
+
+<p>Here are some excellent HTML and CSS resources for beginners:</p>
+
+<h3 id="html-resources"><strong>HTML Resources:</strong></h3>
+
+<ol>
+  <li><strong><a href="https://www.w3schools.com/html/">W3Schools - HTML Tutorial</a></strong>
+    <ul>
+      <li>A beginner-friendly resource that covers all the basic concepts of HTML with interactive examples and exercises.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Introduction">MDN Web Docs - HTML Basics</a></strong>
+    <ul>
+      <li>Mozilla’s comprehensive documentation, starting with an overview of HTML and progressing to more advanced topics. It’s great for both learning and referencing.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://www.freecodecamp.org/learn/responsive-web-design/#basic-html-and-html5">freeCodeCamp - HTML and HTML5</a></strong>
+    <ul>
+      <li>Offers a free interactive course covering HTML basics and advanced concepts. It’s practical and allows you to build projects.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://html.com/">HTML.com</a></strong>
+    <ul>
+      <li>A simple, straightforward resource with tutorials that break down HTML concepts in an easy-to-understand manner.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="css-resources"><strong>CSS Resources:</strong></h3>
+
+<ol>
+  <li><strong><a href="https://www.w3schools.com/css/">W3Schools - CSS Tutorial</a></strong>
+    <ul>
+      <li>A great resource for beginners that covers all CSS properties and concepts with examples and exercises.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Introduction_to_CSS">MDN Web Docs - CSS Basics</a></strong>
+    <ul>
+      <li>MDN offers in-depth documentation with examples on CSS properties, selectors, and layouts, perfect for learners of all levels.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://www.freecodecamp.org/learn/responsive-web-design/basic-css/">freeCodeCamp - CSS</a></strong>
+    <ul>
+      <li>Another free, interactive course that helps you learn CSS, starting from the basics and advancing to responsive design techniques.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://css-tricks.com/guides/">CSS-Tricks</a></strong>
+    <ul>
+      <li>Provides a series of guides and articles on various CSS topics, ranging from beginner to advanced. Includes practical examples and tips.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9iIi6d_UlD6w2Edo0W9Jz-K">The Net Ninja - CSS Tutorials (YouTube)</a></strong>
+    <ul>
+      <li>A YouTube playlist with clear and concise CSS tutorials for beginners. Great if you prefer video tutorials.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="interactive-learning"><strong>Interactive Learning:</strong></h3>
+
+<ol>
+  <li><strong><a href="https://codepen.io/">CodePen</a></strong>
+    <ul>
+      <li>A platform where you can write and experiment with HTML, CSS, and JavaScript. It’s a great way to practice and see your changes in real-time.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://flukeout.github.io/">CSS Diner</a></strong>
+    <ul>
+      <li>A fun game to learn and practice CSS selectors, perfect for beginners who want to engage with the learning process.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://flexboxfroggy.com/">Flexbox Froggy</a></strong>
+    <ul>
+      <li>A fun way to learn CSS Flexbox, a layout model that’s very useful in modern web design.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://cssgridgarden.com/">Grid Garden</a></strong>
+    <ul>
+      <li>Similar to Flexbox Froggy, but for learning CSS Grid layout. It’s an interactive way to master CSS Grid.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="books-for-beginners"><strong>Books for Beginners:</strong></h3>
+
+<ol>
+  <li><strong>“HTML and CSS: Design and Build Websites” by Jon Duckett</strong>
+    <ul>
+      <li>A visually appealing and easy-to-follow book for beginners, offering clear explanations and practical examples.</li>
+    </ul>
+  </li>
+  <li><strong>“Learning Web Design” by Jennifer Niederst Robbins</strong>
+    <ul>
+      <li>A comprehensive guide to HTML and CSS, starting with the basics and advancing to more complex topics. Perfect for new learners.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>By exploring these resources, you’ll gain a solid foundation in HTML and CSS, and you’ll be ready to apply your skills in web development projects.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
