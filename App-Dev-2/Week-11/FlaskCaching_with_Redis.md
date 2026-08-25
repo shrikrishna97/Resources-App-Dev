@@ -47,16 +47,22 @@ pip install flask flask-caching redis
 
 ### **3.2 Install Redis**
 
-⚠ **Windows Users** – Redis latest version isn’t supported natively. Use **WSL (Windows Subsystem for Linux)**.
+⚠ **Windows Users** – Redis latest version isn’t supported natively. Use **WSL (Windows Subsystem for Linux)** or **Docker Desktop**.
 
-#### **Linux / Ubuntu / WSL**
+#### **Option 1: Windows (Using Docker Desktop - Recommended)**
+
+```bash
+docker run -d --name redis -p 6379:6379 redis:latest
+```
+
+#### **Option 2: Linux / Ubuntu / WSL**
 
 ```bash
 sudo apt update
 sudo apt install redis-server
 ```
 
-#### **macOS**
+#### **Option 3: macOS**
 
 ```bash
 brew install redis
@@ -66,21 +72,17 @@ brew install redis
 
 ### **3.3 Start Redis Server**
 
+#### **If using Docker:**
+```bash
+docker start redis
+```
+Check if working: `docker exec -it redis redis-cli ping` (Returns `PONG`)
+
+#### **If using Linux / WSL / macOS:**
 ```bash
 redis-server
 ```
-
-Check if it’s working:
-
-```bash
-redis-cli ping
-```
-
-Output:
-
-```
-PONG
-```
+Check if working: `redis-cli ping` (Returns `PONG`)
 
 ---
 
@@ -307,10 +309,10 @@ GET /square/5  -> 0.001 seconds   (second run, cache hit)
     (Cache Miss)
         |
         v
- [Run Actual Code]
+  [Run Actual Code]
         |
         v
- [Store in Redis]
+  [Store in Redis]
         |
         v
 [Send Response to Browser]
@@ -328,6 +330,44 @@ GET /square/5  -> 0.001 seconds   (second run, cache hit)
 * **Timeout** – Always set reasonable cache expiry to avoid stale data.
 * Use **RedisInsight** for easy debugging.
 * Cache only **expensive computations or slow-changing data**.
+
+## **13. Running & Inspecting Redis in Terminal (Docker Guide for Windows)**
+
+### **13.1 Download & Setup Docker Desktop**
+1. Download **Docker Desktop for Windows**: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+2. Install Docker Desktop and restart your PC.
+3. Open the **Docker Desktop** application from your Start menu and wait until it displays **"Engine running"** in green at the bottom-left corner before running any Docker commands.
+
+---
+
+### **13.2 Recommended Workflow: Use PowerShell Terminals Only**
+⚠ **IMPORTANT to Avoid Port & Environment Conflicts:**
+* Use **PowerShell** terminals for your entire setup on Windows.
+* **Open 2 separate PowerShell terminals:**
+  * **Terminal 1:** Run your Flask backend app (`python app.py`).
+  * **Terminal 2:** Run your Docker & Redis CLI commands (`docker exec ...`).
+* **Do NOT mix terminal types!** Avoid running WSL/Linux terminal in one window and PowerShell in another, as WSL background services can intercept port `6379` and cause cache key conflicts.
+
+---
+
+### **13.3 Start Redis Server in Docker**
+
+```powershell
+docker run -d --name redis -p 6379:6379 redis:latest
+```
+
+---
+
+### **13.4 Terminal Commands for Inspecting Redis Caching**
+
+| Task | PowerShell Docker Command |
+| :--- | :--- |
+| **Check Redis Connection** | `docker exec -it redis redis-cli ping` |
+| **List All Cached Keys** | `docker exec -it redis redis-cli keys "*"` |
+| **Read Value of a Key** | `docker exec -it redis redis-cli get "<KEY>"` |
+| **Check Expiry Timeout (TTL)** | `docker exec -it redis redis-cli ttl "<KEY>"` |
+| **Watch Live Activity (Monitor)**| `docker exec -it redis redis-cli monitor` |
+| **Clear All Cached Keys** | `docker exec -it redis redis-cli flushall` |
 
 ---
 
