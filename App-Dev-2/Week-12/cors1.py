@@ -1,34 +1,37 @@
 from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
+from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 
-# CORS(app, origins=["http://127.0.0.1:5500", "http://localhost:5500"] , supports_credentials=True)
-
-# CORS(app, origins="*", supports_credentials=True)
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins="*")
 
 @app.route("/set-cookie")
 def set_cookie():
+    
     resp = make_response(jsonify({"message": "Cookie is set!"}))
+    
+    print(resp)
+    
     resp.set_cookie(
-        "some_token",
+        "user_token",
         "abc123",
-        # max_age=10,
-        # expires=
-        # httponly=True,  # JS cannot read this cookie
-        # samesite="Strict" 
-        secure=True,     # True in production with HTTPS
-        samesite="None"
+        # samesite="Strict",
+        httponly=True,
+        # expires=datetime.utcnow() + timedelta(minutes=1),
+        max_age=10,
         # Works locally for cross-site cookies
     )
     return resp
+
 @app.route("/get-cookie")
 def get_cookie():
-    token = request.cookies.get("some_token")
-    return jsonify({"token": token})  
-    
-
+    token = request.cookies.get("user_token")
+    print(token)
+    if token:
+        return jsonify({"message": "Cookie retrieved!", "token": token})
+    return jsonify({"message": "No cookie found!"}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
