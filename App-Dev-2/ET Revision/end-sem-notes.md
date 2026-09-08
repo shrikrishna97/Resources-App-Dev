@@ -181,7 +181,58 @@ Session   → Traditional web apps, when instant logout is critical
 
 ---
 
-## 3. Flask-Security: 401 Unauthorized vs 403 Forbidden
+## 3. Celery Worker + Beat (Short Example)
+
+Use this when you want to run tasks in background and also schedule recurring tasks.
+
+| Component | What it does |
+|---|---|
+| Celery Worker | Executes tasks from queue |
+| Celery Beat | Scheduler that sends periodic tasks to queue |
+| Redis (Broker) | Stores queued task messages |
+
+```python
+# celery_worker.py
+from celery import Celery
+from celery.schedules import crontab
+
+celery_app = Celery(
+    'tasks',
+    broker='redis://localhost:6379/1',
+    backend='redis://localhost:6379/2',
+    include=['tasks']
+)
+
+celery_app.conf.beat_schedule = {
+    'daily-reminder': {
+        'task': 'tasks.send_daily_reminder',
+        'schedule': crontab(hour=8, minute=0),
+    }
+}
+```
+
+```python
+# tasks.py
+from celery_worker import celery_app
+
+@celery_app.task
+def send_daily_reminder():
+    print("Sending daily reminders...")
+    return "done"
+```
+
+Run:
+
+```bash
+celery -A celery_worker.celery_app worker --loglevel=info
+celery -A celery_worker.celery_app beat --loglevel=info
+```
+
+> **Quick rule:** Beat decides **when** to run a task; Worker does the actual work.
+
+---
+
+## 4. Flask-Security: 401 Unauthorized vs 403 Forbidden
 
 These two HTTP status codes are often confused. They come from different problems.
 
@@ -252,7 +303,7 @@ Flask-Security (the `flask-security-too` library) uses these codes precisely:
 
 ---
 
-## 4. GraphQL: How It Works
+## 5. GraphQL: How It Works
 
 GraphQL is a **query language for APIs**. Instead of multiple REST endpoints, you have one endpoint where the client asks for exactly what it needs.
 
@@ -307,7 +358,7 @@ GraphQL (one endpoint, client controls shape):
 
 ---
 
-## 5. Git: Branch Creation and Merge
+## 6. Git: Branch Creation and Merge
 
 A **branch** is an independent line of development. You create one to work on a feature without touching the main code.
 
@@ -390,7 +441,7 @@ git commit   # completes the merge
 
 ---
 
-## 6. Server-Sent Events (SSE): Theory
+## 7. Server-Sent Events (SSE): Theory
 
 SSE is a browser technology where the **server continuously pushes one-way updates** to the client over a single long-lived HTTP connection.
 
@@ -437,7 +488,7 @@ Each event ends with a blank line, and `data:` can appear multiple times for mul
 
 ---
 
-## 7. WebSocket: Initial Handshake
+## 8. WebSocket: Initial Handshake
 
 WebSocket gives a **persistent, full-duplex** connection between client and server. The connection starts as an HTTP request, then **upgrades** to WebSocket.
 
@@ -487,7 +538,7 @@ WebSocket: Client ←→ Server (one open connection, both can send any time)
 
 ---
 
-## 8. Flask Caching: `@cache.memoize()`
+## 9. Flask Caching: `@cache.memoize()`
 
 Caching stores the result of an expensive function call so it does not have to run again for the same inputs.
 
@@ -559,7 +610,7 @@ app.config['CACHE_REDIS_URL'] = 'redis://localhost:6379/0'
 
 ---
 
-## 9. CORS: Frontend to Backend Access Control
+## 10. CORS: Frontend to Backend Access Control
 
 **CORS** (Cross-Origin Resource Sharing) — browser blocks requests from one origin to another unless the **server explicitly allows it**.
 
@@ -639,7 +690,7 @@ Access-Control-Allow-Headers: Content-Type, Authorization ← what headers
 
 ---
 
-## 10. Cookies: Use Cases
+## 11. Cookies: Use Cases
 
 A **cookie** is a small key-value string stored in the browser and **automatically sent** with every HTTP request to the matching domain.
 
@@ -760,6 +811,7 @@ resp.set_cookie('auth_token', 'abc123',
 | Vuex | state → getters → mutations (sync) → actions (async) |
 | JWT | Token on client, server verifies signature, no DB lookup |
 | Session auth | Session ID on client, identity stored on server |
+| Celery Beat + Worker | Beat schedules tasks; Worker executes tasks from queue |
 | 401 | Not authenticated — go log in |
 | 403 | Authenticated but not authorized — wrong role/permission |
 | GraphQL | One endpoint, client defines shape, resolvers fetch each field |
@@ -769,3 +821,22 @@ resp.set_cookie('auth_token', 'abc123',
 | `@cache.memoize` | Caches by function arguments, not just URL |
 | CORS | Server must send `Access-Control-Allow-Origin` header |
 | Cookies | Auto-sent with requests; use `HttpOnly` for token security |
+
+---
+
+## 12. Lighthouse
+
+### What does it do?
+
+- Loads a page and all resources while monitoring time taken
+  - Flush caches if necessary
+- Measures time and memory metrics
+- Emulates network bottlenecks and throttling
+  - Separate projects on how to make this realistic
+- Emulates devices: mobile vs desktop
+- Computes a weighted average score for:
+  - Performance
+  - Accessibility
+  - Best practices
+  - Search Engine Optimization (SEO)
+  - Progressive Web App (if relevant)
