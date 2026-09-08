@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Production: restrict to specific origin
 CORS(app, resources={r"/api/*": {
-    "origins": ["http://localhost:5173", "http://127.0.0.1:5173"],
+    "origins": ["http://localhost:5500", "http://127.0.0.1:5500"],
     "methods": ["GET", "POST", "PUT", "DELETE"],
     "allow_headers": ["Content-Type", "Authorization"]
 }})
@@ -27,13 +27,13 @@ def api_data():
 @app.get('/api/manual')
 def api_manual():
     resp = make_response(jsonify(data="Hello from /api/manual"), 200)   # 200 = status code
-    resp.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+    resp.headers['Access-Control-Allow-Origin'] = 'http://127.0.0.1:5500'
     return resp
 
 # ── Inline: return (body, status_code, headers_dict) tuple ──
 @app.get('/api/hello')
 def api_hello():
-    return jsonify(msg="Hello from /api/hello"), 200, {'Access-Control-Allow-Origin': 'http://localhost:5173'}
+    return jsonify(msg="Hello from /api/hello"), 200, {'Access-Control-Allow-Origin': 'http://127.0.0.1:5500'}
 
 
 if __name__ == '__main__':

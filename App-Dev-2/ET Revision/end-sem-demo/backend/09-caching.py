@@ -11,19 +11,22 @@ app = Flask(__name__)
 
 # SimpleCache = in-memory, single-process (dev only)
 # For production: CACHE_TYPE = 'RedisCache', CACHE_REDIS_URL = 'redis://localhost:6379/0'
-app.config['CACHE_TYPE'] = 'SimpleCache'
+app.config['CACHE_TYPE'] = 'RedisCache'
+app.config['CACHE_REDIS_URL'] = 'redis://localhost:6379/0'
 app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 cache = Cache(app)
 
 # @cache.cached — caches entire view, key = request URL
 @app.get('/home')
-@cache.cached(timeout=60)
+@cache.cached(timeout=30, key_prefix='home_page')
 def home():
     print("home() actually ran")   # only prints on first call, then cached
     return jsonify(msg="Home page data")
 
 # @cache.memoize — caches per argument combination
-@cache.memoize(timeout=120)
+
+@app.get('/report/<int:user_id>/<int:year>')
+@cache.memoize(timeout=60)
 def get_user_report(user_id, year):
     print(f"Computing report for user={user_id}, year={year}")
     # Expensive DB query / calculation here
