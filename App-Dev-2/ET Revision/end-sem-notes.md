@@ -190,6 +190,7 @@ Use this when you want to run tasks in background and also schedule recurring ta
 | Celery Worker | Executes tasks from queue |
 | Celery Beat | Scheduler that sends periodic tasks to queue |
 | Redis (Broker) | Stores queued task messages |
+| Redis (Backend) | Stores task results |
 
 ```python
 # celery_worker.py
@@ -804,6 +805,25 @@ resp.set_cookie('auth_token', 'abc123',
 
 ---
 
+## 12. Lighthouse
+
+### What does it do?
+
+- Loads a page and all resources while monitoring time taken
+  - Flush caches if necessary
+- Measures time and memory metrics
+- Emulates network bottlenecks and throttling
+  - Separate projects on how to make this realistic
+- Emulates devices: mobile vs desktop
+- Computes a weighted average score for:
+  - Performance
+  - Accessibility
+  - Best practices
+  - Search Engine Optimization (SEO)
+  - Progressive Web App (if relevant)
+
+---
+
 ## Quick Revision Table
 
 | Topic | One-line Remember |
@@ -824,19 +844,3 @@ resp.set_cookie('auth_token', 'abc123',
 
 ---
 
-## 12. Lighthouse
-
-### What does it do?
-
-- Loads a page and all resources while monitoring time taken
-  - Flush caches if necessary
-- Measures time and memory metrics
-- Emulates network bottlenecks and throttling
-  - Separate projects on how to make this realistic
-- Emulates devices: mobile vs desktop
-- Computes a weighted average score for:
-  - Performance
-  - Accessibility
-  - Best practices
-  - Search Engine Optimization (SEO)
-  - Progressive Web App (if relevant)
