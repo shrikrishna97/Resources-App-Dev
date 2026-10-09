@@ -68,6 +68,8 @@ On **Day 1**, we will:
 * **Milestones:**
   [Vehicle Parking V2 – Milestones](https://docs.google.com/document/d/e/2PACX-1vRdzux5yAIBr8dTRum6iFJZV3M1NxxM0REk3lMMTCiVRwFmr5RPFoggMnnSg8jRtYpotPJ4qlQMR-Q_/pub)
 
+<img width="786" height="582" alt="image" src="https://github.com/user-attachments/assets/fcddc5b2-37fa-4038-9c3a-0307c561f59a" />
+
 
 
 
