@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>WikiVue — Explore Knowledge</title>
+
+  <!-- Clean Bootswatch Litera Theme (Custom-styled Bootstrap 5) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/litera/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body style="background-color: #fcfcfc;">
+
+  <div id="app">
+
+    <!-- Simple Navbar -->
+    <nav class="navbar navbar-light bg-white border-bottom mb-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#" @click.prevent="goHome">
+          Wiki<span class="text-primary">Vue</span>
+        </a>
+        <div>
+          <a class="btn btn-sm btn-outline-secondary me-2" href="#" @click.prevent="goHome">Home</a>
+          <a class="btn btn-sm btn-outline-primary" href="https://en.wikipedia.org" target="_blank">Wikipedia ↗</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+
+      <!-- Home View -->
+      <div class="text-center py-5" v-if="!article">
+        <h1 class="mb-3">Explore Knowledge</h1>
+        <p class="text-muted mb-4">Search any topic to read a quick overview from Wikipedia.</p>
+
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <search-bar :loading="loading" @search="searchArticle"></search-bar>
+
+            <div class="alert alert-danger mt-3" v-if="errorMessage">
+              {{ errorMessage }}
+            </div>
+
+            <suggestion-chips :topics="suggestedTopics" @select="searchArticle"></suggestion-chips>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article View -->
+      <div v-if="article">
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-8 col-lg-6">
+            <search-bar :loading="loading" :compact="true" @search="searchArticle"></search-bar>
+          </div>
+        </div>
+
+        <article-card :article="article" :key="article.title"></article-card>
+      </div>
+
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="text-center text-muted mt-5 pt-4 border-top small">
+      Built with Vue 2 &amp; Bootstrap
+    </footer>
+
+  </div>
+
+  <!-- Vue 2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <!-- Root Vue Instance -->
+  <script src="app.js" type="module"></script>
+</body>
+
+</html>
