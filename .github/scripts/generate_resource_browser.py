@@ -16,7 +16,8 @@ def render_directory(directory: Path, root: Path) -> str:
         if path.is_dir():
             contents = render_directory(path, root)
             if contents:
-                items.append(f"<li><details><summary>{name}/</summary><ul>{contents}</ul></details></li>")
+                directory_id = html.escape(path.relative_to(root).as_posix(), quote=True)
+                items.append(f'<li><details id="{directory_id}"><summary>{name}/</summary><ul>{contents}</ul></details></li>')
         elif path.is_file():
             url = html.escape(quote(path.relative_to(root).as_posix(), safe="/"), quote=True)
             items.append(f'<li><a href="{url}">{name}</a></li>')
@@ -38,7 +39,20 @@ def generate(root: Path) -> None:
         '<header class="page-header"><h1>Browse resources by folder</h1></header>'
         '<main class="main-content"><p><a href="./">Home</a></p>'
         '<p>Files published by the latest site build, organized by folder.</p>'
-        f'<ul>{contents}</ul></main></body></html>\n',
+        f'<ul>{contents}</ul></main>'
+        '<script>'
+        'function openFolder() {'
+        '  if (!location.hash) return;'
+        '  var id = new URLSearchParams("path=" + location.hash.slice(1)).get("path");'
+        '  var target = document.getElementById(id);'
+        '  for (var node = target; node; node = node.parentElement) {'
+        '    if (node.tagName === "DETAILS") node.open = true;'
+        '  }'
+        '  if (target) target.scrollIntoView();'
+        '}'
+        'window.addEventListener("hashchange", openFolder);'
+        'openFolder();'
+        '</script></body></html>\n',
         encoding="utf-8",
     )
 

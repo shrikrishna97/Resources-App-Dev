@@ -25,6 +25,7 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <div class="term-tabs" id="termTabs">
   <button class="term-tab active" data-term="jan26">Jan 2026</button>
   <button class="term-tab" data-term="may26">May 2026</button>
+  <button class="term-tab" data-term="sep26">Sep 2026</button>
 </div>
 
 <!-- ==================== Jan 2026 Term ==================== -->
@@ -108,6 +109,41 @@ Complete guides to build your MAD-2 full-stack project with Flask backend and Vu
 <tr><td>Day 6</td><td><a href="../App-Dev-2-Project/May%2026/Day-6/Final-Content-Covered.html">Final Content Covered</a></td><td><a href="https://github.com/shrikrishna97/Resources-App-Dev/tree/main/App-Dev-2-Project/May%2026/Day-6">Day-6 Code</a></td><td>Final session summary</td></tr>
 </tbody>
 </table>
+
+</div>
+
+<!-- ==================== Sep 2026 Term ==================== -->
+<div class="term-content" id="term-sep26">
+
+<h3>Getting Started</h3>
+
+<table>
+<thead><tr><th>Resource</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/Day-0.html">Day 0 Orientation</a></td><td>Project planning and term resources</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/INDEX.html">Project Index</a></td><td>Documentation overview</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/PREREQUISITES_AND_SETUP.html">Prerequisites &amp; Setup</a></td><td>Getting started with backend and frontend</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/BACKEND_SETUP.html">Backend Setup</a></td><td>Flask backend guide</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/FRONTEND_SETUP.html">Frontend Setup</a></td><td>Vue frontend guide</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/SECURITY_GUIDE.html">Security Guide</a></td><td>Authentication and authorization</td></tr>
+<tr><td><a href="../App-Dev-2-Project/Sep-26/Day-0/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td>WSL setup commands</td></tr>
+</tbody>
+</table>
+
+<h3>Day-wise Implementation</h3>
+
+<table>
+<thead><tr><th>Day</th><th>Guide</th><th>Codebase</th></tr></thead>
+<tbody>
+<tr><td>Day 1</td><td><em>See setup guides</em></td><td><a href="../resource-browser.html#App-Dev-2-Project/Sep-26/Day-1">Browse Day 1 files</a></td></tr>
+<tr><td>Day 2</td><td><em>See setup guides</em></td><td><a href="../resource-browser.html#App-Dev-2-Project/Sep-26/Day-2">Browse Day 2 files</a></td></tr>
+<tr><td>Day 3</td><td><a href="../App-Dev-2-Project/Sep-26/Day-3/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="../resource-browser.html#App-Dev-2-Project/Sep-26/Day-3">Browse Day 3 files</a></td></tr>
+<tr><td>Day 4</td><td><a href="../App-Dev-2-Project/Sep-26/Day-4/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="../resource-browser.html#App-Dev-2-Project/Sep-26/Day-4">Browse Day 4 files</a></td></tr>
+<tr><td>Day 5</td><td><a href="../App-Dev-2-Project/Sep-26/Day-5/WSL_SETUP_GUIDE.html">WSL Setup Guide</a></td><td><a href="../resource-browser.html#App-Dev-2-Project/Sep-26/Day-5">Browse Day 5 files</a></td></tr>
+</tbody>
+</table>
+
+<p>These are project source files; the Flask backend and Vite frontend must be run locally as described in the setup guides.</p>
 
 </div>
 

@@ -18,8 +18,8 @@ class ResourceBrowserTest(unittest.TestCase):
             generate(root)
 
             page = (root / "resource-browser.html").read_text(encoding="utf-8")
-            self.assertIn("<summary>Course &amp; notes/</summary>", page)
-            self.assertIn("<summary>Week 1/</summary>", page)
+            self.assertIn('<details id="Course &amp; notes"><summary>Course &amp; notes/</summary>', page)
+            self.assertIn('<details id="Course &amp; notes/Week 1"><summary>Week 1/</summary>', page)
             self.assertIn('href="Course%20%26%20notes/Week%201/New%20%231.html"', page)
             self.assertIn('href="Course%20%26%20notes/Week%201/diagram.svg"', page)
             self.assertIn('href="index.html"', page)
