@@ -25,6 +25,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare build directory
+        run: mkdir -p .pages-output
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
