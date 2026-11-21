@@ -29,10 +29,15 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ./_site
+          destination: ./.pages-output
+
+      - name: Generate resource browser
+        run: python3 .github/scripts/generate_resource_browser.py .pages-output
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.pages-output
 
   deploy:
     environment:
@@ -44,3 +49,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
