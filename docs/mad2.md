@@ -53,6 +53,14 @@ Weekly notes and resources for the MAD-2 course. Each week includes links to not
 |-------|-------|
 | [Fetch API Tutorial](../App-Dev-2/Week-5/fetchCall.md) | [MAD-2 Course Playlist](https://youtube.com/playlist?list=PLZVf4uJM87Nq6mkCp6tIBu8Caj5UdJC0B) |
 
+#### Wikipedia Vue App
+
+Explore the Week 5 Wikipedia clone and its source code:
+
+- [Open the Wikipedia Vue app](../App-Dev-2/Week-5/Wikipedia%20Vue%20app/index.html)
+- [Application flow and architecture](../App-Dev-2/Week-5/Wikipedia%20Vue%20app/APP_FLOW.html)
+- [Browse the app files](../resource-browser.html#App-Dev-2/Week-5/Wikipedia%20Vue%20app)
+
 ---
 
 ### Week 6 — JavaScript & Vue Router

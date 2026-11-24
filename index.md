@@ -7,6 +7,10 @@ title: Resources App Dev
 
 Welcome! Select your course below to access notes, guides, and video lectures.
 
+[Browse all published files by folder](resource-browser.html)
+
+The browser updates when the site rebuilds after a push to `main`. Files excluded by Jekyll are not published.
+
 ---
 
 ## Common Resources
