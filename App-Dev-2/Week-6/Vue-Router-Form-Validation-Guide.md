@@ -21,7 +21,7 @@ const router = new VueRouter({
 })
 ```
 
-### ⚠️ Important: Server Configuration
+### ⚠️ Important: Server Configuration ( NOTE: This works when you have backend ) 
 History mode needs server to serve `index.html` for all unknown routes:
 
 ```javascript
