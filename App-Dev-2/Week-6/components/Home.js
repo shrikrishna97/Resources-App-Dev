@@ -17,6 +17,7 @@ const Home = {
             
             <button type="submit" :disabled="!isFormValid">Submit</button>
         </form>
+        <button @click="$router.push('/about')">Go to About Page</button>
     </div>
     `,
   data() {

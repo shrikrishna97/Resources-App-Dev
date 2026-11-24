@@ -1,5 +1,5 @@
 const About = {
-    template: `
+  template: `
         <div>
             <h1>About Page</h1>           
             
@@ -8,9 +8,15 @@ const About = {
             <p>This is not the about page of our Vue.js application.</p>
             <router-view></router-view>
         </div>
-    `
+    `,
+
+  mounted() {
+    console.log(this.$route.params); // { id: '123' }
+    console.log(this.$route.query); // { q: 'vue' }
+    console.log(this.$route.path);
+  },
 };
 
-export default About
+export default About;
 
 // index1 (router view) -> about (router view )-> aboutuser
